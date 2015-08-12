@@ -1,0 +1,30 @@
+{
+  "name": "whatwebcando",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "~3.3.5",
+    "bootstrap-material-design": "~0.3.0",
+    "modernizr": "~2.8.3"
+  },
+  "overrides": {
+    "bootstrap": {
+      "main": [
+        "dist/js/bootstrap.js",
+        "dist/css/bootstrap.css"
+      ]
+    },
+    "bootstrap-material-design": {
+      "main": [
+        "dist/css/material.css",
+        "dist/css/ripples.css",
+        "dist/css/roboto.css",
+        "dist/js/material.js",
+        "dist/js/ripples.js"
+      ]
+    }
+  },
+  "devDependencies": {
+    "chai": "~3.2.0",
+    "mocha": "~2.2.5"
+  }
+}
