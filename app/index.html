@@ -39,40 +39,7 @@
         <!--<p><a class="btn btn-lg btn-primary" href="#">Splendid! <span class="glyphicon glyphicon-ok"></span></a></p>-->
       </div>
 
-      <div class="row">
-        <div class="col-sm-4">
-          <div class="panel panel-primary">
-            <div class="panel-heading">
-              <h3 class="panel-title">Panel primary</h3>
-            </div>
-            <ul class="panel-body features-list">
-              <li>
-                <a href="#" class="btn btn-flat btn-default">
-                  <i class="mdi-device-sd-storage"></i>
-                  Panel content
-                  <i class="mdi-navigation-check text-success" title="Your current browser supports XYZ"></i>
-                </a>
-              </li>
-              <li>
-                <a href="#" class="btn btn-flat btn-default">
-                  Panel content
-                  <i class="mdi-navigation-close text-danger" title="Your current browser doesn't support XYZ"></i>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-sm-4">
-          <div class="panel panel-primary">
-            <div class="panel-heading">
-              <h3 class="panel-title">Panel primary</h3>
-            </div>
-            <div class="panel-body features-list">
-              <a href="#" class="btn btn-flat btn-default">Panel content</a>
-            </div>
-          </div>
-        </div>
-      </div>
+      <div class="row" id="features-list-target"></div>
 
       <div class="footer clearfix">
         <p><span class="glyphicon glyphicon-heart"></span></p>
@@ -80,7 +47,32 @@
       </div>
     </div>
 
-
+    <script id="features-list-template" type="text/x-handlebars-template">
+      {{#each groups}}
+      <div class="col-sm-4">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">{{heading}}</h3>
+          </div>
+          <ul class="panel-body features-list">
+            {{#each features}}
+            <li>
+              <a href="#" onclick="page('/{{id}}'); return false;" class="btn btn-flat btn-default">
+                {{#if icon}}<i class="{{icon}}"></i>{{/if}}
+                {{name}}
+                {{#if supported}}
+                <i class="mdi-navigation-check text-success" title="Your current browser supports {{name}}"></i>
+                {{else}}
+                <i class="mdi-navigation-close text-danger" title="Your current browser doesn't support {{name}}"></i>
+                {{/if}}
+              </a>
+            </li>
+            {{/each}}
+          </ul>
+        </div>
+      </div>
+      {{/each}}
+    </script>
 
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
@@ -88,6 +80,8 @@
     <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="/bower_components/bootstrap-material-design/dist/js/material.js"></script>
     <script src="/bower_components/bootstrap-material-design/dist/js/ripples.js"></script>
+    <script src="/bower_components/page/page.js"></script>
+    <script src="/bower_components/handlebars/handlebars.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -97,7 +91,10 @@
 
 
     <!-- build:js scripts/main.js -->
-    <script src="scripts/main.js"></script>
+    <script src="scripts/features.js"></script>
+    <script src="scripts/injector.js"></script>
+    <script src="scripts/indexPageCtrl.js"></script>
+    <script src="scripts/app.js"></script>
     <!-- endbuild -->
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
