@@ -1,12 +1,14 @@
 'use strict';
 
-(function (WWCD) {
+(function (container) {
   'use strict';
 
-  WWCD.indexPageCtrl = function ({templateEngine, featuresGroups}) {
+  let indexPageCtrl = function ({templateEngine, featuresGroups}) {
     templateEngine.run('features-list', {
       groups: featuresGroups
     });
   };
 
-})(window.WWCD = (window.WWCD || {}));
+  container.configure(register => register.singleton('indexPageCtrl', indexPageCtrl));
+
+})(WWCD.container);

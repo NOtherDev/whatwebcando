@@ -91,6 +91,12 @@ body {
   transform: translate(0, 5px);
 }
 
+.btn-wrap {
+  white-space: normal;
+  word-wrap: break-word;
+  word-break: normal;
+}
+
 /* Site */
 .features-list {
   text-align: center;

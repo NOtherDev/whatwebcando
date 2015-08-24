@@ -3,13 +3,6 @@
 (function (WWCD) {
   'use strict';
 
-  let templateEngine = {
-    run(templatePrefix, context = {}) {
-      let template = Handlebars.compile($(`\#${templatePrefix}-template`).html());
-      $(`\#${templatePrefix}-target`).html(template(context));
-    }
-  };
-
   let $defineMultiple = function (callback, config) {
     for (let key in config) {
       if (config.hasOwnProperty(key)) {
@@ -41,23 +34,13 @@
       return this;
     }
 
-    factory(name, func, ...rest) {
-      this.$define(name, () => func(...rest, this.$injector));
+    class(name, constructor) {
+      this.$define(name, () => new constructor(this.$injector));
       return this;
     }
 
-    factories(config) {
-      $defineMultiple(this.factory.bind(this), config);
-      return this;
-    }
-
-    transientInstance(name, constructor, ...rest) {
-      this.$define(name, () => new constructor(...rest, this.$injector));
-      return this;
-    }
-
-    transientInstances(config) {
-      $defineMultiple(this.transientInstance.bind(this), config);
+    classes(config) {
+      $defineMultiple(this.class.bind(this), config);
       return this;
     }
   }
@@ -78,13 +61,12 @@
     get injector() {
       return this.$injector;
     }
+
+    resolveFunc(dependencyFunc, ...args) {
+      return dependencyFunc(...args, this.injector);
+    }
   }
 
-  let container = new Container(register => register.singletons({
-    templateEngine: templateEngine,
-    featuresGroups: WWCD.featuresGroups
-  }));
-
-  WWCD.injector = container.injector;
+  WWCD.container = new Container();
 
 })(window.WWCD = (window.WWCD || {}));

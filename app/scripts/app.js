@@ -1,13 +1,21 @@
 // jshint devel:true
 
-(function (WWCD) {
+(function (container) {
   'use strict';
 
   $.material.init();
 
-  // routing
-  page('/', () => WWCD.indexPageCtrl(WWCD.injector));
-  page('/f1', ()  => alert('f1'));
-  page();
+  let defineRouting = function({indexPageCtrl, featurePageCtrl, features}) {
+    page('/', () => container.resolveFunc(indexPageCtrl));
 
-})(window.WWCD = (window.WWCD || {}));
+    Object.keys(features).forEach(function (featureId) {
+      let feature = features[featureId];
+      page('/' + featureId, () => container.resolveFunc(featurePageCtrl, feature));
+    });
+
+    page();
+  };
+
+  defineRouting(container.injector);
+
+})(WWCD.container);

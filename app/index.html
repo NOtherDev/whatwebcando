@@ -40,6 +40,7 @@
       </div>
 
       <div class="row" id="features-list-target"></div>
+      <div class="row" id="feature-target"></div>
 
       <div class="footer clearfix">
         <p><span class="glyphicon glyphicon-heart"></span></p>
@@ -57,12 +58,12 @@
           <ul class="panel-body features-list">
             {{#each features}}
             <li>
-              <a href="#" onclick="page('/{{id}}'); return false;" class="btn btn-flat btn-default">
+              <a href="/{{id}}" bind-router class="btn btn-flat btn-default btn-wrap">
                 {{#if icon}}<i class="{{icon}}"></i>{{/if}}
                 {{name}}
                 {{#if supported}}
                 <i class="mdi-navigation-check text-success" title="Your current browser supports {{name}}"></i>
-                {{else}}
+                {{else if notSupported}}
                 <i class="mdi-navigation-close text-danger" title="Your current browser doesn't support {{name}}"></i>
                 {{/if}}
               </a>
@@ -72,6 +73,10 @@
         </div>
       </div>
       {{/each}}
+    </script>
+
+    <script id="feature-template" type="text/x-handlebars-template">
+      <p>Feature: {{feature.name}}</p>
     </script>
 
     <!-- build:js(.) scripts/vendor.js -->
@@ -91,9 +96,13 @@
 
 
     <!-- build:js scripts/main.js -->
+    <script src="scripts/container.js"></script>
+
+    <script src="scripts/templateEngine.js"></script>
     <script src="scripts/features.js"></script>
-    <script src="scripts/injector.js"></script>
     <script src="scripts/indexPageCtrl.js"></script>
+    <script src="scripts/featurePageCtrl.js"></script>
+
     <script src="scripts/app.js"></script>
     <!-- endbuild -->
 
