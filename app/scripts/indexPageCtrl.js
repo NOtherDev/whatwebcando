@@ -3,10 +3,11 @@
 (function (container) {
   'use strict';
 
-  let indexPageCtrl = function ({templateEngine, featuresGroups}) {
-    templateEngine.run('features-list', {
-      groups: featuresGroups
-    });
+  let indexPageCtrl = function ({templateEngine, featuresGroups, pageObject}) {
+    templateEngine.run('features-list', { groups: featuresGroups });
+
+    templateEngine.targetFor('feature').promisedSlideUp()
+      .then(() => pageObject.featuresList.promisedSlideDown());
   };
 
   container.configure(register => register.singleton('indexPageCtrl', indexPageCtrl));

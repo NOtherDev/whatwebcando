@@ -97,8 +97,18 @@ body {
   word-break: normal;
 }
 
+.panel-primary > .panel-heading a {
+  color: inherit;
+}
+
 /* Site */
 .features-list {
   text-align: center;
   list-style-type: none;
+}
+
+.feature-box {
+  .mdi-navigation-close {
+    margin-top: -8px;
+  }
 }

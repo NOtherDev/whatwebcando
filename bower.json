@@ -6,7 +6,10 @@
     "bootstrap-material-design": "~0.3.0",
     "modernizr": "~2.8.3",
     "page": "visionmedia/page.js#~1.6.3",
-    "handlebars": "~3.0.3"
+    "handlebars": "~3.0.3",
+    "arrive": "~2.2.0",
+    "es6-promise": "~3.0.2",
+    "lodash": "~3.10.1"
   },
   "overrides": {
     "bootstrap": {

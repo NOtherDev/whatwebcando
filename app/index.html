@@ -76,7 +76,17 @@
     </script>
 
     <script id="feature-template" type="text/x-handlebars-template">
-      <p>Feature: {{feature.name}}</p>
+      <div class="col-sm-12">
+        <div class="panel panel-primary feature-box">
+          <div class="panel-heading">
+            <a href="/" bind-router><i class="pull-right mdi-navigation-close"></i></a>
+            <h3 class="panel-title">{{feature.name}}</h3>
+          </div>
+          <div class="panel-body">
+            Feature description.
+          </div>
+        </div>
+      </div>
     </script>
 
     <!-- build:js(.) scripts/vendor.js -->
@@ -87,11 +97,15 @@
     <script src="/bower_components/bootstrap-material-design/dist/js/ripples.js"></script>
     <script src="/bower_components/page/page.js"></script>
     <script src="/bower_components/handlebars/handlebars.js"></script>
+    <script src="/bower_components/arrive/src/arrive.js"></script>
+    <script src="/bower_components/es6-promise/promise.js"></script>
+    <script src="/bower_components/lodash/lodash.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
 
     <!-- build:js(.) scripts/plugins.js -->
+    <script src="scripts/promisedJQuery.js"></script>
     <!-- endbuild -->
 
 
@@ -99,6 +113,7 @@
     <script src="scripts/container.js"></script>
 
     <script src="scripts/templateEngine.js"></script>
+    <script src="scripts/pageObject.js"></script>
     <script src="scripts/features.js"></script>
     <script src="scripts/indexPageCtrl.js"></script>
     <script src="scripts/featurePageCtrl.js"></script>

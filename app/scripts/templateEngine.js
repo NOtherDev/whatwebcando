@@ -22,14 +22,30 @@
   }
 
   class TemplateEngine {
-    run(templatePrefix, context = {}) {
-      let template = Handlebars.compile($(`\#${templatePrefix}-template`).html());
+    constructor() {
+      this.$runOnceMemoized = _.memoize(this.$runOnce, (prefix, context) => `${prefix}-${JSON.stringify(context)}`);
+    }
+
+    $runOnce(prefix, context = {}) {
+      let template = Handlebars.compile(this.templateFor(prefix).html());
       let compiled = new CompiledTemplate(template(context));
       compiled.bindRouter();
-      $(`\#${templatePrefix}-target`).html(compiled.dom);
+      this.targetFor(prefix).html(compiled.dom);
+    }
+
+    run(prefix, context = {}) {
+      return this.$runOnceMemoized(prefix, context);
+    }
+
+    templateFor(prefix) {
+      return $(`\#${prefix}-template`);
+    }
+
+    targetFor(prefix) {
+      return $(`\#${prefix}-target`);
     }
   }
 
-  container.configure(register => register.class('templateEngine', TemplateEngine));
+  container.configure(register => register.singleton('templateEngine', new TemplateEngine()));
 
 })(WWCD.container);
