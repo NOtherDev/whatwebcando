@@ -10,7 +10,7 @@
 
     Object.keys(features).forEach(function (featureId) {
       let feature = features[featureId];
-      page('/' + featureId, () => container.resolveFunc(featurePageCtrl, feature));
+      page('/' + feature.id, () => container.resolveFunc(featurePageCtrl, feature));
     });
 
     page();
