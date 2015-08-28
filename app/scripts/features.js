@@ -60,7 +60,7 @@
       id: 'touch',
       icon: 'mdi-content-gesture',
       name: 'Touch gestures',
-      supported: Modernizr.touch,
+      supported: Feature.windowContains('ontouchstart'),
       urls: ['http://www.html5rocks.com/en/mobile/touch/']
     }),
     manifest: new Feature({
@@ -79,7 +79,7 @@
       id: 'geolocation',
       icon: 'mdi-device-gps-fixed',
       name: 'Geolocation',
-      supported: Modernizr.geolocation
+      supported: Feature.navigatorContains('geolocation')
     }),
     bluetooth: new Feature({
       id: 'bluetooth',

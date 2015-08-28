@@ -17,7 +17,6 @@
     "grunt-eslint": "^16.0.0",
     "grunt-filerev": "^2.2.0",
     "grunt-mocha": "^0.4.12",
-    "grunt-modernizr": "^0.6.0",
     "grunt-newer": "^1.1.0",
     "grunt-postcss": "^0.5.3",
     "grunt-sass": "^1.0.0",
