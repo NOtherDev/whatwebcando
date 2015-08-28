@@ -102,6 +102,12 @@ body {
 }
 
 /* Site */
+#features-list-target {
+  :nth-child(3n+1) {
+    clear: both;
+  }
+}
+
 .features-list {
   text-align: center;
   list-style-type: none;
