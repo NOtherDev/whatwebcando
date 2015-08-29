@@ -329,10 +329,27 @@ module.exports = function (grunt) {
           cwd: '<%= config.app %>',
           dest: '<%= config.dist %>',
           src: [
+            'CNAME',
             '*.{ico,png,txt}',
             'images/{,*/}*.webp',
             '{,*/}*.html',
             'styles/fonts/{,*/}*.*'
+          ]
+        }, {
+          expand: true,
+          dot: true,
+          cwd: 'bower_components/bootstrap-material-design',
+          dest: '<%= config.dist %>',
+          src: [
+            'fonts/{,*/}*.*'
+          ]
+        }, {
+          expand: true,
+          dot: true,
+          cwd: 'bower_components/bootstrap',
+          dest: '<%= config.dist %>',
+          src: [
+            'fonts/{,*/}*.*'
           ]
         }]
       }
@@ -348,7 +365,7 @@ module.exports = function (grunt) {
         'babel'
       ],
       dist: [
-        'babel',
+        'babel:dist',
         'sass',
         'imagemin',
         'svgmin'
