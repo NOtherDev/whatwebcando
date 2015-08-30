@@ -370,12 +370,19 @@ module.exports = function (grunt) {
         'imagemin',
         'svgmin'
       ]
+    },
+
+    duplicate: {
+      options: {
+        featuresModule: './.tmp/scripts/features.js',
+        src: '<%= config.dist %>/index.html',
+        targetPattern: '<%= config.dist %>/{ID}.html'
+      }
     }
   });
 
 
   grunt.registerTask('serve', 'start the server and preview your app', function (target) {
-
     if (target === 'dist') {
       return grunt.task.run(['build', 'browserSync:dist']);
     }
@@ -410,6 +417,23 @@ module.exports = function (grunt) {
     ]);
   });
 
+  grunt.registerTask('duplicate', 'Prepare duplication for HTMLs for features', function () {
+    var options = this.options();
+    var files = {};
+
+    var features = require(options.featuresModule).WWCD.features;
+    Object.keys(features).forEach(function (key) {
+      var target = options.targetPattern.replace('{ID}', features[key].id);
+      files[target] = [options.src];
+    });
+
+    grunt.verbose.writeln('copy:duplicate files built: ' + JSON.stringify(files));
+
+    grunt.config.merge({
+      copy: {duplicate: {files: files}}
+    });
+  });
+
   grunt.registerTask('build', [
     'clean:dist',
     'wiredep',
@@ -422,7 +446,9 @@ module.exports = function (grunt) {
     'copy:dist',
     'filerev',
     'usemin',
-    'htmlmin'
+    'htmlmin',
+    'duplicate',
+    'copy:duplicate'
   ]);
 
   grunt.registerTask('default', [

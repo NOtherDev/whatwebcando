@@ -62,7 +62,7 @@
       return this.$injector;
     }
 
-    resolveFunc(dependencyFunc, ...args) {
+    resolveAndCall(dependencyFunc, ...args) {
       return dependencyFunc(...args, this.injector);
     }
   }

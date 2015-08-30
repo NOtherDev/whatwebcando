@@ -35,10 +35,10 @@
   };
 
   Feature.navigatorContains = function (property) {
-    return Feature.containedIn(navigator, property);
+    return typeof navigator === 'object' && Feature.containedIn(navigator, property);
   };
   Feature.windowContains = function (property) {
-    return Feature.containedIn(window, property);
+    return typeof window === 'object' && Feature.containedIn(window, property);
   };
 
   let features = {
@@ -73,7 +73,7 @@
       id: 'foreground-detection',
       icon: 'mdi-action-flip-to-front',
       name: 'Foreground detection',
-      supported: Feature.containedIn(document, 'visibilityState')
+      supported: typeof document === 'object' && Feature.containedIn(document, 'visibilityState')
     }),
     geolocation: new Feature({
       id: 'geolocation',
@@ -195,7 +195,7 @@
       id: 'rotation-lock',
       icon: 'mdi-device-screen-lock-rotation',
       name: 'Rotation lock',
-      supported: Feature.containedIn(window.screen, 'lockOrientation')
+      supported: typeof window === 'object' && Feature.containedIn(window.screen, 'lockOrientation')
     }),
     presentation: new Feature({
       id: 'presentation',
@@ -234,9 +234,17 @@
     }
   ];
 
-  WWCD.container.configure(register => register.singletons({
-    features: features,
-    featuresGroups: featuresGroups
-  }));
+  if (WWCD.container) { // web run
+    WWCD.container.configure(register => register.singletons({
+      features: features,
+      featuresGroups: featuresGroups
+    }));
+  } else { // build run
+    WWCD.features = features;
+  }
 
-})(window.WWCD = (window.WWCD || {}));
+})(function () {
+  let global = typeof exports === 'object' ? exports : window;
+  global.WWCD = global.WWCD || {};
+  return global.WWCD;
+}());

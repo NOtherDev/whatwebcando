@@ -6,7 +6,7 @@
   let indexPageCtrl = function ({templateEngine, featuresGroups, pageObject}) {
     templateEngine.run('features-list', { groups: featuresGroups });
 
-    templateEngine.targetFor('feature').promisedSlideUp()
+    return templateEngine.targetFor('feature').promisedSlideUp()
       .then(() => pageObject.featuresList.promisedSlideDown());
   };
 

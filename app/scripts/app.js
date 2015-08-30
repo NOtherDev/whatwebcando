@@ -5,17 +5,22 @@
 
   $.material.init();
 
-  let defineRouting = function({indexPageCtrl, featurePageCtrl, features}) {
-    page('/', () => container.resolveFunc(indexPageCtrl));
+  let defineRouting = function ({indexPageCtrl, featurePageCtrl, features}) {
+    page('/', () => container.resolveAndCall(indexPageCtrl));
 
     Object.keys(features).forEach(function (featureId) {
       let feature = features[featureId];
-      page(`/${feature.id}.html`, () => container.resolveFunc(featurePageCtrl, feature));
+      page(`/${feature.id}.html`, () => container.resolveAndCall(featurePageCtrl, feature));
     });
 
     page();
   };
 
-  defineRouting(container.injector);
+  let initializeAndRun = function ({indexPageCtrl}) {
+    container.resolveAndCall(indexPageCtrl)
+      .then(() => container.resolveAndCall(defineRouting));
+  };
+
+  initializeAndRun(container.injector);
 
 })(WWCD.container);
