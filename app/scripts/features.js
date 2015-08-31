@@ -1,6 +1,6 @@
 // jshint devel:true
 
-(function (WWCD) {
+(function (global) {
   'use strict';
 
   class Feature {
@@ -20,6 +20,10 @@
   let capitalizeFirst = str => str.substr(0, 1).toUpperCase() + str.substr(1);
 
   Feature.containedIn = function (container, property) {
+    if (!container || !(property in container)) {
+      return false;
+    }
+
     if (property in container) {
       return true;
     }
@@ -34,18 +38,15 @@
     return false;
   };
 
-  Feature.navigatorContains = function (property) {
-    return typeof navigator === 'object' && Feature.containedIn(navigator, property);
-  };
-  Feature.windowContains = function (property) {
-    return typeof window === 'object' && Feature.containedIn(window, property);
-  };
+  Feature.navigatorContains = property => Feature.containedIn(global.navigator, property);
+  Feature.windowContains = property => Feature.containedIn(global, property);
 
   let features = {
     pushNotifications: new Feature({
       id: 'push-notifications',
       icon: 'mdi-notification-tap-and-play',
       name: 'Push notifications',
+      caniuse: 'serviceworkers',
       supported: Feature.navigatorContains('serviceWorker') && Feature.windowContains('PushManager') && Feature.containedIn(ServiceWorkerRegistration.prototype, 'showNotification'),
       urls: ['https://developers.google.com/web/updates/2015/03/push-notificatons-on-the-open-web']
     }),
@@ -53,6 +54,7 @@
       id: 'background-tasks',
       icon: 'mdi-action-settings-applications',
       name: 'Background processing',
+      caniuse: 'serviceworkers',
       supported: Feature.navigatorContains('serviceWorker'),
       urls: ['http://www.html5rocks.com/en/tutorials/service-worker/introduction/']
     }),
@@ -60,6 +62,7 @@
       id: 'touch',
       icon: 'mdi-content-gesture',
       name: 'Touch gestures',
+      caniuse: 'touch',
       supported: Feature.windowContains('ontouchstart'),
       urls: ['http://www.html5rocks.com/en/mobile/touch/']
     }),
@@ -73,12 +76,14 @@
       id: 'foreground-detection',
       icon: 'mdi-action-flip-to-front',
       name: 'Foreground detection',
-      supported: typeof document === 'object' && Feature.containedIn(document, 'visibilityState')
+      caniuse: 'pagevisibility',
+      supported: Feature.containedIn(global.document, 'visibilityState')
     }),
     geolocation: new Feature({
       id: 'geolocation',
       icon: 'mdi-device-gps-fixed',
       name: 'Geolocation',
+      caniuse: 'geolocation',
       supported: Feature.navigatorContains('geolocation')
     }),
     bluetooth: new Feature({
@@ -98,6 +103,7 @@
       id: 'proximity',
       icon: 'mdi-image-leak-add',
       name: 'Proximity sensors',
+      caniuse: 'proximity',
       supported: Feature.windowContains('ondeviceproximity')
     }),
     networkInfo: new Feature({
@@ -110,12 +116,14 @@
       id: 'online-state',
       icon: 'mdi-device-signal-cellular-connected-no-internet-3-bar',
       name: 'On-line state',
+      caniuse: 'online-status',
       supported: Feature.navigatorContains('onLine')
     }),
     mediaCapture: new Feature({
       id: 'media-capture',
       icon: 'mdi-image-camera-alt',
       name: 'Media capturing',
+      caniuse: 'stream',
       supported: Feature.navigatorContains('getUserMedia'),
       urls: ['http://www.html5rocks.com/en/tutorials/getusermedia/intro/']
     }),
@@ -129,12 +137,14 @@
       id: 'vibration',
       icon: 'mdi-notification-vibration',
       name: 'Vibration',
+      caniuse: 'vibration',
       supported: Feature.navigatorContains('vibrate')
     }),
     accelerometer: new Feature({
       id: 'accelerometer',
       icon: 'mdi-action-3d-rotation',
       name: 'Accelerometer',
+      caniuse: 'deviceorientation',
       supported: Feature.windowContains('DeviceMotionEvent'),
       urls: ['http://www.html5rocks.com/en/tutorials/device/orientation/']
     }),
@@ -142,12 +152,14 @@
       id: 'battery-status',
       icon: 'mdi-device-battery-80',
       name: 'Battery status',
+      caniuse: 'battery-status',
       supported: Feature.navigatorContains('getBattery')
     }),
     ambientLight: new Feature({
       id: 'ambient-light',
       icon: 'mdi-device-brightness-low',
       name: 'Ambient light',
+      caniuse: 'ambient-light',
       supported: Feature.windowContains('ondevicelight'),
       urls: ['http://modernweb.com/2014/05/27/introduction-to-the-ambient-light-api/']
     }),
@@ -155,6 +167,7 @@
       id: 'permissions',
       icon: 'mdi-action-lock-open',
       name: 'Permissions',
+      caniuse: 'permissions-api',
       supported: Feature.navigatorContains('permissions'),
       urls: ['https://developers.google.com/web/updates/2015/04/permissions-api-for-the-web']
     }),
@@ -162,6 +175,7 @@
       id: 'files',
       icon: 'mdi-device-sd-storage',
       name: 'File access',
+      caniuse: 'fileapi',
       supported: Feature.windowContains('File'),
       urls: ['http://www.html5rocks.com/en/tutorials/file/dndfiles/']
     }),
@@ -169,6 +183,7 @@
       id: 'storage',
       icon: 'mdi-notification-folder-special',
       name: 'Offline storage',
+      caniuse: 'namevalue-storage',
       supported: Feature.windowContains('indexedDB') || Feature.windowContains('localStorage')
     }),
     contacts: new Feature({
@@ -188,6 +203,7 @@
       id: 'device-orientation',
       icon: 'mdi-device-screen-rotation',
       name: 'Device orientation',
+      caniuse: 'deviceorientation',
       supported: Feature.windowContains('DeviceOrientationEvent'),
       urls: ['http://www.html5rocks.com/en/tutorials/device/orientation/']
     }),
@@ -195,7 +211,7 @@
       id: 'rotation-lock',
       icon: 'mdi-device-screen-lock-rotation',
       name: 'Rotation lock',
-      supported: typeof window === 'object' && Feature.containedIn(window.screen, 'lockOrientation')
+      supported: Feature.containedIn(global.screen, 'lockOrientation')
     }),
     presentation: new Feature({
       id: 'presentation',
@@ -234,17 +250,17 @@
     }
   ];
 
-  if (WWCD.container) { // web run
-    WWCD.container.configure(register => register.singletons({
+  if (global.WWCD.container) { // web run
+    global.WWCD.container.configure(register => register.singletons({
       features: features,
       featuresGroups: featuresGroups
     }));
   } else { // build run
-    WWCD.features = features;
+    module.exports = features;
   }
 
 })(function () {
   let global = typeof exports === 'object' ? exports : window;
   global.WWCD = global.WWCD || {};
-  return global.WWCD;
+  return global;
 }());
