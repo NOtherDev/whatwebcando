@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="/bower_components/bootstrap-material-design/dist/css/material.css" />
     <link rel="stylesheet" href="/bower_components/bootstrap-material-design/dist/css/ripples.css" />
     <link rel="stylesheet" href="/bower_components/bootstrap-material-design/dist/css/roboto.css" />
+    <link rel="stylesheet" href="/bower_components/chartist/dist/chartist.min.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -80,7 +81,29 @@
             <h3 class="panel-title">{{feature.name}}</h3>
           </div>
           <div class="panel-body">
-            Feature description.
+            {{feature.description}}
+
+            {{#if feature.caniuseReport}}
+            <h3><small>Browser support</small></h3>
+            <div class="caniuse-report">
+              <div class="row">
+                <div class="ct-chart browsers-chart col-sm-6"></div>
+                <div class="ct-chart overall-chart col-sm-6"></div>
+              </div>
+              <p class="pull-right top-space">
+                <a href="http://caniuse.com/#feat={{feature.caniuseKey}}" target="_blank">Data from caniuse.com</a>, <small>CC BY 4.0 license</small>
+              </p>
+            </div>
+            {{/if}}
+
+            {{#if feature.urls}}
+            <h3><small>Resources</small></h3>
+            <ul class="resources">
+              {{#each feature.urls}}
+                <li><a href="{{url}}" target="_blank">{{title}}</a></li>
+              {{/each}}
+            </ul>
+            {{/if}}
           </div>
         </div>
       </div>
@@ -95,8 +118,12 @@
     <script src="/bower_components/page/page.js"></script>
     <script src="/bower_components/handlebars/handlebars.js"></script>
     <script src="/bower_components/arrive/src/arrive.js"></script>
-    <script src="/bower_components/es6-promise/promise.js"></script>
     <script src="/bower_components/lodash/lodash.js"></script>
+    <script src="/bower_components/fetch/fetch.js"></script>
+    <script src="/bower_components/babel-polyfill/browser-polyfill.js"></script>
+    <script src="/bower_components/chartist/dist/chartist.min.js"></script>
+    <script src="/bower_components/chartist-plugin-tooltip/dist/chartist-plugin-tooltip.min.js"></script>
+    <script src="/bower_components/compare-versions/index.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -109,6 +136,8 @@
     <!-- build:js(.tmp) scripts/main.js -->
     <script src="scripts/container.js"></script>
 
+    <script src="scripts/feature.js"></script>
+    <script src="scripts/caniuse.js"></script>
     <script src="scripts/templateEngine.js"></script>
     <script src="scripts/pageObject.js"></script>
     <script src="scripts/features.js"></script>

@@ -1,3 +1,6 @@
+@import "_chartist-settings";
+@import "../../bower_components/chartist/dist/scss/chartist";
+
 // bower:scss
 // endbower
 
@@ -101,6 +104,10 @@ body {
   color: inherit;
 }
 
+.top-space {
+  margin-top: 10px;
+}
+
 /* Site */
 #features-list-target {
   :nth-child(3n+1) {
@@ -120,5 +127,24 @@ body {
 .feature-box {
   .mdi-navigation-close {
     margin-top: -8px;
+  }
+}
+
+.caniuse-report .ct-chart {
+  position: relative;
+  height: 300px;
+
+  .chartist-tooltip {
+    position: absolute;
+    background: #009688;
+    box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.12), 0 1px 6px 0 rgba(0, 0, 0, 0.12);
+    border-radius: 2px;
+    color: #fff;
+    padding: 5px 10px;
+  }
+
+  .ct-chart-pie .ct-label {
+    fill: #fff;
+    font-size: 1.25rem;
   }
 }

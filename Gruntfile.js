@@ -421,7 +421,7 @@ module.exports = function (grunt) {
     var options = this.options();
     var files = {};
 
-    var features = require(options.featuresModule);
+    var features = require(options.featuresModule).features;
     Object.keys(features).forEach(function (key) {
       var target = options.targetPattern.replace('{ID}', features[key].id);
       files[target] = [options.src];

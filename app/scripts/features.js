@@ -3,43 +3,7 @@
 (function (global) {
   'use strict';
 
-  class Feature {
-    constructor({ id, name, supported = undefined, icon = undefined, urls = []}) {
-      this.id = id;
-      this.name = name;
-      this.supported = supported;
-      this.icon = icon;
-      this.urls = urls;
-    }
-
-    get notSupported() {
-      return this.supported === false;
-    }
-  }
-
-  let capitalizeFirst = str => str.substr(0, 1).toUpperCase() + str.substr(1);
-
-  Feature.containedIn = function (container, property) {
-    if (!container || !(property in container)) {
-      return false;
-    }
-
-    if (property in container) {
-      return true;
-    }
-
-    let capitalizedProperty = capitalizeFirst(property);
-    for (let prefix of ['moz', 'webkit', 'ms']) {
-      if (prefix + property in container || prefix + capitalizedProperty in container) {
-        return true;
-      }
-    }
-
-    return false;
-  };
-
-  Feature.navigatorContains = property => Feature.containedIn(global.navigator, property);
-  Feature.windowContains = property => Feature.containedIn(global, property);
+  let Feature = global.WWCD.Feature;
 
   let features = {
     pushNotifications: new Feature({
@@ -256,7 +220,7 @@
       featuresGroups: featuresGroups
     }));
   } else { // build run
-    module.exports = features;
+    global.features = features;
   }
 
 })(function () {

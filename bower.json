@@ -7,8 +7,12 @@
     "page": "visionmedia/page.js#~1.6.3",
     "handlebars": "~3.0.3",
     "arrive": "~2.2.0",
-    "es6-promise": "~3.0.2",
-    "lodash": "~3.10.1"
+    "lodash": "~3.10.1",
+    "fetch": "~0.9.0",
+    "babel-polyfill": "~0.0.1",
+    "chartist": "~0.9.4",
+    "chartist-plugin-tooltip": "~0.0.11",
+    "compare-versions": "~2.0.1"
   },
   "overrides": {
     "bootstrap": {
@@ -30,5 +34,8 @@
   "devDependencies": {
     "chai": "~3.2.0",
     "mocha": "~2.2.5"
+  },
+  "resolutions": {
+    "chartist": "~0.9.4"
   }
 }
