@@ -23,18 +23,18 @@
 
   class TemplateEngine {
     constructor() {
-      this.$runOnceMemoized = _.memoize(this.$runOnce, (prefix, context) => `${prefix}-${JSON.stringify(context)}`);
+      this.$compileMemoized = _.memoize(this.$compile, (prefix, context) => `${prefix}-${JSON.stringify(context)}`);
     }
 
-    $runOnce(prefix, context = {}) {
+    $compile(prefix, context = {}) {
       let template = Handlebars.compile(this.templateFor(prefix).html());
       let compiled = new CompiledTemplate(template(context));
       compiled.bindRouter();
-      this.targetFor(prefix).html(compiled.dom);
+      return compiled.dom;
     }
 
     run(prefix, context = {}) {
-      return this.$runOnceMemoized(prefix, context);
+      this.targetFor(prefix).html(this.$compileMemoized(prefix, context));
     }
 
     templateFor(prefix) {

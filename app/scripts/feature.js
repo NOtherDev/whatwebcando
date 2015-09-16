@@ -10,13 +10,7 @@
       this.caniuseKey = caniuse;
       this.supported = supported;
       this.icon = icon;
-      this.urls = urls.map(u => {
-        // TODO temporary hack until the features data is cleaned up
-        if (typeof u === 'string') {
-          return {url: u, title: u};
-        }
-        return u;
-      });
+      this.urls = urls;
     }
 
     get notSupported() {
@@ -31,7 +25,7 @@
   let capitalizeFirst = str => str.substr(0, 1).toUpperCase() + str.substr(1);
 
   Feature.containedIn = function (container, property) {
-    if (!container || !(property in container)) {
+    if (!container) {
       return false;
     }
 

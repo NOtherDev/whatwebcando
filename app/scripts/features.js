@@ -6,21 +6,32 @@
   let Feature = global.WWCD.Feature;
 
   let features = {
+    localNotifications: new Feature({
+      id: 'local-notifications',
+      icon: 'mdi-notification-system-update',
+      name: 'Local notifications',
+      caniuse: 'notifications',
+      supported: Feature.windowContains('Notification')
+    }),
     pushNotifications: new Feature({
       id: 'push-notifications',
       icon: 'mdi-notification-tap-and-play',
       name: 'Push notifications',
       caniuse: 'serviceworkers',
       supported: Feature.navigatorContains('serviceWorker') && Feature.windowContains('PushManager') && Feature.containedIn(ServiceWorkerRegistration.prototype, 'showNotification'),
-      urls: ['https://developers.google.com/web/updates/2015/03/push-notificatons-on-the-open-web']
+      urls: [
+        {
+          url: 'https://developers.google.com/web/updates/2015/03/push-notificatons-on-the-open-web',
+          title: 'Push Notifications on the Open Web - Chrome tutorial'
+        }
+      ]
     }),
     backgroundTasks: new Feature({
       id: 'background-tasks',
       icon: 'mdi-action-settings-applications',
       name: 'Background processing',
       caniuse: 'serviceworkers',
-      supported: Feature.navigatorContains('serviceWorker'),
-      urls: ['http://www.html5rocks.com/en/tutorials/service-worker/introduction/']
+      supported: Feature.navigatorContains('serviceWorker')
     }),
     touch: new Feature({
       id: 'touch',
@@ -28,13 +39,21 @@
       name: 'Touch gestures',
       caniuse: 'touch',
       supported: Feature.windowContains('ontouchstart'),
-      urls: ['http://www.html5rocks.com/en/mobile/touch/']
+      urls: [
+        {url: 'http://www.html5rocks.com/en/mobile/touch/', title: 'Multi-touch Web Development'}
+      ]
     }),
     manifest: new Feature({
       id: 'manifest',
       icon: 'mdi-content-archive',
       name: 'Homescreen installation',
-      url: ['https://developers.google.com/web/updates/2014/11/Support-for-installable-web-apps-with-webapp-manifest-in-chrome-38-for-Android', 'http://html5doctor.com/web-manifest-specification/']
+      urls: [
+        {
+          url: 'https://developers.google.com/web/updates/2014/11/Support-for-installable-web-apps-with-webapp-manifest-in-chrome-38-for-Android',
+          title: 'Installable Web Apps with the WebApp Manifest in Chrome for Android'
+        },
+        {url: 'http://html5doctor.com/web-manifest-specification/', title: 'The Web Manifest specification'}
+      ]
     }),
     foregroundDetection: new Feature({
       id: 'foreground-detection',
@@ -55,7 +74,9 @@
       icon: 'mdi-device-bluetooth',
       name: 'Bluetooth',
       supported: Feature.navigatorContains('bluetooth'),
-      urls: ['https://developers.google.com/web/updates/2015/07/interact-with-ble-devices-on-the-web']
+      urls: [
+        {url: 'https://developers.google.com/web/updates/2015/07/interact-with-ble-devices-on-the-web', title: 'Interact with BLE devices on the Web'}
+      ]
     }),
     nfc: new Feature({
       id: 'nfc',
@@ -89,7 +110,9 @@
       name: 'Media capturing',
       caniuse: 'stream',
       supported: Feature.navigatorContains('getUserMedia'),
-      urls: ['http://www.html5rocks.com/en/tutorials/getusermedia/intro/']
+      urls: [
+        {url: 'http://www.html5rocks.com/en/tutorials/getusermedia/intro/', title: 'Capturing Audio & Video in HTML5'}
+      ]
     }),
     wakeLock: new Feature({
       id: 'wake-lock',
@@ -109,8 +132,7 @@
       icon: 'mdi-action-3d-rotation',
       name: 'Accelerometer',
       caniuse: 'deviceorientation',
-      supported: Feature.windowContains('DeviceMotionEvent'),
-      urls: ['http://www.html5rocks.com/en/tutorials/device/orientation/']
+      supported: Feature.windowContains('DeviceMotionEvent')
     }),
     batteryStatus: new Feature({
       id: 'battery-status',
@@ -124,16 +146,14 @@
       icon: 'mdi-device-brightness-low',
       name: 'Ambient light',
       caniuse: 'ambient-light',
-      supported: Feature.windowContains('ondevicelight'),
-      urls: ['http://modernweb.com/2014/05/27/introduction-to-the-ambient-light-api/']
+      supported: Feature.windowContains('ondevicelight')
     }),
     permissions: new Feature({
       id: 'permissions',
       icon: 'mdi-action-lock-open',
       name: 'Permissions',
       caniuse: 'permissions-api',
-      supported: Feature.navigatorContains('permissions'),
-      urls: ['https://developers.google.com/web/updates/2015/04/permissions-api-for-the-web']
+      supported: Feature.navigatorContains('permissions')
     }),
     files: new Feature({
       id: 'files',
@@ -141,7 +161,9 @@
       name: 'File access',
       caniuse: 'fileapi',
       supported: Feature.windowContains('File'),
-      urls: ['http://www.html5rocks.com/en/tutorials/file/dndfiles/']
+      urls: [
+        {url: 'http://www.html5rocks.com/en/tutorials/file/dndfiles/', title: 'Reading files in JavaScript using the File APIs'}
+      ]
     }),
     storage: new Feature({
       id: 'storage',
@@ -161,15 +183,16 @@
       icon: 'mdi-notification-sim-card-alert',
       name: 'Quota management',
       supported: Feature.windowContains('storageInfo') || Feature.navigatorContains('temporaryStorageQuota'),
-      urls: ['http://www.html5rocks.com/en/tutorials/offline/quota-research/']
+      urls: [
+        {url: 'http://www.html5rocks.com/en/tutorials/offline/quota-research/', title: 'Working with quota on mobile browsers'}
+      ]
     }),
     deviceOrientation: new Feature({
       id: 'device-orientation',
       icon: 'mdi-device-screen-rotation',
       name: 'Device orientation',
       caniuse: 'deviceorientation',
-      supported: Feature.windowContains('DeviceOrientationEvent'),
-      urls: ['http://www.html5rocks.com/en/tutorials/device/orientation/']
+      supported: Feature.windowContains('DeviceOrientationEvent')
     }),
     rotationLock: new Feature({
       id: 'rotation-lock',
@@ -187,14 +210,53 @@
       id: 'viewports',
       icon: 'mdi-hardware-phonelink',
       name: 'Viewport adaptation',
-      urls: ['https://dev.opera.com/articles/an-introduction-to-meta-viewport-and-viewport/']
+      urls: [
+        {url: 'https://dev.opera.com/articles/an-introduction-to-meta-viewport-and-viewport/', title: 'An Introduction to Meta Viewport and @viewport'}
+      ]
+    }),
+    speech: new Feature({
+      id: 'speech-recognition',
+      icon: 'mdi-av-mic',
+      name: 'Speech recognition',
+      caniuse: 'speech-recognition',
+      supported: Feature.windowContains('SpeechRecognition'),
+      urls: [
+        {url: 'https://shaungallagher.github.io/say_restyle/', title: 'Demo - Edit the webpage with your voice'}
+      ]
+    }),
+    clipboard: new Feature({
+      id: 'clipboard',
+      icon: 'mdi-content-content-paste',
+      name: 'Clipboard (copy & paste)',
+      caniuse: 'clipboard',
+      supported: Feature.windowContains('ClipboardEvent'),
+      urls: [
+        {url: 'https://github.com/GoogleChrome/samples/tree/gh-pages/cut-and-copy', title: 'Sample code from Google Chrome'}
+      ]
+    }),
+    inputModality: new Feature({
+      id: 'input-modality',
+      icon: 'mdi-hardware-mouse',
+      name: 'Input modality',
+      caniuse: 'css-media-interaction',
+      urls: [
+        {url: 'http://radar.oreilly.com/2015/08/proposing-css-input-modailty.html', title: 'Proposing CSS input modality'},
+      ]
+    }),
+    autofill: new Feature({
+      id: 'forms-autofill',
+      icon: 'mdi-action-assignment-turned-in',
+      name: 'Forms autofill',
+      urls: [
+        {url: 'https://html.spec.whatwg.org/multipage/forms.html#autofill', title: 'Specification draft'}
+      ]
     })
   };
 
   let featuresGroups = [
     {
       heading: 'Behave like a native app',
-      features: [features.pushNotifications, features.backgroundTasks, features.touch, features.manifest, features.foregroundDetection]
+      features: [features.localNotifications, features.pushNotifications, features.backgroundTasks, features.manifest, features.foregroundDetection]
     },
     {
       heading: 'Access what\'s around',
@@ -209,7 +271,11 @@
       features: [features.storage, features.files, features.permissions, features.contacts, features.quota]
     },
     {
-      heading: 'Control screen & output',
+      heading: 'Input',
+      features: [features.touch, features.speech, features.accelerometer, features.clipboard, features.inputModality]
+    },
+    {
+      heading: 'Screen & output',
       features: [features.deviceOrientation, features.rotationLock, features.wakeLock, features.viewports, features.presentation]
     }
   ];
