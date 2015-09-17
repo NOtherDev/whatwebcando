@@ -6,8 +6,8 @@
   let indexPageCtrl = function ({templateEngine, featuresGroups, pageObject}) {
     templateEngine.run('features-list', { groups: featuresGroups });
 
-    return templateEngine.targetFor('feature').promisedSlideUp()
-      .then(() => pageObject.featuresList.promisedSlideDown());
+    return pageObject.featurePageElements.promisedSlideUp()
+      .then(() => pageObject.indexElements.promisedSlideDown());
   };
 
   container.configure(register => register.singleton('indexPageCtrl', indexPageCtrl));

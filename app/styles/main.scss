@@ -108,7 +108,27 @@ body {
   margin-top: 10px;
 }
 
+.navbar {
+  display: none;
+  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+  .navbar-toggle {
+    margin-top: 5px;
+    color: #000;
+  }
+
+  .navbar-brand {
+    margin-top: 3px;
+  }
+}
+
 /* Site */
+.page-feature {
+  #features-list-target {
+    margin-top: 50px;
+  }
+}
+
 #features-list-target {
   :nth-child(3n+1) {
     clear: both;

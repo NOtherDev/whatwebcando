@@ -5,7 +5,6 @@
 
   let featurePageCtrl = function (feature, {templateEngine, pageObject, CaniuseReportFetch}) {
     let prefix = 'feature';
-    let $target = templateEngine.targetFor(prefix);
 
     let collectFeatureBoxElements = function *() {
       if (feature.caniuseKey) {
@@ -19,12 +18,11 @@
       }
     };
 
-    pageObject.featuresList.promisedSlideUp()
-      .then(() => $target.promisedSlideUp())
+    pageObject.indexElements.promisedSlideUp()
       .then(() => Promise.all([...collectFeatureBoxElements()]))
       .then(() => templateEngine.run(prefix, {feature: feature}))
       .then(() => Promise.all([...initializeFeatureBoxElements()]))
-      .then(() => $target.promisedSlideDown());
+      .then(() => pageObject.featurePageElements.promisedSlideDown());
   };
 
   container.configure(register => register.singleton('featurePageCtrl', featurePageCtrl));

@@ -34,6 +34,10 @@
     }
 
     run(prefix, context = {}) {
+      let newBodyClass = `page-${prefix}`;
+      $('body').removeClass(this.$bodyClass).addClass(newBodyClass);
+      this.$bodyClass = newBodyClass;
+
       this.targetFor(prefix).html(this.$compileMemoized(prefix, context));
     }
 

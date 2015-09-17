@@ -4,8 +4,11 @@
   'use strict';
 
   let pageObject = {
-    get featuresList() {
-      return $('.features-list');
+    get indexElements() {
+      return $('.hide-on-feature-page');
+    },
+    get featurePageElements() {
+      return $('.show-on-feature-page');
     }
   };
 
