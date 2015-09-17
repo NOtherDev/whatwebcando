@@ -3,7 +3,7 @@
 (function (global) {
   'use strict';
 
-  let Feature = global.WWCD.Feature;
+  let Feature = global.WWCD.Feature || require('./feature').WWCD.Feature;
 
   let features = {
     localNotifications: new Feature({
@@ -240,7 +240,7 @@
       name: 'Input modality',
       caniuse: 'css-media-interaction',
       urls: [
-        {url: 'http://radar.oreilly.com/2015/08/proposing-css-input-modailty.html', title: 'Proposing CSS input modality'},
+        {url: 'http://radar.oreilly.com/2015/08/proposing-css-input-modailty.html', title: 'Proposing CSS input modality'}
       ]
     }),
     autofill: new Feature({
