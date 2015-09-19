@@ -56,7 +56,7 @@
 
     <script id="features-list-template" type="text/x-handlebars-template">
       {{#each groups}}
-      <div class="col-sm-4">
+      <div class="col-lg-4 col-sm-6 col-xs-12">
         <div class="panel panel-primary">
           <div class="panel-heading">
             <h3 class="panel-title">{{heading}}</h3>
@@ -64,7 +64,7 @@
           <ul class="panel-body features-list hide-on-feature-page">
             {{#each features}}
             <li>
-              <a href="/{{id}}.html" bind-router class="btn btn-flat btn-default btn-wrap">
+              <a href="/{{id}}.html" bind-router class="btn btn-flat btn-default">
                 {{#if icon}}<i class="{{icon}}"></i>{{/if}}
                 {{name}}
                 {{#if supported}}

@@ -94,12 +94,6 @@ body {
   transform: translate(0, 5px);
 }
 
-.btn-wrap {
-  white-space: normal;
-  word-wrap: break-word;
-  word-break: normal;
-}
-
 .panel-primary > .panel-heading a {
   color: inherit;
 }
@@ -127,12 +121,6 @@ body {
     #features-list-target {
       margin-top: 50px;
     }
-  }
-}
-
-#features-list-target {
-  :nth-child(3n+1) {
-    clear: both;
   }
 }
 
