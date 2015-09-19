@@ -18,11 +18,9 @@
       }
     };
 
-    pageObject.indexElements.promisedSlideUp()
-      .then(() => Promise.all([...collectFeatureBoxElements()]))
+    Promise.all([...collectFeatureBoxElements()])
       .then(() => templateEngine.run(prefix, {feature: feature}))
-      .then(() => Promise.all([...initializeFeatureBoxElements()]))
-      .then(() => pageObject.featurePageElements.promisedSlideDown());
+      .then(() => Promise.all([...initializeFeatureBoxElements()]));
   };
 
   container.configure(register => register.singleton('featurePageCtrl', featurePageCtrl));

@@ -30,7 +30,7 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <div class="navbar navbar-white navbar-fixed-top show-on-feature-page">
+    <div class="navbar navbar-white navbar-fixed-top show-on-feature-page hidden-md hidden-lg">
       <div class="navbar-header">
         <a class="navbar-toggle pull-left" href="/" bind-router>
           <i class="mdi-navigation-arrow-back"></i>
@@ -40,7 +40,7 @@
     </div>
 
     <div class="container">
-      <div class="well text-center hide-on-feature-page">
+      <div class="well text-center hide-on-feature-page-sm">
         <h1>What Web Can Do Today?</h1>
         <p class="lead">Can I build my app with HTML5 or do I need to go native?</p>
       </div>
@@ -137,7 +137,6 @@
 
 
     <!-- build:js(.tmp) scripts/plugins.js -->
-    <script src="scripts/promisedJQuery.js"></script>
     <!-- endbuild -->
 
 
@@ -147,7 +146,6 @@
     <script src="scripts/feature.js"></script>
     <script src="scripts/caniuse.js"></script>
     <script src="scripts/templateEngine.js"></script>
-    <script src="scripts/pageObject.js"></script>
     <script src="scripts/features.js"></script>
     <script src="scripts/indexPageCtrl.js"></script>
     <script src="scripts/featurePageCtrl.js"></script>

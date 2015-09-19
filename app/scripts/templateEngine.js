@@ -38,7 +38,7 @@
       $('body').removeClass(this.$bodyClass).addClass(newBodyClass);
       this.$bodyClass = newBodyClass;
 
-      this.targetFor(prefix).html(this.$compileMemoized(prefix, context));
+      return this.targetFor(prefix).html(this.$compileMemoized(prefix, context)).promise();
     }
 
     templateFor(prefix) {
