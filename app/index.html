@@ -32,10 +32,10 @@
 
     <div class="navbar navbar-white navbar-fixed-top show-on-feature-page hidden-md hidden-lg">
       <div class="navbar-header">
-        <a class="navbar-toggle pull-left" href="/" bind-router>
+        <a class="navbar-toggle pull-left" href="/">
           <i class="mdi-navigation-arrow-back"></i>
         </a>
-        <a class="navbar-brand" href="/" bind-router>What Web Can Do?</a>
+        <a class="navbar-brand" href="/">What Web Can Do?</a>
       </div>
     </div>
 
@@ -59,12 +59,12 @@
       <div class="col-lg-4 col-sm-6 col-xs-12">
         <div class="panel panel-primary">
           <div class="panel-heading">
-            <h3 class="panel-title">{{heading}}</h3>
+            <h3 class="panel-title"><a href="/">{{heading}}</a></h3>
           </div>
           <ul class="panel-body features-list hide-on-feature-page">
             {{#each features}}
             <li>
-              <a href="/{{id}}.html" bind-router class="btn btn-flat btn-default">
+              <a href="/{{id}}.html" class="btn btn-flat btn-default">
                 {{#if icon}}<i class="{{icon}}"></i>{{/if}}
                 {{name}}
                 {{#if supported}}
@@ -85,7 +85,7 @@
       <div class="col-sm-12">
         <div class="panel panel-primary feature-box">
           <div class="panel-heading">
-            <a href="/" bind-router><i class="pull-right mdi-navigation-close"></i></a>
+            <a href="/"><i class="pull-right mdi-navigation-close"></i></a>
             <h3 class="panel-title">{{feature.name}}</h3>
           </div>
           <div class="panel-body">

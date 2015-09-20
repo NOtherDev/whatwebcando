@@ -8,14 +8,6 @@
       this.$compiled = compiled;
     }
 
-    bindRouter() {
-      $(this.$compiled).find('*[bind-router]').click(event => {
-        event.preventDefault();
-        event.stopPropagation();
-        page(this.getAttribute('href'));
-      });
-    }
-
     get dom() {
       return this.$compiled;
     }
@@ -29,7 +21,6 @@
     $compile(prefix, context = {}) {
       let template = Handlebars.compile(this.templateFor(prefix).html());
       let compiled = new CompiledTemplate(template(context));
-      compiled.bindRouter();
       return compiled.dom;
     }
 
