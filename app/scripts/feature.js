@@ -4,13 +4,19 @@
   'use strict';
 
   class Feature {
-    constructor({ id, name, supported = undefined, icon = undefined, urls = [], caniuse = undefined }) {
+    constructor({ id, name, description = '', supported = undefined, icon = undefined, demoPen = undefined, links = [], caniuse = undefined }) {
       this.id = id;
       this.name = name;
+      this.description = description;
       this.caniuseKey = caniuse;
       this.supported = supported;
       this.icon = icon;
-      this.urls = urls;
+      this.demoPen = demoPen;
+      this.$links = _.indexBy(links, 'url');
+    }
+
+    get links() {
+      return _.filter(this.$links, l => l.ignore !== true);
     }
 
     get notSupported() {
@@ -18,7 +24,7 @@
     }
 
     appendLinks(links = []) {
-      this.urls = this.urls.concat(links);
+      this.$links = _.assign(_.indexBy(links, 'url'), this.$links);
     }
   }
 

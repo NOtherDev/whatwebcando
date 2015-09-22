@@ -16,6 +16,9 @@
       if (feature.caniuseReport) {
         yield feature.caniuseReport.initVisuals();
       }
+      if (feature.demoPen && window.CodePenEmbed) {
+        window.CodePenEmbed.init();
+      }
     };
 
     Promise.all([...collectFeatureBoxElements()])
