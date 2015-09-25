@@ -89,7 +89,9 @@
             <h3 class="panel-title">{{feature.name}}</h3>
           </div>
           <div class="panel-body">
-            {{feature.description}}
+            {{#each feature.description}}
+              <p>{{{.}}}</p>
+            {{/each}}
 
             {{#if feature.demoPen}}
             <h3><small>Live Demo</small></h3>

@@ -22,36 +22,65 @@
         {url: 'http://aurelio.audero.it/demo/web-notifications-api-demo.html', ignore: true}
       ]
     }),
+
     pushNotifications: new Feature({
       id: 'push-notifications',
       icon: 'mdi-notification-tap-and-play',
       name: 'Push notifications',
+      description: [`Remote Push Notifications allow web applications to subscribe the user to the re-engagement mechanism
+       that can show a message to the subscriber even if the web application is not currently opened in the browser. This utilizes the powerful concept
+       of Service Workers, code units installable by the web app that execute separately in the background.`,
+        `Currently works in Chrome only and requires <a href="https://developers.google.com/cloud-messaging/">GCM</a> setup.`],
       caniuse: 'serviceworkers',
       supported: Feature.navigatorContains('serviceWorker') && Feature.windowContains('PushManager') && Feature.containedIn(ServiceWorkerRegistration.prototype, 'showNotification'),
       links: [
+        {url: 'http://www.html5rocks.com/en/tutorials/service-worker/introduction/', ignore: true},
+        {url: 'https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorker_API', ignore: true},
+        {url: 'https://jakearchibald.github.io/isserviceworkerready/resources.html', ignore: true},
         {
           url: 'https://developers.google.com/web/updates/2015/03/push-notificatons-on-the-open-web',
           title: 'Push Notifications on the Open Web - Chrome tutorial'
-        }
+        },
+        {url: 'https://goroost.com/try-chrome-push-notifications', title: 'Chrome Push Notifications demo'}
       ]
     }),
+
     backgroundTasks: new Feature({
       id: 'background-tasks',
       icon: 'mdi-action-settings-applications',
       name: 'Background processing',
+      description: `Web applications running on HTTPS can request the browser to install the separate code unit called Service Worker.
+       This unit is then run in a separate thread off the owning web application, communicating via events and messages.
+       It provides a possibility to execute code regardless of the main application state, i.e. when it is not opened.
+       Use cases might include prefetching and caching the data, long processing etc.`,
       caniuse: 'serviceworkers',
-      supported: Feature.navigatorContains('serviceWorker')
+      supported: Feature.navigatorContains('serviceWorker'),
+      links: [
+        {url: 'https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorker_API', title: 'ServiceWorker API - MDN docs'},
+        {
+          url: 'https://googlechrome.github.io/samples/service-worker/prefetch/index.html',
+          title: 'Service Worker Sample: Pre-fetching Resources During Registration'
+        }
+      ]
     }),
+
     touch: new Feature({
       id: 'touch',
       icon: 'mdi-content-gesture',
       name: 'Touch gestures',
+      description: [`Traditionally, web relies on mouse and keyboard as the only input devices, while mobile devices are mostly controlled by touch.
+        Mobile web started with a bit touchy solution of translating touch events to mouse events like <code>mousedown</code>.`,
+        `Newer HTML5 approach is to embrace touch as the first-class input mean, allowing web applications to intercept and identify complex multitouch gestures,
+        free-hand drawing etc. Unfortunately, the support is twofold - either via touch events that were first introduced by Apple and standardized later
+        as a de-facto solution, when other vendors went the same route, or via the newer, more general Pointer Events specification.`],
       caniuse: 'touch',
+      demoPen: 'LpbVoV',
       supported: Feature.windowContains('ontouchstart'),
       links: [
         {url: 'http://www.html5rocks.com/en/mobile/touch/', title: 'Multi-touch Web Development'}
       ]
     }),
+
     manifest: new Feature({
       id: 'manifest',
       icon: 'mdi-content-archive',

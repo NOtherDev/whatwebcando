@@ -4,10 +4,10 @@
   'use strict';
 
   class Feature {
-    constructor({ id, name, description = '', supported = undefined, icon = undefined, demoPen = undefined, links = [], caniuse = undefined }) {
+    constructor({ id, name, description = [], supported = undefined, icon = undefined, demoPen = undefined, links = [], caniuse = undefined }) {
       this.id = id;
       this.name = name;
-      this.description = description;
+      this.description = _.flatten([description]);
       this.caniuseKey = caniuse;
       this.supported = supported;
       this.icon = icon;
