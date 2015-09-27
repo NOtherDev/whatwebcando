@@ -89,6 +89,24 @@
       description: `Web applications can provide the <code>manifest.json</code> file, standarized as the <b>Web Manifest</b>, specifying the features
        and behaviors needed on order to treat the application as a first-class citizen on the mobile platform, i.e. adding ("installing") to home screen
        with the relevant icon, full screen behaviors, standalone appearance etc.`,
+      api: `<pre><code>{
+  "short_name": "Example App",
+  "name": "The Example Application",
+  "icons": [
+    {
+      "src": "launcher-icon-1x.png",
+      "sizes": "48x48"
+    },
+    {
+      "src": "launcher-icon-2x.png",
+      "sizes": "96x96"
+    }
+  ],
+  "theme_color": "#ff0000",
+  "background_color": "#ff0000",
+  "start_url": "index.html",
+  "display": "standalone"
+}</code></pre>`,
       links: [
         {
           url: 'https://developers.google.com/web/fundamentals/device-access/stickyness/?hl=en',
@@ -104,6 +122,14 @@
       name: 'Foreground detection',
       description: `<b>Page Visibility API</b> is useful for the web application to know whether it is currently displayed on the front or not, especially to stop
         resource-intensive UI animations or data refreshing when it's not needed. On the mobile devices, the primary reason for that is to reduce battery usage.`,
+      api: `<dl>
+        <dt><code>document.hidden</code></dt>
+        <dd>Returns <code>true</code> if the page is currently hidden.</dd>
+        <dt><code>document.visibilityState</code></dt>
+        <dd>Returns current visibility state: <code>visible</code>, <code>hidden</code>, <code>prerender</code> or <code>unloaded</code>.</dd>
+        <dt><code>document.addEventListener('visibilitychange')</code></dt>
+        <dd>Event triggered whenever the visibility state of the page changes.</dd>
+      </dl>`,
       caniuse: 'pagevisibility',
       demoPen: 'avBpOb',
       supported: Feature.containedIn(global.document, 'visibilityState')
@@ -113,9 +139,23 @@
       id: 'geolocation',
       icon: 'mdi-device-gps-fixed',
       name: 'Geolocation',
+      description: `<b>Geolocation API</b> lets web applications to ask the user for the access to the location data provided by the device -
+       obtained using either GPS or from the network environment. Apart from the one-off location query, it gives a way for the app to be notified about location changes.`,
+      api: `<dl>
+        <dt><code>navigator.geolocation.getCurrentLocation(callback)</code></dt>
+        <dd>Runs one-off query for location with coordinates, accuracy, altitude & speed, if available.</dd>
+        <dt><code>navigator.geolocation.watchLocation(callback)</code></dt>
+        <dd>Sets up observing for location changes, invoking callback for every change.</dd>
+      </dl>`,
       caniuse: 'geolocation',
-      supported: Feature.navigatorContains('geolocation')
+      demoPen: 'ojYoqB',
+      supported: Feature.navigatorContains('geolocation'),
+      links: [
+        {url:'https://raw.github.com/phiggins42/has.js/master/detect/features.js#native-geolocation', ignore: true},
+        {url:'https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/Using_geolocation', title: 'MDN: Using geolocation'}
+      ]
     }),
+
     bluetooth: new Feature({
       id: 'bluetooth',
       icon: 'mdi-device-bluetooth',

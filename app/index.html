@@ -96,6 +96,11 @@
               <p>{{{.}}}</p>
             {{/each}}
 
+            {{#if feature.api}}
+              <h3><small>API glimpse</small></h3>
+              <div class="api-glimpse">{{{feature.api}}}</div>
+            {{/if}}
+
             {{#if feature.demoPen}}
             <h3><small>Live Demo</small></h3>
             <p data-height="275" data-theme-id="19170" data-slug-hash="{{feature.demoPen}}" data-default-tab="result" data-user="WhatWebCanDo" class="codepen">
