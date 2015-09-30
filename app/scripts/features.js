@@ -95,6 +95,10 @@
         {
           url: 'https://googlechrome.github.io/samples/service-worker/prefetch/index.html',
           title: 'Service Worker Sample: Pre-fetching Resources During Registration'
+        },
+        {
+          url: 'https://medium.com/@slsoftworks/beyond-offline-bf5c013ec8e7',
+          title: 'Beyond Offline: Using a custom service worker to expand on your browser’s capabilities'
         }
       ]
     }),
@@ -156,7 +160,8 @@
           url: 'https://developers.google.com/web/fundamentals/device-access/stickyness/?hl=en',
           title: 'Device Access & Integration: Add To Home Screen'
         },
-        {url: 'http://html5doctor.com/web-manifest-specification/', title: 'The Web Manifest specification'}
+        {url: 'http://html5doctor.com/web-manifest-specification/', title: 'The Web Manifest specification'},
+        {url: 'https://medium.com/@berbaquero/installable-web-apps-b48fdbcf5915', title: 'Installable Web Apps'}
       ]
     }),
 
@@ -214,7 +219,7 @@
         <dt><code>device.connectGATT()</code></dt>
         <dd>Returns a <code>Promise</code> resolved with the object providing access to the services available on the device.</dd>
         <dt><code>service.getCharacteristic(name)</code></dt>
-        <dd>Returns a <code>Promise</code> resolved with the GATT characteristic.</dd>
+        <dd>Returns a <code>Promise</code> resolved with the GATT characteristic object.</dd>
         <dt><code>characteristic.readValue()</code></dt>
         <dd>Returns a <code>Promise</code> resolved with a raw value from the GATT characteristic.</dd>
         <dt><code>characteristic.writeValue(value)</code></dt>
@@ -271,28 +276,57 @@
       ]
     }),
 
+    ambientLight: new Feature({
+      id: 'ambient-light',
+      icon: 'mdi-device-brightness-low',
+      name: 'Ambient light',
+      description: `<b>Ambient Light API</b> allows the web applications to access the light intensity level measured by the device's light sensor.`,
+      api: `<dl>
+        <dt><code>window.addEventHandler('devicelight', callback)</code></dt>
+        <dd>Event triggered when the device's light sensor measured value changes, containing the light intensity expressed in lux.</dd>
+      </dl>`,
+      caniuse: 'ambient-light',
+      supported: Feature.windowContains('ondevicelight'),
+      demoPen: 'OyWZqY',
+      links: [
+        {url: 'http://aurelio.audero.it/demo/ambient-light-api-demo.html', ignore: true},
+        {url: 'http://modernweb.com/2014/05/27/introduction-to-the-ambient-light-api/', title: 'Introduction to the Ambient Light API'},
+        {url: 'https://w3c.github.io/ambient-light/', title: 'Specification'}
+      ]
+    }),
+
+    mediaCapture: new Feature({
+      id: 'media-capture',
+      icon: 'mdi-image-camera-alt',
+      name: 'Camera & microphone',
+      description: `<b>Media Capture API</b> allows the web applications to access the device's audio and video capturing interfaces,
+        i.e. to use the camera and the microphone.`,
+      api: `<dl>
+        <dt><code></code></dt>
+        <dd></dd>
+      </dl>`,
+      caniuse: 'stream',
+      supported: Feature.navigatorContains('getUserMedia'),
+      demoPen: '',
+      links: [
+        {url: 'http://w3c.github.io/mediacapture-main/#dom-mediadevices-getusermedia', title: 'Specification'},
+        {url: 'http://www.html5rocks.com/en/tutorials/getusermedia/intro/', title: 'Capturing Audio & Video in HTML5'}
+      ]
+    }),
+
     networkInfo: new Feature({
       id: 'network-information',
       icon: 'mdi-device-wifi-tethering',
       name: 'Network information',
       supported: Feature.navigatorContains('connection')
     }),
+
     online: new Feature({
       id: 'online-state',
       icon: 'mdi-device-signal-cellular-connected-no-internet-3-bar',
       name: 'On-line state',
       caniuse: 'online-status',
       supported: Feature.navigatorContains('onLine')
-    }),
-    mediaCapture: new Feature({
-      id: 'media-capture',
-      icon: 'mdi-image-camera-alt',
-      name: 'Media capturing',
-      caniuse: 'stream',
-      supported: Feature.navigatorContains('getUserMedia'),
-      links: [
-        {url: 'http://www.html5rocks.com/en/tutorials/getusermedia/intro/', title: 'Capturing Audio & Video in HTML5'}
-      ]
     }),
     wakeLock: new Feature({
       id: 'wake-lock',
@@ -320,13 +354,6 @@
       name: 'Battery status',
       caniuse: 'battery-status',
       supported: Feature.navigatorContains('getBattery')
-    }),
-    ambientLight: new Feature({
-      id: 'ambient-light',
-      icon: 'mdi-device-brightness-low',
-      name: 'Ambient light',
-      caniuse: 'ambient-light',
-      supported: Feature.windowContains('ondevicelight')
     }),
     permissions: new Feature({
       id: 'permissions',
