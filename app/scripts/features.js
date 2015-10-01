@@ -296,29 +296,51 @@
     }),
 
     mediaCapture: new Feature({
-      id: 'media-capture',
+      id: 'camera-microphone',
       icon: 'mdi-image-camera-alt',
       name: 'Camera & microphone',
       description: `<b>Media Capture API</b> allows the web applications to access the device's audio and video capturing interfaces,
         i.e. to use the camera and the microphone.`,
       api: `<dl>
-        <dt><code></code></dt>
-        <dd></dd>
+        <dt><code>navigator.getUserMedia(constraints, successCallback, errorCallback)</code></dt>
+        <dd>Prompts user for an access to the media interface specified by the <code>constraints</code>
+          and calls <code>successCallback</code> with the interface's stream handler on success or <code>errorCallback</code> on failure.</dd>
+        <dt><code>stream.getAudioTracks()</code></dt>
+        <dd>Returns a collection of audio tracks objects being provided by the device's microphone.</dd>
+        <dt><code>stream.getVideoTracks()</code></dt>
+        <dd>Returns a collection of video tracks objects being provided by the device's camera.</dd>
+        <dt><code>mediaElement.srcObject = stream</code></dt>
+        <dd>Sets a stream to be rendered into the provided <code>&lt;audio&gt;</code> or <code>&lt;video&gt;</code> DOM element.</dd>
       </dl>`,
       caniuse: 'stream',
       supported: Feature.navigatorContains('getUserMedia'),
-      demoPen: '',
+      demoPen: 'YyZKPJ',
       links: [
-        {url: 'http://w3c.github.io/mediacapture-main/#dom-mediadevices-getusermedia', title: 'Specification'},
+        {url: 'http://www.w3.org/TR/mediacapture-streams/', title: 'Specification'},
         {url: 'http://www.html5rocks.com/en/tutorials/getusermedia/intro/', title: 'Capturing Audio & Video in HTML5'}
       ]
     }),
 
     networkInfo: new Feature({
-      id: 'network-information',
+      id: 'network-type-speed',
       icon: 'mdi-device-wifi-tethering',
-      name: 'Network information',
-      supported: Feature.navigatorContains('connection')
+      name: 'Network type & speed',
+      description: `<b>Network Information API</b> allows the web applications to read the current network type and maximum downlink speed
+        and be notified when the network type changes.`,
+      api: `<dl>
+        <dt><code>navigator.connection.type</code></dt>
+        <dd>Returns the type of the current connection, i.e. <code>cellular</code>, <code>wifi</code>, <code>none</code> etc.</dd>
+        <dt><code>navigator.connection.downlinkMax</code></dt>
+        <dd>Returns the theoretical maxinum downlink speed, in Mbps, for the underlying technology of the current connection.</dd>
+        <dt><code>navigator.connection.addEventListener('change', callback)</code></dt>
+        <dd>Event triggered when the connection type changes.</dd>
+      </dl>`,
+      supported: Feature.navigatorContains('connection'),
+      demoPen: 'LpWPvv',
+      links: [
+        {url: 'https://developer.mozilla.org/en-US/docs/Web/API/Network_Information_API', title: 'MDN: Network Information API'},
+        {url: 'https://w3c.github.io/netinfo/', title: 'Specification'}
+      ]
     }),
 
     online: new Feature({
