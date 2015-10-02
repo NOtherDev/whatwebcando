@@ -346,10 +346,25 @@
     online: new Feature({
       id: 'online-state',
       icon: 'mdi-device-signal-cellular-connected-no-internet-3-bar',
-      name: 'On-line state',
+      name: 'Online state',
+      description: `Browsers expose a network connection availability information to the web application, so that the applications may react properly, i.e.
+        stop all the operations utilising the network and switch to cached data when offline condition was detected.`,
+      api: `<dl>
+        <dt><code>navigator.onLine</code></dt>
+        <dd>Returns <code>true</code> when the browser detects network connection available, <code>false</code> otherwise.</dd>
+        <dt><code>window.addEventListener('online', callback)</code></dt>
+        <dd>Event triggered when the browser detects network connection became available.</dd>
+        <dt><code>window.addEventListener('offline', callback)</code></dt>
+        <dd>Event triggered when the browser detects network connection became unavailable.</dd>
+      </dl>`,
       caniuse: 'online-status',
-      supported: Feature.navigatorContains('onLine')
+      supported: Feature.navigatorContains('onLine'),
+      demoPen: 'Qjpveg',
+      links: [
+        {url:'https://html.spec.whatwg.org/multipage/browsers.html#browser-state', title: 'Specification'}
+      ]
     }),
+
     wakeLock: new Feature({
       id: 'wake-lock',
       icon: 'mdi-action-lock',
