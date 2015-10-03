@@ -103,33 +103,6 @@
       ]
     }),
 
-    touch: new Feature({
-      id: 'touch',
-      icon: 'mdi-content-gesture',
-      name: 'Touch gestures',
-      description: [`Traditionally, web relies on mouse and keyboard as the only input devices, while mobile devices are mostly controlled by touch.
-        Mobile web started with a bit touchy solution of translating touch events to mouse events like <code>mousedown</code>.`,
-        `Newer HTML5 approach is to embrace touch as the first-class input mean, allowing web applications to intercept and identify complex multitouch
-         gestures, free-hand drawing etc. Unfortunately, the support is twofold - either via touch events like <code>touchstart</code> that were first
-         introduced by Apple and standardized later as a de-facto solution, when other vendors went the same route, or via the newer,
-         more general <b>Pointer Events</b> specification.`],
-      api: `<dl>
-        <dt><code>element.addEventListener('touchstart', listener)</code></dt>
-        <dd>Event triggered when the finger is placed on a DOM element.</dd>
-        <dt><code>element.addEventListener('touchmove', listener)</code></dt>
-        <dd>Event triggered when the finger is dragged along a DOM element.</dd>
-        <dt><code>element.addEventListener('touchend', listener)</code></dt>
-        <dd>Event triggered when the finger is removed from a DOM element.</dd>
-      </dl>`,
-      caniuse: 'touch',
-      demoPen: 'LpbVoV',
-      supported: Feature.windowContains('ontouchstart'),
-      links: [
-        {url: 'http://www.html5rocks.com/en/mobile/touch/', title: 'Multi-touch Web Development'},
-        {url: 'http://www.quirksmode.org/m/tests/drag2.html', ignore: true}
-      ]
-    }),
-
     manifest: new Feature({
       id: 'manifest',
       icon: 'mdi-content-archive',
@@ -365,135 +338,275 @@
       ]
     }),
 
-    wakeLock: new Feature({
-      id: 'wake-lock',
-      icon: 'mdi-action-lock',
-      name: 'Wake lock',
-      supported: Feature.navigatorContains('requestWakeLock')
-    }),
     vibration: new Feature({
       id: 'vibration',
       icon: 'mdi-notification-vibration',
       name: 'Vibration',
+      description: `<b>Vibration API</b> allows the web applications to use the device's built-in vibration, if one is present.`,
+      api: `<dl>
+        <dt><code>navigator.vibrate(durationOrPattern)</code></dt>
+        <dd>Vibrate the device once for the duration given or according to durations pattern given.</dd>
+      </dl>`,
       caniuse: 'vibration',
-      supported: Feature.navigatorContains('vibrate')
+      supported: Feature.navigatorContains('vibrate'),
+      demoPen: 'VvpxrM',
+      links: [
+        {url:'http://dev.w3.org/2009/dap/vibration/', title: 'Specification'}
+      ]
     }),
-    accelerometer: new Feature({
-      id: 'accelerometer',
-      icon: 'mdi-action-3d-rotation',
-      name: 'Accelerometer',
-      caniuse: 'deviceorientation',
-      supported: Feature.windowContains('DeviceMotionEvent')
-    }),
+
     batteryStatus: new Feature({
       id: 'battery-status',
       icon: 'mdi-device-battery-80',
       name: 'Battery status',
+      description: `<b>Battery Status API</b> allows the web applications to get the information about the device's power source, battery charge level,
+        expected time of charging or discharging. It also exposes events whenever any of the information available changes. The API allows the applications
+        to turn on/off its energy inefficient operations according to power levels.`,
+      api: `<dl>
+        <dt><code>navigator.getBattery()</code></dt>
+        <dd>Returns a <code>Promise</code> resolved with the object containing battery information.</dd>
+        <dt><code>battery.charging</code></dt>
+        <dd>Returns <code>true</code> if the device is currently being charged.</dd>
+        <dt><code>battery.chargingTime</code></dt>
+        <dd>Returns the number of seconds remaining until the battery is fully charged.</dd>
+        <dt><code>battery.dischargingTime</code></dt>
+        <dd>Returns the number of seconds remaining until the battery is fully discharged.</dd>
+        <dt><code>battery.level</code></dt>
+        <dd>Returns the battery charging level as the number in 0 to 1 range.</dd>
+        <dt><code>battery.addEventListener('chargingchange', callback)</code></dt>
+        <dd>Event triggered whenever <code>battery.charging</code> value changes.</dd>
+        <dt><code>battery.addEventListener('chargingtimechange', callback)</code></dt>
+        <dd>Event triggered whenever <code>battery.chargingTime</code> value changes.</dd>
+        <dt><code>battery.addEventListener('dischargingtimechange', callback)</code></dt>
+        <dd>Event triggered whenever <code>battery.dischargingTime</code> value changes.</dd>
+        <dt><code>battery.addEventListener('levelchange', callback)</code></dt>
+        <dd>Event triggered whenever <code>battery.level</code> value changes.</dd>
+      </dl>`,
       caniuse: 'battery-status',
-      supported: Feature.navigatorContains('getBattery')
+      supported: Feature.navigatorContains('getBattery'),
+      demoPen: 'epvKNB',
+      links: [
+        {url:'https://dvcs.w3.org/hg/dap/raw-file/default/battery/Overview.html', title: 'Specification draft'}
+      ]
     }),
-    permissions: new Feature({
-      id: 'permissions',
-      icon: 'mdi-action-lock-open',
-      name: 'Permissions',
-      caniuse: 'permissions-api',
-      supported: Feature.navigatorContains('permissions')
+
+    storage: new Feature({
+      id: 'storage',
+      icon: 'mdi-notification-folder-special',
+      name: 'Offline storage',
+      description: ``,
+      api: `<dl>
+        <dd><code></code></dd>
+        <dt></dt>
+      </dl>`,
+      caniuse: 'namevalue-storage',
+      supported: Feature.windowContains('indexedDB') || Feature.windowContains('localStorage')
     }),
+
     files: new Feature({
       id: 'files',
       icon: 'mdi-device-sd-storage',
       name: 'File access',
+      description: ``,
+      api: `<dl>
+        <dd><code></code></dd>
+        <dt></dt>
+      </dl>`,
       caniuse: 'fileapi',
       supported: Feature.windowContains('File'),
       links: [
         {url: 'http://www.html5rocks.com/en/tutorials/file/dndfiles/', title: 'Reading files in JavaScript using the File APIs'}
       ]
     }),
-    storage: new Feature({
-      id: 'storage',
-      icon: 'mdi-notification-folder-special',
-      name: 'Offline storage',
-      caniuse: 'namevalue-storage',
-      supported: Feature.windowContains('indexedDB') || Feature.windowContains('localStorage')
+
+    permissions: new Feature({
+      id: 'permissions',
+      icon: 'mdi-action-lock-open',
+      name: 'Permissions',
+      description: ``,
+      api: `<dl>
+        <dd><code></code></dd>
+        <dt></dt>
+      </dl>`,
+      caniuse: 'permissions-api',
+      supported: Feature.navigatorContains('permissions')
     }),
+
     contacts: new Feature({
       id: 'contacts',
       icon: 'mdi-action-account-box',
       name: 'Contacts',
+      description: ``,
+      api: `<dl>
+        <dd><code></code></dd>
+        <dt></dt>
+      </dl>`,
       supported: Feature.navigatorContains('contacts')
     }),
+
     quota: new Feature({
       id: 'quota',
       icon: 'mdi-notification-sim-card-alert',
       name: 'Quota management',
+      description: ``,
+      api: `<dl>
+        <dd><code></code></dd>
+        <dt></dt>
+      </dl>`,
       supported: Feature.windowContains('storageInfo') || Feature.navigatorContains('temporaryStorageQuota'),
       links: [
         {url: 'http://www.html5rocks.com/en/tutorials/offline/quota-research/', title: 'Working with quota on mobile browsers'}
       ]
     }),
-    deviceOrientation: new Feature({
-      id: 'device-orientation',
-      icon: 'mdi-device-screen-rotation',
-      name: 'Device orientation',
-      caniuse: 'deviceorientation',
-      supported: Feature.windowContains('DeviceOrientationEvent')
-    }),
-    rotationLock: new Feature({
-      id: 'rotation-lock',
-      icon: 'mdi-device-screen-lock-rotation',
-      name: 'Rotation lock',
-      supported: Feature.containedIn(global.screen, 'lockOrientation')
-    }),
-    presentation: new Feature({
-      id: 'presentation',
-      icon: 'mdi-hardware-tv',
-      name: 'Presentation features',
-      supported: Feature.navigatorContains('presentation')
-    }),
-    viewports: new Feature({
-      id: 'viewports',
-      icon: 'mdi-hardware-phonelink',
-      name: 'Viewport adaptation',
+
+    touch: new Feature({
+      id: 'touch',
+      icon: 'mdi-content-gesture',
+      name: 'Touch gestures',
+      description: [`Traditionally, web relies on mouse and keyboard as the only input devices, while mobile devices are mostly controlled by touch.
+        Mobile web started with a bit touchy solution of translating touch events to mouse events like <code>mousedown</code>.`,
+        `Newer HTML5 approach is to embrace touch as the first-class input mean, allowing web applications to intercept and identify complex multitouch
+         gestures, free-hand drawing etc. Unfortunately, the support is twofold - either via touch events like <code>touchstart</code> that were first
+         introduced by Apple and standardized later as a de-facto solution, when other vendors went the same route, or via the newer,
+         more general <b>Pointer Events</b> specification.`],
+      api: `<dl>
+        <dt><code>element.addEventListener('touchstart', listener)</code></dt>
+        <dd>Event triggered when the finger is placed on a DOM element.</dd>
+        <dt><code>element.addEventListener('touchmove', listener)</code></dt>
+        <dd>Event triggered when the finger is dragged along a DOM element.</dd>
+        <dt><code>element.addEventListener('touchend', listener)</code></dt>
+        <dd>Event triggered when the finger is removed from a DOM element.</dd>
+      </dl>`,
+      caniuse: 'touch',
+      demoPen: 'LpbVoV',
+      supported: Feature.windowContains('ontouchstart'),
       links: [
-        {url: 'https://dev.opera.com/articles/an-introduction-to-meta-viewport-and-viewport/', title: 'An Introduction to Meta Viewport and @viewport'}
+        {url: 'http://www.html5rocks.com/en/mobile/touch/', title: 'Multi-touch Web Development'},
+        {url: 'http://www.quirksmode.org/m/tests/drag2.html', ignore: true}
       ]
     }),
+
     speech: new Feature({
       id: 'speech-recognition',
       icon: 'mdi-av-mic',
       name: 'Speech recognition',
+      description: ``,
+      api: `<dl>
+        <dd><code></code></dd>
+        <dt></dt>
+      </dl>`,
       caniuse: 'speech-recognition',
       supported: Feature.windowContains('SpeechRecognition'),
       links: [
         {url: 'https://shaungallagher.github.io/say_restyle/', title: 'Demo - Edit the webpage with your voice'}
       ]
     }),
+
+    accelerometer: new Feature({
+      id: 'accelerometer',
+      icon: 'mdi-action-3d-rotation',
+      name: 'Accelerometer',
+      description: ``,
+      api: `<dl>
+        <dd><code></code></dd>
+        <dt></dt>
+      </dl>`,
+      caniuse: 'deviceorientation',
+      supported: Feature.windowContains('DeviceMotionEvent')
+    }),
+
     clipboard: new Feature({
       id: 'clipboard',
       icon: 'mdi-content-content-paste',
       name: 'Clipboard (copy & paste)',
+      description: ``,
+      api: `<dl>
+        <dd><code></code></dd>
+        <dt></dt>
+      </dl>`,
       caniuse: 'clipboard',
       supported: Feature.windowContains('ClipboardEvent'),
       links: [
         {url: 'https://github.com/GoogleChrome/samples/tree/gh-pages/cut-and-copy', title: 'Sample code from Google Chrome'}
       ]
     }),
+
     inputModality: new Feature({
       id: 'input-modality',
       icon: 'mdi-hardware-mouse',
       name: 'Input modality',
+      description: ``,
+      api: `<dl>
+        <dd><code></code></dd>
+        <dt></dt>
+      </dl>`,
       caniuse: 'css-media-interaction',
       links: [
         {url: 'http://radar.oreilly.com/2015/08/proposing-css-input-modailty.html', title: 'Proposing CSS input modality'}
       ]
     }),
-    autofill: new Feature({
-      id: 'forms-autofill',
-      icon: 'mdi-action-assignment-turned-in',
-      name: 'Forms autofill',
+
+    deviceOrientation: new Feature({
+      id: 'device-orientation',
+      icon: 'mdi-device-screen-rotation',
+      name: 'Device orientation',
+      description: ``,
+      api: `<dl>
+        <dd><code></code></dd>
+        <dt></dt>
+      </dl>`,
+      caniuse: 'deviceorientation',
+      supported: Feature.windowContains('DeviceOrientationEvent')
+    }),
+
+    rotationLock: new Feature({
+      id: 'rotation-lock',
+      icon: 'mdi-device-screen-lock-rotation',
+      name: 'Rotation lock',
+      description: ``,
+      api: `<dl>
+        <dd><code></code></dd>
+        <dt></dt>
+      </dl>`,
+      supported: Feature.containedIn(global.screen, 'lockOrientation')
+    }),
+
+    wakeLock: new Feature({
+      id: 'wake-lock',
+      icon: 'mdi-action-lock',
+      name: 'Wake lock',
+      description: ``,
+      api: `<dl>
+        <dd><code></code></dd>
+        <dt></dt>
+      </dl>`,
+      supported: Feature.navigatorContains('requestWakeLock')
+    }),
+
+    viewports: new Feature({
+      id: 'viewports',
+      icon: 'mdi-hardware-phonelink',
+      name: 'Viewport adaptation',
+      description: ``,
+      api: `<dl>
+        <dd><code></code></dd>
+        <dt></dt>
+      </dl>`,
       links: [
-        {url: 'https://html.spec.whatwg.org/multipage/forms.html#autofill', title: 'Specification draft'}
+        {url: 'https://dev.opera.com/articles/an-introduction-to-meta-viewport-and-viewport/', title: 'An Introduction to Meta Viewport and @viewport'}
       ]
+    }),
+
+    presentation: new Feature({
+      id: 'presentation',
+      icon: 'mdi-hardware-tv',
+      name: 'Presentation features',
+      description: ``,
+      api: `<dl>
+        <dd><code></code></dd>
+        <dt></dt>
+      </dl>`,
+      supported: Feature.navigatorContains('presentation')
     })
   };
 
