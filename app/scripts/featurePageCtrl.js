@@ -3,7 +3,7 @@
 (function (container) {
   'use strict';
 
-  let featurePageCtrl = function (feature, {templateEngine, pageObject, CaniuseReportFetch}) {
+  let featurePageCtrl = function (feature, {templateEngine, CaniuseReportFetch}) {
     let prefix = 'feature';
 
     let collectFeatureBoxElements = function *() {
@@ -20,6 +20,14 @@
         window.CodePenEmbed.init();
       }
     };
+
+    let $target = templateEngine.targetFor(prefix);
+    $target.one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', () => {
+      if ($target.height()) {
+        let heightCorrectionForNavbar = $('.navbar').outerHeight(true);
+        $('html,body').animate({scrollTop: $target.offset().top - heightCorrectionForNavbar}, 500);
+      }
+    });
 
     Promise.all([...collectFeatureBoxElements()])
       .then(() => templateEngine.run(prefix, {feature: feature}))
