@@ -334,7 +334,7 @@
       supported: Feature.navigatorContains('onLine'),
       demoPen: 'Qjpveg',
       links: [
-        {url:'https://html.spec.whatwg.org/multipage/browsers.html#browser-state', title: 'Specification'}
+        {url: 'https://html.spec.whatwg.org/multipage/browsers.html#browser-state', title: 'Specification'}
       ]
     }),
 
@@ -351,7 +351,7 @@
       supported: Feature.navigatorContains('vibrate'),
       demoPen: 'VvpxrM',
       links: [
-        {url:'http://dev.w3.org/2009/dap/vibration/', title: 'Specification'}
+        {url: 'http://dev.w3.org/2009/dap/vibration/', title: 'Specification'}
       ]
     }),
 
@@ -383,10 +383,10 @@
         <dd>Event triggered whenever <code>battery.level</code> value changes.</dd>
       </dl>`,
       caniuse: 'battery-status',
-      supported: Feature.navigatorContains('getBattery'),
+      supported: Feature.navigatorContains('getBattery') || Feature.navigatorContains('battery'),
       demoPen: 'epvKNB',
       links: [
-        {url:'https://dvcs.w3.org/hg/dap/raw-file/default/battery/Overview.html', title: 'Specification draft'}
+        {url: 'https://dvcs.w3.org/hg/dap/raw-file/default/battery/Overview.html', title: 'Specification draft'}
       ]
     }),
 
@@ -394,13 +394,41 @@
       id: 'storage',
       icon: 'mdi-notification-folder-special',
       name: 'Offline storage',
-      description: ``,
+      description: [
+        `There were <a href="http://diveinto.html5doctor.com/storage.html" target="_blank">several iterations</a> of prototypes
+          and standardized technologies for offline storage capabilities for the web applications. First attempts were either just hacky workarounds
+          (like to store data in cookies) or required additional software (like Flash or Google Gears). Later, Web SQL idea, basically wrapping SQLite
+          with browser API, was coined and <a href="http://caniuse.com/#feat=sql-storage" target="_blank">implemented throughout some browsers</a>,
+          but deprecated later <a href="https://hacks.mozilla.org/2010/06/beyond-html5-database-apis-and-the-road-to-indexeddb/" target="_blank">due to
+          the standardization difficulties</a>.`,
+        `Right now there are two distinct and independent technologies standardized and available - simpler <b>Web Storage</b> and more sophisticated
+          <b>IndexedDB</b>. The former is a key-value storage, allowing web applications to store data either persistently or for a single session.
+          The latter is a low-level API over database-like structures with transactions and cursors iterating by indexes.`,
+        `Live example, API glimpse and usage data shown here are referring to <b>Web Storage</b> engine. For details on IndexedDB,
+          refer to <a href="http://caniuse.com/#feat=indexeddb" target="_blank">caniuse.com</a>.`
+      ],
       api: `<dl>
-        <dd><code></code></dd>
-        <dt></dt>
+        <dt><code>window.sessionStorage</code></dt>
+        <dd>Gives an access to the Web Storage engine with per-session objects lifetime.</dd>
+        <dt><code>window.localStorage</code></dt>
+        <dd>Gives an access to the Web Storage engine with persistent objects lifetime.</dd>
+        <dt><code>storage.setItem(key, value)</code></dt>
+        <dd>Saves the <code>value</code> object under the <code>key</code> in the selected storage engine.</dd>
+        <dt><code>storage.getItem(key)</code></dt>
+        <dd>Returns the object stored under the <code>key</code> in the selected storage engine.</dd>
+        <dt><code>storage.removeItem(key)</code></dt>
+        <dd>Removes the object stored under the <code>key</code> from the selected storage engine.</dd>
+        <dt><code>storage.clear()</code></dt>
+        <dd>Removes all the objects stored in the selected storage engine.</dd>
+        <dt><code>window.addEventListener('storage', callback)</code></dt>
+        <dd>Event fired whenever the data stored in either <code>sessionStorage</code> or <code>localStorage</code> was changed.</dd>
       </dl>`,
       caniuse: 'namevalue-storage',
-      supported: Feature.windowContains('indexedDB') || Feature.windowContains('localStorage')
+      supported: Feature.windowContains('indexedDB') || Feature.windowContains('localStorage'),
+      demoPen: 'NGpoON',
+      links: [
+        {url: 'https://code.google.com/p/sessionstorage/', ignore: true}
+      ]
     }),
 
     files: new Feature({
@@ -409,8 +437,8 @@
       name: 'File access',
       description: ``,
       api: `<dl>
-        <dd><code></code></dd>
-        <dt></dt>
+        <dt><code></code></dt>
+        <dd></dd>
       </dl>`,
       caniuse: 'fileapi',
       supported: Feature.windowContains('File'),
@@ -425,8 +453,8 @@
       name: 'Permissions',
       description: ``,
       api: `<dl>
-        <dd><code></code></dd>
-        <dt></dt>
+        <dt><code></code></dt>
+        <dd></dd>
       </dl>`,
       caniuse: 'permissions-api',
       supported: Feature.navigatorContains('permissions')
@@ -438,8 +466,8 @@
       name: 'Contacts',
       description: ``,
       api: `<dl>
-        <dd><code></code></dd>
-        <dt></dt>
+        <dt><code></code></dt>
+        <dd></dd>
       </dl>`,
       supported: Feature.navigatorContains('contacts')
     }),
@@ -450,8 +478,8 @@
       name: 'Quota management',
       description: ``,
       api: `<dl>
-        <dd><code></code></dd>
-        <dt></dt>
+        <dt><code></code></dt>
+        <dd></dd>
       </dl>`,
       supported: Feature.windowContains('storageInfo') || Feature.navigatorContains('temporaryStorageQuota'),
       links: [
@@ -492,8 +520,8 @@
       name: 'Speech recognition',
       description: ``,
       api: `<dl>
-        <dd><code></code></dd>
-        <dt></dt>
+        <dt><code></code></dt>
+        <dd></dd>
       </dl>`,
       caniuse: 'speech-recognition',
       supported: Feature.windowContains('SpeechRecognition'),
@@ -508,8 +536,8 @@
       name: 'Accelerometer',
       description: ``,
       api: `<dl>
-        <dd><code></code></dd>
-        <dt></dt>
+        <dt><code></code></dt>
+        <dd></dd>
       </dl>`,
       caniuse: 'deviceorientation',
       supported: Feature.windowContains('DeviceMotionEvent')
@@ -521,8 +549,8 @@
       name: 'Clipboard (copy & paste)',
       description: ``,
       api: `<dl>
-        <dd><code></code></dd>
-        <dt></dt>
+        <dt><code></code></dt>
+        <dd></dd>
       </dl>`,
       caniuse: 'clipboard',
       supported: Feature.windowContains('ClipboardEvent'),
@@ -537,8 +565,8 @@
       name: 'Input modality',
       description: ``,
       api: `<dl>
-        <dd><code></code></dd>
-        <dt></dt>
+        <dt><code></code></dt>
+        <dd></dd>
       </dl>`,
       caniuse: 'css-media-interaction',
       links: [
@@ -552,8 +580,8 @@
       name: 'Device orientation',
       description: ``,
       api: `<dl>
-        <dd><code></code></dd>
-        <dt></dt>
+        <dt><code></code></dt>
+        <dd></dd>
       </dl>`,
       caniuse: 'deviceorientation',
       supported: Feature.windowContains('DeviceOrientationEvent')
@@ -565,8 +593,8 @@
       name: 'Rotation lock',
       description: ``,
       api: `<dl>
-        <dd><code></code></dd>
-        <dt></dt>
+        <dt><code></code></dt>
+        <dd></dd>
       </dl>`,
       supported: Feature.containedIn(global.screen, 'lockOrientation')
     }),
@@ -577,8 +605,8 @@
       name: 'Wake lock',
       description: ``,
       api: `<dl>
-        <dd><code></code></dd>
-        <dt></dt>
+        <dt><code></code></dt>
+        <dd></dd>
       </dl>`,
       supported: Feature.navigatorContains('requestWakeLock')
     }),
@@ -589,8 +617,8 @@
       name: 'Viewport adaptation',
       description: ``,
       api: `<dl>
-        <dd><code></code></dd>
-        <dt></dt>
+        <dt><code></code></dt>
+        <dd></dd>
       </dl>`,
       links: [
         {url: 'https://dev.opera.com/articles/an-introduction-to-meta-viewport-and-viewport/', title: 'An Introduction to Meta Viewport and @viewport'}
@@ -603,8 +631,8 @@
       name: 'Presentation features',
       description: ``,
       api: `<dl>
-        <dd><code></code></dd>
-        <dt></dt>
+        <dt><code></code></dt>
+        <dd></dd>
       </dl>`,
       supported: Feature.navigatorContains('presentation')
     })
