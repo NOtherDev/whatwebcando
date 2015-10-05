@@ -397,13 +397,14 @@
       description: [
         `There were <a href="http://diveinto.html5doctor.com/storage.html" target="_blank">several iterations</a> of prototypes
           and standardized technologies for offline storage capabilities for the web applications. First attempts were either just hacky workarounds
-          (like to store data in cookies) or required additional software (like Flash or Google Gears). Later, Web SQL idea, basically wrapping SQLite
-          with browser API, was coined and <a href="http://caniuse.com/#feat=sql-storage" target="_blank">implemented throughout some browsers</a>,
+          (like to store data in cookies) or required additional software (like Flash or Google Gears). Later, Web SQL idea, basically to include SQLite
+          natively within a browser, was coined and <a href="http://caniuse.com/#feat=sql-storage" target="_blank">implemented throughout some browsers</a>,
           but deprecated later <a href="https://hacks.mozilla.org/2010/06/beyond-html5-database-apis-and-the-road-to-indexeddb/" target="_blank">due to
           the standardization difficulties</a>.`,
         `Right now there are two distinct and independent technologies standardized and available - simpler <b>Web Storage</b> and more sophisticated
-          <b>IndexedDB</b>. The former is a key-value storage, allowing web applications to store data either persistently or for a single session.
-          The latter is a low-level API over database-like structures with transactions and cursors iterating by indexes.`,
+          <b>IndexedDB</b>. Web Storage is a key-value string storage, allowing web applications to store data either persistently and cross-window
+           (<code>localStorage</code>) or for a single session in a single browser tab (<code>sessionStorage</code>). IndexedDB is a low-level API
+           over database-like structures with transactions and cursors iterating by indexes.`,
         `Live example, API glimpse and usage data shown here are referring to <b>Web Storage</b> engine. For details on IndexedDB,
           refer to <a href="http://caniuse.com/#feat=indexeddb" target="_blank">caniuse.com</a>.`
       ],
@@ -413,21 +414,21 @@
         <dt><code>window.localStorage</code></dt>
         <dd>Gives an access to the Web Storage engine with persistent objects lifetime.</dd>
         <dt><code>storage.setItem(key, value)</code></dt>
-        <dd>Saves the <code>value</code> object under the <code>key</code> in the selected storage engine.</dd>
+        <dd>Saves the <code>value</code> string under the <code>key</code> in the selected storage engine.</dd>
         <dt><code>storage.getItem(key)</code></dt>
-        <dd>Returns the object stored under the <code>key</code> in the selected storage engine.</dd>
+        <dd>Returns the string value stored under the <code>key</code> in the selected storage engine.</dd>
         <dt><code>storage.removeItem(key)</code></dt>
-        <dd>Removes the object stored under the <code>key</code> from the selected storage engine.</dd>
+        <dd>Removes the string value stored under the <code>key</code> from the selected storage engine.</dd>
         <dt><code>storage.clear()</code></dt>
-        <dd>Removes all the objects stored in the selected storage engine.</dd>
+        <dd>Removes all the string values stored in the selected storage engine.</dd>
         <dt><code>window.addEventListener('storage', callback)</code></dt>
         <dd>Event fired whenever the data stored in either <code>sessionStorage</code> or <code>localStorage</code> was changed.</dd>
       </dl>`,
       caniuse: 'namevalue-storage',
-      supported: Feature.windowContains('indexedDB') || Feature.windowContains('localStorage'),
+      supported: Feature.windowContains('sessionStorage') || Feature.windowContains('localStorage'),
       demoPen: 'NGpoON',
       links: [
-        {url: 'https://code.google.com/p/sessionstorage/', ignore: true}
+        {url: 'http://code.google.com/p/sessionstorage/', ignore: true}
       ]
     }),
 
