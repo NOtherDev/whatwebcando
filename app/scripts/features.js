@@ -436,14 +436,29 @@
       id: 'files',
       icon: 'mdi-device-sd-storage',
       name: 'File access',
-      description: ``,
+      description: `<b>File API</b> gives the web applications an access to the filesystem-level information about the files that the user decides to share
+        with the application, i.e. size, MIME type, modification date, content, without sending the file to the server.`,
       api: `<dl>
-        <dt><code></code></dt>
-        <dd></dd>
+        <dt><code>fileInputElement.files</code></dt>
+        <dd>Returns a collection of file objects that were selected by the user using <code>&lt;input type="file"&gt;</code>DOM element.</dd>
+        <dt><code>file.name</code></dt>
+        <dd>Returns the original name of the file, without the path.</dd>
+        <dt><code>file.size</code></dt>
+        <dd>Returns the file size in bytes.</dd>
+        <dt><code>file.type</code></dt>
+        <dd>Returns the file's MIME type.</dd>
+        <dt><code>file.lastModifiedDate</code></dt>
+        <dd>Returns the file's last modification date.</dd>
+        <dt><code>fileReader.readAsText(file)</code></dt>
+        <dd>Initiates the process of reading the file and encoding its content as text.</dd>
+        <dt><code>fileReader.addEventListener('load', callback)</code></dt>
+        <dd>Event fired when the reading operation completes successfully. The data read is available via <code>fileReader.result</code> property.</dd>
       </dl>`,
       caniuse: 'fileapi',
       supported: Feature.windowContains('File'),
+      demoPen: 'pjPLRW',
       links: [
+        {url: 'http://www.w3.org/TR/FileAPI/', title: 'Specification'},
         {url: 'http://www.html5rocks.com/en/tutorials/file/dndfiles/', title: 'Reading files in JavaScript using the File APIs'}
       ]
     }),
