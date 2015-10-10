@@ -582,14 +582,35 @@
       id: 'speech-recognition',
       icon: 'mdi-av-mic',
       name: 'Speech recognition',
-      description: ``,
+      description: `The speech recognition part of the <b>Web Speech API</b> allows authorized web applications to access the device's microphone
+        and produces a transcript of the voice being recorded. This allows web applications not only to offer dictation service, but also to use
+        voice as one of the input & control method, similar to touch or keyboard.`,
       api: `<dl>
-        <dt><code></code></dt>
-        <dd></dd>
+        <dt><code>let recognition = new SpeechRecognition()</code></dt>
+        <dd>Creates an object used to configure the recognition process and to receive events about the recognition results.</dd>
+        <dt><code>recognition.continuous</code></dt>
+        <dd>A boolean property indicating whether the process should stop after the first final transcripts received (when <code>false</code>, the default)
+          or send multiple events, until the process is explicitly stopped (when <code>true</code>).</dd>
+        <dt><code>recognition.interimResults</code></dt>
+        <dd>A boolean property indicating whether interim (not-yet-final) transcripts should be provided, <code>false</code> by default.</dd>
+        <dt><code>recognition.lang</code></dt>
+        <dd>A property to set up the language for the recognition.</dd>
+        <dt><code>recognition.addEventListener('result', callback)</code></dt>
+        <dd>An event fired when the process has produced the transcripts for the piece of audio recorded. The callback is called with an array of results,
+          each containing a boolean <code>final</code> flag indicating whether the result might be updated in the future event (when <code>false</code>)
+          or not and the collection of alternative transcripts, each with <code>transcript</code> itself and a <code>confidence</code> value.</dd>
+        <dt><code>recognition.addEventListener('nomatch', callback)</code></dt>
+        <dd>An event fired when the process has not produced any transcripts for the piece of audio recorded with the confidence exceeding the minimal
+          threshold, i.e. it is not possible to provide the transcription.</dd>
+        <dt><code>recognition.start()</code></dt>
+        <dd>Starts the recognition process.</dd>
+        <dt><code>recognition.stop()</code></dt>
+        <dd>Stops the recognition process; useful when <code>recognition.continuous</code> is set to <code>true</code>.</dd>
       </dl>`,
       caniuse: 'speech-recognition',
       supported: Feature.windowContains('SpeechRecognition'),
       links: [
+        {url:'https://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html#speechreco-section', title: 'Specification'},
         {url: 'https://shaungallagher.github.io/say_restyle/', title: 'Demo - Edit the webpage with your voice'}
       ]
     }),
