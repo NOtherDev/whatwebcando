@@ -578,6 +578,35 @@
       ]
     }),
 
+    accelerometer: new Feature({
+      id: 'accelerometer',
+      icon: 'mdi-action-3d-rotation',
+      name: 'Accelerometer',
+      description: `The accelerometer support is a part of <b>Device Orientation API</b>. It allows web applications to access the accelerometer data
+        expressed as acceleration (in m/s<sup>2</sup>) and rotation angle change (in &deg;/s) for each of the three dimensions, provided as events.`,
+      api: `<dl>
+        <dt><code>window.addEventListener('devicemotion', handler)</code></dt>
+        <dd>An event fired when the significant changes in the device's acceleration or rotation has occured.</dd>
+        <dt><code>event.acceleration</code></dt>
+        <dd>A part of the event's payload returning the data about the current device's acceleration excluding gravity for all three axes
+         (<code>acceleration.x</code>, <code>acceleration.y</code>, <code>acceleration.z</code>).</dd>
+        <dt><code>event.accelerationIncludingGravity</code></dt>
+        <dd>A part of the event's payload returning the data about the current device's acceleration including gravity if the device is unable
+          to provide the data without the gravity effect using <code>event.acceleration</code>.</dd>
+        <dt><code>event.rotationRate</code></dt>
+        <dd>A part of the event's payload returning the data about the current device's rotation rates for all three axes
+         (<code>rotationRate.alpha</code>, <code>rotationRate.beta</code>, <code>rotationRate.gamma</code>).</dd>
+        <dt><code>event.interval</code></dt>
+        <dd>A part of the event's payload returning the interval (in ms) at which the data is obtained from the accelerometer.</dd>
+      </dl>`,
+      caniuse: 'deviceorientation',
+      supported: Feature.windowContains('DeviceMotionEvent'),
+      demoPen: 'BodzBg',
+      links: [
+        {url: 'http://www.w3.org/TR/orientation-event/#devicemotion', title: 'Specification'}
+      ]
+    }),
+
     speech: new Feature({
       id: 'speech-recognition',
       icon: 'mdi-av-mic',
@@ -610,22 +639,9 @@
       caniuse: 'speech-recognition',
       supported: Feature.windowContains('SpeechRecognition'),
       links: [
-        {url:'https://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html#speechreco-section', title: 'Specification'},
+        {url: 'https://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html#speechreco-section', title: 'Specification'},
         {url: 'https://shaungallagher.github.io/say_restyle/', title: 'Demo - Edit the webpage with your voice'}
       ]
-    }),
-
-    accelerometer: new Feature({
-      id: 'accelerometer',
-      icon: 'mdi-action-3d-rotation',
-      name: 'Accelerometer',
-      description: ``,
-      api: `<dl>
-        <dt><code></code></dt>
-        <dd></dd>
-      </dl>`,
-      caniuse: 'deviceorientation',
-      supported: Feature.windowContains('DeviceMotionEvent')
     }),
 
     clipboard: new Feature({
@@ -669,7 +685,11 @@
         <dd></dd>
       </dl>`,
       caniuse: 'deviceorientation',
-      supported: Feature.windowContains('DeviceOrientationEvent')
+      demoPen: 'EVvyaw',
+      supported: Feature.windowContains('DeviceOrientationEvent'),
+      links: [
+        {url: 'http://www.w3.org/TR/orientation-event/', title: 'Specification'}
+      ]
     }),
 
     rotationLock: new Feature({
@@ -729,6 +749,10 @@
       features: [features.localNotifications, features.pushNotifications, features.backgroundTasks, features.manifest, features.foregroundDetection]
     },
     {
+      heading: 'Input',
+      features: [features.touch, features.accelerometer, features.speech, features.clipboard, features.inputModality]
+    },
+    {
       heading: 'Access what\'s around',
       features: [features.geolocation, features.bluetooth, features.nfc, features.proximity, features.ambientLight]
     },
@@ -737,16 +761,12 @@
       features: [features.mediaCapture, features.networkInfo, features.online, features.vibration, features.batteryStatus]
     },
     {
-      heading: 'Access the system',
-      features: [features.storage, features.files, features.permissions, features.contacts, features.quota]
-    },
-    {
-      heading: 'Input',
-      features: [features.touch, features.speech, features.accelerometer, features.clipboard, features.inputModality]
-    },
-    {
       heading: 'Screen & output',
       features: [features.deviceOrientation, features.rotationLock, features.wakeLock, features.viewports, features.presentation]
+    },
+    {
+      heading: 'Access the system',
+      features: [features.storage, features.files, features.permissions, features.contacts, features.quota]
     }
   ];
 
