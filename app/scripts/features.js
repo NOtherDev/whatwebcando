@@ -253,9 +253,9 @@
       description: `The <b>Proximity Events API</b> allows web applications to get the access to the data from the device's proximity sensors,
         detecting whether there is a physical object near the device.`,
       api: `<dl>
-        <dt><code>window.addEventHandler('deviceproximity', callback)</code></dt>
+        <dt><code>window.addEventListener('deviceproximity', listener)</code></dt>
         <dd>An event fired when the device has sensed the physical object proximity, containing approximate distance information.</dd>
-        <dt><code>window.addEventHandler('userproximity', callback)</code></dt>
+        <dt><code>window.addEventListener('userproximity', listener)</code></dt>
         <dd>An event fired when the device has roughly sensed the physical object proximity, containing boolean <code>near</code> flag only.</dd>
       </dl>`,
       caniuse: 'proximity',
@@ -272,7 +272,7 @@
       name: 'Ambient light',
       description: `The <b>Ambient Light API</b> allows web applications to access the light intensity level measured by the device's light sensor.`,
       api: `<dl>
-        <dt><code>window.addEventHandler('devicelight', callback)</code></dt>
+        <dt><code>window.addEventListener('devicelight', listener)</code></dt>
         <dd>An event fired when the device's light sensor measured value has changed, containing the light intensity expressed in lux.</dd>
       </dl>`,
       caniuse: 'ambient-light',
@@ -323,7 +323,7 @@
         <dd>Returns the type of the current connection, i.e. <code>cellular</code>, <code>wifi</code>, <code>none</code> etc.</dd>
         <dt><code>navigator.connection.downlinkMax</code></dt>
         <dd>Returns the theoretical maxinum downlink speed, in Mbps, for the underlying technology of the current connection.</dd>
-        <dt><code>navigator.connection.addEventListener('change', callback)</code></dt>
+        <dt><code>navigator.connection.addEventListener('change', listener)</code></dt>
         <dd>An event fired when the connection type has changed.</dd>
       </dl>`,
       supported: Feature.navigatorContains('connection'),
@@ -343,9 +343,9 @@
       api: `<dl>
         <dt><code>navigator.onLine</code></dt>
         <dd>Returns <code>true</code> when the browser detects network connection available, <code>false</code> otherwise.</dd>
-        <dt><code>window.addEventListener('online', callback)</code></dt>
+        <dt><code>window.addEventListener('online', listener)</code></dt>
         <dd>An event fired when the browser detects network connection has become available.</dd>
-        <dt><code>window.addEventListener('offline', callback)</code></dt>
+        <dt><code>window.addEventListener('offline', listener)</code></dt>
         <dd>An event fired when the browser detects network connection has become unavailable.</dd>
       </dl>`,
       caniuse: 'online-status',
@@ -391,13 +391,13 @@
         <dd>Returns the number of seconds remaining until the battery is fully discharged.</dd>
         <dt><code>battery.level</code></dt>
         <dd>Returns the battery charging level as the number in 0 to 1 range.</dd>
-        <dt><code>battery.addEventListener('chargingchange', callback)</code></dt>
+        <dt><code>battery.addEventListener('chargingchange', listener)</code></dt>
         <dd>An event fired when <code>battery.charging</code> value has changed.</dd>
-        <dt><code>battery.addEventListener('chargingtimechange', callback)</code></dt>
+        <dt><code>battery.addEventListener('chargingtimechange', listener)</code></dt>
         <dd>An event fired when <code>battery.chargingTime</code> value has changed.</dd>
-        <dt><code>battery.addEventListener('dischargingtimechange', callback)</code></dt>
+        <dt><code>battery.addEventListener('dischargingtimechange', listener)</code></dt>
         <dd>An event fired when <code>battery.dischargingTime</code> value has changed.</dd>
-        <dt><code>battery.addEventListener('levelchange', callback)</code></dt>
+        <dt><code>battery.addEventListener('levelchange', listener)</code></dt>
         <dd>An event fired when <code>battery.level</code> value has changed.</dd>
       </dl>`,
       caniuse: 'battery-status',
@@ -439,7 +439,7 @@
         <dd>Removes the string value stored under the <code>key</code> from the selected storage engine.</dd>
         <dt><code>storage.clear()</code></dt>
         <dd>Removes all the string values stored in the selected storage engine.</dd>
-        <dt><code>window.addEventListener('storage', callback)</code></dt>
+        <dt><code>window.addEventListener('storage', listener)</code></dt>
         <dd>An event fired when the data stored in either <code>sessionStorage</code> or <code>localStorage</code> has been changed externally.</dd>
       </dl>`,
       caniuse: 'namevalue-storage',
@@ -470,7 +470,7 @@
         <dd>Returns the file's last modification date.</dd>
         <dt><code>fileReader.readAsText(file)</code></dt>
         <dd>Initiates a process of reading the file and encoding its content as text.</dd>
-        <dt><code>fileReader.addEventListener('load', callback)</code></dt>
+        <dt><code>fileReader.addEventListener('load', listener)</code></dt>
         <dd>An event fired when the reading operation has completed successfully. The data read is available via <code>fileReader.result</code> property.</dd>
       </dl>`,
       caniuse: 'fileapi',
@@ -494,7 +494,7 @@
         <dd>Returns a <code>Promise</code> resolved with the object representing the permission status of the requested feature.</dd>
         <dt><code>permissionStatus.state</code></dt>
         <dd>Returns the permission status of the requested feature, either <code>granted</code>, <code>denied</code> or - in case the user was not yet asked - <code>prompt</code>.</dd>
-        <dt><code>permissionStatus.addEventListener('change', callback)</code></dt>
+        <dt><code>permissionStatus.addEventListener('change', listener)</code></dt>
         <dd>An event fired when the permission status of the requested feature has changed.</dd>
       </dl>`,
       caniuse: 'permissions-api',
@@ -593,7 +593,7 @@
       description: `The accelerometer support is a part of <b>Device Orientation API</b>. It allows web applications to access the accelerometer data
         expressed as acceleration (in m/s<sup>2</sup>) and rotation angle change (in &deg;/s) for each of the three dimensions, provided as events.`,
       api: `<dl>
-        <dt><code>window.addEventListener('devicemotion', handler)</code></dt>
+        <dt><code>window.addEventListener('devicemotion', listener)</code></dt>
         <dd>An event fired when the significant changes in the device's acceleration or rotation has occured.</dd>
         <dt><code>event.acceleration</code></dt>
         <dd>A part of the event's payload returning the data about the current device's acceleration excluding gravity for all three axes
@@ -632,11 +632,11 @@
         <dd>A boolean property indicating whether interim (not-yet-final) transcripts should be provided, <code>false</code> by default.</dd>
         <dt><code>recognition.lang</code></dt>
         <dd>A property to set up the language for the recognition.</dd>
-        <dt><code>recognition.addEventListener('result', callback)</code></dt>
-        <dd>An event fired when the process has produced the transcripts for the piece of audio recorded. The callback is called with an array of results,
+        <dt><code>recognition.addEventListener('result', listener)</code></dt>
+        <dd>An event fired when the process has produced the transcripts for the piece of audio recorded. The listener is called with an array of results,
           each containing a boolean <code>final</code> flag indicating whether the result might be updated in the future event (when <code>false</code>)
           or not and the collection of alternative transcripts, each with <code>transcript</code> itself and a <code>confidence</code> value.</dd>
-        <dt><code>recognition.addEventListener('nomatch', callback)</code></dt>
+        <dt><code>recognition.addEventListener('nomatch', listener)</code></dt>
         <dd>An event fired when the process has not produced any transcripts for the piece of audio recorded with the confidence exceeding the minimal
           threshold, i.e. it is not possible to provide the transcription.</dd>
         <dt><code>recognition.start()</code></dt>
@@ -656,15 +656,23 @@
       id: 'clipboard',
       icon: 'mdi-content-content-paste',
       name: 'Clipboard (copy & paste)',
-      description: ``,
+      description: `The <b>Clipboard API</b> gives web applications a way to react on cut, copy and paste operations performed by the user as well as
+        read from or write to the system clipboard directly on behalf of user.`,
       api: `<dl>
-        <dt><code></code></dt>
-        <dd></dd>
+        <dt><code>document.addEventListener('cut/copy/paste', listener)</code></dt>
+        <dd>An event fired when the user invoked the particular clipboard operation (either cut, copy or paste).</dd>
+        <dt><code>event.clipboardData.setData('text/plain', data)</code></dt>
+        <dd>Sets the data that is to be written to the clipboard by the cut or copy operations in the specified format.</dd>
+        <dt><code>event.clipboardData.getData('text/plain')</code></dt>
+        <dd>Returns the data that has been read from the clipboard by the paste operation in the specified format.</dd>
+        <dt><code>document.execCommand('cut/copy/paste')</code></dt>
+        <dd>Programatically invokes the specified clipboard operation (either cut, copy or paste) on the data or element currently having a focus.</dd>
       </dl>`,
       caniuse: 'clipboard',
       supported: Feature.windowContains('ClipboardEvent'),
+      demoPen: 'bVozGY',
       links: [
-        {url: 'https://github.com/GoogleChrome/samples/tree/gh-pages/cut-and-copy', title: 'Sample code from Google Chrome'}
+        {url: 'https://w3c.github.io/clipboard-apis/#dfn-datatransfer', title: 'Specification draft'}
       ]
     }),
 
