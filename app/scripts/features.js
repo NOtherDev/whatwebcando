@@ -30,6 +30,7 @@
       supported: Feature.windowContains('Notification'),
       demoPen: 'yYJdWO',
       links: [
+        {url: 'http://www.w3.org/TR/notifications/', title: 'Specification'},
         {url: 'https://addons.mozilla.org/en-us/firefox/addon/221523/', ignore: true},
         {url: 'http://www.html5rocks.com/tutorials/notifications/quick/', ignore: true},
         {url: 'http://aurelio.audero.it/demo/web-notifications-api-demo.html', ignore: true},
@@ -63,6 +64,7 @@
       caniuse: 'serviceworkers',
       supported: Feature.navigatorContains('serviceWorker') && Feature.windowContains('PushManager') && Feature.containedIn(ServiceWorkerRegistration.prototype, 'showNotification'),
       links: [
+        {url: 'http://www.w3.org/TR/push-api/', title: 'Specification draft'},
         {url: 'http://www.html5rocks.com/en/tutorials/service-worker/introduction/', ignore: true},
         {url: 'https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorker_API', ignore: true},
         {url: 'https://jakearchibald.github.io/isserviceworkerready/resources.html', ignore: true},
@@ -95,6 +97,7 @@
       caniuse: 'serviceworkers',
       supported: Feature.navigatorContains('serviceWorker'),
       links: [
+        {url: 'http://www.w3.org/TR/service-workers/', title: 'Specification draft'},
         {url: 'https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorker_API', title: 'ServiceWorker API - MDN docs'},
         {
           url: 'https://googlechrome.github.io/samples/service-worker/prefetch/index.html',
@@ -159,7 +162,10 @@
       </dl>`,
       caniuse: 'pagevisibility',
       demoPen: 'avBpOb',
-      supported: Feature.containedIn(global.document, 'visibilityState')
+      supported: Feature.containedIn(global.document, 'visibilityState'),
+      links: [
+        {url: 'http://www.w3.org/TR/page-visibility/', title: 'Specification'}
+      ]
     }),
 
     geolocation: new Feature({
@@ -179,6 +185,7 @@
       demoPen: 'ojYoqB',
       supported: Feature.navigatorContains('geolocation'),
       links: [
+        {url: 'http://www.w3.org/TR/geolocation-API/', title: 'Specification'},
         {url: 'https://raw.github.com/phiggins42/has.js/master/detect/features.js#native-geolocation', ignore: true},
         {url: 'https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/Using_geolocation', title: 'MDN: Using geolocation'}
       ]
@@ -439,6 +446,7 @@
       supported: Feature.windowContains('sessionStorage') || Feature.windowContains('localStorage'),
       demoPen: 'NGpoON',
       links: [
+        {url: 'http://www.w3.org/TR/webstorage/#storage', title: 'Specification'},
         {url: 'http://code.google.com/p/sessionstorage/', ignore: true}
       ]
     }),
