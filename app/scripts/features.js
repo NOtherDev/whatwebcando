@@ -676,17 +676,28 @@
       ]
     }),
 
-    inputModality: new Feature({
-      id: 'input-modality',
+    pointerAdaptation: new Feature({
+      id: 'pointer-adaptation',
       icon: 'mdi-hardware-mouse',
-      name: 'Input modality',
-      description: ``,
+      name: 'Pointing device adaptation',
+      description: `The <b>Interaction Media</b> part of CSS4 specification defines the media queries allowing web applications to alter its layout
+        and user interface depending on the way the user is interacting with the application. It allows identifying whether the pointer used is fine or
+        coarse and whether hovering over the element is possible, so that the interface might be shrunk or enlarged and hover interactions
+        enabled or replaced with an alternative accordingly.`,
       api: `<dl>
-        <dt><code></code></dt>
-        <dd></dd>
+        <dt><code>@media (pointer: fine)</code></dt>
+        <dd>The media query that limits the enclosed CSS rules to be used only when the primary pointing device allows accurate pointing.</dd>
+        <dt><code>@media (pointer: coarse)</code></dt>
+        <dd>The media query that limits the enclosed CSS rules to be used only when the primary pointing device does not allow accurate pointing.</dd>
+        <dt><code>@media (pointer: none)</code></dt>
+        <dd>The media query that limits the enclosed CSS rules to be used only when there is no pointing device available.</dd>
+        <dt><code>@media (hover)</code></dt>
+        <dd>The media query that limits the enclosed CSS rules to be used only when the primary pointing device allows hovering over elements.</dd>
       </dl>`,
       caniuse: 'css-media-interaction',
+      demoPen: 'pjdyoK',
       links: [
+        {url: 'http://www.w3.org/TR/mediaqueries-4/#mf-interaction', title: 'Specification draft'},
         {url: 'http://radar.oreilly.com/2015/08/proposing-css-input-modailty.html', title: 'Proposing CSS input modality'}
       ]
     }),
@@ -766,7 +777,7 @@
     },
     {
       heading: 'Input',
-      features: [features.touch, features.accelerometer, features.speech, features.clipboard, features.inputModality]
+      features: [features.touch, features.accelerometer, features.speech, features.clipboard, features.pointerAdaptation]
     },
     {
       heading: 'Access what\'s around',
