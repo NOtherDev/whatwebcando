@@ -729,16 +729,30 @@
       ]
     }),
 
-    rotationLock: new Feature({
-      id: 'rotation-lock',
+    orientationLock: new Feature({
+      id: 'orientation-lock',
       icon: 'mdi-device-screen-lock-rotation',
-      name: 'Rotation Lock',
-      description: ``,
+      name: 'Screen Orientation & Lock',
+      description: `The <b>Screen Orientation API</b> allows web applications to get the information about the current orientation of the document
+        (portrait or landscape) as well as to lock the screen orientation in a requested state.`,
       api: `<dl>
-        <dt><code></code></dt>
-        <dd></dd>
+        <dt><code>window.screen.orientation.type</code></dt>
+        <dd>Returns the current screen orientation type as one of <code>portrait-primary</code>, <code>portrait-secondary</code> (upside down),
+          <code>landscape-primary</code> and <code>landscape-secondary</code> (upside down).</dd>
+        <dt><code>window.screen.orientation.addEventListener('change', listener)</code></dt>
+        <dd>An event fired when the document orientation has changed.</dd>
+        <dt><code>window.screen.orientation.lock(lockType)</code></dt>
+        <dd>Requests for a screen lock in the <code>lockType</code> specified. Returns a <code>Promise</code> resolved when the lock was acquired successfully.</dd>
+        <dt><code>window.screen.orientation.unlock()</code></dt>
+        <dd>Removes previously acquired screen orientation lock.</dd>
       </dl>`,
-      supported: Feature.containedIn(global.screen, 'lockOrientation')
+      caniuse: 'screen-orientation',
+      demoPen: 'EVbpeX',
+      supported: Feature.containedIn(global.screen, 'orientation') || Feature.containedIn(global.screen, 'lockOrientation'),
+      links: [
+        {url: 'http://www.w3.org/TR/screen-orientation/', title: 'Specification draft'},
+        {url: 'http://www.audero.it/demo/screen-orientation-api-demo.html', ignore: true}
+      ]
     }),
 
     wakeLock: new Feature({
@@ -799,7 +813,7 @@
     },
     {
       heading: 'Screen & Output',
-      features: [features.deviceOrientation, features.rotationLock, features.wakeLock, features.viewports, features.presentation]
+      features: [features.deviceOrientation, features.orientationLock, features.wakeLock, features.viewports, features.presentation]
     },
     {
       heading: 'Access The System',
