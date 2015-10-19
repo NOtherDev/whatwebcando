@@ -759,12 +759,24 @@
       id: 'wake-lock',
       icon: 'mdi-action-lock',
       name: 'Wake Lock',
-      description: ``,
+      description: [`The <b>Wake Lock API</b> allows web applications to prevent the resource such as the screen, WiFi connection or CPU from becoming
+        available as long as the application holds a lock for that resource. The purpose of the API is to let the user or the application to complete
+        the activity uninterrupted.`,
+        `At the moment there are two distinct technologies named Wake Lock API. One is a non-standard implementation available only on Firefox OS,
+        while the second is a W3C proposal at the stage of initial drafts, with no vendor support yet.`],
       api: `<dl>
-        <dt><code></code></dt>
-        <dd></dd>
+        <dt><code>lock = navigator.requestWakeLock('screen')</code></dt>
+        <dd>Acquires a wake lock on the resource specified, such as <code>screen</code>, <code>wifi</code> or <code>cpu</code> (Firefox OS implementation).</dd>
+        <dt><code>lock.unlock()</code></dt>
+        <dd>Releases the existing lock (Firefox OS implementation),</dd>
+        <dt><code>screen.keepAwake = true</code></dt>
+        <dd>The property allowing to acquire a screen wake lock when set to <code>true</code> and release it when set to <code>false</code> (W3C proposal).</dd>
       </dl>`,
-      supported: Feature.navigatorContains('requestWakeLock')
+      supported: Feature.navigatorContains('requestWakeLock'),
+      links: [
+        {url:'https://developer.mozilla.org/en-US/docs/Web/API/Wake_Lock_API', title: 'MDN Documentation: Wake Lock API on Firefox OS'},
+        {url:'http://w3c.github.io/wake-lock/', title: 'W3C Specification draft'}
+      ]
     }),
 
     viewports: new Feature({
@@ -785,12 +797,16 @@
       id: 'presentation',
       icon: 'mdi-hardware-tv',
       name: 'Presentation Features',
-      description: ``,
+      description: `The <b>Presentation API</b> aims at allowing web applications to connect to external displays as well as initiate and control
+        the presentation display mode.`,
       api: `<dl>
         <dt><code></code></dt>
         <dd></dd>
       </dl>`,
-      supported: Feature.navigatorContains('presentation')
+      supported: Feature.navigatorContains('presentation'),
+      links: [
+        {url: 'http://w3c.github.io/presentation-api/', title: 'Specification draft'}
+      ]
     })
   };
 
