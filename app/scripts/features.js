@@ -730,19 +730,30 @@
     }),
 
     fullScreen: new Feature({
-      id: 'full-screen',
+      id: 'fullscreen',
       icon: 'mdi-action-settings-overscan',
-      name: 'Full Screen',
-      description: ``,
+      name: 'Fullscreen',
+      description: `The <b>Fullscreen API</b> allows web applications to present itself or the part of itself in the fullscreen mode,
+        without browser UI elements visible. It also serves as the prerequisite state for the <a href="/orientation-lock.html">orientation lock</a>.`,
       api: `<dl>
-        <dt><code></code></dt>
-        <dd></dd>
+        <dt><code>document.fullscreenEnabled</code></dt>
+        <dd>Returns a boolean indicating whether the fullscreen mode is available and allowed.</dd>
+        <dt><code>element.requestFullscreen()</code></dt>
+        <dd>Requests a fullscreen mode display for a given <code>element</code>. Returns a <code>Promise</code> resolved when the request was successful.</dd>
+        <dt><code>document.fullscreenElement</code></dt>
+        <dd>Returns a reference to the element currently being displayed in the fullscreen mode.</dd>
+        <dt><code>document.exitFullscreen()</code></dt>
+        <dd>Exits the fullscreen mode.</dd>
+        <dt><code>document.addEventListener('fullscreenchange', listener)</code></dt>
+        <dd>An event fired when the fullscreen mode has been entered or exited.</dd>
       </dl>`,
       caniuse: 'fullscreen',
+      demoPen: 'LpewpQ',
       supported: Feature.containedIn(document && document.documentElement, 'requestFullScreen')
         || Feature.containedIn(document && document.documentElement, 'requestFullscreen'),
       links: [
-        {url: 'https://fullscreen.spec.whatwg.org/', title: 'Specification'}
+        {url: 'https://fullscreen.spec.whatwg.org/', title: 'Specification'},
+        {url: 'http://jlongster.com/2011/11/21/canvas.html', ignore: true}
       ]
     }),
 
@@ -759,7 +770,7 @@
         <dt><code>window.screen.orientation.addEventListener('change', listener)</code></dt>
         <dd>An event fired when the document orientation has changed.</dd>
         <dt><code>window.screen.orientation.lock(lockType)</code></dt>
-        <dd>Requests for a screen lock in the <code>lockType</code> specified. Returns a <code>Promise</code> resolved when the lock was acquired successfully.</dd>
+        <dd>Requests a screen lock in the <code>lockType</code> specified. Returns a <code>Promise</code> resolved when the lock was acquired successfully.</dd>
         <dt><code>window.screen.orientation.unlock()</code></dt>
         <dd>Removes previously acquired screen orientation lock.</dd>
       </dl>`,
