@@ -3,7 +3,7 @@
   "private": true,
   "dependencies": {
     "bootstrap": "~3.3.5",
-    "bootstrap-material-design": "~0.3.0",
+    "bootstrap-material-design": "NOtherDev/bootstrap-material-design#fc3ef694b9cfcabfefb5c1d6c067172e6897c0d8",
     "page": "visionmedia/page.js#~1.6.3",
     "handlebars": "~3.0.3",
     "arrive": "~2.2.0",
