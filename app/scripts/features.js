@@ -3,7 +3,7 @@
 (function (global) {
   'use strict';
 
-  let Feature = global.WWCD.Feature || require('./feature').WWCD.Feature;
+  let Feature = global.WWCD.Feature || require('../../build/feature');
 
   let features = {
     localNotifications: new Feature({
@@ -749,8 +749,8 @@
       </dl>`,
       caniuse: 'fullscreen',
       demoPen: 'LpewpQ',
-      supported: Feature.containedIn(document && document.documentElement, 'requestFullScreen')
-        || Feature.containedIn(document && document.documentElement, 'requestFullscreen'),
+      supported: Feature.containedIn(global.document && document.documentElement, 'requestFullScreen')
+        || Feature.containedIn(global.document && document.documentElement, 'requestFullscreen'),
       links: [
         {url: 'https://fullscreen.spec.whatwg.org/', title: 'Specification'},
         {url: 'http://jlongster.com/2011/11/21/canvas.html', ignore: true}
