@@ -29,33 +29,23 @@ body, dt, dd {
 h1, h2, h3, h4, h5, h6 {
   @include font();
   color: #000;
+}
+h2, h3, h4, h5, h6 {
   line-height: 2;
 }
 
-
-/* Everything but the jumbotron gets side spacing for mobile first views */
-.header,
-.marketing,
-.footer {
-  padding-left: 15px;
-  padding-right: 15px;
-}
-
-/* Custom page header */
-.header {
-  border-bottom: 1px solid #e5e5e5;
-
-  /* Make the masthead heading the same height as the navigation */
-  h3 {
-    margin-top: 0;
-    margin-bottom: 0;
-    line-height: 40px;
-    padding-bottom: 19px;
+header {
+  & > * {
+    margin: 0;
+    line-height: 1.25;
+  }
+  p {
+    font-size: 17px;
   }
 }
 
 /* Custom page footer */
-.footer {
+footer {
   padding-top: 19px;
   color: #777;
 }
@@ -67,14 +57,14 @@ h1, h2, h3, h4, h5, h6 {
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
   /* Remove the padding we set earlier */
-  .header,
-  .footer {
+  header,
+  footer {
     padding-left: 0;
     padding-right: 0;
   }
 
   /* Space out the masthead */
-  .header {
+  header {
     margin-bottom: 30px;
   }
 }
@@ -183,7 +173,7 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-.footer .icon {
+footer .icon {
   width: 32px;
   height: 32px;
   background-repeat: no-repeat;

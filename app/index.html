@@ -16,7 +16,6 @@
     <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="/bower_components/bootstrap-material-design/dist/css/material.css" />
     <link rel="stylesheet" href="/bower_components/bootstrap-material-design/dist/css/ripples.css" />
-    <link rel="stylesheet" href="/bower_components/bootstrap-material-design/dist/css/roboto.css" />
     <link rel="stylesheet" href="/bower_components/chartist/dist/chartist.min.css" />
     <!-- endbower -->
     <!-- endbuild -->
@@ -31,31 +30,31 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <div class="navbar navbar-white navbar-fixed-top show-on-feature-page hidden-md hidden-lg">
+    <nav class="navbar navbar-white navbar-fixed-top show-on-feature-page hidden-md hidden-lg">
       <div class="navbar-header">
         <a class="navbar-toggle pull-left" href="/">
           <i class="mdi-navigation-arrow-back"></i>
         </a>
         <a class="navbar-brand" href="/">What Web Can Do?</a>
       </div>
-    </div>
+    </nav>
 
     <div class="container">
-      <div class="well text-center hide-on-feature-page-sm">
+      <header class="well text-center hide-on-feature-page-sm">
         <h1>What Web Can Do Today?</h1>
-        <p class="lead">Can I build my app with HTML5 or do I need to go native?</p>
-      </div>
+        <p>Can I rely on the Web Platform features to build my app?</p>
+      </header>
 
       <div class="row" id="features-list-target"></div>
       <div class="row show-on-feature-page" id="feature-target"></div>
 
-      <div class="footer clearfix row">
+      <footer class="clearfix row">
         <p class="col-sm-2 col-xs-4">
           <a href="https://github.com/NOtherDev/whatwebcando" target="_blank" class="icon github-icon">GitHub</a>
           <a href="https://twitter.com/WhatWebCanDo" target="_blank" class="icon twitter-icon">Twitter</a>
         </p>
         <p class="col-sm-10 col-xs-8">Created by <a href="https://github.com/NOtherDev/">Adam Bar</a>, licenced under <a href="http://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a></p>
-      </div>
+      </footer>
     </div>
 
     <script id="features-list-template" type="text/x-handlebars-template">
@@ -141,7 +140,6 @@
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
     <script src="/bower_components/jquery/dist/jquery.js"></script>
-    <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="/bower_components/bootstrap-material-design/dist/js/material.js"></script>
     <script src="/bower_components/bootstrap-material-design/dist/js/ripples.js"></script>
     <script src="/bower_components/page/page.js"></script>
