@@ -34,7 +34,14 @@ h2, h3, h4, h5, h6 {
   line-height: 2;
 }
 
+@mixin logo() {
+  background: url('/images/logo.svg') no-repeat left center;
+}
+
 header {
+  @include logo();
+  background-size: 130px 90%;
+
   & > * {
     margin: 0;
     line-height: 1.25;
@@ -70,6 +77,9 @@ footer {
 }
 
 @media (max-width: 991px) {
+  header {
+    padding-left: 130px !important;
+  }
   .navbar-toggle {
     display: block;
   }
@@ -103,6 +113,9 @@ footer {
 
   .navbar-brand {
     margin-top: 3px;
+    @include logo();
+    background-size: 32px;
+    padding-left: 50px;
   }
 }
 
