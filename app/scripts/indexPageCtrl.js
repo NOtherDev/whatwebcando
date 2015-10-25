@@ -4,7 +4,7 @@
   'use strict';
 
   let indexPageCtrl = function ({templateEngine, featuresGroups}) {
-    return templateEngine.run('features-list', { groups: featuresGroups });
+    return templateEngine.runOnce('features-list', { groups: featuresGroups });
   };
 
   container.configure(register => register.singleton('indexPageCtrl', indexPageCtrl));

@@ -199,7 +199,10 @@
 
       return Promise.all([caniuseFeatureReport, fetchCaniuseBrowserUsage()])
         .then(([featureReport, usageReport]) => {
-          this.$feature.caniuseReport = new CaniuseReport(this.$feature.caniuseKey, featureReport, usageReport);
+          Object.defineProperty(this.$feature, 'caniuseReport', {
+            enumerable: false,
+            value: new CaniuseReport(this.$feature.caniuseKey, featureReport, usageReport)
+          });
         })
         .catch(err => console.warn(err));
     }

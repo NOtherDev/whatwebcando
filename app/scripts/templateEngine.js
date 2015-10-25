@@ -15,7 +15,11 @@
 
   class TemplateEngine {
     constructor() {
-      this.$compileMemoized = _.memoize(this.$compile, (prefix, context) => `${prefix}-${JSON.stringify(context)}`);
+      this.$compileMemoized = _.memoize(this.$compile, TemplateEngine.$memoizeKey);
+    }
+
+    static $memoizeKey(prefix, context) {
+      return `${prefix}-${JSON.stringify(context)}`
     }
 
     $compile(prefix, context = {}) {
@@ -24,12 +28,23 @@
       return compiled.dom;
     }
 
-    run(prefix, context = {}) {
+    annotateBody(prefix) {
       let newBodyClass = `page-${prefix}`;
       $('body').removeClass(this.$bodyClass).addClass(newBodyClass);
       this.$bodyClass = newBodyClass;
+    }
 
+    run(prefix, context = {}) {
+      this.annotateBody(prefix);
       return this.targetFor(prefix).html(this.$compileMemoized(prefix, context)).promise();
+    }
+
+    runOnce(prefix, context = {}) {
+      if (this.$compileMemoized.cache.has(TemplateEngine.$memoizeKey(prefix, context))) {
+        return this.annotateBody(prefix);
+      }
+
+      return this.run(prefix, context);
     }
 
     templateFor(prefix) {
