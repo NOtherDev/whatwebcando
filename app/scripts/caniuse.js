@@ -199,7 +199,6 @@
 
       return Promise.all([caniuseFeatureReport, fetchCaniuseBrowserUsage()])
         .then(([featureReport, usageReport]) => {
-          this.$feature.appendLinks(featureReport.links);
           this.$feature.caniuseReport = new CaniuseReport(this.$feature.caniuseKey, featureReport, usageReport);
         })
         .catch(err => console.warn(err));

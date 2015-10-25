@@ -13,19 +13,11 @@
       this.supported = supported;
       this.icon = icon;
       this.demoPen = demoPen;
-      this.$links = _.indexBy(links, 'url');
-    }
-
-    get links() {
-      return _.filter(this.$links, l => l.ignore !== true);
+      this.links = _.indexBy(links, 'url');
     }
 
     get notSupported() {
       return this.supported === false;
-    }
-
-    appendLinks(links = []) {
-      this.$links = _.assign(_.indexBy(links, 'url'), this.$links);
     }
   }
 

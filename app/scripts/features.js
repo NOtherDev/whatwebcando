@@ -31,13 +31,13 @@
       demoPen: 'yYJdWO',
       links: [
         {url: 'http://www.w3.org/TR/notifications/', title: 'Specification'},
-        {url: 'https://addons.mozilla.org/en-us/firefox/addon/221523/', ignore: true},
-        {url: 'http://www.html5rocks.com/tutorials/notifications/quick/', ignore: true},
-        {url: 'http://aurelio.audero.it/demo/web-notifications-api-demo.html', ignore: true},
+        {url: 'https://developer.mozilla.org/en-US/docs/Web/API/Notifications_API', title: 'MDN: Notifications API'},
+        {url: 'http://www.sitepoint.com/introduction-web-notifications-api/', title: 'SitePoint: An Introduction to the Web Notifications API'},
         {
           url: 'https://groups.google.com/a/chromium.org/forum/#!topic/blink-dev/BygptYClroM',
           title: 'PSA: Android is *only* shipping Service Worker-based Notifications'
-        }
+        },
+        {url: 'http://ukot.github.io/ie_web_notifications/', title: 'IE Web Notifications plugin'}
       ]
     }),
 
@@ -64,10 +64,7 @@
       caniuse: 'serviceworkers',
       supported: Feature.navigatorContains('serviceWorker') && Feature.windowContains('PushManager') && Feature.containedIn(ServiceWorkerRegistration.prototype, 'showNotification'),
       links: [
-        {url: 'http://www.w3.org/TR/push-api/', title: 'Specification draft'},
-        {url: 'http://www.html5rocks.com/en/tutorials/service-worker/introduction/', ignore: true},
-        {url: 'https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorker_API', ignore: true},
-        {url: 'https://jakearchibald.github.io/isserviceworkerready/resources.html', ignore: true},
+        {url: 'http://www.w3.org/TR/push-api/', title: 'Specification Draft'},
         {
           url: 'https://developers.google.com/web/updates/2015/03/push-notificatons-on-the-open-web',
           title: 'Push Notifications on the Open Web - Chrome tutorial'
@@ -97,7 +94,8 @@
       caniuse: 'serviceworkers',
       supported: Feature.navigatorContains('serviceWorker'),
       links: [
-        {url: 'http://www.w3.org/TR/service-workers/', title: 'Specification draft'},
+        {url: 'http://www.w3.org/TR/service-workers/', title: 'Specification Draft'},
+        {url: 'http://www.html5rocks.com/en/tutorials/service-worker/introduction/', title: 'HTML5 Rocks: Introduction to Service Worker'},
         {url: 'https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorker_API', title: 'ServiceWorker API - MDN docs'},
         {
           url: 'https://googlechrome.github.io/samples/service-worker/prefetch/index.html',
@@ -106,7 +104,9 @@
         {
           url: 'https://medium.com/@slsoftworks/beyond-offline-bf5c013ec8e7',
           title: 'Beyond Offline: Using a custom service worker to expand on your browser’s capabilities'
-        }
+        },
+        {url: 'https://ponyfoo.com/articles/serviceworker-revolution', title: 'ServiceWorker: Revolution of the Web Platform'},
+        {url: 'https://jakearchibald.github.io/isserviceworkerready/resources.html', title: 'Is ServiceWorker Ready? - Jake Archibald'}
       ]
     }),
 
@@ -136,11 +136,12 @@
   "display": "standalone"
 }</code></pre>`,
       links: [
+        {url: 'http://www.w3.org/TR/appmanifest/', title: 'Specification Draft'},
         {
           url: 'https://developers.google.com/web/fundamentals/device-access/stickyness/?hl=en',
           title: 'Device Access & Integration: Add To Home Screen'
         },
-        {url: 'http://html5doctor.com/web-manifest-specification/', title: 'The Web Manifest specification'},
+        {url: 'http://html5doctor.com/web-manifest-specification/', title: 'HTML5 Doctor: The Web Manifest specification'},
         {url: 'https://medium.com/@berbaquero/installable-web-apps-b48fdbcf5915', title: 'Installable Web Apps'}
       ]
     }),
@@ -164,7 +165,9 @@
       demoPen: 'avBpOb',
       supported: Feature.containedIn(global.document, 'visibilityState'),
       links: [
-        {url: 'http://www.w3.org/TR/page-visibility/', title: 'Specification'}
+        {url: 'http://www.w3.org/TR/page-visibility/', title: 'Specification Draft'},
+        {url: 'https://developer.mozilla.org/en-US/docs/Web/API/Page_Visibility_API', title: 'MDN: Page Visibility API'},
+        {url: 'http://www.sitepoint.com/introduction-to-page-visibility-api/', title: 'SitePoint: Introduction to Page Visibility API'}
       ]
     }),
 
@@ -186,7 +189,6 @@
       supported: Feature.navigatorContains('geolocation'),
       links: [
         {url: 'http://www.w3.org/TR/geolocation-API/', title: 'Specification'},
-        {url: 'https://raw.github.com/phiggins42/has.js/master/detect/features.js#native-geolocation', ignore: true},
         {url: 'https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/Using_geolocation', title: 'MDN: Using geolocation'}
       ]
     }),
@@ -216,7 +218,7 @@
       supported: Feature.navigatorContains('bluetooth'),
       demoPen: 'VvPaRY',
       links: [
-        {url: 'https://webbluetoothcg.github.io/web-bluetooth/', title: 'Specification draft'},
+        {url: 'https://webbluetoothcg.github.io/web-bluetooth/', title: 'Specification Draft'},
         {url: 'https://developers.google.com/web/updates/2015/07/interact-with-ble-devices-on-the-web', title: 'Interact with BLE devices on the Web'}
       ]
     }),
@@ -241,7 +243,7 @@
       supported: Feature.navigatorContains('nfc'),
       demoPen: 'XmpKjQ',
       links: [
-        {url: 'https://w3c.github.io/web-nfc/', title: 'Specification draft'},
+        {url: 'https://w3c.github.io/web-nfc/', title: 'Specification Draft'},
         {url: 'https://developer.mozilla.org/en-US/docs/Web/API/NFC_API/Using_the_NFC_API', title: 'MDN: Using the NFC API'}
       ]
     }),
@@ -261,7 +263,8 @@
       caniuse: 'proximity',
       supported: Feature.windowContains('ondeviceproximity') || Feature.windowContains('onuserproximity'),
       links: [
-        {url: 'https://w3c.github.io/proximity/', title: 'Specification draft'},
+        {url: 'https://w3c.github.io/proximity/', title: 'Specification Draft'},
+        {url: 'http://www.sitepoint.com/introducing-proximity-api/', title: 'SitePoint: Introducing the Proximity API'},
         {url: 'https://developer.mozilla.org/en-US/docs/Web/API/Proximity_Events', title: 'MDN: Proximity Events'}
       ]
     }),
@@ -279,7 +282,6 @@
       supported: Feature.windowContains('ondevicelight'),
       demoPen: 'OyWZqY',
       links: [
-        {url: 'http://aurelio.audero.it/demo/ambient-light-api-demo.html', ignore: true},
         {url: 'http://modernweb.com/2014/05/27/introduction-to-the-ambient-light-api/', title: 'Introduction to the Ambient Light API'},
         {url: 'https://w3c.github.io/ambient-light/', title: 'Specification'}
       ]
@@ -307,8 +309,16 @@
       supported: Feature.navigatorContains('getUserMedia'),
       demoPen: 'YyZKPJ',
       links: [
-        {url: 'http://www.w3.org/TR/mediacapture-streams/', title: 'Specification'},
-        {url: 'http://www.html5rocks.com/en/tutorials/getusermedia/intro/', title: 'Capturing Audio & Video in HTML5'}
+        {url: 'http://www.w3.org/TR/mediacapture-streams/', title: 'Specification Draft'},
+        {url: 'http://www.html5rocks.com/en/tutorials/getusermedia/intro/', title: 'HTML5 Rocks: Capturing Audio & Video in HTML5'},
+        {
+          url: 'http://blogs.windows.com/msedgedev/2015/05/13/announcing-media-capture-functionality-in-microsoft-edge/',
+          title: 'Announcing media capture functionality in Microsoft Edge'
+        },
+        {
+          url: 'https://dev.opera.com/blog/webcam-orientation-preview/', 
+          title: 'Native Webcam Support and Orientation Events — Technology Preview from Opera'
+        }
       ]
     }),
 
@@ -329,8 +339,8 @@
       supported: Feature.navigatorContains('connection'),
       demoPen: 'LpWPvv',
       links: [
-        {url: 'https://developer.mozilla.org/en-US/docs/Web/API/Network_Information_API', title: 'MDN: Network Information API'},
-        {url: 'https://w3c.github.io/netinfo/', title: 'Specification'}
+        {url: 'https://w3c.github.io/netinfo/', title: 'Specification Draft'},
+        {url: 'https://developer.mozilla.org/en-US/docs/Web/API/Network_Information_API', title: 'MDN: Network Information API'}
       ]
     }),
 
@@ -352,7 +362,8 @@
       supported: Feature.navigatorContains('onLine'),
       demoPen: 'Qjpveg',
       links: [
-        {url: 'https://html.spec.whatwg.org/multipage/browsers.html#browser-state', title: 'Specification'}
+        {url: 'https://html.spec.whatwg.org/multipage/browsers.html#browser-state', title: 'Specification'},
+        {url: 'https://developer.mozilla.org/en-US/docs/Web/API/NavigatorOnLine/onLine#Specification', title: 'MDN description'}
       ]
     }),
 
@@ -369,7 +380,12 @@
       supported: Feature.navigatorContains('vibrate'),
       demoPen: 'VvpxrM',
       links: [
-        {url: 'http://dev.w3.org/2009/dap/vibration/', title: 'Specification'}
+        {url: 'http://dev.w3.org/2009/dap/vibration/', title: 'Specification Draft'},
+        {url: 'https://developer.mozilla.org/en-US/docs/Web/API/Vibration_API', title: 'MDN: Vibration API'},
+        {
+          url: 'http://illyism.com/journal/vibrate-mobile-phone-web-vibration-api', 
+          title: 'Learn how to vibrate your mobile phone on the web using the vibration API'
+        }
       ]
     }),
 
@@ -404,7 +420,8 @@
       supported: Feature.navigatorContains('getBattery') || Feature.navigatorContains('battery'),
       demoPen: 'epvKNB',
       links: [
-        {url: 'https://dvcs.w3.org/hg/dap/raw-file/default/battery/Overview.html', title: 'Specification draft'}
+        {url: 'https://dvcs.w3.org/hg/dap/raw-file/default/battery/Overview.html', title: 'Specification Draft'},
+        {url: 'https://developer.mozilla.org/en-US/docs/Web/API/Battery_Status_API', title: 'MDN: Battery Status API'}
       ]
     }),
 
@@ -447,7 +464,8 @@
       demoPen: 'NGpoON',
       links: [
         {url: 'http://www.w3.org/TR/webstorage/#storage', title: 'Specification'},
-        {url: 'http://code.google.com/p/sessionstorage/', ignore: true}
+        {url: 'https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API', title: 'MDN: Web Storage API'},
+        {url: 'http://docs.webplatform.org/wiki/tutorials/offline_storage', title: 'Overview of client-side storage'}
       ]
     }),
 
@@ -478,6 +496,10 @@
       demoPen: 'pjPLRW',
       links: [
         {url: 'http://www.w3.org/TR/FileAPI/', title: 'Specification'},
+        {
+          url: 'https://developer.mozilla.org/en-US/docs/Using_files_from_web_applications', 
+          title: 'MDN: Using files from web applications'
+        },
         {url: 'http://www.html5rocks.com/en/tutorials/file/dndfiles/', title: 'Reading files in JavaScript using the File APIs'}
       ]
     }),
@@ -501,7 +523,8 @@
       supported: Feature.navigatorContains('permissions'),
       demoPen: 'OymKdE',
       links: [
-        {url: 'https://w3c.github.io/permissions/', title: 'Specification'}
+        {url: 'https://w3c.github.io/permissions/', title: 'Specification Draft'},
+        {url: 'https://developers.google.com/web/updates/2015/04/permissions-api-for-the-web', title: 'Permissions API for the Web'}
       ]
     }),
 
@@ -523,7 +546,7 @@
       </dl>`,
       supported: Feature.navigatorContains('contacts'),
       links: [
-        {url: 'https://www.w3.org/2012/sysapps/contacts-manager-api/', title: 'Specification draft'},
+        {url: 'https://www.w3.org/2012/sysapps/contacts-manager-api/', title: 'Specification Draft'},
         {url: 'https://developer.mozilla.org/en-US/docs/Web/API/Contacts_API', title: 'MDN: Contacts API'}
       ]
     }),
@@ -552,7 +575,7 @@
       </dl>`,
       supported: Feature.navigatorContains('storageQuota') || Feature.navigatorContains('persistentStorage'),
       links: [
-        {url: 'http://www.w3.org/TR/quota-api/', title: 'Specification draft'},
+        {url: 'http://www.w3.org/TR/quota-api/', title: 'Specification Draft'},
         {url: 'https://developer.chrome.com/apps/offline_storage', title: 'Details on Chrome implementation'},
         {url: 'http://www.html5rocks.com/en/tutorials/offline/quota-research/', title: 'Quota limitations analysis'}
       ]
@@ -581,8 +604,9 @@
       supported: Feature.windowContains('ontouchstart') || Feature.windowContains('onpointerdown'),
       links: [
         {url: 'http://www.w3.org/TR/touch-events/', title: 'Specification'},
+        {url: 'http://www.quirksmode.org/mobile/tableTouch.html', title: 'Detailed support table'},
         {url: 'http://www.html5rocks.com/en/mobile/touch/', title: 'Multi-touch Web Development'},
-        {url: 'http://www.quirksmode.org/m/tests/drag2.html', ignore: true}
+        {url: 'https://msdn.microsoft.com/library/hh673557(v=vs.85).aspx', title: 'Microsoft\'s Pointer Events API description'}
       ]
     }),
 
@@ -612,7 +636,8 @@
       supported: Feature.windowContains('DeviceMotionEvent'),
       demoPen: 'BodzBg',
       links: [
-        {url: 'http://www.w3.org/TR/orientation-event/#devicemotion', title: 'Specification'}
+        {url: 'http://www.w3.org/TR/orientation-event/#devicemotion', title: 'Specification Draft'},
+        {url: 'http://www.html5rocks.com/en/tutorials/device/orientation/', title: 'HTML5 Rocks: This End Up: Using Device Orientation'}
       ]
     }),
 
@@ -649,6 +674,11 @@
       supported: Feature.windowContains('SpeechRecognition'),
       links: [
         {url: 'https://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html#speechreco-section', title: 'Specification'},
+        {url: 'http://www.sitepoint.com/introducing-web-speech-api/', title: 'SitePoint: Introducing the Web Speech API'},
+        {
+          url: 'https://developers.google.com/web/updates/2013/01/Voice-Driven-Web-Apps-Introduction-to-the-Web-Speech-API',
+          title: 'Voice Driven Web Apps: Introduction to the Web Speech API'
+        },
         {url: 'https://shaungallagher.github.io/say_restyle/', title: 'Demo - Edit the webpage with your voice'}
       ]
     }),
@@ -673,7 +703,12 @@
       supported: Feature.windowContains('ClipboardEvent'),
       demoPen: 'bVozGY',
       links: [
-        {url: 'https://w3c.github.io/clipboard-apis/#dfn-datatransfer', title: 'Specification draft'}
+        {url: 'https://w3c.github.io/clipboard-apis/#dfn-datatransfer', title: 'Specification Draft'},
+        {url: 'https://developer.mozilla.org/en-US/docs/Web/API/ClipboardEvent', title: 'MDN: ClipboardEvent'},
+        {
+          url: 'https://www.lucidchart.com/techblog/2014/12/02/definitive-guide-copying-pasting-javascript/',
+          title: 'The Definitive Guide to Copying and Pasting in JavaScript'
+        }
       ]
     }),
 
@@ -698,7 +733,16 @@
       caniuse: 'css-media-interaction',
       demoPen: 'pjdyoK',
       links: [
-        {url: 'http://www.w3.org/TR/mediaqueries-4/#mf-interaction', title: 'Specification draft'},
+        {url: 'http://www.w3.org/TR/mediaqueries-4/#mf-interaction', title: 'Specification Draft'},
+        {
+          url: 'http://jordanm.co.uk/2013/11/11/potential-use-cases-for-script-hover-and-pointer.html',
+          title: 'Potential use cases for script, hover and pointer CSS Level 4 Media Features'
+        },
+        {
+          url: 'https://dev.opera.com/articles/media-features/', 
+          title: 'Dev.Opera: Interaction Media Features and their potential (for incorrect assumptions)'
+        },
+        {url: 'https://github.com/twbs/mq4-hover-shim', title: 'A shim for the Media Queries Level 4 `hover` media feature'},
         {url: 'http://radar.oreilly.com/2015/08/proposing-css-input-modailty.html', title: 'Proposing CSS input modality'}
       ]
     }),
@@ -725,7 +769,8 @@
       demoPen: 'EVvyaw',
       supported: Feature.windowContains('DeviceOrientationEvent'),
       links: [
-        {url: 'http://www.w3.org/TR/orientation-event/', title: 'Specification'}
+        {url: 'http://www.w3.org/TR/orientation-event/', title: 'Specification Draft'},
+        {url: 'http://www.html5rocks.com/en/tutorials/device/orientation/', title: 'HTML5 Rocks: This End Up: Using Device Orientation'}
       ]
     }),
 
@@ -753,7 +798,11 @@
         || Feature.containedIn(global.document && document.documentElement, 'requestFullscreen'),
       links: [
         {url: 'https://fullscreen.spec.whatwg.org/', title: 'Specification'},
-        {url: 'http://jlongster.com/2011/11/21/canvas.html', ignore: true}
+        {url: 'https://developer.mozilla.org/en-US/docs/Web/API/Fullscreen_API', title: 'MDN: Fullscreen API'},
+        {
+          url: 'https://hacks.mozilla.org/2012/01/using-the-fullscreen-api-in-web-browsers/', 
+          title: 'Mozilla Hacks: Using the Fullscreen API in web browsers'
+        },
       ]
     }),
 
@@ -778,8 +827,9 @@
       demoPen: 'EVbpeX',
       supported: Feature.containedIn(global.screen, 'orientation') || Feature.containedIn(global.screen, 'lockOrientation'),
       links: [
-        {url: 'http://www.w3.org/TR/screen-orientation/', title: 'Specification draft'},
-        {url: 'http://www.audero.it/demo/screen-orientation-api-demo.html', ignore: true}
+        {url: 'http://www.w3.org/TR/screen-orientation/', title: 'Specification Draft'},
+        {url: 'https://developer.mozilla.org/en-US/docs/Web/API/Screen/orientation', title: 'MDN: Screen.orientation'},
+        {url: 'http://www.sitepoint.com/introducing-screen-orientation-api/', title: 'SitePoint: Introducing the Screen Orientation API'}
       ]
     }),
 
@@ -802,8 +852,8 @@
       </dl>`,
       supported: Feature.navigatorContains('requestWakeLock'),
       links: [
+        {url: 'http://w3c.github.io/wake-lock/', title: 'W3C Specification Draft'},
         {url: 'https://developer.mozilla.org/en-US/docs/Web/API/Wake_Lock_API', title: 'MDN Documentation: Wake Lock API on Firefox OS'},
-        {url: 'http://w3c.github.io/wake-lock/', title: 'W3C Specification draft'}
       ]
     }),
 
@@ -845,7 +895,7 @@
       </dl>`,
       supported: Feature.navigatorContains('presentation') || Feature.windowContains('PresentationRequest'),
       links: [
-        {url: 'http://w3c.github.io/presentation-api/', title: 'Specification draft'}
+        {url: 'http://w3c.github.io/presentation-api/', title: 'Specification Draft'}
       ]
     })
   };
