@@ -69,6 +69,7 @@
           url: 'https://developers.google.com/web/updates/2015/03/push-notificatons-on-the-open-web',
           title: 'Push Notifications on the Open Web - Chrome tutorial'
         },
+        {url: 'https://hacks.mozilla.org/2015/10/keep-pushing-it-with-the-w3c-push-api/', title: 'Keep pushing it, with the W3C Push API'},
         {url: 'https://goroost.com/try-chrome-push-notifications', title: 'Chrome Push Notifications demo'}
       ]
     }),
