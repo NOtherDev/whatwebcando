@@ -18,6 +18,12 @@
       }
       if (feature.demoPen && window.CodePenEmbed) {
         window.CodePenEmbed.init();
+
+        if (!window.location.protocol.startsWith('https')) {
+          // force CodePen frame in HTTPS, even if WWCD isn't
+          let penFrame = $('iframe.cp_embed_iframe');
+          penFrame.attr('src', `https:${penFrame.attr('src')}`);
+        }
       }
     };
 
