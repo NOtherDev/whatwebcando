@@ -5,7 +5,19 @@
 
   $.material.init();
 
+  let notifyPageChanged = path => {
+    if (window.ga) {
+      window.ga('set', 'page', path);
+      window.ga('send', 'pageview');
+    }
+  };
+
   let defineRouting = function ({indexPageCtrl, featurePageCtrl, features}) {
+    page((ctx, next) => {
+      notifyPageChanged(ctx.path);
+      next();
+    });
+
     page('/', () => container.resolveAndCall(indexPageCtrl));
 
     Object.keys(features).forEach(function (featureId) {
