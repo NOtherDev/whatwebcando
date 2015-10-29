@@ -48,7 +48,7 @@
       description: [
         `Remote Push Notifications allow web applications to subscribe the user to the re-engagement mechanism
          that can show a message to the subscriber even if the web application is not currently opened in the browser. This utilizes the powerful concept
-         of <b><a href="/background-tasks.html">Service Workers</a></b>, code units installable by the web app that execute separately in the background.`,
+         of <b><a href="/offline.html">Service Workers</a></b>, code units installable by the web app that execute separately in the separate context.`,
         `Currently works in Google Chrome only and requires <a href="https://developers.google.com/cloud-messaging/">GCM</a> setup and HTTPS installation.`
       ],
       api: `<dl>
@@ -74,14 +74,19 @@
       ]
     }),
 
-    backgroundTasks: new Feature({
-      id: 'background-tasks',
+    offline: new Feature({
+      id: 'offline',
       icon: 'mdi-action-settings-applications',
-      name: 'Background Processing',
-      description: `Web applications running on HTTPS can request the browser to install the separate code unit called <b>Service Worker</b>.
-       This unit is then run in a separate thread off the owning web application, communicating via events and messages.
-       It provides a possibility to execute code regardless of the main application state, i.e. when it is not opened.
-       Use cases might include prefetching and caching the data, long processing etc.`,
+      name: 'Offline Mode',
+      description: [`Web applications can provide the offline experience using two techniques. The older implementation, 
+        <b>Application Cache</b>, is <a href="http://caniuse.com/#feat=offline-apps" target="_blank">widely implemented</a> in the browsers,
+        but is now in the process of deprecation due to <a href="http://alistapart.com/article/application-cache-is-a-douchebag" target="_blank">various 
+        conceptual and design flaws</a>. It is not covered here.`,
+        `The modern alternative is called <b>Service Worker</b>. Web applications running on HTTPS can request the browser to install the separate
+        code unit called Service Worker. This unit is then run in the separation from the owning web application, communicating with it via events. 
+        Besides being the enabler for multiple future complex APIs like <a href="/push-notifications.html">Push Notifications</a>, Background Sync 
+        or Geofencing, it can work as a fully featured network proxy. It can intercept all the HTTP requests, alter its content or behaviors,
+        or - most notably - manage offline caching.`],
       api: `<dl>
         <dt><code>navigator.serviceWorker.register(path)</code></dt>
         <dd>Installs the Service Worker code available under <code>path</code>. Returns a <code>Promise</code>.</dd>
@@ -91,11 +96,29 @@
         <dd>Checks the server for an updated version of the Service Worker without consulting caches.</dd>
         <dt><code>serviceWorkerRegistration.unregister()</code></dt>
         <dd>Uninstalls the Service Worker.</dd>
+        <dt><code>self.addEventListener('install', listener)</code></dt>
+        <dd>An event fired within the Service Worker when it is being installed. Useful to prefetch the resources needed in the offline mode and to prefill the cache.</dd> 
+        <dt><code>event.waitUntil(promise)</code></dt>
+        <dd>An install event method that expects a <code>Promise</code> which signals the end of the worker's installation phase when resolved.</dd>
+        <dt><code>caches.open(cacheName)</code></dt>
+        <dd>Returns a <code>Promise</code> resolved with the named cache accessor object that is able to keep the resources needed for the offline mode.</dd>
+        <dt><code>cache.put(request, response)</code></dt>
+        <dd>Adds the specified response for the request to the named cache for the future, possibly offline, use.</dd>
+        <dt><code>cache.addAll(urls)</code></dt>
+        <dd>Adds all the resources specified with the URLs to the named cache for the future, possibly offline, use.</dd>
+        <dt><code>self.addEventListener('fetch', listener)</code></dt>
+        <dd>An event fired within the Service Worker whenever any of its related browser tabs have issued a HTTP request. Useful to serve already cached response
+          or intercept and cache the incoming response.</dd>
+        <dt><code>event.respondWith(promise)</code></dt>
+        <dd>A fetch event method that expects a <code>Promise</code> which resolves with the request data to be returned to the requesting browser tab.</dd>
+        <dt><code>caches.match(event.request)</code></dt>
+        <dd>Returns a <code>Promise</code> resolved when the <code>fetch</code> event represents a request to the resource already cached within 
+          the Service Worker's cache.</dd>
       </dl>`,
       caniuse: 'serviceworkers',
       supported: Feature.navigatorContains('serviceWorker'),
       links: [
-        {url: 'http://www.w3.org/TR/service-workers/', title: 'Specification Draft'},
+        {url: 'http://www.w3.org/TR/service-workers/', title: 'Service Workers Specification Draft'},
         {url: 'http://www.html5rocks.com/en/tutorials/service-worker/introduction/', title: 'HTML5 Rocks: Introduction to Service Worker'},
         {url: 'https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorker_API', title: 'ServiceWorker API - MDN docs'},
         {
@@ -904,7 +927,7 @@
   let featuresGroups = [
     {
       heading: 'Behave Like A Native App',
-      features: [features.localNotifications, features.pushNotifications, features.backgroundTasks, features.manifest, features.foregroundDetection]
+      features: [features.localNotifications, features.pushNotifications, features.offline, features.manifest, features.foregroundDetection]
     },
     {
       heading: 'Input',
