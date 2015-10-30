@@ -49,7 +49,8 @@
         `Remote Push Notifications allow web applications to subscribe the user to the re-engagement mechanism
          that can show a message to the subscriber even if the web application is not currently opened in the browser. This utilizes the powerful concept
          of <b><a href="/offline.html">Service Workers</a></b>, code units installable by the web app that execute separately in the separate context.`,
-        `Currently works in Google Chrome only and requires <a href="https://developers.google.com/cloud-messaging/">GCM</a> setup and HTTPS installation.`
+        `Requires HTTPS installation. Currently works in Firefox (turned off by default) and partially in Google Chrome (only pushes without data,
+         <a href="https://developers.google.com/cloud-messaging/">GCM</a> setup required).`
       ],
       api: `<dl>
         <dt><code>serviceWorkerRegistration.pushManager.subscribe()</code></dt>
@@ -78,13 +79,13 @@
       id: 'offline',
       icon: 'mdi-action-settings-applications',
       name: 'Offline Mode',
-      description: [`Web applications can provide the offline experience using two techniques. The older implementation, 
+      description: [`Web applications can provide the offline experience using two techniques. The older implementation,
         <b>Application Cache</b>, is <a href="http://caniuse.com/#feat=offline-apps" target="_blank">widely implemented</a> in the browsers,
-        but is now in the process of deprecation due to <a href="http://alistapart.com/article/application-cache-is-a-douchebag" target="_blank">various 
+        but is now in the process of deprecation due to <a href="http://alistapart.com/article/application-cache-is-a-douchebag" target="_blank">various
         conceptual and design flaws</a>. It is not covered here.`,
         `The modern alternative is called <b>Service Worker</b>. Web applications running on HTTPS can request the browser to install the separate
-        code unit called Service Worker. This unit is then run in the separation from the owning web application, communicating with it via events. 
-        Besides being the enabler for multiple future complex APIs like <a href="/push-notifications.html">Push Notifications</a>, Background Sync 
+        code unit called Service Worker. This unit is then run in the separation from the owning web application, communicating with it via events.
+        Besides being the enabler for multiple future complex APIs like <a href="/push-notifications.html">Push Notifications</a>, Background Sync
         or Geofencing, it can work as a fully featured network proxy. It can intercept all the HTTP requests, alter its content or behaviors,
         or - most notably - manage offline caching.`],
       api: `<dl>
@@ -97,7 +98,7 @@
         <dt><code>serviceWorkerRegistration.unregister()</code></dt>
         <dd>Uninstalls the Service Worker.</dd>
         <dt><code>self.addEventListener('install', listener)</code></dt>
-        <dd>An event fired within the Service Worker when it is being installed. Useful to prefetch the resources needed in the offline mode and to prefill the cache.</dd> 
+        <dd>An event fired within the Service Worker when it is being installed. Useful to prefetch the resources needed in the offline mode and to prefill the cache.</dd>
         <dt><code>event.waitUntil(promise)</code></dt>
         <dd>An install event method that expects a <code>Promise</code> which signals the end of the worker's installation phase when resolved.</dd>
         <dt><code>caches.open(cacheName)</code></dt>
@@ -112,7 +113,7 @@
         <dt><code>event.respondWith(promise)</code></dt>
         <dd>A fetch event method that expects a <code>Promise</code> which resolves with the request data to be returned to the requesting browser tab.</dd>
         <dt><code>caches.match(event.request)</code></dt>
-        <dd>Returns a <code>Promise</code> resolved when the <code>fetch</code> event represents a request to the resource already cached within 
+        <dd>Returns a <code>Promise</code> resolved when the <code>fetch</code> event represents a request to the resource already cached within
           the Service Worker's cache.</dd>
       </dl>`,
       caniuse: 'serviceworkers',
@@ -340,7 +341,7 @@
           title: 'Announcing media capture functionality in Microsoft Edge'
         },
         {
-          url: 'https://dev.opera.com/blog/webcam-orientation-preview/', 
+          url: 'https://dev.opera.com/blog/webcam-orientation-preview/',
           title: 'Native Webcam Support and Orientation Events — Technology Preview from Opera'
         }
       ]
@@ -407,7 +408,7 @@
         {url: 'http://dev.w3.org/2009/dap/vibration/', title: 'Specification Draft'},
         {url: 'https://developer.mozilla.org/en-US/docs/Web/API/Vibration_API', title: 'MDN: Vibration API'},
         {
-          url: 'http://illyism.com/journal/vibrate-mobile-phone-web-vibration-api', 
+          url: 'http://illyism.com/journal/vibrate-mobile-phone-web-vibration-api',
           title: 'Learn how to vibrate your mobile phone on the web using the vibration API'
         }
       ]
@@ -521,7 +522,7 @@
       links: [
         {url: 'https://w3c.github.io/FileAPI/', title: 'Specification Draft'},
         {
-          url: 'https://developer.mozilla.org/en-US/docs/Using_files_from_web_applications', 
+          url: 'https://developer.mozilla.org/en-US/docs/Using_files_from_web_applications',
           title: 'MDN: Using files from web applications'
         },
         {url: 'http://www.html5rocks.com/en/tutorials/file/dndfiles/', title: 'Reading files in JavaScript using the File APIs'}
@@ -763,7 +764,7 @@
           title: 'Potential use cases for script, hover and pointer CSS Level 4 Media Features'
         },
         {
-          url: 'https://dev.opera.com/articles/media-features/', 
+          url: 'https://dev.opera.com/articles/media-features/',
           title: 'Dev.Opera: Interaction Media Features and their potential (for incorrect assumptions)'
         },
         {url: 'https://github.com/twbs/mq4-hover-shim', title: 'A shim for the Media Queries Level 4 `hover` media feature'},
@@ -824,7 +825,7 @@
         {url: 'https://fullscreen.spec.whatwg.org/', title: 'Specification'},
         {url: 'https://developer.mozilla.org/en-US/docs/Web/API/Fullscreen_API', title: 'MDN: Fullscreen API'},
         {
-          url: 'https://hacks.mozilla.org/2012/01/using-the-fullscreen-api-in-web-browsers/', 
+          url: 'https://hacks.mozilla.org/2012/01/using-the-fullscreen-api-in-web-browsers/',
           title: 'Mozilla Hacks: Using the Fullscreen API in web browsers'
         },
       ]
