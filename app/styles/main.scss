@@ -35,7 +35,7 @@ h2, h3, h4, h5, h6 {
 }
 
 @mixin logo() {
-  background: url('/images/logo.svg') no-repeat left center;
+  background: url('../images/logo.svg') no-repeat left center;
 }
 
 header {

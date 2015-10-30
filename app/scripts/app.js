@@ -13,6 +13,10 @@
   };
 
   let defineRouting = function ({indexPageCtrl, featurePageCtrl, features}) {
+    let base = location.pathname.split('/');
+    base.pop();
+    page.base(base.join('/'));
+
     page((ctx, next) => {
       notifyPageChanged(ctx.path);
       next();
