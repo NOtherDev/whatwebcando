@@ -22,6 +22,7 @@
   }
 
   let capitalizeFirst = str => str.substr(0, 1).toUpperCase() + str.substr(1);
+  let sum = arr => arr.reduce((x, y) => (x || 0) + (y || 0));
 
   class CaniuseReport {
     constructor(feature, supportData, browserUsage) {
@@ -29,12 +30,15 @@
 
       this.feature = feature;
 
-      let allBrowsers = _((supportData || {}).stats)
-        .pairs()
-        .map(([browserKey, browserStats]) => this.$getBrowserReport(browserKey, browserStats, browserUsage.usageOf(browserKey)))
-        .value();
-
+      let allBrowsers = this.$compileBrowserReports(supportData);
       this.browsers = [...this.$rollupRarelyUsedBrowsers(allBrowsers)].reverse();
+    }
+
+    *$compileBrowserReports(supportData) {
+      let browserStats = (supportData || {}).stats;
+      for (let browserKey of Object.keys(browserStats)) {
+        yield this.$getBrowserReport(browserKey, browserStats[browserKey], this.$browserUsage.usageOf(browserKey));
+      }
     }
 
     *$rollupRarelyUsedBrowsers(browsers) {
@@ -68,8 +72,8 @@
       // workaround for https://github.com/Fyrd/caniuse/issues/1939
       let useSingleVersionWorkaround = Object.keys(browserVersions).length === 1;
 
-      _.each(browserVersions, (supportFlag, version) => {
-        let flag = CaniuseReport.$normalizeSupportFlag(supportFlag);
+      for (let version of Object.keys(browserVersions)) {
+        let flag = CaniuseReport.$normalizeSupportFlag(browserVersions[version]);
 
         // collect total share values
         info[flag] = info[flag] || {min: version, max: version, share: 0};
@@ -81,7 +85,7 @@
         } else if (compareVersions(info[flag].max, version) === -1) {
           info[flag].max = version;
         }
-      });
+      }
 
       return {
         browserKey: browserKey,
@@ -113,11 +117,11 @@
 
     $initBrowsersChart(selector) {
       let chartData = {
-        labels: _.pluck(this.browsers, 'browserName'),
+        labels: this.browsers.map(browserInfo => browserInfo.browserName),
         series: [
-          _.map(this.browsers, browserInfo => CaniuseReport.$seriesValue('No support', browserInfo.noSupport)),
-          _.map(this.browsers, browserInfo => CaniuseReport.$seriesValue('Partial support', browserInfo.partialSupport)),
-          _.map(this.browsers, browserInfo => CaniuseReport.$seriesValue('Supported', browserInfo.hasSupport))
+          this.browsers.map(browserInfo => CaniuseReport.$seriesValue('No support', browserInfo.noSupport)),
+          this.browsers.map(browserInfo => CaniuseReport.$seriesValue('Partial support', browserInfo.partialSupport)),
+          this.browsers.map(browserInfo => CaniuseReport.$seriesValue('Supported', browserInfo.hasSupport))
         ]
       };
 
@@ -137,9 +141,9 @@
 
     $initOverallChart(selector) {
       let shares = [
-        _.sum(this.browsers, b => b.noSupport.share),
-        _.sum(this.browsers, b => b.partialSupport.share),
-        _.sum(this.browsers, b => b.hasSupport.share)
+        sum(this.browsers.map(b => b.noSupport.share)),
+        sum(this.browsers.map(b => b.partialSupport.share)),
+        sum(this.browsers.map(b => b.hasSupport.share))
       ];
 
       let createLabel = (info, share) => share > 0 ? `${info} - ${share.toFixed(2)}%` : '';
@@ -172,11 +176,11 @@
     }
 
     isAboveThreshold(browser) {
-      return _.sum(Object.values(this.$data[browser])) >= MIN_USAGE_THRESHOLD;
+      return sum(Object.values(this.$data[browser])) >= MIN_USAGE_THRESHOLD;
     }
   }
 
-  let fetchCaniuseBrowserUsage = _.memoize(() => {
+  let fetchCaniuseBrowserUsage = memoize(() => {
     return fetch('https://raw.githubusercontent.com/Fyrd/caniuse/master/region-usage-json/alt-ww.json')
       .then(result => handleFetchErrors(result))
       .then(result => result.json())

@@ -15,7 +15,7 @@
 
   class TemplateEngine {
     constructor() {
-      this.$compileMemoized = _.memoize(this.$compile, TemplateEngine.$memoizeKey);
+      this.$compileMemoized = memoize(this.$compile, TemplateEngine.$memoizeKey);
     }
 
     static $memoizeKey(prefix, context) {
@@ -40,7 +40,7 @@
     }
 
     runOnce(prefix, context = {}) {
-      if (this.$compileMemoized.cache.has(TemplateEngine.$memoizeKey(prefix, context))) {
+      if (TemplateEngine.$memoizeKey(prefix, context) in this.$compileMemoized.__cache) {
         return this.annotateBody(prefix);
       }
 

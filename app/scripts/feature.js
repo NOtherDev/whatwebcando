@@ -7,13 +7,13 @@
     constructor({ id, name, description = [], api = undefined, supported = undefined, icon = undefined, demoPen = undefined, links = [], caniuse = undefined }) {
       this.id = id;
       this.name = name;
-      this.description = _.flatten([description]);
+      this.description = typeof description === 'string' ? [description] : description;
       this.api = api;
       this.caniuseKey = caniuse;
       this.supported = supported;
       this.icon = icon;
       this.demoPen = demoPen;
-      this.links = _.indexBy(links, 'url');
+      this.links = links;
     }
 
     get notSupported() {
