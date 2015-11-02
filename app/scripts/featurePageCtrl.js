@@ -16,6 +16,11 @@
       if (feature.caniuseReport) {
         yield feature.caniuseReport.initVisuals();
       }
+
+      if (feature.api) {
+        Prism.highlightAll();
+      }
+
       if (feature.demoPen && window.CodePenEmbed) {
         window.CodePenEmbed.init();
 

@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="/bower_components/bootstrap-material-design/dist/css/material.css" />
     <link rel="stylesheet" href="/bower_components/bootstrap-material-design/dist/css/ripples.css" />
     <link rel="stylesheet" href="/bower_components/chartist/dist/chartist.min.css" />
+    <link rel="stylesheet" href="/bower_components/prism/themes/prism.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -113,7 +114,7 @@
 
             {{#if feature.api}}
               <h3>API glimpse</h3>
-              <div class="api-glimpse">{{{feature.api}}}</div>
+              <div class="api-glimpse language-javascript">{{{feature.api}}}</div>
             {{/if}}
 
             {{#if feature.demoPen}}
@@ -173,6 +174,7 @@
     <script src="/bower_components/chartist-plugin-tooltip/dist/chartist-plugin-tooltip.min.js"></script>
     <script src="/bower_components/compare-versions/index.js"></script>
     <script src="/bower_components/memoize.js/memoize.js"></script>
+    <script src="/bower_components/prism/prism.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 

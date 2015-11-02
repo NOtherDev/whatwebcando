@@ -745,7 +745,7 @@
         and user interface depending on the way the user is interacting with the application. It allows identifying whether the pointer used is fine or
         coarse and whether hovering over the element is possible, so that the interface might be shrunk or enlarged and hover interactions
         enabled or replaced with an alternative accordingly.`,
-      api: `<dl>
+      api: `<dl class="language-css">
         <dt><code>@media (pointer: fine)</code></dt>
         <dd>The media query that limits the enclosed CSS rules to be used only when the primary pointing device allows accurate pointing.</dd>
         <dt><code>@media (pointer: coarse)</code></dt>
