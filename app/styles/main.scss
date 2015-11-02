@@ -30,6 +30,7 @@ h1, h2, h3, h4, h5, h6 {
   @include font();
   color: #000;
 }
+
 h2, h3, h4, h5, h6 {
   line-height: 2;
 }
@@ -173,22 +174,40 @@ footer {
   }
 }
 
-.caniuse-report .ct-chart {
-  position: relative;
-  height: 300px;
+.caniuse-report {
+  .ct-chart {
+    position: relative;
+    height: 300px;
 
-  .chartist-tooltip {
-    position: absolute;
-    background: #009688;
-    box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.12), 0 1px 6px 0 rgba(0, 0, 0, 0.12);
-    border-radius: 2px;
-    color: #fff;
-    padding: 5px 10px;
+    .chartist-tooltip {
+      position: absolute;
+      background: #009688;
+      box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.12), 0 1px 6px 0 rgba(0, 0, 0, 0.12);
+      border-radius: 2px;
+      color: #fff;
+      padding: 5px 10px;
+    }
+
+    .ct-chart-pie .ct-label {
+      fill: #fff;
+      font-size: 1.25rem;
+    }
   }
 
-  .ct-chart-pie .ct-label {
-    fill: #fff;
-    font-size: 1.25rem;
+  .cl-support {
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+
+    &.cl-support-no {
+      background-color: nth($ct-series-colors, 1);
+    }
+    &.cl-support-partial {
+      background-color: nth($ct-series-colors, 2);
+    }
+    &.cl-support-full {
+      background-color: nth($ct-series-colors, 3);
+    }
   }
 }
 

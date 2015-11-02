@@ -53,7 +53,7 @@
       <div class="row" id="features-list-target"></div>
       <div class="row show-on-feature-page" id="feature-target"></div>
 
-      <div class="legend clearfix">
+      <div class="legend clearfix hide-on-feature-page">
         <ul>
           <li><i class="mdi-navigation-check text-success"></i> Feature available in your current browser</li>
           <li><i class="mdi-navigation-close text-danger"></i> Feature not available in your current browser</li>
@@ -126,10 +126,17 @@
 
             {{#if feature.caniuseReport}}
             <h3>Browser support</h3>
-            <div class="caniuse-report">
+            <div class="caniuse-report clearfix">
               <div class="row">
                 <div class="ct-chart browsers-chart col-sm-6"></div>
                 <div class="ct-chart overall-chart col-sm-6"></div>
+              </div>
+              <div class="pull-left top-space legend">
+                <ul>
+                  <li><i class="cl-support cl-support-no"></i> No support</li>
+                  <li><i class="cl-support cl-support-partial"></i> Partial support, <a href="http://caniuse.com/#feat={{feature.caniuseKey}}" target="_blank">see details</a></li>
+                  <li><i class="cl-support cl-support-full"></i> Full support</li>
+                </ul>
               </div>
               <p class="pull-right top-space">
                 <a href="http://caniuse.com/#feat={{feature.caniuseKey}}" target="_blank">Data from caniuse.com</a>, <small>CC-BY 4.0 license</small>
