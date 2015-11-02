@@ -19,7 +19,7 @@
     }
 
     static $memoizeKey(prefix, context) {
-      return `${prefix}-${JSON.stringify(context)}`
+      return JSON.stringify(arguments);
     }
 
     $compile(prefix, context = {}) {
