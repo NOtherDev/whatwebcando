@@ -53,6 +53,13 @@
       <div class="row" id="features-list-target"></div>
       <div class="row show-on-feature-page" id="feature-target"></div>
 
+      <div class="legend clearfix">
+        <ul>
+          <li><i class="mdi-navigation-check text-success"></i> Feature available in your current browser</li>
+          <li><i class="mdi-navigation-close text-danger"></i> Feature not available in your current browser</li>
+        </ul>
+      </div>
+
       <footer class="clearfix row">
         <p class="col-sm-2 col-xs-4">
           <a href="https://github.com/NOtherDev/whatwebcando" target="_blank" class="icon github-icon">GitHub</a>
@@ -79,9 +86,9 @@
                 {{#if icon}}<i class="{{icon}}"></i>{{/if}}
                 {{name}}
                 {{#if supported}}
-                <i class="mdi-navigation-check text-success" title="Your current browser supports {{name}}"></i>
+                <i class="mdi-navigation-check text-success" title="{{name}} is available in your current browser"></i>
                 {{else if notSupported}}
-                <i class="mdi-navigation-close text-danger" title="Your current browser doesn't support {{name}}"></i>
+                <i class="mdi-navigation-close text-danger" title="{{name}} is not available in your current browser"></i>
                 {{/if}}
               </a>
             </li>
