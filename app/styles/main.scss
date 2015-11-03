@@ -35,13 +35,13 @@ h2, h3, h4, h5, h6 {
   line-height: 2;
 }
 
-@mixin logo() {
+@mixin logo($size) {
   background: url('../images/logo.svg') no-repeat left center;
+  background-size: $size;
 }
 
 header {
-  @include logo();
-  background-size: 130px 90%;
+  @include logo(115px);
 
   & > * {
     margin: 0;
@@ -74,6 +74,7 @@ footer {
   /* Space out the masthead */
   header {
     margin-bottom: 30px;
+    background-position-x: 15px;
   }
 }
 
@@ -83,6 +84,19 @@ footer {
   }
   .navbar-toggle {
     display: block;
+  }
+}
+
+@media (max-width: 440px) {
+  header {
+    padding-left: 10px !important;
+    background-image: none;
+
+    h1 {
+      @include logo(90px);
+      padding-left: 90px;
+      margin-bottom: 20px;
+    }
   }
 }
 
@@ -114,8 +128,7 @@ footer {
 
   .navbar-brand {
     margin-top: 3px;
-    @include logo();
-    background-size: 32px;
+    @include logo(32px);
     padding-left: 50px;
   }
 }

@@ -15,7 +15,7 @@
 
   class TemplateEngine {
     constructor() {
-      this.$compileMemoized = memoize(this.$compile, TemplateEngine.$memoizeKey);
+      this.$compileMemoized = memoize(this.$compile);
     }
 
     static $memoizeKey(prefix, context) {
