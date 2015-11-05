@@ -15,6 +15,7 @@
 
   class TemplateEngine {
     constructor() {
+      this.$cache = {};
       this.$compileMemoized = memoize(this.$compile);
     }
 
@@ -36,7 +37,7 @@
 
     run(prefix, context = {}) {
       this.annotateBody(prefix);
-      return this.targetFor(prefix).html(this.$compileMemoized(prefix, context)).promise();
+      return this.elementFor(prefix).html(this.$compileMemoized(prefix, context)).promise();
     }
 
     runOnce(prefix, context = {}) {
@@ -48,11 +49,14 @@
     }
 
     templateFor(prefix) {
-      return $(`\#${prefix}-template`);
+      if (!this.$cache[prefix]) {
+        this.$cache[prefix] = this.elementFor(prefix).clone();
+      }
+      return this.$cache[prefix];
     }
 
-    targetFor(prefix) {
-      return $(`\#${prefix}-target`);
+    elementFor(prefix) {
+      return $(`\.${prefix}-template`);
     }
   }
 
