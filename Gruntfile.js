@@ -372,10 +372,10 @@ module.exports = function (grunt) {
       ]
     },
 
-    duplicate: {
+    staticify: {
       options: {
         featuresModule: './.tmp/scripts/features.js',
-        src: '<%= config.dist %>/index.html',
+        tmpPattern: '<%= config.dist %>/{ID}.html.hb',
         targetPattern: '<%= config.dist %>/{ID}.html'
       }
     }
@@ -417,21 +417,59 @@ module.exports = function (grunt) {
     ]);
   });
 
-  grunt.registerTask('duplicate', 'Prepare duplication for HTMLs for features', function () {
+  grunt.registerTask('staticify', 'Prepare static HTMLs for features', function () {
+    var fs = require('fs');
     var options = this.options();
-    var files = {};
+    var data = require(options.featuresModule);
 
-    var features = require(options.featuresModule).features;
-    Object.keys(features).forEach(function (key) {
-      var target = options.targetPattern.replace('{ID}', features[key].id);
-      files[target] = [options.src];
+    function targetPathFor(id) {
+      return options.targetPattern.replace('{ID}', id);
+    }
+    function tmpPathFor(id) {
+      return options.tmpPattern.replace('{ID}', id);
+    }
+
+    function getHbFiles(id) {
+      var hbFiles = {};
+      hbFiles[targetPathFor(id)] = [tmpPathFor(id)];
+      return hbFiles;
+    }
+
+    fs.renameSync(targetPathFor('index'), tmpPathFor('index'));
+
+    var copyFiles = {};
+    var hbCompile = {
+      index: {
+        files: getHbFiles('index'),
+        templateData: {
+          groups: data.groups
+        }
+      }
+    };
+
+    Object.keys(data.features).forEach(function (key) {
+      var id = data.features[key].id;
+
+      copyFiles[tmpPathFor(id)] = [tmpPathFor('index')];
+      hbCompile[id] = {
+        files: getHbFiles(id),
+        templateData: {
+          groups: data.groups,
+          feature: data.features[key]
+        }
+      };
+
+      grunt.verbose.writeln('compile-handlebars built: ' + JSON.stringify(hbCompile[id]));
     });
 
-    grunt.verbose.writeln('copy:duplicate files built: ' + JSON.stringify(files));
+    grunt.verbose.writeln('copy:duplicate files built: ' + JSON.stringify(copyFiles));
 
     grunt.config.merge({
-      copy: {duplicate: {files: files}}
+      copy: {duplicate: {files: copyFiles}},
+      'compile-handlebars': hbCompile,
+      clean: {duplicate: [tmpPathFor('*')]}
     });
+    grunt.task.run(['copy:duplicate', 'compile-handlebars', 'clean:duplicate']);
   });
 
   grunt.registerTask('build', [
@@ -447,8 +485,7 @@ module.exports = function (grunt) {
     'filerev',
     'usemin',
     'htmlmin',
-    'duplicate',
-    'copy:duplicate'
+    'staticify'
   ]);
 
   grunt.registerTask('default', [

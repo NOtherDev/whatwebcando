@@ -3,7 +3,7 @@
 (function (global) {
   'use strict';
 
-  let Feature = global.WWCD.Feature || require('../../build/feature');
+  let Feature = global.WWCD.Feature || require('./feature').WWCD.Feature;
 
   let features = {
     localNotifications: new Feature({
@@ -927,28 +927,184 @@
 
   let featuresGroups = [
     {
-      heading: 'Behave Like A Native App',
-      features: [features.localNotifications, features.pushNotifications, features.offline, features.manifest, features.foregroundDetection]
+      "heading": "Behave Like A Native App",
+      "features": [
+        {
+          "id": "local-notifications",
+          "icon": "mdi-notification-system-update",
+          "name": "Local Notifications"
+        },
+        {
+          "id": "push-notifications",
+          "icon": "mdi-notification-tap-and-play",
+          "name": "Push Notifications"
+        },
+        {
+          "id": "offline",
+          "icon": "mdi-action-settings-applications",
+          "name": "Offline Mode"
+        },
+        {
+          "id": "manifest",
+          "icon": "mdi-content-archive",
+          "name": "Home Screen Installation"
+        },
+        {
+          "id": "foreground-detection",
+          "icon": "mdi-action-flip-to-front",
+          "name": "Foreground Detection"
+        }
+      ]
     },
     {
-      heading: 'Input',
-      features: [features.touch, features.accelerometer, features.speech, features.clipboard, features.pointerAdaptation]
+      "heading": "Input",
+      "features": [
+        {
+          "id": "touch",
+          "icon": "mdi-content-gesture",
+          "name": "Touch Gestures"
+        },
+        {
+          "id": "accelerometer",
+          "icon": "mdi-action-3d-rotation",
+          "name": "Accelerometer"
+        },
+        {
+          "id": "speech-recognition",
+          "icon": "mdi-av-mic",
+          "name": "Speech Recognition"
+        },
+        {
+          "id": "clipboard",
+          "icon": "mdi-content-content-paste",
+          "name": "Clipboard (Copy & Paste)"
+        },
+        {
+          "id": "pointer-adaptation",
+          "icon": "mdi-hardware-mouse",
+          "name": "Pointing Device Adaptation"
+        }
+      ]
     },
     {
-      heading: 'Access What\'s Around',
-      features: [features.geolocation, features.bluetooth, features.nfc, features.proximity, features.ambientLight]
+      "heading": "Access What's Around",
+      "features": [
+        {
+          "id": "geolocation",
+          "icon": "mdi-device-gps-fixed",
+          "name": "Geolocation"
+        },
+        {
+          "id": "bluetooth",
+          "icon": "mdi-device-bluetooth",
+          "name": "Bluetooth"
+        },
+        {
+          "id": "nfc",
+          "icon": "mdi-device-nfc",
+          "name": "NFC"
+        },
+        {
+          "id": "proximity",
+          "icon": "mdi-image-leak-add",
+          "name": "Proximity Sensors"
+        },
+        {
+          "id": "ambient-light",
+          "icon": "mdi-device-brightness-low",
+          "name": "Ambient Light"
+        }
+      ]
     },
     {
-      heading: 'Access Device Features',
-      features: [features.mediaCapture, features.networkInfo, features.online, features.vibration, features.batteryStatus]
+      "heading": "Access Device Features",
+      "features": [
+        {
+          "id": "camera-microphone",
+          "icon": "mdi-image-camera-alt",
+          "name": "Camera & Microphone"
+        },
+        {
+          "id": "network-type-speed",
+          "icon": "mdi-device-wifi-tethering",
+          "name": "Network Type & Speed"
+        },
+        {
+          "id": "online-state",
+          "icon": "mdi-device-signal-cellular-connected-no-internet-3-bar",
+          "name": "Online State"
+        },
+        {
+          "id": "vibration",
+          "icon": "mdi-notification-vibration",
+          "name": "Vibration"
+        },
+        {
+          "id": "battery-status",
+          "icon": "mdi-device-battery-80",
+          "name": "Battery Status"
+        }
+      ]
     },
     {
-      heading: 'Screen & Output',
-      features: [features.deviceOrientation, features.fullScreen, features.orientationLock, features.wakeLock, features.presentation]
+      "heading": "Screen & Output",
+      "features": [
+        {
+          "id": "device-orientation",
+          "icon": "mdi-device-screen-rotation",
+          "name": "Device Orientation"
+        },
+        {
+          "id": "fullscreen",
+          "icon": "mdi-action-settings-overscan",
+          "name": "Fullscreen"
+        },
+        {
+          "id": "orientation-lock",
+          "icon": "mdi-device-screen-lock-rotation",
+          "name": "Screen Orientation & Lock"
+        },
+        {
+          "id": "wake-lock",
+          "icon": "mdi-action-lock",
+          "name": "Wake Lock"
+        },
+        {
+          "id": "presentation",
+          "icon": "mdi-hardware-tv",
+          "name": "Presentation Features"
+        }
+      ]
     },
     {
-      heading: 'Access The System',
-      features: [features.storage, features.files, features.permissions, features.contacts, features.quota]
+      "heading": "Access The System",
+      "features": [
+        {
+          "id": "storage",
+          "icon": "mdi-notification-folder-special",
+          "name": "Offline Storage"
+        },
+        {
+          "id": "files",
+          "icon": "mdi-device-sd-storage",
+          "name": "File Access"
+        },
+        {
+          "id": "permissions",
+          "icon": "mdi-action-lock-open",
+          "name": "Permissions"
+        },
+        {
+          "id": "contacts",
+          "icon": "mdi-action-account-box",
+          "name": "Contacts"
+        },
+        {
+          "id": "storage-quota",
+          "icon": "mdi-notification-sim-card-alert",
+          "name": "Storage Quotas"
+        }
+      ]
     }
   ];
 
@@ -959,6 +1115,7 @@
     }));
   } else { // build run
     global.features = features;
+    global.groups = featuresGroups;
   }
 
 })(function () {
