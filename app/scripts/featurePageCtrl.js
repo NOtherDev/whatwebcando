@@ -32,7 +32,7 @@
       }
     };
 
-    let $target = templateEngine.elementFor(prefix);
+    let $target = templateEngine.targetElementFor(prefix);
     $target.one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', () => {
       if ($target.height()) {
         let heightCorrectionForNavbar = $('.navbar').outerHeight(true);

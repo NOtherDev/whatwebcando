@@ -37,7 +37,7 @@
 
     run(prefix, context = {}) {
       this.annotateBody(prefix);
-      return this.elementFor(prefix).html(this.$compileMemoized(prefix, context)).promise();
+      return this.targetElementFor(prefix).html(this.$compileMemoized(prefix, context)).promise();
     }
 
     runOnce(prefix, context = {}) {
@@ -50,13 +50,17 @@
 
     templateFor(prefix) {
       if (!this.$cache[prefix]) {
-        this.$cache[prefix] = this.elementFor(prefix).clone();
+        this.$cache[prefix] = this.templateElementFor(prefix).clone();
       }
       return this.$cache[prefix];
     }
 
-    elementFor(prefix) {
+    templateElementFor(prefix) {
       return $(`\.${prefix}-template`);
+    }
+
+    targetElementFor(prefix) {
+      return $(`\.${prefix}-target`);
     }
   }
 

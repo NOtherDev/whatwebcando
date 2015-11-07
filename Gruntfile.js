@@ -278,7 +278,6 @@ module.exports = function (grunt) {
           collapseWhitespace: true,
           conservativeCollapse: true,
           removeAttributeQuotes: true,
-          removeCommentsFromCDATA: true,
           removeEmptyAttributes: true,
           removeOptionalTags: true,
           // true would impact styles with attribute selectors
@@ -372,9 +371,17 @@ module.exports = function (grunt) {
       ]
     },
 
+    processhtml: {
+      options: {
+        commentMarker: 'process',
+        includeBase: '.'
+      }
+    },
+
     staticify: {
       options: {
         featuresModule: './.tmp/scripts/features.js',
+        featureTemplate: 'build/feature.html.hb',
         tmpPattern: '<%= config.dist %>/{ID}.html.hb',
         targetPattern: '<%= config.dist %>/{ID}.html'
       }
@@ -429,10 +436,10 @@ module.exports = function (grunt) {
       return options.tmpPattern.replace('{ID}', id);
     }
 
-    function getHbFiles(id) {
-      var hbFiles = {};
-      hbFiles[targetPathFor(id)] = [tmpPathFor(id)];
-      return hbFiles;
+    function getFilesObject(target, source) {
+      var files = {};
+      files[target] = [source];
+      return files;
     }
 
     fs.renameSync(targetPathFor('index'), tmpPathFor('index'));
@@ -440,36 +447,47 @@ module.exports = function (grunt) {
     var copyFiles = {};
     var hbCompile = {
       index: {
-        files: getHbFiles('index'),
+        files: getFilesObject(targetPathFor('index'), tmpPathFor('index')),
         templateData: {
           groups: data.groups
         }
       }
     };
+    var processFiles = {};
+    processFiles[targetPathFor('index')] = [targetPathFor('index')];
 
     Object.keys(data.features).forEach(function (key) {
       var id = data.features[key].id;
 
       copyFiles[tmpPathFor(id)] = [tmpPathFor('index')];
       hbCompile[id] = {
-        files: getHbFiles(id),
+        files: getFilesObject(targetPathFor(id), tmpPathFor(id)),
         templateData: {
           groups: data.groups,
+          featureId: id
+        }
+      };
+      hbCompile[id + '-feature'] = {
+        files: getFilesObject(targetPathFor(id + '-feature'), options.featureTemplate),
+        templateData: {
           feature: data.features[key]
         }
       };
+      processFiles[targetPathFor(id)] = [targetPathFor(id)];
 
       grunt.verbose.writeln('compile-handlebars built: ' + JSON.stringify(hbCompile[id]));
     });
 
-    grunt.verbose.writeln('copy:duplicate files built: ' + JSON.stringify(copyFiles));
+    grunt.verbose.writeln('copy:staticify files built: ' + JSON.stringify(copyFiles));
+    grunt.verbose.writeln('processhtml:staticify files built: ' + JSON.stringify(processFiles));
 
     grunt.config.merge({
-      copy: {duplicate: {files: copyFiles}},
+      copy: {staticify: {files: copyFiles}},
       'compile-handlebars': hbCompile,
-      clean: {duplicate: [tmpPathFor('*')]}
+      processhtml: {staticify: {files: processFiles}},
+      clean: {staticify: [tmpPathFor('*'), targetPathFor('*-feature')]}
     });
-    grunt.task.run(['copy:duplicate', 'compile-handlebars', 'clean:duplicate']);
+    grunt.task.run(['copy:staticify', 'compile-handlebars', 'processhtml:staticify', 'clean:staticify']);
   });
 
   grunt.registerTask('build', [
@@ -484,8 +502,8 @@ module.exports = function (grunt) {
     'copy:dist',
     'filerev',
     'usemin',
-    'htmlmin',
-    'staticify'
+    'staticify',
+    'htmlmin'
   ]);
 
   grunt.registerTask('default', [

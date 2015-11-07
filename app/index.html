@@ -67,7 +67,7 @@
         <p>An overview of the device integration HTML5 APIs</p>
       </header>
 
-      <div class="row features-list-template">
+      <div class="row features-list-template features-list-target">
         {{#each groups}}
         <div class="col-lg-4 col-sm-6 col-xs-12">
           <div class="panel panel-primary">
@@ -90,62 +90,10 @@
         {{/each}}
       </div>
 
-      <div class="row show-on-feature-page feature-template">
-        <div class="col-sm-12">
-          <div class="panel panel-primary feature-box">
-            <div class="panel-heading">
-              <a href="."><i class="pull-right mdi-navigation-close"></i></a>
-              <h3 class="panel-title">{{feature.name}}</h3>
-            </div>
-            <div class="panel-body">
-              {{#each feature.description}}
-              <p>{{{.}}}</p>
-              {{/each}}
-
-              {{#if feature.api}}
-              <h3>API glimpse</h3>
-              <div class="api-glimpse language-javascript">{{{feature.api}}}</div>
-              {{/if}}
-
-              {{#if feature.demoPen}}
-              <h3>Live Demo</h3>
-              <p data-height="275" data-theme-id="19170" data-slug-hash="{{feature.demoPen}}" data-default-tab="result" data-user="WhatWebCanDo" class="codepen">
-                See the Pen <a href="http://codepen.io/WhatWebCanDo/pen/{{feature.demoPen}}/">{{feature.demoPen}}</a>
-                by WhatWebCanDo (<a href="http://codepen.io/WhatWebCanDo">@WhatWebCanDo</a>) on <a href="http://codepen.io">CodePen</a>.
-              </p>
-              {{/if}}
-
-              {{#if feature.caniuseReport}}
-              <h3>Browser support</h3>
-              <div class="caniuse-report clearfix">
-                <div class="row">
-                  <div class="ct-chart browsers-chart col-sm-6"></div>
-                  <div class="ct-chart overall-chart col-sm-6"></div>
-                </div>
-                <div class="pull-left top-space legend">
-                  <ul>
-                    <li><i class="cl-support cl-support-no"></i> No support</li>
-                    <li><i class="cl-support cl-support-partial"></i> Partial support, <a href="http://caniuse.com/#feat={{feature.caniuseKey}}" target="_blank">see details</a></li>
-                    <li><i class="cl-support cl-support-full"></i> Full support</li>
-                  </ul>
-                </div>
-                <p class="pull-right top-space">
-                  <a href="http://caniuse.com/#feat={{feature.caniuseKey}}" target="_blank">Data from caniuse.com</a>, <small>CC-BY 4.0 license</small>
-                </p>
-              </div>
-              {{/if}}
-
-              {{#if feature.links}}
-              <h3>Resources</h3>
-              <ul class="resources">
-                {{#each feature.links}}
-                <li><a href="{{url}}" target="_blank">{{title}}</a></li>
-                {{/each}}
-              </ul>
-              {{/if}}
-            </div>
-          </div>
-        </div>
+      <div class="row show-on-feature-page feature-target">
+        {{#if featureId}}
+        <!-- process:include dist/{{featureId}}-feature.html --><!-- /process -->
+        {{/if}}
       </div>
 
       <div class="legend clearfix hide-on-feature-page">
@@ -174,6 +122,10 @@
       <!--<i class="mdi-navigation-close text-danger" title="{{name}} is not available in your current browser"></i>-->
       <!--{{/if}}-->
     <!--</script>-->
+
+    <script class="feature-template" type="text/x-handlebars-template">
+      <!-- process:include build/feature.html.hb --><!-- /process -->
+    </script>
 
     <script async src="//assets.codepen.io/assets/embed/ei.js"></script>
 
