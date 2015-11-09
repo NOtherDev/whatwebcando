@@ -1,8 +1,29 @@
 (function (container) {
   'use strict';
 
-  let indexPageCtrl = function ({templateEngine}) {
+  let supportInfosAdded = false;
+
+  let addFeatureSupportInfo = function (feature) {
+    let placeholder = document.getElementById(`support-info-placeholder-${feature.id}`);
+
+    if (feature.supported) {
+      placeholder.innerHTML = `<i class="mdi-navigation-check text-success" title="${feature.name} is available in your current browser"></i>`;
+    } else if (feature.notSupported) {
+      placeholder.innerHTML = `<i class="mdi-navigation-close text-danger" title="${feature.name} is not available in your current browser"></i>`;
+    }
+  };
+
+  let addFeatureSupportInfos = function (features) {
+    Object.keys(features).forEach(key => addFeatureSupportInfo(features[key]));
+  };
+
+  let indexPageCtrl = function ({templateEngine, features}) {
     templateEngine.annotateBody('features-list');
+
+    if (!supportInfosAdded) {
+      addFeatureSupportInfos(features);
+      supportInfosAdded = true;
+    }
   };
 
   container.configure(register => register.singleton('indexPageCtrl', indexPageCtrl));
