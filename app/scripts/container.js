@@ -1,5 +1,3 @@
-// jshint devel:true
-
 (function (WWCD) {
   'use strict';
 

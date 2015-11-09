@@ -1,5 +1,3 @@
-'use strict';
-
 (function (container) {
   'use strict';
 

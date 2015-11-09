@@ -1,5 +1,3 @@
-// jshint devel:true
-
 (function (global) {
   'use strict';
 
