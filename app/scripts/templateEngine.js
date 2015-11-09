@@ -1,5 +1,3 @@
-// jshint devel:true
-
 (function (container) {
   'use strict';
 
@@ -19,10 +17,6 @@
       this.$compileMemoized = memoize(this.$compile);
     }
 
-    static $memoizeKey(prefix, context) {
-      return JSON.stringify(arguments);
-    }
-
     $compile(prefix, context = {}) {
       let template = Handlebars.compile(this.templateFor(prefix).html());
       let compiled = new CompiledTemplate(template(context));
@@ -38,14 +32,6 @@
     run(prefix, context = {}) {
       this.annotateBody(prefix);
       return this.targetElementFor(prefix).html(this.$compileMemoized(prefix, context)).promise();
-    }
-
-    runOnce(prefix, context = {}) {
-      if (TemplateEngine.$memoizeKey(prefix, context) in this.$compileMemoized.__cache) {
-        return this.annotateBody(prefix);
-      }
-
-      return this.run(prefix, context);
     }
 
     templateFor(prefix) {

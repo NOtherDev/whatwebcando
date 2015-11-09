@@ -1,5 +1,3 @@
-// jshint devel:true
-
 (function (container) {
   'use strict';
 
@@ -33,8 +31,8 @@
   };
 
   let initializeAndRun = function ({indexPageCtrl}) {
-    container.resolveAndCall(indexPageCtrl)
-      .then(() => container.resolveAndCall(defineRouting));
+    container.resolveAndCall(indexPageCtrl);
+    container.resolveAndCall(defineRouting);
   };
 
   initializeAndRun(container.injector);

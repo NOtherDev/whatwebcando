@@ -62,19 +62,14 @@ module.exports = function (grunt) {
         notify: false,
         background: true
       },
-      livereload: {
+      server: {
         options: {
-          files: [
-            '<%= config.app %>/{,*/}*.html',
-            '.tmp/styles/{,*/}*.css',
-            '<%= config.app %>/images/{,*/}*',
-            '.tmp/scripts/{,*/}*.js'
-          ],
-          port: 9900,
+          background: false,
           server: {
-            baseDir: ['.tmp', config.app],
+            baseDir: ['.tmp', config.dist],
             routes: {
-              '/bower_components': './bower_components'
+              '/bower_components': './bower_components',
+              '/images': './' + config.app + '/images'
             }
           }
         }
@@ -389,41 +384,6 @@ module.exports = function (grunt) {
   });
 
 
-  grunt.registerTask('serve', 'start the server and preview your app', function (target) {
-    if (target === 'dist') {
-      return grunt.task.run(['build', 'browserSync:dist']);
-    }
-
-    grunt.task.run([
-      'clean:server',
-      'wiredep',
-      'concurrent:server',
-      'postcss',
-      'browserSync:livereload',
-      'watch'
-    ]);
-  });
-
-  grunt.registerTask('server', function (target) {
-    grunt.log.warn('The `server` task has been deprecated. Use `grunt serve` to start a server.');
-    grunt.task.run([target ? ('serve:' + target) : 'serve']);
-  });
-
-  grunt.registerTask('test', function (target) {
-    if (target !== 'watch') {
-      grunt.task.run([
-        'clean:server',
-        'concurrent:test',
-        'postcss'
-      ]);
-    }
-
-    grunt.task.run([
-      'browserSync:test',
-      'mocha'
-    ]);
-  });
-
   grunt.registerTask('staticify', 'Prepare static HTMLs for features', function () {
     var fs = require('fs');
     var options = this.options();
@@ -432,6 +392,7 @@ module.exports = function (grunt) {
     function targetPathFor(id) {
       return options.targetPattern.replace('{ID}', id);
     }
+
     function tmpPathFor(id) {
       return options.tmpPattern.replace('{ID}', id);
     }
@@ -474,12 +435,11 @@ module.exports = function (grunt) {
         }
       };
       processFiles[targetPathFor(id)] = [targetPathFor(id)];
-
-      grunt.verbose.writeln('compile-handlebars built: ' + JSON.stringify(hbCompile[id]));
     });
 
-    grunt.verbose.writeln('copy:staticify files built: ' + JSON.stringify(copyFiles));
-    grunt.verbose.writeln('processhtml:staticify files built: ' + JSON.stringify(processFiles));
+    grunt.verbose.writeln('copy:staticify keys built: ' + JSON.stringify(Object.keys(copyFiles)));
+    grunt.verbose.writeln('compile-handlebars keys built: ' + JSON.stringify(Object.keys(hbCompile)));
+    grunt.verbose.writeln('processhtml:staticify keys built: ' + JSON.stringify(Object.keys(processFiles)));
 
     grunt.config.merge({
       copy: {staticify: {files: copyFiles}},
@@ -488,6 +448,29 @@ module.exports = function (grunt) {
       clean: {staticify: [tmpPathFor('*'), targetPathFor('*-feature')]}
     });
     grunt.task.run(['copy:staticify', 'compile-handlebars', 'processhtml:staticify', 'clean:staticify']);
+  });
+
+  grunt.registerTask('serve', 'start the server and preview your app', [
+    'concurrent:server',
+    'postcss',
+    'copy:dist',
+    'staticify',
+    'browserSync:server'
+  ]);
+
+  grunt.registerTask('test', function (target) {
+    if (target !== 'watch') {
+      grunt.task.run([
+        'clean:server',
+        'concurrent:test',
+        'postcss'
+      ]);
+    }
+
+    grunt.task.run([
+      'browserSync:test',
+      'mocha'
+    ]);
   });
 
   grunt.registerTask('build', [

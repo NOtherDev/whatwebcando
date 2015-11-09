@@ -1,10 +1,8 @@
-'use strict';
-
 (function (container) {
   'use strict';
 
-  let indexPageCtrl = function ({templateEngine, featuresGroups}) {
-    return templateEngine.runOnce('features-list', { groups: featuresGroups });
+  let indexPageCtrl = function ({templateEngine}) {
+    templateEngine.annotateBody('features-list');
   };
 
   container.configure(register => register.singleton('indexPageCtrl', indexPageCtrl));
