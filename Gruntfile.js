@@ -451,6 +451,7 @@ module.exports = function (grunt) {
   });
 
   grunt.registerTask('serve', 'start the server and preview your app', [
+    'clean:dist',
     'concurrent:server',
     'postcss',
     'copy:dist',
