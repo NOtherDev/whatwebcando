@@ -366,18 +366,20 @@ self.addEventListener('fetch', function (event) {
         i.e. to use the camera and the microphone. Streams exposed by the API can be read in the code or bound directly to the HTML
         <code>&lt;audio&gt;</code> or <code>&lt;video&gt;</code> elements.`,
       api: `<dl>
-        <dt><code>navigator.getUserMedia(constraints, successCallback, errorCallback)</code></dt>
+        <dt><code>navigator.mediaDevices.getUserMedia(constraints)</code></dt>
         <dd>Prompts user for an access to the media interface specified by the <code>constraints</code>
-          and calls <code>successCallback</code> with the interface's stream handler on success or <code>errorCallback</code> on failure.</dd>
+          and returns a <code>Promise</code> that is resolved with the interface's stream handler.</dd>
         <dt><code>stream.getAudioTracks()</code></dt>
         <dd>Returns a collection of audio tracks objects being provided by the device's microphone.</dd>
         <dt><code>stream.getVideoTracks()</code></dt>
         <dd>Returns a collection of video tracks objects being provided by the device's camera.</dd>
         <dt><code>mediaElement.srcObject = stream</code></dt>
         <dd>Sets a stream to be rendered into the provided <code>&lt;audio&gt;</code> or <code>&lt;video&gt;</code> DOM element.</dd>
-      </dl>`,
+      </dl>
+      <p>Previous version of the standard, supported with vendor prefixes, contained the callback-based <code>getUserMedia</code> method directly within the <code>navigator</code> element:</p>
+      <pre><code>navigator.webkitGetUserMedia(constraints, successCallback, errorCallback)</code></pre>`,
       caniuse: 'stream',
-      supported: Feature.navigatorContains('getUserMedia'),
+      supported: Feature.navigatorContains('getUserMedia') || Feature.navigatorContains('mediaDevices'),
       demoPen: 'YyZKPJ',
       links: [
         {url: 'https://w3c.github.io/mediacapture-main/', title: 'Specification Draft'},
@@ -389,7 +391,8 @@ self.addEventListener('fetch', function (event) {
         {
           url: 'https://dev.opera.com/blog/webcam-orientation-preview/',
           title: 'Native Webcam Support and Orientation Events — Technology Preview from Opera'
-        }
+        },
+        {url: 'http://www.sitepoint.com/face-proximity-detection-with-javascript/', title: 'SitePoint: Face Proximity Detection with JavaScript'}
       ]
     }),
 
