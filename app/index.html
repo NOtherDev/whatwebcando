@@ -84,6 +84,13 @@
         <p>An overview of the device integration HTML5 APIs</p>
       </header>
 
+      <div class="legend clearfix hide-on-feature-page">
+        <ul>
+          <li><i class="mdi-navigation-check text-success"></i> Feature available in your current browser</li>
+          <li><i class="mdi-navigation-close text-danger"></i> Feature not available in your current browser</li>
+        </ul>
+      </div>
+
       <div class="row">
         {{#each groups}}
         <div class="col-lg-4 col-sm-6 col-xs-12">
@@ -111,13 +118,6 @@
         {{#if featureId}}
         <!-- process:include dist/{{featureId}}-feature.html --><!-- /process -->
         {{/if}}
-      </div>
-
-      <div class="legend clearfix hide-on-feature-page">
-        <ul>
-          <li><i class="mdi-navigation-check text-success"></i> Feature available in your current browser</li>
-          <li><i class="mdi-navigation-close text-danger"></i> Feature not available in your current browser</li>
-        </ul>
       </div>
 
       <footer class="clearfix row">
