@@ -11,6 +11,8 @@
     } else if (feature.notSupported) {
       placeholder.innerHTML = `<i class="mdi-navigation-close text-danger" title="${feature.name} is not available in your current browser"></i>`;
     }
+
+    $('.legend').show();
   };
 
   let addFeatureSupportInfos = function (features) {

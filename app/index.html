@@ -57,7 +57,13 @@
 
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css" />
   </head>
-  <body>
+
+  {{#if featureId}}
+  <body class="page-feature">
+  {{else}}
+  <body class="page-features-list">
+  {{/if}}
+
     <!--[if lt IE 10]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
