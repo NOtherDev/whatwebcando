@@ -126,9 +126,17 @@
       let chartOptions = {
         horizontalBars: true,
         stackBars: true,
-        plugins: [Chartist.plugins.tooltip({
-          tooltipFnc: (meta, value) => `${meta}<br/>Global market share: ${parseFloat(value).toFixed(2)}%`
-        })],
+        plugins: [
+          Chartist.plugins.tooltip({
+            tooltipFnc: (meta, value) => `${meta}<br/>Global market share: ${parseFloat(value).toFixed(2)}%`
+          }),
+          Chartist.plugins.ctAxisTitle({
+            axisX: {
+              axisTitle: 'Global market share (%)',
+              offset: {x:0, y: 30}
+            }
+          })
+        ],
         axisY: {
           showGrid: false
         }
