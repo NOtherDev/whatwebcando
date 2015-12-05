@@ -4,6 +4,7 @@
   const OTHERS_KEY = 'Others';
   const MIN_USAGE_THRESHOLD = 5.0;
 
+  /* eslint-disable camelcase */
   const BROWSERS = {
     ie: 'Internet Explorer',
     ios_saf: 'Safari (iOS)',
@@ -11,6 +12,7 @@
     and_chr: 'Chrome (Android)',
     and_uc: 'UC Browser (Android)'
   };
+  /* eslint-enable camelcase */
 
   function handleFetchErrors(response) {
     if (!response.ok) {
@@ -86,11 +88,11 @@
       }
 
       return {
-        browserKey: browserKey,
+        browserKey,
         browserName: BROWSERS[browserKey] || capitalizeFirst(browserKey),
-        noSupport: info['n'] || {},
-        partialSupport: info['p'] || {},
-        hasSupport: info['y'] || {}
+        noSupport: info.n || {},
+        partialSupport: info.p || {},
+        hasSupport: info.y || {}
       };
     }
 
@@ -133,7 +135,7 @@
           Chartist.plugins.ctAxisTitle({
             axisX: {
               axisTitle: 'Global market share (%)',
-              offset: {x:0, y: 30}
+              offset: {x: 0, y: 30}
             }
           })
         ],
@@ -200,7 +202,7 @@
 
     fetch() {
       if (this.$feature.caniuseReport) {
-        return; // run once
+        return new Promise(resolve => resolve()); // run once
       }
 
       let caniuseFeatureReport = fetch(`https://raw.githubusercontent.com/Fyrd/caniuse/master/features-json/${this.$feature.caniuseKey}.json`)

@@ -119,8 +119,8 @@
         </dl>
         <p><b>Within the Service Worker instance - Requests cache</b></p>
         <pre><code>function isSuccessful(response) {
-  return response && 
-    response.status === 200 && 
+  return response &&
+    response.status === 200 &&
     response.type === 'basic';
 }
 
@@ -354,7 +354,7 @@ self.addEventListener('fetch', function (event) {
       demoPen: 'OyWZqY',
       links: [
         {url: 'https://w3c.github.io/ambient-light/', title: 'Specification Draft'},
-        {url: 'http://modernweb.com/2014/05/27/introduction-to-the-ambient-light-api/', title: 'Introduction to the Ambient Light API'},
+        {url: 'http://modernweb.com/2014/05/27/introduction-to-the-ambient-light-api/', title: 'Introduction to the Ambient Light API'}
       ]
     }),
 
@@ -876,7 +876,7 @@ self.addEventListener('fetch', function (event) {
         {
           url: 'https://hacks.mozilla.org/2012/01/using-the-fullscreen-api-in-web-browsers/',
           title: 'Mozilla Hacks: Using the Fullscreen API in web browsers'
-        },
+        }
       ]
     }),
 
@@ -927,7 +927,7 @@ self.addEventListener('fetch', function (event) {
       supported: Feature.navigatorContains('requestWakeLock'),
       links: [
         {url: 'https://w3c.github.io/wake-lock/', title: 'W3C Specification Draft'},
-        {url: 'https://developer.mozilla.org/en-US/docs/Web/API/Wake_Lock_API', title: 'MDN Documentation: Wake Lock API on Firefox OS'},
+        {url: 'https://developer.mozilla.org/en-US/docs/Web/API/Wake_Lock_API', title: 'MDN Documentation: Wake Lock API on Firefox OS'}
       ]
     }),
 

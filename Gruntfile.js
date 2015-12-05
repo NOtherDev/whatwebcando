@@ -113,12 +113,22 @@ module.exports = function (grunt) {
 
     // Make sure code styles are up to par and there are no obvious mistakes
     eslint: {
-      target: [
+      options: {
+        configFile: '.eslintrc'
+      },
+      code: [
         'Gruntfile.js',
         '<%= config.app %>/scripts/{,*/}*.js',
-        '!<%= config.app %>/scripts/vendor/*',
-        'test/spec/{,*/}*.js'
-      ]
+        '!<%= config.app %>/scripts/vendor/*'
+      ],
+      test: {
+        options: {
+          configFile: 'test/.eslintrc'
+        },
+        src: [
+          'test/spec/{,*/}*.js'
+        ]
+      }
     },
 
     // Mocha testing framework configuration options
@@ -213,7 +223,7 @@ module.exports = function (grunt) {
         src: [
           '<%= config.dist %>/scripts/{,*/}*.js',
           '<%= config.dist %>/styles/{,*/}*.css',
-          '<%= config.dist %>/styles/fonts/{,*/}*.*',
+          '<%= config.dist %>/styles/fonts/{,*/}*.*'
         ]
       }
     },
