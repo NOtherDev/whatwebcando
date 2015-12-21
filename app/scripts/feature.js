@@ -1,17 +1,91 @@
 (function (global) {
   'use strict';
 
+  class FeatureTestResult {
+    constructor(passed, property, prefix = '') {
+      this.passed = passed;
+      this.property = property;
+      this.prefix = prefix;
+    }
+
+    get message() {
+      return this.passed ? (this.prefix ? 'Prefixed' : 'Supported') : 'Not supported';
+    }
+
+    static Passed(property, prefix) {
+      return new FeatureTestResult(true, property, prefix);
+    }
+    static Failed(property) {
+      return new FeatureTestResult(false, property);
+    }
+  }
+
+  class FeatureTest {
+    constructor(containerName, container, property) {
+      this.containerName = containerName;
+      this.property = property;
+
+      Object.defineProperties(this, {
+        $container: {
+          value: container,
+          enumerable: false
+        }
+      });
+    }
+
+    $capitalizeFirst(str) {
+      return str.substr(0, 1).toUpperCase() + str.substr(1);
+    }
+
+    get result() {
+      let container = this.$container;
+      let property = this.property;
+
+      if (!container) {
+        return FeatureTestResult.Failed(property);
+      }
+
+      if (property in container) {
+        return FeatureTestResult.Passed(property);
+      }
+
+      let capitalizedProperty = this.$capitalizeFirst(property);
+      for (let prefix of ['moz', 'webkit', 'ms']) {
+        if (prefix + property in container) {
+          return FeatureTestResult.Passed(property, prefix);
+        }
+        if (prefix + capitalizedProperty in container) {
+          return FeatureTestResult.Passed(capitalizedProperty, prefix);
+        }
+        let capitalizedPrefix = this.$capitalizeFirst(prefix);
+        if (capitalizedPrefix + capitalizedProperty in container) {
+          return FeatureTestResult.Passed(capitalizedProperty, capitalizedPrefix);
+        }
+      }
+
+      return FeatureTestResult.Failed(property);
+    }
+  }
+
   class Feature {
-    constructor({ id, name, description = [], api = undefined, supported = undefined, icon = undefined, demoPen = undefined, links = [], caniuse = undefined }) {
+    constructor({ id, name, description = [], api = undefined, tests = [], icon = undefined, demoPen = undefined, links = [], caniuse = undefined }) {
       this.id = id;
       this.name = name;
       this.description = typeof description === 'string' ? [description] : description;
       this.api = api;
       this.caniuseKey = caniuse;
-      this.supported = supported;
+      this.tests = tests;
       this.icon = icon;
       this.demoPen = demoPen;
       this.links = links;
+    }
+
+    get supported() {
+      if (!this.tests.length) {
+        return undefined;
+      }
+
+      return !!this.tests.find(x => x.result.passed);
     }
 
     get notSupported() {
@@ -19,29 +93,12 @@
     }
   }
 
-  let capitalizeFirst = str => str.substr(0, 1).toUpperCase() + str.substr(1);
-
-  Feature.containedIn = function (container, property) {
-    if (!container) {
-      return false;
-    }
-
-    if (property in container) {
-      return true;
-    }
-
-    let capitalizedProperty = capitalizeFirst(property);
-    for (let prefix of ['moz', 'webkit', 'ms']) {
-      if (prefix + property in container || prefix + capitalizedProperty in container) {
-        return true;
-      }
-    }
-
-    return false;
+  Feature.containedIn = function (containerName, container, property) {
+    return new FeatureTest(containerName, container, property);
   };
 
-  Feature.navigatorContains = property => Feature.containedIn(global.navigator, property);
-  Feature.windowContains = property => Feature.containedIn(global, property);
+  Feature.navigatorContains = property => Feature.containedIn('navigator', global.navigator, property);
+  Feature.windowContains = property => Feature.containedIn('window', global, property);
 
   global.WWCD.Feature = Feature;
 

@@ -14,6 +14,11 @@
       <div class="api-glimpse language-javascript">{{{feature.api}}}</div>
       {{/if}}
 
+      <div class="hidden feature-tests">
+        <h3>Support in your browser</h3>
+        <div id="tests-placeholder"></div>
+      </div>
+
       {{#if feature.demoPen}}
       <h3>Live Demo</h3>
       <p data-height="275" data-theme-id="19170" data-slug-hash="{{feature.demoPen}}" data-default-tab="result" data-user="WhatWebCanDo" class="codepen">

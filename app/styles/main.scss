@@ -162,7 +162,7 @@ header {
 }
 
 .feature-box {
-  .mdi-navigation-close {
+  .panel-heading .mdi-navigation-close {
     margin-top: 0;
   }
 }
@@ -226,6 +226,22 @@ header {
   }
   dd {
     margin-left: 40px;
+  }
+}
+
+.feature-tests {
+  .feature-test {
+    padding: 15px;
+    overflow: hidden;
+    border-top: 1px solid #ccc;
+
+    &:last-child {
+      border-bottom: 1px solid #ccc;
+    }
+  }
+
+  code {
+    background: none;
   }
 }
 

@@ -25,7 +25,7 @@
         <dd>Displays local notification outside of the browser tab area.</dd>
       </dl>`,
       caniuse: 'notifications',
-      supported: Feature.windowContains('Notification'),
+      tests: [Feature.windowContains('Notification')],
       demoPen: 'yYJdWO',
       links: [
         {url: 'http://www.w3.org/TR/notifications/', title: 'Specification'},
@@ -61,7 +61,11 @@
         <dd>An event fired when remote Push Notification has been received, available within Service Worker instance.</dd>
       </dl>`,
       caniuse: 'serviceworkers',
-      supported: Feature.navigatorContains('serviceWorker') && Feature.windowContains('PushManager') && Feature.containedIn(ServiceWorkerRegistration.prototype, 'showNotification'),
+      tests: [
+        Feature.windowContains('PushManager'),
+        Feature.containedIn('ServiceWorkerRegistration',
+          global.ServiceWorkerRegistration && global.ServiceWorkerRegistration.prototype, 'showNotification')
+      ],
       links: [
         {url: 'https://w3c.github.io/push-api/', title: 'Specification Draft'},
         {
@@ -162,7 +166,7 @@ self.addEventListener('fetch', function (event) {
             the Service Worker's cache.</dd>
       </dl>`,
       caniuse: 'serviceworkers',
-      supported: Feature.navigatorContains('serviceWorker'),
+      tests: [Feature.navigatorContains('serviceWorker')],
       links: [
         {url: 'http://www.w3.org/TR/service-workers/', title: 'Service Workers Specification Draft'},
         {url: 'http://www.html5rocks.com/en/tutorials/service-worker/introduction/', title: 'HTML5 Rocks: Introduction to Service Worker'},
@@ -234,7 +238,7 @@ self.addEventListener('fetch', function (event) {
       </dl>`,
       caniuse: 'pagevisibility',
       demoPen: 'avBpOb',
-      supported: Feature.containedIn(global.document, 'visibilityState'),
+      tests: [Feature.containedIn('document', global.document, 'visibilityState')],
       links: [
         {url: 'https://w3c.github.io/page-visibility/', title: 'Specification Draft'},
         {url: 'https://developer.mozilla.org/en-US/docs/Web/API/Page_Visibility_API', title: 'MDN: Page Visibility API'},
@@ -257,7 +261,7 @@ self.addEventListener('fetch', function (event) {
       </dl>`,
       caniuse: 'geolocation',
       demoPen: 'ojYoqB',
-      supported: Feature.navigatorContains('geolocation'),
+      tests: [Feature.navigatorContains('geolocation')],
       links: [
         {url: 'http://www.w3.org/TR/geolocation-API/', title: 'Specification'},
         {url: 'https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/Using_geolocation', title: 'MDN: Using geolocation'}
@@ -284,7 +288,7 @@ self.addEventListener('fetch', function (event) {
         <dt><code>characteristic.writeValue(value)</code></dt>
         <dd>Writes a new value for the GATT characteristic.</dd>
       </dl>`,
-      supported: Feature.navigatorContains('bluetooth'),
+      tests: [Feature.navigatorContains('bluetooth')],
       demoPen: 'VvPaRY',
       links: [
         {url: 'https://webbluetoothcg.github.io/web-bluetooth/', title: 'Specification Draft'},
@@ -309,7 +313,7 @@ self.addEventListener('fetch', function (event) {
         <dt><code>adapter.pushMessage(message, options)</code></dt>
         <dd>Triggers sending the message to the NFC adapter.</dd>
       </dl>`,
-      supported: Feature.navigatorContains('nfc'),
+      tests: [Feature.navigatorContains('nfc')],
       demoPen: 'XmpKjQ',
       links: [
         {url: 'https://w3c.github.io/web-nfc/', title: 'Specification Draft'},
@@ -330,7 +334,10 @@ self.addEventListener('fetch', function (event) {
         <dd>An event fired when the device has roughly sensed the physical object proximity, containing boolean <code>near</code> flag only.</dd>
       </dl>`,
       caniuse: 'proximity',
-      supported: Feature.windowContains('ondeviceproximity') || Feature.windowContains('onuserproximity'),
+      tests: [
+        Feature.windowContains('ondeviceproximity'),
+        Feature.windowContains('onuserproximity')
+      ],
       links: [
         {url: 'https://w3c.github.io/proximity/', title: 'Specification Draft'},
         {url: 'http://www.sitepoint.com/introducing-proximity-api/', title: 'SitePoint: Introducing the Proximity API'},
@@ -348,7 +355,7 @@ self.addEventListener('fetch', function (event) {
         <dd>An event fired when the device's light sensor measured value has changed, containing the light intensity expressed in lux.</dd>
       </dl>`,
       caniuse: 'ambient-light',
-      supported: Feature.windowContains('ondevicelight'),
+      tests: [Feature.windowContains('ondevicelight')],
       demoPen: 'OyWZqY',
       links: [
         {url: 'https://w3c.github.io/ambient-light/', title: 'Specification Draft'},
@@ -377,7 +384,10 @@ self.addEventListener('fetch', function (event) {
       <p>Previous version of the standard, supported with vendor prefixes, contained the callback-based <code>getUserMedia</code> method directly within the <code>navigator</code> element:</p>
       <pre><code>navigator.webkitGetUserMedia(constraints, successCallback, errorCallback)</code></pre>`,
       caniuse: 'stream',
-      supported: Feature.navigatorContains('getUserMedia') || Feature.navigatorContains('mediaDevices'),
+      tests: [
+        Feature.navigatorContains('getUserMedia'),
+        Feature.navigatorContains('mediaDevices')
+      ],
       demoPen: 'YyZKPJ',
       links: [
         {url: 'https://w3c.github.io/mediacapture-main/', title: 'Specification Draft'},
@@ -408,7 +418,7 @@ self.addEventListener('fetch', function (event) {
         <dt><code>navigator.connection.addEventListener('change', listener)</code></dt>
         <dd>An event fired when the connection type has changed.</dd>
       </dl>`,
-      supported: Feature.navigatorContains('connection'),
+      tests: [Feature.navigatorContains('connection')],
       demoPen: 'LpWPvv',
       links: [
         {url: 'https://w3c.github.io/netinfo/', title: 'Specification Draft'},
@@ -431,7 +441,7 @@ self.addEventListener('fetch', function (event) {
         <dd>An event fired when the browser detects network connection has become unavailable.</dd>
       </dl>`,
       caniuse: 'online-status',
-      supported: Feature.navigatorContains('onLine'),
+      tests: [Feature.navigatorContains('onLine')],
       demoPen: 'Qjpveg',
       links: [
         {url: 'https://html.spec.whatwg.org/multipage/browsers.html#browser-state', title: 'Specification'},
@@ -449,7 +459,7 @@ self.addEventListener('fetch', function (event) {
         <dd>Vibrate the device once for the duration given or according to durations pattern given.</dd>
       </dl>`,
       caniuse: 'vibration',
-      supported: Feature.navigatorContains('vibrate'),
+      tests: [Feature.navigatorContains('vibrate')],
       demoPen: 'VvpxrM',
       links: [
         {url: 'http://dev.w3.org/2009/dap/vibration/', title: 'Specification Draft'},
@@ -489,7 +499,10 @@ self.addEventListener('fetch', function (event) {
         <dd>An event fired when <code>battery.level</code> value has changed.</dd>
       </dl>`,
       caniuse: 'battery-status',
-      supported: Feature.navigatorContains('getBattery') || Feature.navigatorContains('battery'),
+      tests: [
+        Feature.navigatorContains('getBattery'),
+        Feature.navigatorContains('battery')
+      ],
       demoPen: 'epvKNB',
       links: [
         {url: 'https://dvcs.w3.org/hg/dap/raw-file/default/battery/Overview.html', title: 'Specification Draft'},
@@ -532,7 +545,10 @@ self.addEventListener('fetch', function (event) {
         <dd>An event fired when the data stored in either <code>sessionStorage</code> or <code>localStorage</code> has been changed externally.</dd>
       </dl>`,
       caniuse: 'namevalue-storage',
-      supported: Feature.windowContains('sessionStorage') || Feature.windowContains('localStorage'),
+      tests: [
+        Feature.windowContains('sessionStorage'),
+        Feature.windowContains('localStorage')
+      ],
       demoPen: 'NGpoON',
       links: [
         {url: 'https://html.spec.whatwg.org/multipage/webstorage.html', title: 'Specification'},
@@ -564,7 +580,7 @@ self.addEventListener('fetch', function (event) {
         <dd>An event fired when the reading operation has completed successfully. The data read is available via <code>fileReader.result</code> property.</dd>
       </dl>`,
       caniuse: 'fileapi',
-      supported: Feature.windowContains('File'),
+      tests: [Feature.windowContains('File')],
       demoPen: 'pjPLRW',
       links: [
         {url: 'https://w3c.github.io/FileAPI/', title: 'Specification Draft'},
@@ -592,7 +608,7 @@ self.addEventListener('fetch', function (event) {
         <dd>An event fired when the permission status of the requested feature has changed.</dd>
       </dl>`,
       caniuse: 'permissions-api',
-      supported: Feature.navigatorContains('permissions'),
+      tests: [Feature.navigatorContains('permissions')],
       demoPen: 'OymKdE',
       links: [
         {url: 'https://w3c.github.io/permissions/', title: 'Specification Draft'},
@@ -616,7 +632,7 @@ self.addEventListener('fetch', function (event) {
         <dt><code>navigator.contacts.remove(contact)</code></dt>
         <dd>Removes the contact from the address book.</dd>
       </dl>`,
-      supported: Feature.navigatorContains('contacts'),
+      tests: [Feature.navigatorContains('contacts')],
       links: [
         {url: 'https://www.w3.org/2012/sysapps/contacts-manager-api/', title: 'Specification Draft'},
         {url: 'https://developer.mozilla.org/en-US/docs/Web/API/Contacts_API', title: 'MDN: Contacts API'}
@@ -645,7 +661,10 @@ self.addEventListener('fetch', function (event) {
         <dd>Requests for the increase of the quota available up to specified size, in bytes. The browser might not necessarily grant the quota requested
          or it might ask the user for the permission to do so.</dd>
       </dl>`,
-      supported: Feature.navigatorContains('storageQuota') || Feature.navigatorContains('persistentStorage'),
+      tests: [
+        Feature.navigatorContains('storageQuota'),
+        Feature.navigatorContains('persistentStorage')
+      ],
       links: [
         {url: 'https://w3c.github.io/quota-api/', title: 'Specification Draft'},
         {url: 'https://developer.chrome.com/apps/offline_storage', title: 'Details on Chrome implementation'},
@@ -673,7 +692,10 @@ self.addEventListener('fetch', function (event) {
       </dl>`,
       caniuse: 'touch',
       demoPen: 'LpbVoV',
-      supported: Feature.windowContains('ontouchstart') || Feature.windowContains('onpointerdown'),
+      tests: [
+        Feature.windowContains('ontouchstart'),
+        Feature.windowContains('onpointerdown')
+      ],
       links: [
         {url: 'https://w3c.github.io/touch-events/', title: 'Specification'},
         {url: 'http://www.quirksmode.org/mobile/tableTouch.html', title: 'Detailed support table'},
@@ -705,7 +727,7 @@ self.addEventListener('fetch', function (event) {
         <dd>A part of the event's payload returning the interval (in ms) at which the data is obtained from the accelerometer.</dd>
       </dl>`,
       caniuse: 'deviceorientation',
-      supported: Feature.windowContains('DeviceMotionEvent'),
+      tests: [Feature.windowContains('DeviceMotionEvent')],
       demoPen: 'BodzBg',
       links: [
         {url: 'https://w3c.github.io/deviceorientation/spec-source-orientation.html#devicemotion', title: 'Specification Draft'},
@@ -743,7 +765,7 @@ self.addEventListener('fetch', function (event) {
         <dd>Stops the recognition process; useful when <code>recognition.continuous</code> is set to <code>true</code>.</dd>
       </dl>`,
       caniuse: 'speech-recognition',
-      supported: Feature.windowContains('SpeechRecognition'),
+      tests: [Feature.windowContains('SpeechRecognition')],
       links: [
         {url: 'https://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html#speechreco-section', title: 'Specification'},
         {url: 'http://www.sitepoint.com/introducing-web-speech-api/', title: 'SitePoint: Introducing the Web Speech API'},
@@ -772,7 +794,7 @@ self.addEventListener('fetch', function (event) {
         <dd>Programatically invokes the specified clipboard operation (either cut, copy or paste) on the data or element currently having a focus.</dd>
       </dl>`,
       caniuse: 'clipboard',
-      supported: Feature.windowContains('ClipboardEvent'),
+      tests: [Feature.windowContains('ClipboardEvent')],
       demoPen: 'bVozGY',
       links: [
         {url: 'https://w3c.github.io/clipboard-apis/', title: 'Specification Draft'},
@@ -839,7 +861,7 @@ self.addEventListener('fetch', function (event) {
       </dl>`,
       caniuse: 'deviceorientation',
       demoPen: 'EVvyaw',
-      supported: Feature.windowContains('DeviceOrientationEvent'),
+      tests: [Feature.windowContains('DeviceOrientationEvent')],
       links: [
         {url: 'https://w3c.github.io/deviceorientation/spec-source-orientation.html', title: 'Specification Draft'},
         {url: 'http://www.html5rocks.com/en/tutorials/device/orientation/', title: 'HTML5 Rocks: This End Up: Using Device Orientation'}
@@ -866,8 +888,10 @@ self.addEventListener('fetch', function (event) {
       </dl>`,
       caniuse: 'fullscreen',
       demoPen: 'LpewpQ',
-      supported: Feature.containedIn(global.document && document.documentElement, 'requestFullScreen')
-        || Feature.containedIn(global.document && document.documentElement, 'requestFullscreen'),
+      tests: [
+        Feature.containedIn('document.documentElement', global.document && document.documentElement, 'requestFullScreen'),
+        Feature.containedIn('document.documentElement', global.document && document.documentElement, 'requestFullscreen')
+      ],
       links: [
         {url: 'https://fullscreen.spec.whatwg.org/', title: 'Specification'},
         {url: 'https://developer.mozilla.org/en-US/docs/Web/API/Fullscreen_API', title: 'MDN: Fullscreen API'},
@@ -897,7 +921,10 @@ self.addEventListener('fetch', function (event) {
       </dl>`,
       caniuse: 'screen-orientation',
       demoPen: 'EVbpeX',
-      supported: Feature.containedIn(global.screen, 'orientation') || Feature.containedIn(global.screen, 'lockOrientation'),
+      tests: [
+        Feature.containedIn('screen', global.screen, 'orientation'),
+        Feature.containedIn('screen', global.screen, 'lockOrientation')
+      ],
       links: [
         {url: 'https://w3c.github.io/screen-orientation/', title: 'Specification Draft'},
         {url: 'https://developer.mozilla.org/en-US/docs/Web/API/Screen/orientation', title: 'MDN: Screen.orientation'},
@@ -922,7 +949,7 @@ self.addEventListener('fetch', function (event) {
         <dt><code>screen.keepAwake = true</code></dt>
         <dd>The property allowing to acquire a screen wake lock when set to <code>true</code> and release it when set to <code>false</code> (W3C proposal).</dd>
       </dl>`,
-      supported: Feature.navigatorContains('requestWakeLock'),
+      tests: [Feature.navigatorContains('requestWakeLock')],
       links: [
         {url: 'https://w3c.github.io/wake-lock/', title: 'W3C Specification Draft'},
         {url: 'https://developer.mozilla.org/en-US/docs/Web/API/Wake_Lock_API', title: 'MDN Documentation: Wake Lock API on Firefox OS'}
@@ -965,7 +992,10 @@ self.addEventListener('fetch', function (event) {
         <dt><code>navigator.presentation.receiver.addEventListener('connectionavailable', listener)</code></dt>
         <dd>An event fired when the new connection to the presentations running on a presentation display has become available.</dd>
       </dl>`,
-      supported: Feature.navigatorContains('presentation') || Feature.windowContains('PresentationRequest'),
+      tests: [
+        Feature.navigatorContains('presentation'),
+        Feature.windowContains('PresentationRequest')
+      ],
       links: [
         {url: 'https://w3c.github.io/presentation-api/', title: 'Specification Draft'}
       ]

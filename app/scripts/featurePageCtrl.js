@@ -24,9 +24,26 @@
 
         if (!window.location.protocol.startsWith('https')) {
           // force CodePen frame in HTTPS, even if WWCD isn't
-          let penFrame = $('iframe.cp_embed_iframe');
-          penFrame.attr('src', `https:${penFrame.attr('src')}`);
+          let $penFrame = $('iframe.cp_embed_iframe');
+          $penFrame.attr('src', `https:${$penFrame.attr('src')}`);
         }
+      }
+
+      let testsContainer = document.getElementById('tests-placeholder');
+      if (feature.tests.length) {
+        let tests = feature.tests.map(test => {
+          let bgClass = test.result.passed ? (test.result.prefix ? 'warning' : 'success') : 'danger';
+          let iconClass = test.result.passed ? 'mdi-navigation-check' : 'mdi-navigation-close';
+
+          return `<div class="feature-test bg-${bgClass}">
+            <div class="pull-left"><code>${test.containerName}.${test.result.prefix}${test.result.property}</code></div>
+            <div class="pull-right"><i class="${iconClass}"></i> ${test.result.message}</div>
+          </div>`;
+        });
+        testsContainer.innerHTML = tests.join('');
+        testsContainer.parentNode.classList.remove('hidden');
+      } else {
+        testsContainer.parentNode.classList.add('hidden');
       }
     };
 
