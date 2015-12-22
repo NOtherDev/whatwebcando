@@ -652,7 +652,8 @@ self.addEventListener('fetch', function (event) {
       ],
       api: `<dl>
         <dt><code>navigator.storageQuota.queryInfo(storageType)</code></dt>
-        <dd>Returns a <code>Promise</code> resolved with the storage info for the storage type requested (<code>temporary</code> or <code>persistent</code>).</dd>
+        <dd>Returns a <code>Promise</code> resolved with the storage info for the storage type requested
+          (<code>temporary</code> or <code>persistent</code>).</dd>
         <dt><code>storageInfo.usage</code></dt>
         <dd>Returns the size of the storage currently used by the application, in bytes.</dd>
         <dt><code>storageInfo.quota</code></dt>
@@ -676,20 +677,31 @@ self.addEventListener('fetch', function (event) {
       id: 'touch',
       icon: 'mdi-content-gesture',
       name: 'Touch Gestures',
-      description: [`Traditionally, web relies on mouse and keyboard as the only input devices, while mobile devices are mostly controlled by touch.
+      description: [`Traditionally, web relies on a mouse and a keyboard as the only input devices, while mobile devices are mostly controlled by touch.
         Mobile web started with a bit touchy solution of translating touch events to mouse events like <code>mousedown</code>.`,
         `Newer HTML5 approach is to embrace touch as the first-class input mean, allowing web applications to intercept and identify complex multitouch
          gestures, free-hand drawing etc. Unfortunately, the support is twofold - either via touch events like <code>touchstart</code> that were first
          introduced by Apple and standardized later as a de-facto solution, when other vendors went the same route, or via the newer,
-         more general <b>Pointer Events</b> specification.`],
-      api: `<dl>
-        <dt><code>element.addEventListener('touchstart', listener)</code></dt>
-        <dd>An event triggered when the finger has been placed on a DOM element.</dd>
-        <dt><code>element.addEventListener('touchmove', listener)</code></dt>
-        <dd>An event triggered when the finger has been dragged along a DOM element.</dd>
-        <dt><code>element.addEventListener('touchend', listener)</code></dt>
-        <dd>An event triggered when the finger has been removed from a DOM element.</dd>
-      </dl>`,
+         more general <b>Pointer Events</b> specification, initiated by Microsoft.`],
+      api: `<p><b>Touch Events API</b></p>
+        <dl>
+          <dt><code>element.addEventListener('touchstart', listener)</code></dt>
+          <dd>An event triggered when the finger has been placed on a DOM element.</dd>
+          <dt><code>element.addEventListener('touchmove', listener)</code></dt>
+          <dd>An event triggered when the finger has been dragged along a DOM element.</dd>
+          <dt><code>element.addEventListener('touchend', listener)</code></dt>
+          <dd>An event triggered when the finger has been removed from a DOM element.</dd>
+        </dl>
+        <p><b>Pointer Events API</b></p>
+        <dl>
+          <dt><code>element.addEventListener('pointerdown', listener)</code></dt>
+          <dd>An event triggered when the finger has been placed on a DOM element.</dd>
+          <dt><code>element.addEventListener('pointermove', listener)</code></dt>
+          <dd>An event triggered when the finger has been dragged along a DOM element.</dd>
+          <dt><code>element.addEventListener('pointerup', listener)</code></dt>
+          <dd>An event triggered when the finger has been removed from a DOM element.</dd>
+        </dl>`,
+      //caniuse: ['touch', 'pointer'], //TODO multiple caniuse refs
       caniuse: 'touch',
       demoPen: 'LpbVoV',
       tests: [
@@ -697,10 +709,10 @@ self.addEventListener('fetch', function (event) {
         Feature.windowContains('onpointerdown')
       ],
       links: [
-        {url: 'https://w3c.github.io/touch-events/', title: 'Specification'},
+        {url: 'https://w3c.github.io/touch-events/', title: 'Touch Events API Specification'},
+        {url: 'https://w3c.github.io/pointerevents/', title: 'Pointer Events API Specification Draft'},
         {url: 'http://www.quirksmode.org/mobile/tableTouch.html', title: 'Detailed support table'},
-        {url: 'http://www.html5rocks.com/en/mobile/touch/', title: 'Multi-touch Web Development'},
-        {url: 'https://msdn.microsoft.com/library/hh673557(v=vs.85).aspx', title: 'Microsoft\'s Pointer Events API description'}
+        {url: 'http://www.html5rocks.com/en/mobile/touch/', title: 'Multi-touch Web Development'}
       ]
     }),
 
@@ -810,19 +822,29 @@ self.addEventListener('fetch', function (event) {
       id: 'pointer-adaptation',
       icon: 'mdi-hardware-mouse',
       name: 'Pointing Device Adaptation',
-      description: `The <b>Interaction Media</b> part of CSS4 specification defines the media queries allowing web applications to alter its layout
-        and user interface depending on the way the user is interacting with the application. It allows identifying whether the pointer used is fine or
-        coarse and whether hovering over the element is possible, so that the interface might be shrunk or enlarged and hover interactions
-        enabled or replaced with an alternative accordingly.`,
+      description: [`The <b>Interaction Media</b> part of CSS4 specification defines the media queries allowing web applications to alter its layout
+        and user interface depending on the way the user is supposed to interact with the application. It allows to identify the browser's primary
+        pointer (i.e. mouse, touch, keyboard) and decides whether it is fine or coarse and whether hovering over the element is possible using
+        the "classic" interface (like touch on tablet), so that the interface might be shrunk or enlarged and hover interactions enabled
+        or replaced with an alternative accordingly.`,
+        `Additionally, the specification defines the similiar media queries for cases when all the pointing methods (not only the primary one)
+        should be considered - i.e. to answer the question is hovering possible at all, using any method available.`],
       api: `<dl class="language-css">
         <dt><code>@media (pointer: fine)</code></dt>
         <dd>The media query that limits the enclosed CSS rules to be used only when the primary pointing device allows accurate pointing.</dd>
         <dt><code>@media (pointer: coarse)</code></dt>
         <dd>The media query that limits the enclosed CSS rules to be used only when the primary pointing device does not allow accurate pointing.</dd>
         <dt><code>@media (pointer: none)</code></dt>
-        <dd>The media query that limits the enclosed CSS rules to be used only when there is no pointing device available.</dd>
+        <dd>The media query that limits the enclosed CSS rules to be used only when the primary interacting device is not capable of pointing
+          (i.e. keyboard).</dd>
         <dt><code>@media (hover)</code></dt>
         <dd>The media query that limits the enclosed CSS rules to be used only when the primary pointing device allows hovering over elements.</dd>
+        <dt><code>@media (any-pointer: fine)</code></dt>
+        <dd>The media query that limits the enclosed CSS rules to be used only when any of the pointing devices available allows accurate pointing.</dd>
+        <dt><code>@media (any-pointer: coarse)</code></dt>
+        <dd>The media query that limits the enclosed CSS rules to be used only when any of the pointing devices does not allow accurate pointing.</dd>
+        <dt><code>@media (any-hover)</code></dt>
+        <dd>The media query that limits the enclosed CSS rules to be used only when any of the pointing devices allows hovering over elements.</dd>
       </dl>`,
       caniuse: 'css-media-interaction',
       demoPen: 'pjdyoK',
