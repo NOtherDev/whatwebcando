@@ -12,10 +12,10 @@
       return this.passed ? (this.prefix ? 'Prefixed' : 'Supported') : 'Not supported';
     }
 
-    static Passed(property, prefix) {
+    static forPassed(property, prefix) {
       return new FeatureTestResult(true, property, prefix);
     }
-    static Failed(property) {
+    static forFailed(property) {
       return new FeatureTestResult(false, property);
     }
   }
@@ -42,28 +42,28 @@
       let property = this.property;
 
       if (!container) {
-        return FeatureTestResult.Failed(property);
+        return FeatureTestResult.forFailed(property);
       }
 
       if (property in container) {
-        return FeatureTestResult.Passed(property);
+        return FeatureTestResult.forPassed(property);
       }
 
       let capitalizedProperty = this.$capitalizeFirst(property);
       for (let prefix of ['moz', 'webkit', 'ms']) {
         if (prefix + property in container) {
-          return FeatureTestResult.Passed(property, prefix);
+          return FeatureTestResult.forPassed(property, prefix);
         }
         if (prefix + capitalizedProperty in container) {
-          return FeatureTestResult.Passed(capitalizedProperty, prefix);
+          return FeatureTestResult.forPassed(capitalizedProperty, prefix);
         }
         let capitalizedPrefix = this.$capitalizeFirst(prefix);
         if (capitalizedPrefix + capitalizedProperty in container) {
-          return FeatureTestResult.Passed(capitalizedProperty, capitalizedPrefix);
+          return FeatureTestResult.forPassed(capitalizedProperty, capitalizedPrefix);
         }
       }
 
-      return FeatureTestResult.Failed(property);
+      return FeatureTestResult.forFailed(property);
     }
   }
 
