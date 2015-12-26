@@ -806,7 +806,12 @@ self.addEventListener('fetch', function (event) {
         <dd>Programatically invokes the specified clipboard operation (either cut, copy or paste) on the data or element currently having a focus.</dd>
       </dl>`,
       caniuse: 'clipboard',
-      tests: [Feature.windowContains('ClipboardEvent')],
+      tests: [
+        Feature.windowContains('ClipboardEvent'), 
+        Feature.containedIn('document', global.document, 'oncut'),
+        Feature.containedIn('document', global.document, 'oncopy'),
+        Feature.containedIn('document', global.document, 'onpaste')
+      ],
       demoPen: 'bVozGY',
       links: [
         {url: 'https://w3c.github.io/clipboard-apis/', title: 'Specification Draft'},
