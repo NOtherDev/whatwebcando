@@ -367,9 +367,12 @@ self.addEventListener('fetch', function (event) {
       id: 'camera-microphone',
       icon: 'mdi-image-camera-alt',
       name: 'Camera & Microphone',
-      description: `The <b>Media Capture API</b> allows authorized web applications to access the device's audio and video capturing interfaces,
-        i.e. to use the camera and the microphone. Streams exposed by the API can be read in the code or bound directly to the HTML
-        <code>&lt;audio&gt;</code> or <code>&lt;video&gt;</code> elements.`,
+      description: [`The <b>Media Capture API</b> allows authorized web applications to access the streams from the device's audio and video capturing
+        interfaces, i.e. to use the data available from the camera and the microphone. The streams exposed by the API can be bound directly to the HTML
+        <code>&lt;audio&gt;</code> or <code>&lt;video&gt;</code> elements or read and manipulated in the code.`,
+        `There is also a higher level alternative <a href="http://www.wufoo.com/html5/attributes/20-accept.html">built-in into mobile operating systems</a>
+        like iOS and Android that doesn't require any JavaScript API - the basic HTML <code>&lt;file type="input" accept="image/*"&gt;</code> element allows
+        launching any application that provides an image file, including camera.`],
       api: `<dl>
         <dt><code>navigator.mediaDevices.getUserMedia(constraints)</code></dt>
         <dd>Prompts user for an access to the media interface specified by the <code>constraints</code>
@@ -381,7 +384,8 @@ self.addEventListener('fetch', function (event) {
         <dt><code>mediaElement.srcObject = stream</code></dt>
         <dd>Sets a stream to be rendered into the provided <code>&lt;audio&gt;</code> or <code>&lt;video&gt;</code> DOM element.</dd>
       </dl>
-      <p>Previous version of the standard, supported with vendor prefixes, contained the callback-based <code>getUserMedia</code> method directly within the <code>navigator</code> element:</p>
+      <p>Previous version of the standard, supported with vendor prefixes, contained the callback-based <code>getUserMedia</code> method directly within 
+      the <code>navigator</code> element:</p>
       <pre><code>navigator.webkitGetUserMedia(constraints, successCallback, errorCallback)</code></pre>`,
       caniuse: 'stream',
       tests: [
