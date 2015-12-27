@@ -338,6 +338,7 @@ self.addEventListener('fetch', function (event) {
         Feature.windowContains('ondeviceproximity'),
         Feature.windowContains('onuserproximity')
       ],
+      demoPen: 'jWMRNw',
       links: [
         {url: 'https://w3c.github.io/proximity/', title: 'Specification Draft'},
         {url: 'http://www.sitepoint.com/introducing-proximity-api/', title: 'SitePoint: Introducing the Proximity API'},
