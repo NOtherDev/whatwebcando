@@ -32,7 +32,14 @@
       let testsContainer = document.getElementById('tests-placeholder');
       if (feature.tests.length) {
         let tests = feature.tests.map(test => {
-          let bgClass = test.result.passed ? (test.result.prefix ? 'warning' : 'success') : 'danger';
+          let bgClass = 'default';
+
+          if (test.result.passed) {
+            bgClass = test.result.prefix || !test.result.standard ? 'warning' : 'success';
+          } else if (test.result.standard) {
+            bgClass = 'danger';
+          }
+
           let iconClass = test.result.passed ? 'mdi-navigation-check' : 'mdi-navigation-close';
 
           return `<div class="feature-test bg-${bgClass}">

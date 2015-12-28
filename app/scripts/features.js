@@ -44,11 +44,16 @@
       icon: 'mdi-notification-tap-and-play',
       name: 'Push Notifications',
       description: [
-        `Remote Push Notifications allow web applications to subscribe the user to the re-engagement mechanism
-         that can show a message to the subscriber even if the web application is not currently opened in the browser. This utilizes the powerful concept
-         of <b><a href="/offline.html">Service Workers</a></b>, code units installable by the web app that execute separately in the separate context.`,
-        `Requires HTTPS installation. Currently works in Firefox (turned off by default) and partially in Google Chrome (only pushes without data,
-         <a href="https://developers.google.com/cloud-messaging/">GCM</a> setup required).`
+        `Push Notifications is the well-known re-engagement mechanism from the mobile platforms. It
+         allows the authorized web applications to subscribe the user for the remotely sent notifications that can trigger displaying a message
+         to the subscriber even if the web application is not currently focused or even opened in the browser.`,
+         `The Web Platform standard for Push Notifications, <b>Push API</b>, utilizes the powerful concept of <b><a href="/offline.html">Service 
+         Workers</a></b>, code units installable by the web app that execute separately from the app itself. Push API also requires HTTPS installation. 
+         It is currently supported in Firefox on the desktop and partially also in Google Chrome (both Android and desktop, but limited to pushes without
+         data, with <a href="https://developers.google.com/cloud-messaging/">GCM</a> setup required).`,
+         `There is also a non-standard <a href="https://developer.apple.com/library/mac/documentation/NetworkingInternet/Conceptual/NotificationProgrammingGuideForWebsites/PushNotifications/PushNotifications.html#//apple_ref/doc/uid/TP40013225-CH3-SW1" target="_blank">proprietary
+         solution available for OS X in Safari</a>, based on Apple's own notification service, with the workflow similiar to standard Push API, available via
+          <code>window.safari.pushNotification</code> interface.`
       ],
       api: `<dl>
         <dt><code>serviceWorkerRegistration.pushManager.subscribe()</code></dt>
@@ -60,11 +65,12 @@
         <dt><code>serviceWorker.addEventListener('push', listener)</code></dt>
         <dd>An event fired when remote Push Notification has been received, available within Service Worker instance.</dd>
       </dl>`,
-      caniuse: 'serviceworkers',
+      caniuse: 'push-api',
       tests: [
         Feature.windowContains('PushManager'),
         Feature.containedIn('ServiceWorkerRegistration',
-          global.ServiceWorkerRegistration && global.ServiceWorkerRegistration.prototype, 'showNotification')
+          global.ServiceWorkerRegistration && global.ServiceWorkerRegistration.prototype, 'showNotification'),
+        Feature.containedIn('window.safari', global.safari, 'pushNotification', false)
       ],
       links: [
         {url: 'https://w3c.github.io/push-api/', title: 'Specification Draft'},
@@ -73,6 +79,7 @@
           title: 'Push Notifications on the Open Web - Chrome tutorial'
         },
         {url: 'https://hacks.mozilla.org/2015/10/keep-pushing-it-with-the-w3c-push-api/', title: 'Keep pushing it, with the W3C Push API'},
+        {url: 'https://developer.mozilla.org/en-US/docs/Web/API/Push_API/Using_the_Push_API', title: 'MDN: Using the Push API'},
         {url: 'https://goroost.com/try-chrome-push-notifications', title: 'Chrome Push Notifications demo'}
       ]
     }),

@@ -2,28 +2,39 @@
   'use strict';
 
   class FeatureTestResult {
-    constructor(passed, property, prefix = '') {
+    constructor(passed, property, standard = true, prefix = '') {
       this.passed = passed;
       this.property = property;
+      this.standard = standard;
       this.prefix = prefix;
     }
 
     get message() {
-      return this.passed ? (this.prefix ? 'Prefixed' : 'Supported') : 'Not supported';
+      if (!this.standard) {
+        return 'Non-standard solution';
+      }
+      if (!this.passed) {
+        return 'Not supported';
+      }
+      if (this.prefix) {
+        return 'Prefixed';
+      }
+      return 'Supported';
     }
 
-    static forPassed(property, prefix) {
-      return new FeatureTestResult(true, property, prefix);
+    static forPassed(property, standard, prefix) {
+      return new FeatureTestResult(true, property, standard, prefix);
     }
-    static forFailed(property) {
-      return new FeatureTestResult(false, property);
+    static forFailed(property, standard) {
+      return new FeatureTestResult(false, property, standard);
     }
   }
 
   class FeatureTest {
-    constructor(containerName, container, property) {
+    constructor(containerName, container, property, standard = true) {
       this.containerName = containerName;
       this.property = property;
+      this.standard = standard;
 
       Object.defineProperties(this, {
         $container: {
@@ -42,28 +53,28 @@
       let property = this.property;
 
       if (!container) {
-        return FeatureTestResult.forFailed(property);
+        return FeatureTestResult.forFailed(property, this.standard);
       }
 
       if (property in container) {
-        return FeatureTestResult.forPassed(property);
+        return FeatureTestResult.forPassed(property, this.standard);
       }
 
       let capitalizedProperty = this.$capitalizeFirst(property);
       for (let prefix of ['moz', 'webkit', 'ms']) {
         if (prefix + property in container) {
-          return FeatureTestResult.forPassed(property, prefix);
+          return FeatureTestResult.forPassed(property, this.standard, prefix);
         }
         if (prefix + capitalizedProperty in container) {
-          return FeatureTestResult.forPassed(capitalizedProperty, prefix);
+          return FeatureTestResult.forPassed(capitalizedProperty, this.standard, prefix);
         }
         let capitalizedPrefix = this.$capitalizeFirst(prefix);
         if (capitalizedPrefix + capitalizedProperty in container) {
-          return FeatureTestResult.forPassed(capitalizedProperty, capitalizedPrefix);
+          return FeatureTestResult.forPassed(capitalizedProperty, this.standard, capitalizedPrefix);
         }
       }
 
-      return FeatureTestResult.forFailed(property);
+      return FeatureTestResult.forFailed(property, this.standard);
     }
   }
 
@@ -93,8 +104,8 @@
     }
   }
 
-  Feature.containedIn = function (containerName, container, property) {
-    return new FeatureTest(containerName, container, property);
+  Feature.containedIn = function (containerName, container, property, standard) {
+    return new FeatureTest(containerName, container, property, standard);
   };
 
   Feature.navigatorContains = property => Feature.containedIn('navigator', global.navigator, property);
