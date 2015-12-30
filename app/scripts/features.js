@@ -632,19 +632,23 @@ self.addEventListener('fetch', function (event) {
       id: 'contacts',
       icon: 'mdi-action-account-box',
       name: 'Contacts',
-      description: `The <b>Contacts API</b> gives privileged web applications an access to the user's address book maintained in the system
+      description: [`The <b>Contacts API</b> gives privileged web applications an access to the user's address book maintained in the system
         and allow reading & modifying the contacts through the vCard-like format.`,
+        `The initial version of the API was created for Firefox OS and implemented in Firefox, but 
+        <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=927869" target="_blank">disabled</a> due to implementation flaws. There is 
+        no working implementation available as of today and no interest in that area is visible.`],
       api: `<dl>
         <dt><code>navigator.contacts.find(filterAndSortOptions)</code></dt>
-        <dd>Searches the address book for the contacts according to the specified criteria.</dd>
-        <dt><code>navigator.contacts.getAll(sortOptions)</code></dt>
-        <dd>Returns a cursor over all the contacts available in the address book.</dd>
+        <dd>Returns a <code>Promise</code> resolved with the array of contacts from the address book according to the criteria specified.</dd>
         <dt><code>navigator.contacts.save(new Contact())</code></dt>
-        <dd>Saves the newly created contact into the address book.</dd>
+        <dd>Returns a <code>Promise</code> resolved when the newly created contact is inserted into the address book.</dd>
         <dt><code>navigator.contacts.remove(contact)</code></dt>
-        <dd>Removes the contact from the address book.</dd>
+        <dd>Returns a <code>Promise</code> resolved when the contact is removed from the address book.</dd>
+        <dt><code>navigator.contacts.addEventListener('contactschange', listener)</code></dt>
+        <dd>An event fired when the address book data has changed, containing all the added, removed and changed contact entries.</dd>
       </dl>`,
-      tests: [Feature.navigatorContains('contacts')],
+      tests: [Feature.containedIn('navigator.contacts', global.navigator && (global.navigator.contacts || global.navigator.mozContacts), 'oncontactschange')],
+      demoPen: 'rxWYjy',
       links: [
         {url: 'https://www.w3.org/2012/sysapps/contacts-manager-api/', title: 'Specification Draft'},
         {url: 'https://developer.mozilla.org/en-US/docs/Web/API/Contacts_API', title: 'MDN: Contacts API'}
