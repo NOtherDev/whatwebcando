@@ -193,12 +193,19 @@ self.addEventListener('fetch', function (event) {
     }),
 
     manifest: new Feature({
-      id: 'manifest',
+      id: 'installation',
       icon: 'mdi-content-archive',
       name: 'Home Screen Installation',
-      description: `Web applications can provide the <code>manifest.json</code> file, standarized as the <b>Web Manifest</b>, specifying the features
-       and behaviors needed on order to treat the application as a first-class citizen on the mobile platform, i.e. adding ("installing") to home screen
-       with the relevant icon, full screen behaviors, standalone appearance etc.`,
+      description: [`Web applications can provide the <code>manifest.json</code> file, standarized as the <b>Web Manifest</b>, specifying the features
+       and behaviors needed on order to treat the application as a first-class citizen on the mobile platform, i.e. adding ("installing") to the home screen
+       with the relevant icon, full screen behaviors, themes, standalone appearance without browser bar etc. It can also serve as a centralized place 
+       to put all the metadata associated with the web application.`,
+       `Having the Web Manifest is one of the key factors (apart from being served via HTTPS and providing 
+       a <a href="/offline.html">Service Worker-based offline behavior</a>) for the web applications to be treated
+       as a <a href="http://addyosmani.com/blog/getting-started-with-progressive-web-apps/" target="_blank">Progressive Web App</a>. Such applications
+       get non-obtrusive "add to home screen" banners in Chrome and Opera on Android.`,
+       `Browser-assisted adding to the home screen is also possible on iOS using <a href="https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html" target="_blank">non-standard Apple meta tags</a>
+       describing icons and allowing to run without the Safari UI (standalone mode).`],
       api: `<pre><code>{
   "short_name": "Example App",
   "name": "The Example Application",
@@ -216,15 +223,20 @@ self.addEventListener('fetch', function (event) {
   "background_color": "#ff0000",
   "start_url": "index.html",
   "display": "standalone"
-}</code></pre>`,
+}</code></pre>
+<p>See also <b><a href="manifest.json" target="_blank">this website's own manifest.json</a></b>.</p>`,
       links: [
         {url: 'https://w3c.github.io/manifest/', title: 'Specification Draft'},
         {
           url: 'https://developers.google.com/web/fundamentals/device-access/stickyness/?hl=en',
           title: 'Device Access & Integration: Add To Home Screen'
         },
+        {
+          url: 'https://developers.google.com/web/updates/2014/11/Support-for-installable-web-apps-with-webapp-manifest-in-chrome-38-for-Android?hl=en',
+          title: 'Installable Web Apps with the WebApp Manifest in Chrome for Android'
+        },
         {url: 'http://html5doctor.com/web-manifest-specification/', title: 'HTML5 Doctor: The Web Manifest specification'},
-        {url: 'https://medium.com/@berbaquero/installable-web-apps-b48fdbcf5915', title: 'Installable Web Apps'}
+        {url: 'http://brucelawson.github.io/manifest/', title: 'Manifest Generator by Bruce Lawson'}
       ]
     }),
 

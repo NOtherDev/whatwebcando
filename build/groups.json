@@ -18,7 +18,7 @@
         "name": "Offline Mode"
       },
       {
-        "id": "manifest",
+        "id": "installation",
         "icon": "mdi-content-archive",
         "name": "Home Screen Installation"
       },

@@ -332,6 +332,7 @@ module.exports = function (grunt) {
           dest: '<%= config.dist %>',
           src: [
             'CNAME',
+            'manifest.json',
             '*.{ico,png,txt}',
             'images/{,*/}*.webp',
             '{,*/}*.html',
