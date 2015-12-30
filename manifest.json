@@ -3,6 +3,7 @@
   "name": "What Web Can Do Today",
   "short_name": "What Web Can Do",
   "display": "standalone",
+  "start_url": "/",
   "icons": [
     {
       "src": "icon-32x32.png",
