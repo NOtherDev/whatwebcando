@@ -25,12 +25,26 @@
     static forPassed(property, standard, prefix) {
       return new FeatureTestResult(true, property, standard, prefix);
     }
+
     static forFailed(property, standard) {
       return new FeatureTestResult(false, property, standard);
     }
   }
 
-  class FeatureTest {
+  class FeatureRawTest {
+    constructor(containerName, property, test, standard = true) {
+      this.containerName = containerName;
+      this.property = property;
+      this.test = test;
+      this.standard = standard;
+    }
+
+    get result() {
+      return (this.test() ? FeatureTestResult.forPassed : FeatureTestResult.forFailed)(this.property, this.standard);
+    }
+  }
+
+  class FeatureInContainerTest {
     constructor(containerName, container, property, standard = true) {
       this.containerName = containerName;
       this.property = property;
@@ -104,12 +118,13 @@
     }
   }
 
-  Feature.containedIn = function (containerName, container, property, standard) {
-    return new FeatureTest(containerName, container, property, standard);
-  };
+  Feature.containedIn = (containerName, container, property, standard) =>
+    new FeatureInContainerTest(containerName, container, property, standard);
 
   Feature.navigatorContains = property => Feature.containedIn('navigator', global.navigator, property);
   Feature.windowContains = property => Feature.containedIn('window', global, property);
+
+  Feature.rawTest = (containerName, property, test) => new FeatureRawTest(containerName, property, test);
 
   global.WWCD.Feature = Feature;
 

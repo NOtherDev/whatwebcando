@@ -880,6 +880,9 @@ self.addEventListener('fetch', function (event) {
         <dd>The media query that limits the enclosed CSS rules to be used only when any of the pointing devices allows hovering over elements.</dd>
       </dl>`,
       caniuse: 'css-media-interaction',
+      tests: [
+        Feature.rawTest('window', "matchMedia('(hover), not(hover)').matches", () => global.matchMedia && global.matchMedia('(hover), not(hover)').matches)
+      ],
       demoPen: 'pjdyoK',
       links: [
         {url: 'http://www.w3.org/TR/mediaqueries-4/#mf-interaction', title: 'Specification Draft'},
