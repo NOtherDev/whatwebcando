@@ -158,6 +158,11 @@ header {
 
   .btn {
     margin: 3px 0;
+
+    &:hover, &:active, &:focus {
+      outline: #999 auto !important;
+      outline-offset: -1px;
+    }
   }
 }
 

@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <title>What Web Can Do Today</title>
@@ -69,41 +69,41 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <nav class="navbar navbar-white navbar-fixed-top show-on-feature-page hidden-sm hidden-md hidden-lg">
+    <div class="navbar navbar-white navbar-fixed-top show-on-feature-page hidden-sm hidden-md hidden-lg" role="navigation">
       <div class="navbar-header">
         <a class="navbar-toggle pull-left" href=".">
           <i class="mdi-navigation-arrow-back"></i>
         </a>
         <a class="navbar-brand" href=".">What Web Can Do</a>
       </div>
-    </nav>
+    </div>
 
-    <div class="container">
+    <div class="container" role="banner">
       <header class="well text-center hide-on-feature-page-sm">
         <h1>What Web Can Do Today</h1>
         <p>Can I rely on the Web Platform features to build my app?</p>
         <p>An overview of the device integration HTML5 APIs</p>
       </header>
 
-      <div class="legend clearfix hide-on-feature-page">
+      <div class="legend clearfix hide-on-feature-page" aria-hidden="true">
         <ul>
           <li><i class="mdi-navigation-check text-success"></i> Feature available in your current browser</li>
           <li><i class="mdi-navigation-close text-danger"></i> Feature not available in your current browser</li>
         </ul>
       </div>
 
-      <div class="row">
+      <nav class="row" role="navigation">
         {{#each groups}}
         <div class="col-lg-4 col-sm-6 col-xs-12">
           <div class="panel panel-primary">
             <div class="panel-heading">
-              <h3 class="panel-title"><a href=".">{{heading}}</a></h3>
+              <div class="panel-title"><a href=".">{{heading}}</a></div>
             </div>
             <ul class="panel-body features-list hide-on-feature-page">
               {{#each features}}
               <li>
                 <a href="{{id}}.html" class="btn btn-flat btn-default">
-                  {{#if icon}}<i class="{{icon}}"></i>{{/if}}
+                  {{#if icon}}<i class="{{icon}}" aria-hidden="true"></i>{{/if}}
                   {{name}}
                   <span class="support-info-placeholder" id="support-info-placeholder-{{id}}"></span>
                 </a>
@@ -113,19 +113,19 @@
           </div>
         </div>
         {{/each}}
-      </div>
+      </nav>
 
-      <div class="row show-on-feature-page feature-target">
+      <main class="row show-on-feature-page feature-target" role="main">
         {{#if featureId}}
         <!-- process:include dist/{{featureId}}-feature.html --><!-- /process -->
         {{/if}}
-      </div>
+      </main>
 
-      <footer class="clearfix">
-        <p class="pull-left">
+      <footer class="clearfix" role="contentinfo">
+        <address class="pull-left">
           <a href="https://github.com/NOtherDev/whatwebcando" target="_blank" class="icon github-icon">GitHub</a>
           <a href="https://twitter.com/WhatWebCanDo" target="_blank" class="icon twitter-icon">Twitter</a>
-        </p>
+        </address>
         <p class="pull-right text-right">
           Created by <a href="https://github.com/NOtherDev/">Adam Bar</a><br/>
           Licenced under <a href="http://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a><br/>

@@ -7,9 +7,11 @@
     let placeholder = document.getElementById(`support-info-placeholder-${feature.id}`);
 
     if (feature.supported) {
-      placeholder.innerHTML = `<i class="mdi-navigation-check text-success" title="${feature.name} is available in your current browser"></i>`;
+      placeholder.innerHTML = `<i class="mdi-navigation-check text-success"
+        title="${feature.name} is available in your current browser" aria-label="Available in your browser"></i>`;
     } else if (feature.notSupported) {
-      placeholder.innerHTML = `<i class="mdi-navigation-close text-danger" title="${feature.name} is not available in your current browser"></i>`;
+      placeholder.innerHTML = `<i class="mdi-navigation-close text-danger"
+        title="${feature.name} is not available in your current browser" aria-label="Not available in your browser"></i>`;
     }
 
     $('.legend').show();
