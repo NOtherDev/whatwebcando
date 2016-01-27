@@ -177,6 +177,7 @@ self.addEventListener('fetch', function (event) {
       links: [
         {url: 'http://www.w3.org/TR/service-workers/', title: 'Service Workers Specification Draft'},
         {url: 'http://www.html5rocks.com/en/tutorials/service-worker/introduction/', title: 'HTML5 Rocks: Introduction to Service Worker'},
+        {url: 'https://jakearchibald.com/2014/offline-cookbook/', title: 'The offline cookbook'},
         {url: 'https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorker_API', title: 'ServiceWorker API - MDN docs'},
         {
           url: 'https://googlechrome.github.io/samples/service-worker/prefetch/index.html',
