@@ -52,7 +52,7 @@
          It is currently supported in Firefox on the desktop and partially also in Google Chrome (both Android and desktop, but limited to pushes without
          data, with <a href="https://developers.google.com/cloud-messaging/">GCM</a> setup required).`,
          `There is also a non-standard <a href="https://developer.apple.com/library/mac/documentation/NetworkingInternet/Conceptual/NotificationProgrammingGuideForWebsites/PushNotifications/PushNotifications.html#//apple_ref/doc/uid/TP40013225-CH3-SW1" target="_blank">proprietary
-         solution available for OS X in Safari</a>, based on Apple's own notification service, with the workflow similiar to standard Push API, available via
+         solution available for OS X in Safari</a>, based on Apple's own notification service, with the workflow similar to standard Push API, available via
           <code>window.safari.pushNotification</code> interface.`
       ],
       api: `<dl>
@@ -246,7 +246,7 @@ self.addEventListener('fetch', function (event) {
       icon: 'mdi-action-flip-to-front',
       name: 'Foreground Detection',
       description: `The <b>Page Visibility API</b> is useful for the web application to know whether it is currently displayed on the front or not,
-        especially to stop resource-intensive UI animations or data refreshing when it's not needed. On the mobile devices,
+        especially to stop resource-intensive UI animations or data refreshing when it is not needed. On the mobile devices,
         the primary reason for that is to reduce the battery usage.`,
       api: `<dl>
         <dt><code>document.hidden</code></dt>
@@ -864,7 +864,7 @@ self.addEventListener('fetch', function (event) {
         pointer (i.e. mouse, touch, keyboard) and decides whether it is fine or coarse and whether hovering over the element is possible using
         the "classic" interface (like touch on tablet), so that the interface might be shrunk or enlarged and hover interactions enabled
         or replaced with an alternative accordingly.`,
-        `Additionally, the specification defines the similiar media queries for cases when all the pointing methods (not only the primary one)
+        `Additionally, the specification defines the similar media queries for cases when all the pointing methods (not only the primary one)
         should be considered - i.e. to answer the question is hovering possible at all, using any method available.`],
       api: `<dl class="language-css">
         <dt><code>@media (pointer: fine)</code></dt>
