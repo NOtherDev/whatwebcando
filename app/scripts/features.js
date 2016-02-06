@@ -780,9 +780,12 @@ self.addEventListener('fetch', function (event) {
       id: 'speech-recognition',
       icon: 'mdi-av-mic',
       name: 'Speech Recognition',
-      description: `The speech recognition part of the <b>Web Speech API</b> allows authorized web applications to access the device's microphone
-        and produces a transcript of the voice being recorded. This allows web applications not only to offer dictation service, but also to use
-        voice as one of the input & control method, similar to touch or keyboard.`,
+      description: [`The speech recognition part of the <b>Web Speech API</b> allows authorized web applications to access the device's microphone
+        and produces a transcript of the voice being recorded. This allows web applications to use voice as one of the input & control method, 
+        similar to touch or keyboard.`,
+        `Technically, the speech recognition functionality can also be achieved by <a href="/camera-microphone.html">accessing the microphone</a> 
+        and processing the audio stream using <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API" target="_blank">Web Audio API</a>.
+        An examplary library that takes such an approach is <a href="http://syl22-00.github.io/pocketsphinx.js/" target="_blank">pocketsphinx.js</a>.`],
       api: `<dl>
         <dt><code>let recognition = new SpeechRecognition()</code></dt>
         <dd>Creates an object used to configure the recognition process and to receive events about the recognition results.</dd>
