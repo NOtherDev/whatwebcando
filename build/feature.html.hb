@@ -1,7 +1,7 @@
 <div class="col-sm-12">
   <div class="panel panel-primary feature-box">
     <div class="panel-heading">
-      <a href="." aria-label="close"><i class="pull-right mdi-navigation-close" aria-hidden="true"></i></a>
+      <a href="." aria-label="close" class="close-btn pull-right"><i class="mdi-navigation-close" aria-hidden="true"></i></a>
       <h2 class="panel-title">{{feature.name}}</h2>
     </div>
     <article class="panel-body">

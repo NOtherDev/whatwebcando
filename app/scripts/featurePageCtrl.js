@@ -2,7 +2,7 @@
   'use strict';
 
   let featurePageCtrl = function (feature, {templateEngine, CaniuseReportFetch}) {
-    let prefix = 'feature';
+    const prefix = 'feature';
 
     let collectFeatureBoxElements = function *() {
       if (feature.caniuseKey) {
@@ -10,15 +10,13 @@
       }
     };
 
-    let initializeFeatureBoxElements = function *() {
-      if (feature.caniuseReport) {
-        yield feature.caniuseReport.initVisuals();
-      }
-
+    let initHighlight = () => {
       if (feature.api) {
         Prism.highlightAll();
       }
+    };
 
+    let initCodePen = () => {
       if (feature.demoPen && window.CodePenEmbed) {
         window.CodePenEmbed.init();
 
@@ -28,7 +26,9 @@
           $penFrame.attr('src', `https:${$penFrame.attr('src')}`);
         }
       }
+    };
 
+    let initTests = () => {
       let testsContainer = document.getElementById('tests-placeholder');
       if (feature.tests.length) {
         let tests = feature.tests.map(test => {
@@ -52,6 +52,22 @@
       } else {
         testsContainer.parentNode.classList.add('hidden');
       }
+    };
+
+    let setAccesibilityFeatures = () => {
+      $('.features-list .btn').attr('tabindex', '-1');
+      $('.hide-on-feature-page').attr('aria-expanded', 'false');
+    };
+
+    let initializeFeatureBoxElements = function *() {
+      if (feature.caniuseReport) {
+        yield feature.caniuseReport.initVisuals();
+      }
+
+      initHighlight();
+      initCodePen();
+      initTests();
+      setAccesibilityFeatures();
     };
 
     let $target = templateEngine.targetElementFor(prefix);

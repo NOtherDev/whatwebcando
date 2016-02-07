@@ -23,6 +23,8 @@
 
   let indexPageCtrl = function ({templateEngine, features}) {
     templateEngine.annotateBody('features-list');
+    $('.features-list .btn').removeAttr('tabindex');
+    $('.hide-on-feature-page').attr('aria-expanded', 'true');
 
     if (!supportInfosAdded) {
       addFeatureSupportInfos(features);

@@ -40,6 +40,13 @@ h2, h3, h4, h5, h6 {
   background-size: $size;
 }
 
+@mixin restore-outline() {
+  &:hover, &:active, &:focus {
+    outline: #999 auto !important;
+    outline-offset: -1px;
+  }
+}
+
 header {
   @include logo(115px);
 
@@ -158,17 +165,14 @@ header {
 
   .btn {
     margin: 3px 0;
-
-    &:hover, &:active, &:focus {
-      outline: #999 auto !important;
-      outline-offset: -1px;
-    }
+    @include restore-outline();
   }
 }
 
 .feature-box {
-  .panel-heading .mdi-navigation-close {
-    margin-top: 0;
+  .panel-heading .close-btn {
+    margin-top: 4px;
+    @include restore-outline();
   }
 }
 
