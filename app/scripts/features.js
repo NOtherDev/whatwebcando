@@ -1025,7 +1025,7 @@ self.addEventListener('fetch', function (event) {
       description: [`The <b>Presentation API</b> aims at allowing web applications to use the presentation display mode. The display used to present
         may be the same that the browser is using, but may also be the external display device. The browser might serve as the initiator
         of the presentation as well as receive the connections to the presentations initiated externally on the presentation display.`,
-        `The API is in the early draft phase, not yet supported in any browser.`],
+        `The API at the moment is supported only in Chrome and Opera, on desktop and on Android.`],
       api: `<dl>
         <dt><code>navigator.presentation.defaultRequest = new PresentationRequest(presentationUrl)</code></dt>
         <dd>Sets up an object representing the browser's request for initiating the specified presentation on a presentation display.</dd>
@@ -1059,7 +1059,9 @@ self.addEventListener('fetch', function (event) {
         Feature.windowContains('PresentationRequest')
       ],
       links: [
-        {url: 'https://w3c.github.io/presentation-api/', title: 'Specification Draft'}
+        {url: 'https://w3c.github.io/presentation-api/', title: 'Specification Draft'},
+        {url: 'https://www.w3.org/community/webscreens/presentation-api-demos/', title: 'Presentation API demos'},
+        {url: 'https://developers.google.com/web/updates/2015/11/presentation-api?hl=en', title: 'Google Cast for Chrome on Android - using Presentation API underneath'}
       ]
     })
   };
