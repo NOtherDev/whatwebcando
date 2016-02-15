@@ -18,13 +18,13 @@
       </section>
       {{/if}}
 
-      <section class="hidden feature-tests">
+      <section class="hidden feature-tests" aria-hidden="true">
         <h3>Support in your browser</h3>
         <div id="tests-placeholder"></div>
       </section>
 
       {{#if feature.demoPen}}
-      <section>
+      <section aria-hidden="true">
         <h3>Live Demo</h3>
         <p data-height="275" data-theme-id="19170" data-slug-hash="{{feature.demoPen}}" data-default-tab="result" data-user="WhatWebCanDo" class="codepen">
           See the Pen <a href="http://codepen.io/WhatWebCanDo/pen/{{feature.demoPen}}/">{{feature.demoPen}}</a>
@@ -34,7 +34,7 @@
       {{/if}}
 
       {{#if feature.caniuseReport}}
-      <section>
+      <section aria-hidden="true">
         <h3>Browser support</h3>
         <div class="caniuse-report clearfix">
           <div class="row">

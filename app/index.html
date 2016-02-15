@@ -78,8 +78,8 @@
       </div>
     </div>
 
-    <div class="container" role="banner">
-      <header class="well text-center hide-on-feature-page-sm">
+    <div class="container">
+      <header class="well text-center hide-on-feature-page-sm" role="banner" aria-label="Main">
         <h1>What Web Can Do Today</h1>
         <p>Can I rely on the Web Platform features to build my app?</p>
         <p>An overview of the device integration HTML5 APIs</p>
@@ -92,7 +92,7 @@
         </ul>
       </div>
 
-      <nav class="row" role="navigation">
+      <nav class="row" role="navigation" aria-label="Features">
         {{#each groups}}
         <div class="col-lg-4 col-sm-6 col-xs-12">
           <div class="panel panel-primary">
@@ -115,13 +115,13 @@
         {{/each}}
       </nav>
 
-      <main class="row show-on-feature-page feature-target" role="main">
+      <main class="row show-on-feature-page feature-target" role="main" aria-label="Feature description">
         {{#if featureId}}
         <!-- process:include dist/{{featureId}}-feature.html --><!-- /process -->
         {{/if}}
       </main>
 
-      <footer class="clearfix" role="contentinfo">
+      <footer class="clearfix" role="contentinfo" aria-label="Website footer">
         <address class="pull-left">
           <a href="https://github.com/NOtherDev/whatwebcando" target="_blank" class="icon github-icon">GitHub</a>
           <a href="https://twitter.com/WhatWebCanDo" target="_blank" class="icon twitter-icon">Twitter</a>
