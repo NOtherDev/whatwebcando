@@ -27,8 +27,8 @@
       <section aria-hidden="true">
         <h3>Live Demo</h3>
         <p data-height="275" data-theme-id="19170" data-slug-hash="{{feature.demoPen}}" data-default-tab="result" data-user="WhatWebCanDo" class="codepen">
-          See the Pen <a href="http://codepen.io/WhatWebCanDo/pen/{{feature.demoPen}}/">{{feature.demoPen}}</a>
-          by WhatWebCanDo (<a href="http://codepen.io/WhatWebCanDo">@WhatWebCanDo</a>) on <a href="http://codepen.io">CodePen</a>.
+          See the Pen <a href="https://codepen.io/WhatWebCanDo/pen/{{feature.demoPen}}/">{{feature.demoPen}}</a>
+          by WhatWebCanDo (<a href="https://codepen.io/WhatWebCanDo">@WhatWebCanDo</a>) on <a href="https://codepen.io">CodePen</a>.
         </p>
       </section>
       {{/if}}
