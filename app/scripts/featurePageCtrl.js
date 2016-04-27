@@ -17,8 +17,8 @@
     };
 
     let initCodePen = () => {
-      if (feature.demoPen && window.CodePenEmbed) {
-        window.CodePenEmbed.init();
+      if (feature.demoPen && window.__CPEmbed) {
+        window.__CPEmbed();
 
         if (!window.location.protocol.startsWith('https')) {
           // force CodePen frame in HTTPS, even if WWCD isn't
