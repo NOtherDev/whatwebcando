@@ -46,11 +46,11 @@
       description: [
         `Push Notifications is the well-known re-engagement mechanism from the mobile platforms. It
          allows the authorized web applications to subscribe the user for the remotely sent notifications that can trigger displaying a message
-         to the subscriber even if the web application is not currently focused or even opened in the browser.`,
-         `The Web Platform standard for Push Notifications, <b>Push API</b>, utilizes the powerful concept of <b><a href="/offline.html">Service 
-         Workers</a></b>, code units installable by the web app that execute separately from the app itself. Push API also requires HTTPS installation. 
-         It is currently supported in Firefox on the desktop and partially also in Google Chrome (both Android and desktop, but limited to pushes without
-         data, with <a href="https://developers.google.com/cloud-messaging/">GCM</a> setup required).`,
+         to the subscriber even if the web application is not currently focused or even opened in the browser. The notification can convey encrypted
+         payload and can request displaying custom action buttons.`,
+         `The Web Platform standard for Push Notifications, <b>Push API</b>, utilizes the powerful concept of <b><a href="/offline.html">Service
+         Workers</a></b>, code units installable by the web app that execute separately from the app itself. Push API also requires HTTPS installation.
+         It is currently supported in Firefox on the desktop and in Google Chrome (both Android and desktop, with <a href="https://developers.google.com/cloud-messaging/">GCM</a> setup required).`,
          `There is also a non-standard <a href="https://developer.apple.com/library/mac/documentation/NetworkingInternet/Conceptual/NotificationProgrammingGuideForWebsites/PushNotifications/PushNotifications.html#//apple_ref/doc/uid/TP40013225-CH3-SW1" target="_blank">proprietary
          solution available for OS X in Safari</a>, based on Apple's own notification service, with the workflow similar to standard Push API, available via
           <code>window.safari.pushNotification</code> interface.`
@@ -80,7 +80,9 @@
         },
         {url: 'https://hacks.mozilla.org/2015/10/keep-pushing-it-with-the-w3c-push-api/', title: 'Keep pushing it, with the W3C Push API'},
         {url: 'https://developer.mozilla.org/en-US/docs/Web/API/Push_API/Using_the_Push_API', title: 'MDN: Using the Push API'},
-        {url: 'https://goroost.com/try-chrome-push-notifications', title: 'Chrome Push Notifications demo'}
+        {url: 'https://goroost.com/try-chrome-push-notifications', title: 'Chrome Push Notifications demo'},
+        {url: 'https://developers.google.com/web/updates/2016/01/notification-actions', title: 'Google Developers: Notification Actions in Chrome 48'},
+        {url: 'https://developers.google.com/web/updates/2016/03/web-push-encryption', title: 'Google Developers: Web Push Payload Encryption'}
       ]
     }),
 
@@ -199,12 +201,12 @@ self.addEventListener('fetch', function (event) {
       name: 'Home Screen Installation',
       description: [`Web applications can provide the <code>manifest.json</code> file, standarized as the <b>Web Manifest</b>, specifying the features
        and behaviors needed on order to treat the application as a first-class citizen on the mobile platform, i.e. adding ("installing") to the home screen
-       with the relevant icon, full screen behaviors, themes, standalone appearance without browser bar etc. It can also serve as a centralized place 
+       with the relevant icon, full screen behaviors, themes, standalone appearance without browser bar etc. It can also serve as a centralized place
        to put all the metadata associated with the web application.`,
-       `Having the Web Manifest is one of the key factors (apart from being served via HTTPS and providing 
+       `Having the Web Manifest is one of the key factors (apart from being served via HTTPS and providing
        a <a href="/offline.html">Service Worker-based offline behavior</a>) for the web applications to be treated
        as a <a href="https://developers.google.com/web/progressive-web-apps" target="_blank">Progressive Web App</a>. Such applications
-       get non-obtrusive "add to home screen" banners in Chrome and Opera on Android.`,
+       get non-obtrusive "add to home screen" banners in most Android browsers.`,
        `Browser-assisted adding to the home screen is also possible on iOS using <a href="https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html" target="_blank">non-standard Apple meta tags</a>
        describing icons and allowing to run without the Safari UI (standalone mode).`],
       api: `<pre><code>{
@@ -237,7 +239,8 @@ self.addEventListener('fetch', function (event) {
           title: 'Installable Web Apps with the WebApp Manifest in Chrome for Android'
         },
         {url: 'http://html5doctor.com/web-manifest-specification/', title: 'HTML5 Doctor: The Web Manifest specification'},
-        {url: 'http://brucelawson.github.io/manifest/', title: 'Manifest Generator by Bruce Lawson'}
+        {url: 'http://brucelawson.github.io/manifest/', title: 'Manifest Generator by Bruce Lawson'},
+        {url: 'https://pwa.rocks/', title: 'A selection of Progressive Web Apps'}
       ]
     }),
 
@@ -405,7 +408,7 @@ self.addEventListener('fetch', function (event) {
         <dt><code>mediaElement.srcObject = stream</code></dt>
         <dd>Sets a stream to be rendered into the provided <code>&lt;audio&gt;</code> or <code>&lt;video&gt;</code> DOM element.</dd>
       </dl>
-      <p>Previous version of the standard, supported with vendor prefixes, contained the callback-based <code>getUserMedia</code> method directly within 
+      <p>Previous version of the standard, supported with vendor prefixes, contained the callback-based <code>getUserMedia</code> method directly within
       the <code>navigator</code> element:</p>
       <pre><code>navigator.webkitGetUserMedia(constraints, successCallback, errorCallback)</code></pre>`,
       caniuse: 'stream',
@@ -647,8 +650,8 @@ self.addEventListener('fetch', function (event) {
       name: 'Contacts',
       description: [`The <b>Contacts API</b> gives privileged web applications an access to the user's address book maintained in the system
         and allow reading & modifying the contacts through the vCard-like format.`,
-        `The initial version of the API was created for Firefox OS and implemented in Firefox, but 
-        <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=927869" target="_blank">disabled</a> due to implementation flaws. There is 
+        `The initial version of the API was created for Firefox OS and implemented in Firefox, but
+        <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=927869" target="_blank">disabled</a> due to implementation flaws. There is
         no working implementation available as of today and no interest in that area is visible.`],
       api: `<dl>
         <dt><code>navigator.contacts.find(filterAndSortOptions)</code></dt>
@@ -781,9 +784,9 @@ self.addEventListener('fetch', function (event) {
       icon: 'mdi-av-mic',
       name: 'Speech Recognition',
       description: [`The speech recognition part of the <b>Web Speech API</b> allows authorized web applications to access the device's microphone
-        and produces a transcript of the voice being recorded. This allows web applications to use voice as one of the input & control method, 
+        and produces a transcript of the voice being recorded. This allows web applications to use voice as one of the input & control method,
         similar to touch or keyboard.`,
-        `Technically, the speech recognition functionality can also be achieved by <a href="/camera-microphone.html">accessing the microphone</a> 
+        `Technically, the speech recognition functionality can also be achieved by <a href="/camera-microphone.html">accessing the microphone</a>
         and processing the audio stream using <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API" target="_blank">Web Audio API</a>.
         An examplary library that takes such an approach is <a href="http://syl22-00.github.io/pocketsphinx.js/" target="_blank">pocketsphinx.js</a>.`],
       api: `<dl>
@@ -839,7 +842,7 @@ self.addEventListener('fetch', function (event) {
       </dl>`,
       caniuse: 'clipboard',
       tests: [
-        Feature.windowContains('ClipboardEvent'), 
+        Feature.windowContains('ClipboardEvent'),
         Feature.containedIn('document', global.document, 'oncut'),
         Feature.containedIn('document', global.document, 'oncopy'),
         Feature.containedIn('document', global.document, 'onpaste')
@@ -885,7 +888,7 @@ self.addEventListener('fetch', function (event) {
       </dl>`,
       caniuse: 'css-media-interaction',
       tests: [
-        Feature.rawTest('window', "matchMedia('(hover), not(hover)').matches", () => global.matchMedia && global.matchMedia('(hover), not(hover)').matches)
+        Feature.rawTest('window', `matchMedia('(hover), not(hover)').matches`, () => global.matchMedia && global.matchMedia('(hover), not(hover)').matches)
       ],
       demoPen: 'pjdyoK',
       links: [
