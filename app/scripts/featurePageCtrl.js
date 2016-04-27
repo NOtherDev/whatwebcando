@@ -17,6 +17,7 @@
     };
 
     let initCodePen = () => {
+      /* eslint-disable no-underscore-dangle */
       if (feature.demoPen && window.__CPEmbed) {
         window.__CPEmbed();
 
@@ -26,6 +27,7 @@
           $penFrame.attr('src', `https:${$penFrame.attr('src')}`);
         }
       }
+      /* eslint-enable no-underscore-dangle */
     };
 
     let initTests = () => {
