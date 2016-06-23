@@ -312,6 +312,7 @@ self.addEventListener('fetch', function (event) {
         <dd>Writes a new value for the GATT characteristic.</dd>
       </dl>`,
       tests: [Feature.navigatorContains('bluetooth')],
+      caniuse: 'web-bluetooth',
       demoPen: 'VvPaRY',
       links: [
         {url: 'https://webbluetoothcg.github.io/web-bluetooth/', title: 'Specification Draft'},
@@ -447,6 +448,7 @@ self.addEventListener('fetch', function (event) {
         <dd>An event fired when the connection type has changed.</dd>
       </dl>`,
       tests: [Feature.navigatorContains('connection')],
+      caniuse: 'netinfo',
       demoPen: 'LpWPvv',
       links: [
         {url: 'https://w3c.github.io/netinfo/', title: 'Specification Draft'},
