@@ -42,13 +42,13 @@
     pushNotifications: new Feature({
       id: 'push-notifications',
       icon: 'mdi-notification-tap-and-play',
-      name: 'Push Notifications',
+      name: 'Push Messages',
       description: [
-        `Push Notifications is the well-known re-engagement mechanism from the mobile platforms. It
-         allows the authorized web applications to subscribe the user for the remotely sent notifications that can trigger displaying a message
-         to the subscriber even if the web application is not currently focused or even opened in the browser. The notification can convey encrypted
+        `Push Messaging is the well-known re-engagement mechanism from the mobile platforms. It
+         allows the authorized web applications to subscribe the user for the remotely sent messages that can trigger displaying a notification
+         to the subscriber even if the web application is not currently focused or even opened in the browser. The message can convey encrypted
          payload and can request displaying custom action buttons.`,
-         `The Web Platform standard for Push Notifications, <b>Push API</b>, utilizes the powerful concept of <b><a href="/offline.html">Service
+         `The Web Platform standard for Push Messages, <b>Push API</b>, utilizes the powerful concept of <b><a href="/offline.html">Service
          Workers</a></b>, code units installable by the web app that execute separately from the app itself. Push API also requires HTTPS installation.
          It is currently supported in Firefox on the desktop and in Google Chrome (both Android and desktop, with <a href="https://developers.google.com/cloud-messaging/">GCM</a> setup required).`,
          `There is also a non-standard <a href="https://developer.apple.com/library/mac/documentation/NetworkingInternet/Conceptual/NotificationProgrammingGuideForWebsites/PushNotifications/PushNotifications.html#//apple_ref/doc/uid/TP40013225-CH3-SW1" target="_blank">proprietary
@@ -57,13 +57,13 @@
       ],
       api: `<dl>
         <dt><code>serviceWorkerRegistration.pushManager.subscribe()</code></dt>
-        <dd>Subscribes a user for the remote Push Notifications. Returns a <code>Promise</code>.</dd>
+        <dd>Subscribes a user for the remote Push Messages. Returns a <code>Promise</code>.</dd>
         <dt><code>serviceWorkerRegistration.pushManager.getSubscription()</code></dt>
-        <dd>Returns a <code>Promise</code> indicating current Push Notification subscription state.</dd>
+        <dd>Returns a <code>Promise</code> indicating current Push Messages subscription state.</dd>
         <dt><code>serviceWorkerRegistration.showNotification(title, [options])</code></dt>
         <dd>Displays notification outside of the browser tab area.</dd>
         <dt><code>serviceWorker.addEventListener('push', listener)</code></dt>
-        <dd>An event fired when remote Push Notification has been received, available within Service Worker instance.</dd>
+        <dd>An event fired when remote push message has been received, available within Service Worker instance.</dd>
       </dl>`,
       caniuse: 'push-api',
       tests: [
