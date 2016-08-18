@@ -117,6 +117,11 @@
         "icon": "mdi-device-battery-80",
         "name": "Battery Status"
       }
+      {
+        "id": "camera-microphone",
+        "icon": "mdi-image-camera-roll",
+        "name": "Image Capture"
+      },
     ]
   },
   {
