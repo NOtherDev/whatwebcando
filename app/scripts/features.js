@@ -304,7 +304,9 @@ self.addEventListener('fetch', function (event) {
         <dt><code>navigator.bluetooth.requestDevice(serviceFilters)</code></dt>
         <dd>Scans for the device in range supporting the requested services. Returns a <code>Promise</code>.</dd>
         <dt><code>device.gatt.connect()</code></dt>
-        <dd>Returns a <code>Promise</code> resolved with the object providing access to the services available on the device.</dd>
+        <dd>Returns a <code>Promise</code> resolved with the server object providing access to the services available on the device.</dd> 
+        <dt><code>server.getPrimaryService(name)</code></dt>
+        <dd>Returns a <code>Promise</code> resolved with the particular Bluetooth service on the device.</dd>
         <dt><code>service.getCharacteristic(name)</code></dt>
         <dd>Returns a <code>Promise</code> resolved with the GATT characteristic object.</dd>
         <dt><code>characteristic.readValue()</code></dt>
