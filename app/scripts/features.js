@@ -1031,16 +1031,16 @@ self.addEventListener('fetch', function (event) {
       description: [`The <b>Image Capture API</b> allows web applications to take pictures from a Web Cam, as well as manipulate the usual parameters such as zoom or focus points.`,],
       api: `<dl>
         <dt><code>capturer = ImageCapture(mediaStreamVideoTrack)</code></dt>
-        <dd>Creates an ImageCapturer out of the Media Stream Video Track.</dd>
+        <dd>Creates an image capturer out of the Media Stream Video Track.</dd>
         <dt><code>capturer.takePhoto()</code></dt>
-        <dd>Returns a Promise resolved with the photo taken with the current settings.</dd>
+        <dd>Returns a <code>Promise</code> resolved with the photo taken with the current settings.</dd>
         <dt><code>capturer.setOptions(photoSettings)</code></dt>
         <dd>Configures the <code>photoSettings</code> for subsequent captures; if visible, the effects of the configuration can be seen in the Track used as input.</dd>
       </dl>`,
-      tests: [Feature.rawTest('window', , () => { return (typeof(ImageCapture) == undefined) }],
-      demoPen: 'codepen.io/miguelao/pen/ZOkOQw',
+      tests: [Feature.windowContains('ImageCapture')],
+      demoPen: 'AXzVqV',
       links: [
-        {url: 'https://w3c.github.io/mediacapture-image/', title: 'W3C Specification'},
+        {url: 'https://w3c.github.io/mediacapture-image/', title: 'W3C Specification Draft'},
         {url: 'https://rawgit.com/Miguelao/demos/master/imagecapture.html', title: 'Demo'}
       ]
     }),
