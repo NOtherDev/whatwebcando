@@ -6,7 +6,6 @@
   let features = {
     localNotifications: new Feature({
       id: 'local-notifications',
-      icon: 'mdi-notification-system-update',
       name: 'Local Notifications',
       description: [
         `Notifications, available through the <b>Notifications API</b>, allow authorized web applications to draw users attention
@@ -41,7 +40,6 @@
 
     pushNotifications: new Feature({
       id: 'push-notifications',
-      icon: 'mdi-notification-tap-and-play',
       name: 'Push Messages',
       description: [
         `Push Messaging is the well-known re-engagement mechanism from the mobile platforms. It
@@ -88,7 +86,6 @@
 
     offline: new Feature({
       id: 'offline',
-      icon: 'mdi-action-settings-applications',
       name: 'Offline Mode',
       description: [`Web applications can provide the offline experience using two techniques. The older implementation,
         <b>Application Cache</b>, is <a href="http://caniuse.com/#feat=offline-apps" target="_blank">widely implemented</a> in the browsers,
@@ -197,7 +194,6 @@ self.addEventListener('fetch', function (event) {
 
     manifest: new Feature({
       id: 'installation',
-      icon: 'mdi-content-archive',
       name: 'Home Screen Installation',
       description: [`Web applications can provide the <code>manifest.json</code> file, standarized as the <b>Web Manifest</b>, specifying the features
        and behaviors needed on order to treat the application as a first-class citizen on the mobile platform, i.e. adding ("installing") to the home screen
@@ -246,7 +242,6 @@ self.addEventListener('fetch', function (event) {
 
     foregroundDetection: new Feature({
       id: 'foreground-detection',
-      icon: 'mdi-action-flip-to-front',
       name: 'Foreground Detection',
       description: `The <b>Page Visibility API</b> is useful for the web application to know whether it is currently displayed on the front or not,
         especially to stop resource-intensive UI animations or data refreshing when it is not needed. On the mobile devices,
@@ -271,7 +266,6 @@ self.addEventListener('fetch', function (event) {
 
     geolocation: new Feature({
       id: 'geolocation',
-      icon: 'mdi-device-gps-fixed',
       name: 'Geolocation',
       description: `The <b>Geolocation API</b> lets authorized web applications to access the location data provided by the device -
         obtained using either GPS or from the network environment. Apart from the one-off location query, it gives a way for the app to be notified
@@ -293,7 +287,6 @@ self.addEventListener('fetch', function (event) {
 
     bluetooth: new Feature({
       id: 'bluetooth',
-      icon: 'mdi-device-bluetooth',
       name: 'Bluetooth',
       description: [
         `The <b>Web Bluetooth API</b> is a low-level API allowing web applications to access the services exposed by nearby Bluetooth-enabled devices.`,
@@ -325,7 +318,6 @@ self.addEventListener('fetch', function (event) {
 
     nfc: new Feature({
       id: 'nfc',
-      icon: 'mdi-device-nfc',
       name: 'NFC',
       description: [
         `The <b>Web NFC API</b> is a low-level API allowing web applications to access the data accessible on the Near-Field Communication devices nearby.`,
@@ -350,7 +342,6 @@ self.addEventListener('fetch', function (event) {
 
     proximity: new Feature({
       id: 'proximity',
-      icon: 'mdi-image-leak-add',
       name: 'Proximity Sensors',
       description: `The <b>Proximity Events API</b> allows web applications to get the access to the data from the device's proximity sensors,
         detecting whether there is a physical object near the device.`,
@@ -375,7 +366,6 @@ self.addEventListener('fetch', function (event) {
 
     ambientLight: new Feature({
       id: 'ambient-light',
-      icon: 'mdi-device-brightness-low',
       name: 'Ambient Light',
       description: `The <b>Ambient Light API</b> allows web applications to access the light intensity level measured by the device's light sensor.`,
       api: `<dl>
@@ -393,7 +383,6 @@ self.addEventListener('fetch', function (event) {
 
     mediaCapture: new Feature({
       id: 'camera-microphone',
-      icon: 'mdi-image-camera-alt',
       name: 'Camera & Microphone',
       description: [`The <b>Media Capture API</b> allows authorized web applications to access the streams from the device's audio and video capturing
         interfaces, i.e. to use the data available from the camera and the microphone. The streams exposed by the API can be bound directly to the HTML
@@ -438,7 +427,6 @@ self.addEventListener('fetch', function (event) {
 
     networkInfo: new Feature({
       id: 'network-type-speed',
-      icon: 'mdi-device-wifi-tethering',
       name: 'Network Type & Speed',
       description: `The <b>Network Information API</b> allows web applications to read the current network type and the maximum downlink speed
         and to subscribe for a notification when the network type has changed.`,
@@ -461,7 +449,6 @@ self.addEventListener('fetch', function (event) {
 
     online: new Feature({
       id: 'online-state',
-      icon: 'mdi-device-signal-cellular-connected-no-internet-3-bar',
       name: 'Online State',
       description: `Browsers expose a network connection availability information to the web application, so that the applications may react properly, i.e.
         stop all the operations utilising the network and switch to cached data when offline condition was detected.`,
@@ -484,7 +471,6 @@ self.addEventListener('fetch', function (event) {
 
     vibration: new Feature({
       id: 'vibration',
-      icon: 'mdi-notification-vibration',
       name: 'Vibration',
       description: `The <b>Vibration API</b> allows web applications to use the device's built-in vibration, if one is present.`,
       api: `<dl>
@@ -506,7 +492,6 @@ self.addEventListener('fetch', function (event) {
 
     batteryStatus: new Feature({
       id: 'battery-status',
-      icon: 'mdi-device-battery-80',
       name: 'Battery Status',
       description: `The <b>Battery Status API</b> allows web applications to get the information about the device's power source, battery charge level,
         expected time of charging or discharging. It also exposes events whenever any of the information available changes. The API allows the applications
@@ -545,7 +530,6 @@ self.addEventListener('fetch', function (event) {
 
     storage: new Feature({
       id: 'storage',
-      icon: 'mdi-notification-folder-special',
       name: 'Offline Storage',
       description: [
         `There were <a href="http://diveinto.html5doctor.com/storage.html" target="_blank">several iterations</a> of prototypes
@@ -592,7 +576,6 @@ self.addEventListener('fetch', function (event) {
 
     files: new Feature({
       id: 'files',
-      icon: 'mdi-device-sd-storage',
       name: 'File Access',
       description: `The <b>File API</b> gives web applications an access to the filesystem-level information about the files that the user decides to share
         with the application, i.e. size, MIME type, modification date, content, without sending the file to the server.`,
@@ -627,7 +610,6 @@ self.addEventListener('fetch', function (event) {
 
     permissions: new Feature({
       id: 'permissions',
-      icon: 'mdi-action-lock-open',
       name: 'Permissions',
       description: `The <b>Permissions API</b> provides the uniform way for web applications to query for the permission status for the features
         that require user consent, like notifications or geolocation. With Permissions API the app can list the permissions
@@ -651,7 +633,6 @@ self.addEventListener('fetch', function (event) {
 
     contacts: new Feature({
       id: 'contacts',
-      icon: 'mdi-action-account-box',
       name: 'Contacts',
       description: [`The <b>Contacts API</b> gives privileged web applications an access to the user's address book maintained in the system
         and allow reading & modifying the contacts through the vCard-like format.`,
@@ -678,7 +659,6 @@ self.addEventListener('fetch', function (event) {
 
     quota: new Feature({
       id: 'storage-quota',
-      icon: 'mdi-notification-sim-card-alert',
       name: 'Storage Quotas',
       description: [
         `The <b>Quota Management API</b> allows web applications to query the system for the size of the storage space currently used and
@@ -712,7 +692,6 @@ self.addEventListener('fetch', function (event) {
 
     touch: new Feature({
       id: 'touch',
-      icon: 'mdi-content-gesture',
       name: 'Touch Gestures',
       description: [`Traditionally, web relies on a mouse and a keyboard as the only input devices, while mobile devices are mostly controlled by touch.
         Mobile web started with a bit touchy solution of translating touch events to mouse events like <code>mousedown</code>.`,
@@ -755,7 +734,6 @@ self.addEventListener('fetch', function (event) {
 
     accelerometer: new Feature({
       id: 'accelerometer',
-      icon: 'mdi-action-3d-rotation',
       name: 'Accelerometer',
       description: [`The accelerometer support is a part of <b>Device Orientation API</b>. It allows web applications to access the accelerometer data
         expressed as acceleration (in m/s<sup>2</sup>) and rotation angle change (in &deg;/s) for each of the three dimensions, provided as events.`,
@@ -786,7 +764,6 @@ self.addEventListener('fetch', function (event) {
 
     speech: new Feature({
       id: 'speech-recognition',
-      icon: 'mdi-av-mic',
       name: 'Speech Recognition',
       description: [`The speech recognition part of the <b>Web Speech API</b> allows authorized web applications to access the device's microphone
         and produces a transcript of the voice being recorded. This allows web applications to use voice as one of the input & control method,
@@ -831,7 +808,6 @@ self.addEventListener('fetch', function (event) {
 
     clipboard: new Feature({
       id: 'clipboard',
-      icon: 'mdi-content-content-paste',
       name: 'Clipboard (Copy & Paste)',
       description: `The <b>Clipboard API</b> gives web applications a way to react on cut, copy and paste operations performed by the user as well as
         read from or write to the system clipboard directly on behalf of user.`,
@@ -865,7 +841,6 @@ self.addEventListener('fetch', function (event) {
 
     pointerAdaptation: new Feature({
       id: 'pointer-adaptation',
-      icon: 'mdi-hardware-mouse',
       name: 'Pointing Device Adaptation',
       description: [`The <b>Interaction Media</b> part of CSS4 specification defines the media queries allowing web applications to alter its layout
         and user interface depending on the way the user is supposed to interact with the application. It allows to identify the browser's primary
@@ -913,7 +888,6 @@ self.addEventListener('fetch', function (event) {
 
     deviceOrientation: new Feature({
       id: 'device-orientation',
-      icon: 'mdi-device-screen-rotation',
       name: 'Device Orientation',
       description: [`The <b>Device Orientation API</b> allows web applications to access the gyroscope and compass data in order to determine the orientation
         of the user's device in all the three dimensions, expressed in degrees of divergence from the "natural" northbound lie flat position.`,
@@ -940,7 +914,6 @@ self.addEventListener('fetch', function (event) {
 
     fullScreen: new Feature({
       id: 'fullscreen',
-      icon: 'mdi-action-settings-overscan',
       name: 'Fullscreen',
       description: `The <b>Fullscreen API</b> allows web applications to present itself or the part of itself in the fullscreen mode,
         without browser UI elements visible. It also serves as the prerequisite state for the <a href="/orientation-lock.html">orientation lock</a>.`,
@@ -974,7 +947,6 @@ self.addEventListener('fetch', function (event) {
 
     orientationLock: new Feature({
       id: 'orientation-lock',
-      icon: 'mdi-device-screen-lock-rotation',
       name: 'Screen Orientation & Lock',
       description: `The <b>Screen Orientation API</b> allows web applications to get the information about the current orientation of the document
         (portrait or landscape) as well as to lock the screen orientation in a requested state.`,
@@ -1004,7 +976,6 @@ self.addEventListener('fetch', function (event) {
 
     wakeLock: new Feature({
       id: 'wake-lock',
-      icon: 'mdi-action-lock',
       name: 'Wake Lock',
       description: [`The <b>Wake Lock API</b> allows web applications to prevent the resource such as the screen, WiFi connection or CPU from becoming
         available as long as the application holds a lock for that resource. The purpose of the API is to let the user or the application to complete
@@ -1028,7 +999,6 @@ self.addEventListener('fetch', function (event) {
 
     photos: new Feature({
       id: 'photos',
-      icon: 'mdi-image-camera-roll',
       name: 'Taking Photos',
       description: [`The <b>Image Capture API</b> allows web applications to take pictures from a Web Cam, as well as manipulate the usual parameters such as zoom or focus points.`],
       api: `<dl>
@@ -1049,7 +1019,6 @@ self.addEventListener('fetch', function (event) {
 
     presentation: new Feature({
       id: 'presentation',
-      icon: 'mdi-hardware-tv',
       name: 'Presentation Features',
       description: [`The <b>Presentation API</b> aims at allowing web applications to use the presentation display mode. The display used to present
         may be the same that the browser is using, but may also be the external display device. The browser might serve as the initiator

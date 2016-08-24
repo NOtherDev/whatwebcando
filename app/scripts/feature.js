@@ -93,14 +93,13 @@
   }
 
   class Feature {
-    constructor({ id, name, description = [], api = undefined, tests = [], icon = undefined, demoPen = undefined, links = [], caniuse = undefined }) {
+    constructor({ id, name, description = [], api = undefined, tests = [], demoPen = undefined, links = [], caniuse = undefined }) {
       this.id = id;
       this.name = name;
       this.description = typeof description === 'string' ? [description] : description;
       this.api = api;
       this.caniuseKey = caniuse;
       this.tests = tests;
-      this.icon = icon;
       this.demoPen = demoPen;
       this.links = links;
     }
