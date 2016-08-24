@@ -1026,11 +1026,11 @@ self.addEventListener('fetch', function (event) {
       ]
     }),
 
-    imageCapture: new Feature({
-      id: 'image-capture',
+    photos: new Feature({
+      id: 'photos',
       icon: 'mdi-image-camera-roll',
-      name: 'Image Capture',
-      description: [`The <b>Image Capture API</b> allows web applications to take pictures from a Web Cam, as well as manipulate the usual parameters such as zoom or focus points.`,],
+      name: 'Taking Photos',
+      description: [`The <b>Image Capture API</b> allows web applications to take pictures from a Web Cam, as well as manipulate the usual parameters such as zoom or focus points.`],
       api: `<dl>
         <dt><code>capturer = ImageCapture(mediaStreamVideoTrack)</code></dt>
         <dd>Creates an image capturer out of the Media Stream Video Track.</dd>
@@ -1092,6 +1092,71 @@ self.addEventListener('fetch', function (event) {
         {url: 'https://www.w3.org/community/webscreens/presentation-api-demos/', title: 'Presentation API demos'},
         {url: 'https://developers.google.com/web/updates/2015/11/presentation-api?hl=en', title: 'Google Cast for Chrome on Android - using Presentation API underneath'}
       ]
+    }),
+
+    backgroundSync: new Feature({
+      id: 'background-sync',
+      name: 'Background Sync',
+      description: [],
+      api: `<dl>
+        <dt><code></code></dt>
+        <dd></dd>
+      </dl>`,
+      tests: [],
+      demoPen: '',
+      links: []
+    }),
+
+    intents: new Feature({
+      id: 'app-communication',
+      name: 'Inter-App Communication',
+      description: [],
+      api: `<dl>
+        <dt><code></code></dt>
+        <dd></dd>
+      </dl>`,
+      tests: [],
+      demoPen: '',
+      links: []
+    }),
+
+    mediaRecorder: new Feature({
+      id: 'recording',
+      name: 'Recording Media',
+      description: [],
+      api: `<dl>
+        <dt><code></code></dt>
+        <dd></dd>
+      </dl>`,
+      tests: [],
+      demoPen: '',
+      links: []
+    }),
+
+    realtime: new Feature({
+      id: 'realtime',
+      name: 'Real-Time Communication',
+      description: [],
+      api: `<dl>
+        <dt><code></code></dt>
+        <dd></dd>
+      </dl>`,
+      tests: [],
+      demoPen: '',
+      links: []
+    }),
+
+    geofencing: new Feature({
+      id: 'geofencing',
+      name: 'Geofencing',
+      description: [],
+      api: `<dl>
+        <dt><code></code></dt>
+        <dd></dd>
+      </dl>`,
+      tests: [],
+      demoPen: '',
+      links: []
     })
   };
 

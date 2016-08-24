@@ -1,6 +1,6 @@
 [
   {
-    "heading": "Behave Like A Native App",
+    "heading": "Native Behaviors",
     "features": [
       {
         "id": "local-notifications",
@@ -13,19 +13,39 @@
         "name": "Push Messages"
       },
       {
+        "id": "foreground-detection",
+        "icon": "mdi-action-flip-to-front",
+        "name": "Foreground Detection"
+      },
+      {
+        "id": "permissions",
+        "icon": "mdi-action-lock-open",
+        "name": "Permissions"
+      }
+    ]
+  },
+  {
+    "heading": "Seamless Experience",
+    "features": [
+      {
         "id": "offline",
         "icon": "mdi-action-settings-applications",
         "name": "Offline Mode"
       },
       {
         "id": "installation",
-        "icon": "mdi-content-archive",
+        "icon": "mdi-action-get-app",
         "name": "Home Screen Installation"
       },
       {
-        "id": "foreground-detection",
-        "icon": "mdi-action-flip-to-front",
-        "name": "Foreground Detection"
+        "id": "background-sync",
+        "icon": "mdi-action-backup",
+        "name": "Background Sync"
+      },
+      {
+        "id": "app-communication",
+        "icon": "mdi-action-explore",
+        "name": "Inter-App Communication"
       }
     ]
   },
@@ -36,11 +56,6 @@
         "id": "touch",
         "icon": "mdi-content-gesture",
         "name": "Touch Gestures"
-      },
-      {
-        "id": "accelerometer",
-        "icon": "mdi-action-3d-rotation",
-        "name": "Accelerometer"
       },
       {
         "id": "speech-recognition",
@@ -60,13 +75,8 @@
     ]
   },
   {
-    "heading": "Access What's Around",
+    "heading": "Surroundings",
     "features": [
-      {
-        "id": "geolocation",
-        "icon": "mdi-device-gps-fixed",
-        "name": "Geolocation"
-      },
       {
         "id": "bluetooth",
         "icon": "mdi-device-bluetooth",
@@ -90,13 +100,58 @@
     ]
   },
   {
-    "heading": "Access Device Features",
+    "heading": "Camera & Microphone",
     "features": [
       {
         "id": "camera-microphone",
         "icon": "mdi-image-camera-alt",
-        "name": "Camera & Microphone"
+        "name": "Basic Streaming"
       },
+      {
+        "id": "photos",
+        "icon": "mdi-image-camera-roll",
+        "name": "Taking Photos"
+      },
+      {
+        "id": "recording",
+        "icon": "mdi-av-mic",
+        "name": "Recording Media"
+      },
+      {
+        "id": "realtime",
+        "icon": "mdi-av-videocam",
+        "name": "Real-time Communication"
+      }
+    ]
+  },
+  {
+    "heading": "Location & Position",
+    "features": [
+      {
+        "id": "geolocation",
+        "icon": "mdi-device-gps-fixed",
+        "name": "Geolocation"
+      },
+      {
+        "id": "geofencing",
+        "icon": "mdi-action-group-work",
+        "name": "Geofencing"
+      },
+      {
+        "id": "device-orientation",
+        "icon": "mdi-device-screen-rotation",
+        "name": "Device Orientation"
+      },
+      {
+        "id": "accelerometer",
+        "icon": "mdi-action-3d-rotation",
+        "name": "Accelerometer"
+      }
+    ]
+  },
+  {
+    "heading": "Device Features",
+    "features": [
       {
         "id": "network-type-speed",
         "icon": "mdi-device-wifi-tethering",
@@ -116,22 +171,12 @@
         "id": "battery-status",
         "icon": "mdi-device-battery-80",
         "name": "Battery Status"
-      },
-      {
-        "id": "image-capture",
-        "icon": "mdi-image-camera-roll",
-        "name": "Image Capture"
       }
     ]
   },
   {
     "heading": "Screen & Output",
     "features": [
-      {
-        "id": "device-orientation",
-        "icon": "mdi-device-screen-rotation",
-        "name": "Device Orientation"
-      },
       {
         "id": "fullscreen",
         "icon": "mdi-action-settings-overscan",
@@ -155,7 +200,7 @@
     ]
   },
   {
-    "heading": "Access The System",
+    "heading": "Operating System",
     "features": [
       {
         "id": "storage",
@@ -166,11 +211,6 @@
         "id": "files",
         "icon": "mdi-device-sd-storage",
         "name": "File Access"
-      },
-      {
-        "id": "permissions",
-        "icon": "mdi-action-lock-open",
-        "name": "Permissions"
       },
       {
         "id": "contacts",
