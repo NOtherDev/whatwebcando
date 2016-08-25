@@ -297,7 +297,7 @@ self.addEventListener('fetch', function (event) {
         <dt><code>navigator.bluetooth.requestDevice(serviceFilters)</code></dt>
         <dd>Scans for the device in range supporting the requested services. Returns a <code>Promise</code>.</dd>
         <dt><code>device.gatt.connect()</code></dt>
-        <dd>Returns a <code>Promise</code> resolved with the server object providing access to the services available on the device.</dd> 
+        <dd>Returns a <code>Promise</code> resolved with the server object providing access to the services available on the device.</dd>
         <dt><code>server.getPrimaryService(name)</code></dt>
         <dd>Returns a <code>Promise</code> resolved with the particular Bluetooth service on the device.</dd>
         <dt><code>service.getCharacteristic(name)</code></dt>
@@ -1092,27 +1092,49 @@ self.addEventListener('fetch', function (event) {
     mediaRecorder: new Feature({
       id: 'recording',
       name: 'Recording Media',
-      description: [],
+      description: [`The <b>Media Recorder API</b> is a Web API allowing web applications to record audio and video Media Streams, local and/or remote.`],
       api: `<dl>
-        <dt><code></code></dt>
-        <dd></dd>
+        <dt><code>recorder = new MediaRecorder(mediaStream, options)</code></dt>
+        <dd>Creates a media recorder out of a Media Stream. <code>options</code> selects e.g. the intended <code>MIME type</code> and/or the target bitrates.</dd>
+        <dt><code>MediaRecoder.isMimeTypeSupported(mimeType)</code></dt>
+        <dd>Static function checking if <code>mimeType</code> is, in principle, supported for recording.</dd>
+        <dt><code>recorder.start(interval)</code></dt>
+        <dd>Starts recording data, producing it as chunks in <code>ondataavailable</code>'s <code>event.data</code>, every <code>interval</code> ms, if explicited.</dd>
       </dl>`,
-      tests: [],
+      tests: [Feature.windowContains('MediaRecorder')],
+      caniuse: 'mediarecorder',
       demoPen: '',
-      links: []
+      links: [
+        { url: 'https://w3c.github.io/mediacapture-record/MediaRecorder.html',
+          title: 'Specification Draft'},
+        { url: 'https://webrtc.github.io/samples/src/content/getusermedia/record/',
+          title: 'Demo recording local data'}
+      ]
     }),
 
     realtime: new Feature({
       id: 'realtime',
       name: 'Real-Time Communication',
-      description: [],
+      description: [`Real-Time Communication in the Web, a.k.a <b>WebRTC</b> is a set of Web APIs allowing web applications to send/receive streaming Real-Time video, audio and data to/from remote peers.`],
       api: `<dl>
-        <dt><code></code></dt>
-        <dd></dd>
+        <dt><code>pc = new RTCPeerConnection(null);</code></dt>
+        <dd>Creates a server-less peer connection.</dd>
+        <dt><code>pc.addStream(localMediaStream); </code></dt>
+        <dd>Adds an existing local Media Stream (e.g. the local web cam) to the remote peer connection.</dd>
+        <dt><code>pc.onaddstream = (e) => { vid.src = URL.createObjectURL(e.stream); }</code></dt>
+        <dd>Registers an <code>onaddstream</code> event handler that, if and when called, retrieves the remote party's Media Stream and plugs it into a &lt;video> tag <code>vid</code></dd>
       </dl>`,
-      tests: [],
+      tests: [ Feature.windowContains('RTCPeerConnection') ],
+      caniuse: 'rtcpeerconnection',
       demoPen: '',
-      links: []
+      links: [
+        { url: 'http://www.html5rocks.com/en/tutorials/webrtc/basics/',
+          title: 'HTML5 Rocks: Getting started with WebRTC'},
+        { url: 'https://webrtc.github.io/samples/#peerconnection',
+          title: 'WebRTC RTCPeerConnection and RTCDataConnection samples'},
+        { url: 'https://webrtc.github.io/samples/src/content/peerconnection/pc1/',
+          title: 'Simple demo with loopback connection'},
+      ]
     }),
 
     geofencing: new Feature({
