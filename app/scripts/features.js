@@ -1071,9 +1071,12 @@ self.addEventListener('fetch', function (event) {
         <dt><code></code></dt>
         <dd></dd>
       </dl>`,
-      tests: [],
+      tests: [Feature.windowContains('SyncManager')],
       demoPen: '',
-      links: []
+      links: [
+        {url: 'https://wicg.github.io/BackgroundSync/spec/', title: 'Specification Draft (non-W3C)'},
+        {url:'https://developers.google.com/web/updates/2015/12/background-sync', title: 'Google Developers: Introducing Background Sync'}
+      ]
     }),
 
     intents: new Feature({
@@ -1084,9 +1087,12 @@ self.addEventListener('fetch', function (event) {
         <dt><code></code></dt>
         <dd></dd>
       </dl>`,
-      tests: [],
+      tests: [Feature.windowContains('Intent')],
       demoPen: '',
-      links: []
+      links: [
+        {url: 'https://www.w3.org/TR/web-intents/', title: 'W3C Working Group Note'},
+        {url: 'https://paul.kinlan.me/what-happened-to-web-intents/', title: 'Paul Kinlan: What happened to Web Intents?'}
+      ]
     }),
 
     mediaRecorder: new Feature({
@@ -1105,9 +1111,9 @@ self.addEventListener('fetch', function (event) {
       caniuse: 'mediarecorder',
       demoPen: '',
       links: [
-        { url: 'https://w3c.github.io/mediacapture-record/MediaRecorder.html',
+        {url: 'https://w3c.github.io/mediacapture-record/MediaRecorder.html',
           title: 'Specification Draft'},
-        { url: 'https://webrtc.github.io/samples/src/content/getusermedia/record/',
+        {url: 'https://webrtc.github.io/samples/src/content/getusermedia/record/',
           title: 'Demo recording local data'}
       ]
     }),
@@ -1115,25 +1121,38 @@ self.addEventListener('fetch', function (event) {
     realtime: new Feature({
       id: 'realtime',
       name: 'Real-Time Communication',
-      description: [`Real-Time Communication in the Web, a.k.a <b>WebRTC</b> is a set of Web APIs allowing web applications to send/receive streaming Real-Time video, audio and data to/from remote peers.`],
+      description: [`Real-Time Communication in the Web, <b>WebRTC</b> in short, is a set of APIs allowing web applications to send and receive streaming real-time video, audio and data to/from remote peers, without relying it through the centralized server. The server, implementing one of the specific signalling protocols, is needed for initial discovery and connection handshake, though.`],
       api: `<dl>
-        <dt><code>pc = new RTCPeerConnection(null);</code></dt>
-        <dd>Creates a server-less peer connection.</dd>
-        <dt><code>pc.addStream(localMediaStream); </code></dt>
+        <dt><code>connection = new RTCPeerConnection(configuration)</code></dt>
+        <dd>Creates a connection object that will be used to establish serverless connection between peers. The <code>configuration</code> may include the set of <code>iceServers</code> that will be used for discovery and connection handshake.</dd>
+        <dt><code>connection.addEventListener('icecandidate', listener)</code></dt>
+        <dd>An event fired when the signalling server registers a remote peer with which the connection may be established.</dd>
+        <dt><code>connection.addStream(localMediaStream)</code></dt>
         <dd>Adds an existing local Media Stream (e.g. the local web cam) to the remote peer connection.</dd>
-        <dt><code>pc.onaddstream = (e) => { vid.src = URL.createObjectURL(e.stream); }</code></dt>
-        <dd>Registers an <code>onaddstream</code> event handler that, if and when called, retrieves the remote party's Media Stream and plugs it into a &lt;video> tag <code>vid</code></dd>
+        <dt><code>connection.onaddstream = event => video.src = URL.createObjectURL(event.stream)</code></dt>
+        <dd>Registers an <code>onaddstream</code> event handler that, if and when called, retrieves the remote party's Media Stream and plugs it into a &lt;video> tag <code>video</code>.</dd>
+        <dt><code>connection.createOffer(options)</code></dt>
+        <dd>Returns a <code>Promise</code> resolved when the remote peer connects to the connections and streams offered.</dd>
+        <dt><code>connection.createAnswer(options)</code></dt>
+        <dd>Accepts the connection offerred by the remote peer. Returns a <code>Promise</code> resolved when the connection is established.</dd>
+        <dt><code>dataChannel = connection.createDataChannel(label, configuration)</code></dt>
+        <dd>Opens a data channel for the connection, allowing it to transmit arbitrary types of data.</dd>
+        <dt><code>dataChannel.send(data)</code>
+        <dd>Sends the data over the data channel to the remote peer.</dd>
+        <dt><code>dataChannel.addEventListener('message', listener)</code></dt>
+        <dd>An event fired when the data has been received via the data channel.</dd>
       </dl>`,
-      tests: [ Feature.windowContains('RTCPeerConnection') ],
+      tests: [Feature.windowContains('RTCPeerConnection')],
       caniuse: 'rtcpeerconnection',
       demoPen: '',
       links: [
-        { url: 'http://www.html5rocks.com/en/tutorials/webrtc/basics/',
+        {url: 'https://w3c.github.io/webrtc-pc/', title: 'Specification Draft'},
+        {url: 'http://www.html5rocks.com/en/tutorials/webrtc/basics/',
           title: 'HTML5 Rocks: Getting started with WebRTC'},
-        { url: 'https://webrtc.github.io/samples/#peerconnection',
-          title: 'WebRTC RTCPeerConnection and RTCDataConnection samples'},
-        { url: 'https://webrtc.github.io/samples/src/content/peerconnection/pc1/',
-          title: 'Simple demo with loopback connection'},
+        {url: 'https://webrtc.github.io/samples/#peerconnection',
+          title: 'WebRTC RTCPeerConnection and RTCDataChannel samples'},
+        {url: 'https://webrtc.github.io/samples/src/content/peerconnection/pc1/',
+          title: 'Simple demo with loopback connection'}
       ]
     }),
 
@@ -1145,9 +1164,11 @@ self.addEventListener('fetch', function (event) {
         <dt><code></code></dt>
         <dd></dd>
       </dl>`,
-      tests: [],
+      tests: [Feature.windowContains('GeofenceManager')],
       demoPen: '',
-      links: []
+      links: [
+        {url: 'https://www.w3.org/TR/geofencing/', title: 'Specification Draft'}
+      ]
     })
   };
 
