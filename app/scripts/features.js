@@ -1082,15 +1082,21 @@ self.addEventListener('fetch', function (event) {
     intents: new Feature({
       id: 'app-communication',
       name: 'Inter-App Communication',
-      description: [],
+      description: [`The <b>Web Intents</b> was the solution proposed by Google Chrome to provide an universal, asynchronous way of data exchange between web applications. It was conceptually based on <a href="https://developer.android.com/guide/components/intents-filters.html" target="_blank">Android Intents</a> system. The apps interested in receiving data were required to be registered in Chrome Web Store and declare the intent support in the manifest file. The apps sending the data were able to invoke the Intent of the particular type and let the system handle the selection of the target application and its proper invocation.`,
+      `The API was introduced in Chrome 18 and removed in Chrome 24 because of various interoperability and usability issues. No other vendor implemented Web Intents.`,
+      `There are, however, some non-standard partial solutions for sending data to another applications. Native applications can register handlers to receive data from the web apps using special URL prefixes (although differences exist between <a href="https://developer.apple.com/library/ios/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Inter-AppCommunication/Inter-AppCommunication.html#//apple_ref/doc/uid/TP40007072-CH6-SW1" target="_blank">iOS</a> and <a href="https://developer.android.com/training/app-links/index.html" target="_blank">Android</a>). There are also third-party non-standard services that coordinate sharing data between web applications.`],
       api: `<dl>
-        <dt><code></code></dt>
-        <dd></dd>
+        <dt><code>intent = new Intent({action, type})</code></dt>
+        <dd>Creates an object representing the request for a particular action to be sent to the registered handling applications.</dd>
+        <dt><code>navigator.startActivity(intent, onSuccess, onFailure)</code></dt>
+        <dd>Invokes the system-defined application selection and data dispatch dialog to send the request to another application.</dd>
+        <dt><code>window.intent.postResult(result)</code></dt>
+        <dd>Sends the <code>result</code> from the requested (target) application back to the requesting (source) application.</dd>
       </dl>`,
-      tests: [Feature.windowContains('Intent')],
-      demoPen: '',
+      tests: [Feature.windowContains('Intent'), Feature.navigatorContains('startActivity')],
       links: [
         {url: 'https://www.w3.org/TR/web-intents/', title: 'W3C Working Group Note'},
+        {url: 'https://www.chromium.org/developers/web-intents-in-chrome', title: 'Web Intents in Chrome - description from 2012'},
         {url: 'https://paul.kinlan.me/what-happened-to-web-intents/', title: 'Paul Kinlan: What happened to Web Intents?'}
       ]
     }),
@@ -1111,10 +1117,8 @@ self.addEventListener('fetch', function (event) {
       caniuse: 'mediarecorder',
       demoPen: '',
       links: [
-        {url: 'https://w3c.github.io/mediacapture-record/MediaRecorder.html',
-          title: 'Specification Draft'},
-        {url: 'https://webrtc.github.io/samples/src/content/getusermedia/record/',
-          title: 'Demo recording local data'}
+        {url: 'https://w3c.github.io/mediacapture-record/MediaRecorder.html', title: 'Specification Draft'},
+        {url: 'https://webrtc.github.io/samples/src/content/getusermedia/record/', title: 'Demo recording local data'}
       ]
     }),
 
