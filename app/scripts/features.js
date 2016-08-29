@@ -93,8 +93,8 @@
         conceptual and design flaws</a>. It is not covered here.`,
         `The modern alternative is called <b>Service Worker</b>. Web applications running on HTTPS can request the browser to install the separate
         code unit called Service Worker. This unit is then run in the separation from the owning web application, communicating with it via events.
-        Besides being the enabler for multiple future complex APIs like <a href="/push-notifications.html">Push Notifications</a>, Background Sync
-        or Geofencing, it can work as a fully featured network proxy. It can intercept all the HTTP requests, alter its content or behaviors,
+        Besides being the enabler for multiple complex APIs like <a href="/push-notifications.html">Push Notifications</a>, <a href="/background-sync.html">Background Sync</a>
+        or <a href="/geofencing.html">Geofencing</a>, it can work as a fully featured network proxy. It can intercept all the HTTP requests, alter its content or behaviors,
         or - most notably - manage offline caching.`,
         `<small>Code examples adapted from <a href="http://www.html5rocks.com/en/tutorials/service-worker/introduction/" target="_blank">HTML5 Rocks article</a>.</small>`],
       api: `<p><b>Within the owning web application - Installation</b></p>
@@ -386,7 +386,7 @@ self.addEventListener('fetch', function (event) {
       name: 'Camera & Microphone',
       description: [`The <b>Media Capture API</b> allows authorized web applications to access the streams from the device's audio and video capturing
         interfaces, i.e. to use the data available from the camera and the microphone. The streams exposed by the API can be bound directly to the HTML
-        <code>&lt;audio&gt;</code> or <code>&lt;video&gt;</code> elements or read and manipulated in the code.`,
+        <code>&lt;audio&gt;</code> or <code>&lt;video&gt;</code> elements or read and manipulated in the code, including further more specific processing via <a href="/photos.html">Image Capture API</a>, <a href="/recording.html">Media Recorder API</a> or <a href="/realtime.html">Real-Time Communication</a>.`,
         `There is also a higher level alternative <a href="http://www.wufoo.com/html5/attributes/20-accept.html">built-in into mobile operating systems</a>
         like iOS and Android that doesn't require any JavaScript API - the basic HTML <code>&lt;file type="input" accept="image/*"&gt;</code> element allows
         launching any application that provides an image file, including camera.`],
@@ -1000,9 +1000,9 @@ self.addEventListener('fetch', function (event) {
     photos: new Feature({
       id: 'photos',
       name: 'Taking Photos',
-      description: [`The <b>Image Capture API</b> allows web applications to take pictures from a Web Cam, as well as manipulate the usual parameters such as zoom or focus points.`],
+      description: [`The <b>Image Capture API</b> allows web applications to take pictures from a Web Cam, as well as manipulate the usual parameters such as zoom or focus points. It relies on the <code>streamVideoTrack</code> object that might be obtained from the <code>stream</code> - see <a href="/camera-microphone.html">Basic Streaming</a>.`],
       api: `<dl>
-        <dt><code>capturer = ImageCapture(mediaStreamVideoTrack)</code></dt>
+        <dt><code>capturer = ImageCapture(streamVideoTrack)</code></dt>
         <dd>Creates an image capturer out of the Media Stream Video Track.</dd>
         <dt><code>capturer.takePhoto()</code></dt>
         <dd>Returns a <code>Promise</code> resolved with the photo taken with the current settings.</dd>
@@ -1066,13 +1066,19 @@ self.addEventListener('fetch', function (event) {
     backgroundSync: new Feature({
       id: 'background-sync',
       name: 'Background Sync',
-      description: [],
+      description: [`The <b>Background Sync API</b> allows authorized web applications to not rely on having stable internet connection and defer sending the data to the moment the connection is available. The API is bound to the Service Worker, which is the code execution model that is separated from the owning web application. This allows the Background Sync to operate also after the application was closed.`,
+      `As of Summer 2016, the API is implemented in Google Chrome only and the implementation is limited to one-off sync.`],
       api: `<dl>
-        <dt><code></code></dt>
-        <dd></dd>
+        <dt><code>serviceWorkerRegistration.sync.register('syncTag')</code></dt>
+        <dd>Requests an one-off sync registration. Returns a <code>Promise</code> when the request has been accepted.</dd>
+        <dt><code>self.addEventListener('sync', listener)</code></dt>
+        <dd>An event fired within the Service Worker instance when there is a connection available and the synchronization is possible. The <code>listener</code> is expected to call <code>event.waitUntil(promise)</code> specifying a <code>Promise</code> that resolves when the sync handling is completed.</dd>
+        <dt><code>serviceWorkerRegistration.periodicSync.register(options)</code></dt>
+        <dd>Requests a periodic sync registration. Returns a <code>Promise</code> when the request has been accepted. This </dd>
+        <dt><code>self.addEventListener('periodicSync', listener)</code></dt>
+        <dd>An event fired within the Service Worker instance periodically, according to the registration optios, only when there is a connection available and the synchronization is possible. The <code>listener</code> is expected to call <code>event.waitUntil(promise)</code> specifying a <code>Promise</code> that resolves when the sync handling is completed.</dd> 
       </dl>`,
       tests: [Feature.windowContains('SyncManager')],
-      demoPen: '',
       links: [
         {url: 'https://wicg.github.io/BackgroundSync/spec/', title: 'Specification Draft (non-W3C)'},
         {url:'https://developers.google.com/web/updates/2015/12/background-sync', title: 'Google Developers: Introducing Background Sync'}
@@ -1104,11 +1110,11 @@ self.addEventListener('fetch', function (event) {
     mediaRecorder: new Feature({
       id: 'recording',
       name: 'Recording Media',
-      description: [`The <b>Media Recorder API</b> is a Web API allowing web applications to record audio and video Media Streams, local and/or remote.`],
+      description: [`The <b>Media Recorder API</b> is a Web API allowing web applications to record audio and video Media Streams, local and/or remote. It relies on the <code>mediaStream</code> object - see <a href="/camera-microphone.html">Basic Streaming</a>.`],
       api: `<dl>
         <dt><code>recorder = new MediaRecorder(mediaStream, options)</code></dt>
         <dd>Creates a media recorder out of a Media Stream. <code>options</code> selects e.g. the intended <code>MIME type</code> and/or the target bitrates.</dd>
-        <dt><code>MediaRecoder.isMimeTypeSupported(mimeType)</code></dt>
+        <dt><code>MediaRecorder.isMimeTypeSupported(mimeType)</code></dt>
         <dd>Static function checking if <code>mimeType</code> is, in principle, supported for recording.</dd>
         <dt><code>recorder.start(interval)</code></dt>
         <dd>Starts recording data, producing it as chunks in <code>ondataavailable</code>'s <code>event.data</code>, every <code>interval</code> ms, if explicited.</dd>
@@ -1125,7 +1131,7 @@ self.addEventListener('fetch', function (event) {
     realtime: new Feature({
       id: 'realtime',
       name: 'Real-Time Communication',
-      description: [`Real-Time Communication in the Web, <b>WebRTC</b> in short, is a set of APIs allowing web applications to send and receive streaming real-time video, audio and data to/from remote peers, without relying it through the centralized server. The server, implementing one of the specific signalling protocols, is needed for initial discovery and connection handshake, though.`],
+      description: [`Real-Time Communication in the Web, <b>WebRTC</b> in short, is a set of APIs allowing web applications to send and receive streaming real-time video, audio and data to/from remote peers, without relying it through the centralized server. The server, implementing one of the specific signalling protocols, is needed for initial discovery and connection handshake, though. The APIs rely on the <code>mediaStream</code> object - see <a href="/camera-microphone.html">Basic Streaming</a>.`],
       api: `<dl>
         <dt><code>connection = new RTCPeerConnection(configuration)</code></dt>
         <dd>Creates a connection object that will be used to establish serverless connection between peers. The <code>configuration</code> may include the set of <code>iceServers</code> that will be used for discovery and connection handshake.</dd>
