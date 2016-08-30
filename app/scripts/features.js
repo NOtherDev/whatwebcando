@@ -1121,7 +1121,7 @@ self.addEventListener('fetch', function (event) {
       </dl>`,
       tests: [Feature.windowContains('MediaRecorder')],
       caniuse: 'mediarecorder',
-      demoPen: '',
+      demoPen: 'WGZkjm',
       links: [
         {url: 'https://w3c.github.io/mediacapture-record/MediaRecorder.html', title: 'Specification Draft'},
         {url: 'https://webrtc.github.io/samples/src/content/getusermedia/record/', title: 'Demo recording local data'}
@@ -1154,7 +1154,7 @@ self.addEventListener('fetch', function (event) {
       </dl>`,
       tests: [Feature.windowContains('RTCPeerConnection')],
       caniuse: 'rtcpeerconnection',
-      demoPen: '',
+      demoPen: 'amoLwm',
       links: [
         {url: 'https://w3c.github.io/webrtc-pc/', title: 'Specification Draft'},
         {url: 'http://www.html5rocks.com/en/tutorials/webrtc/basics/',
