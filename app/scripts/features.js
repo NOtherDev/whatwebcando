@@ -383,7 +383,7 @@ self.addEventListener('fetch', function (event) {
 
     mediaCapture: new Feature({
       id: 'camera-microphone',
-      name: 'Camera & Microphone',
+      name: 'Audio & Video Capture',
       description: [`The <b>Media Capture API</b> allows authorized web applications to access the streams from the device's audio and video capturing
         interfaces, i.e. to use the data available from the camera and the microphone. The streams exposed by the API can be bound directly to the HTML
         <code>&lt;audio&gt;</code> or <code>&lt;video&gt;</code> elements or read and manipulated in the code, including further more specific processing via <a href="/photos.html">Image Capture API</a>, <a href="/recording.html">Media Recorder API</a> or <a href="/realtime.html">Real-Time Communication</a>.`,
@@ -999,8 +999,8 @@ self.addEventListener('fetch', function (event) {
 
     photos: new Feature({
       id: 'photos',
-      name: 'Taking Photos',
-      description: [`The <b>Image Capture API</b> allows web applications to take pictures from a Web Cam, as well as manipulate the usual parameters such as zoom or focus points. It relies on the <code>streamVideoTrack</code> object that might be obtained from the <code>stream</code> - see <a href="/camera-microphone.html">Basic Streaming</a>.`],
+      name: 'Advanced Camera Controls',
+      description: [`The <b>Image Capture API</b> allows web applications to control the advanced settings of the device's camera, such as zoom, white balance, ISO or focus points and take photos based on these settings. It relies on the <code>streamVideoTrack</code> object that might be obtained from the <code>stream</code> - see <a href="/camera-microphone.html">Audio & Video Capture</a>.`],
       api: `<dl>
         <dt><code>capturer = ImageCapture(streamVideoTrack)</code></dt>
         <dd>Creates an image capturer out of the Media Stream Video Track.</dd>
@@ -1110,7 +1110,7 @@ self.addEventListener('fetch', function (event) {
     mediaRecorder: new Feature({
       id: 'recording',
       name: 'Recording Media',
-      description: [`The <b>Media Recorder API</b> is a Web API allowing web applications to record audio and video Media Streams, local and/or remote. It relies on the <code>mediaStream</code> object - see <a href="/camera-microphone.html">Basic Streaming</a>.`],
+      description: [`The <b>Media Recorder API</b> is a Web API allowing web applications to record audio and video Media Streams, local and/or remote. It relies on the <code>mediaStream</code> object - see <a href="/camera-microphone.html">Audio & Video Capture</a>.`],
       api: `<dl>
         <dt><code>recorder = new MediaRecorder(mediaStream, options)</code></dt>
         <dd>Creates a media recorder out of a Media Stream. <code>options</code> selects e.g. the intended <code>MIME type</code> and/or the target bitrates.</dd>
@@ -1131,7 +1131,7 @@ self.addEventListener('fetch', function (event) {
     realtime: new Feature({
       id: 'realtime',
       name: 'Real-Time Communication',
-      description: [`Real-Time Communication in the Web, <b>WebRTC</b> in short, is a set of APIs allowing web applications to send and receive streaming real-time video, audio and data to/from remote peers, without relying it through the centralized server. The server, implementing one of the specific signalling protocols, is needed for initial discovery and connection handshake, though. The APIs rely on the <code>mediaStream</code> object - see <a href="/camera-microphone.html">Basic Streaming</a>.`],
+      description: [`Real-Time Communication in the Web, <b>WebRTC</b> in short, is a set of APIs allowing web applications to send and receive streaming real-time video, audio and data to/from remote peers, without relying it through the centralized server. The server, implementing one of the specific signalling protocols, is needed for initial discovery and connection handshake, though. The APIs rely on the <code>mediaStream</code> object - see <a href="/camera-microphone.html">Audio & Video Capture</a>.`],
       api: `<dl>
         <dt><code>connection = new RTCPeerConnection(configuration)</code></dt>
         <dd>Creates a connection object that will be used to establish serverless connection between peers. The <code>configuration</code> may include the set of <code>iceServers</code> that will be used for discovery and connection handshake.</dd>

@@ -105,12 +105,12 @@
       {
         "id": "camera-microphone",
         "icon": "mdi-image-camera-alt",
-        "name": "Basic Streaming"
+        "name": "Audio & Video Capture"
       },
       {
         "id": "photos",
         "icon": "mdi-image-camera-roll",
-        "name": "Taking Photos"
+        "name": "Advanced Camera Controls"
       },
       {
         "id": "recording",
