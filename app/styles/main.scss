@@ -156,7 +156,16 @@ header {
   }
 
   .features-list .btn {
+    width: 100%;
+    text-align: left;
     padding: 8px 6px;
+
+    &:after {
+      content: '»';
+      float: right;
+      color: rgba(0, 0, 0, 0.2);
+      font-size: larger;
+    }
   }
 }
 
