@@ -120,8 +120,8 @@
   Feature.containedIn = (containerName, container, property, standard) =>
     new FeatureInContainerTest(containerName, container, property, standard);
 
-  Feature.navigatorContains = property => Feature.containedIn('navigator', global.navigator, property);
-  Feature.windowContains = property => Feature.containedIn('window', global, property);
+  Feature.navigatorContains = (property, standard) => Feature.containedIn('navigator', global.navigator, property, standard);
+  Feature.windowContains = (property, standard) => Feature.containedIn('window', global, property, standard);
 
   Feature.rawTest = (containerName, property, test) => new FeatureRawTest(containerName, property, test);
 
