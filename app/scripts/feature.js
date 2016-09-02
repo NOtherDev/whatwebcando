@@ -11,15 +11,12 @@
 
     get message() {
       if (!this.standard) {
-        return 'Non-standard solution';
+        return this.passed ? 'Supported with non-standard solution' : 'Non-standard solution not supported';
       }
       if (!this.passed) {
         return 'Not supported';
       }
-      if (this.prefix) {
-        return 'Prefixed';
-      }
-      return 'Supported';
+      return this.prefix ? 'Prefixed' : 'Supported';
     }
 
     static forPassed(property, standard, prefix) {
