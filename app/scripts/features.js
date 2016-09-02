@@ -343,22 +343,34 @@ self.addEventListener('fetch', function (event) {
     proximity: new Feature({
       id: 'proximity',
       name: 'Proximity Sensors',
-      description: `The <b>Proximity Events API</b> allows web applications to get the access to the data from the device's proximity sensors,
-        detecting whether there is a physical object near the device.`,
-      api: `<dl>
+      description: [`The <b>Proximity Events API</b> allows web applications to get the access to the data from the device's proximity sensors, detecting whether there is a physical object near the device.`,
+        `The first approach to supporting proximity sensor on the web - as a standalone API - was implemented in Firefox. Since then the specification was rewritten to make use of the new <b>Generic Sensors API</b>, but no vendor implemented that spec as of September 2016.`],
+      api: `<p><b>The old, standalone API</b></p>
+      <dl>
         <dt><code>window.addEventListener('deviceproximity', listener)</code></dt>
         <dd>An event fired when the device has sensed the physical object proximity, containing approximate distance information.</dd>
         <dt><code>window.addEventListener('userproximity', listener)</code></dt>
         <dd>An event fired when the device has roughly sensed the physical object proximity, containing boolean <code>near</code> flag only.</dd>
+      </dl>
+      <p><b>The new, generic API</b></p>
+      <dl>
+        <dt><code>sensor = new ProximitySensor()</code></dt>
+        <dd>Creates an object serving as an accessor to the proximity sensor events.</dd>
+        <dt><code>sensor.addEventListener('change', listener)</code></dt>
+        <dd>An event fired when the physical object proximity has changed, containing approximate distance information and boolean <code>near</code> flag.</dd>
+        <dt><code>sensor.start()</code></dt>
+        <dd>Starts listening for the sensor events.</dd>
       </dl>`,
       caniuse: 'proximity',
       tests: [
         Feature.windowContains('ondeviceproximity'),
-        Feature.windowContains('onuserproximity')
+        Feature.windowContains('onuserproximity'),
+        Feature.windowContains('ProximitySensor')
       ],
       demoPen: 'jWMRNw',
       links: [
-        {url: 'https://w3c.github.io/proximity/', title: 'Specification Draft'},
+        {url: 'https://w3c.github.io/proximity/', title: 'Proximity API Specification Draft'},
+        {url: 'https://w3c.github.io/sensors/', title: 'Generic Sensor API Specification Draft'},
         {url: 'http://www.sitepoint.com/introducing-proximity-api/', title: 'SitePoint: Introducing the Proximity API'},
         {url: 'https://developer.mozilla.org/en-US/docs/Web/API/Proximity_Events', title: 'MDN: Proximity Events'}
       ]
@@ -367,16 +379,31 @@ self.addEventListener('fetch', function (event) {
     ambientLight: new Feature({
       id: 'ambient-light',
       name: 'Ambient Light',
-      description: `The <b>Ambient Light API</b> allows web applications to access the light intensity level measured by the device's light sensor.`,
-      api: `<dl>
+      description: [`The <b>Ambient Light API</b> allows web applications to access the light intensity level measured by the device's light sensor.`,
+        `The first approach to supporting light intensity sensor on the web - as a standalone API - was implemented in Firefox. Since then the specification was rewritten to make use of the new <b>Generic Sensors API</b>, but no vendor implemented that spec as of September 2016.`],
+      api: `<p><b>The old, standalone API</b></p>
+      <dl>
         <dt><code>window.addEventListener('devicelight', listener)</code></dt>
         <dd>An event fired when the device's light sensor measured value has changed, containing the light intensity expressed in lux.</dd>
+      </dl>
+      <p><b>The new, generic API</b></p>
+      <dl>
+        <dt><code>sensor = new AmbientLightSensor()</code></dt>
+        <dd>Creates an object serving as an accessor to the light intensity sensor events.</dd>
+        <dt><code>sensor.addEventListener('change', listener)</code></dt>
+        <dd>An event fired when the light intensity has changed, with <code>illuminance</code> property containing the light intensity expressed in lux.</dd>
+        <dt><code>sensor.start()</code></dt>
+        <dd>Starts listening for the sensor events.</dd>
       </dl>`,
       caniuse: 'ambient-light',
-      tests: [Feature.windowContains('ondevicelight')],
+      tests: [
+        Feature.windowContains('ondevicelight'),
+        Feature.windowContains('AmbientLightSensor')
+      ],
       demoPen: 'OyWZqY',
       links: [
-        {url: 'https://w3c.github.io/ambient-light/', title: 'Specification Draft'},
+        {url: 'https://w3c.github.io/ambient-light/', title: 'Ambient Light API Specification Draft'},
+        {url: 'https://w3c.github.io/sensors/', title: 'Generic Sensor API Specification Draft'},
         {url: 'http://modernweb.com/2014/05/27/introduction-to-the-ambient-light-api/', title: 'Introduction to the Ambient Light API'}
       ]
     }),
