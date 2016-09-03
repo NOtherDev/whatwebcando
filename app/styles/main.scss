@@ -241,6 +241,9 @@ header {
 .api-glimpse {
   dt code {
     word-wrap: break-word;
+    white-space: pre-wrap;
+    display: inline-block;
+    width: 100%;
   }
   dd {
     margin-left: 40px;
