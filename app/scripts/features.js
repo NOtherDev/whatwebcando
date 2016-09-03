@@ -24,7 +24,16 @@
         <dd>Displays local notification outside of the browser tab area.</dd>
       </dl>`,
       caniuse: 'notifications',
-      tests: [Feature.windowContains('Notification')],
+      tests: [
+        Feature.rawTest('window', `Notification`, () => {
+          try {
+            new Notification('test');
+            return true;
+          } catch (err) {
+            return false;
+          }
+        })
+      ],
       demoPen: 'yYJdWO',
       links: [
         {url: 'http://www.w3.org/TR/notifications/', title: 'Specification'},
