@@ -329,23 +329,21 @@ self.addEventListener('fetch', function (event) {
       id: 'nfc',
       name: 'NFC',
       description: [
-        `The <b>Web NFC API</b> is a low-level API allowing web applications to access the data accessible on the Near-Field Communication devices nearby.`,
+        `The <b>Web NFC API</b> is a low-level API allowing web applications to access and exchange the data with the Near-Field Communication devices, such as NFC tags.`,
         `Current support is limited to Firefox OS applications, where the implementation is experimental, <code>moz</code>-prefixed
-         and doesn't follow the current state of the specification draft.`
+         and doesn't follow the current state of the specification draft. The implementation in Chromium is planned.`
       ],
       api: `<dl>
-        <dt><code>navigator.nfc.requestAdapter()</code></dt>
-        <dd>Returns <code>Promise</code> resolved when the user selects the NFC adapter to use.</dd>
-        <dt><code>adapter.watch(options, callback)</code></dt>
-        <dd>Registers for a notification about the data read from the NFC adapter.</dd>
-        <dt><code>adapter.pushMessage(message, options)</code></dt>
-        <dd>Triggers sending the message to the NFC adapter.</dd>
+        <dt><code>navigator.nfc.watch(callback, options)</code></dt>
+        <dd>Registers for a notification about the data read from the NFC adapter specified by <code>options</code>.</dd>
+        <dt><code>navigator.nfc.push(message, options)</code></dt>
+        <dd>Triggers sending the <code>message</code> (string, <code>ArrayBuffer</code> or NDEF record structure) to the NFC adapter specified by <code>options</code>.</dd>
       </dl>`,
       tests: [Feature.navigatorContains('nfc')],
       demoPen: 'XmpKjQ',
       links: [
         {url: 'https://w3c.github.io/web-nfc/', title: 'Specification Draft'},
-        {url: 'https://developer.mozilla.org/en-US/docs/Web/API/NFC_API/Using_the_NFC_API', title: 'MDN: Using the NFC API'}
+        {url: 'https://developer.mozilla.org/en-US/docs/Web/API/NFC_API/Using_the_NFC_API', title: 'MDN: Using the NFC API (covers outdated spec revision)'}
       ]
     }),
 
