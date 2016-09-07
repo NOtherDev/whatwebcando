@@ -145,7 +145,7 @@
       {
         "id": "accelerometer",
         "icon": "mdi-action-3d-rotation",
-        "name": "Accelerometer"
+        "name": "Device Motions"
       }
     ]
   },

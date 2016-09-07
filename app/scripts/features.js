@@ -361,11 +361,11 @@ self.addEventListener('fetch', function (event) {
       <p><b>The new, generic API</b></p>
       <dl>
         <dt><code>sensor = new ProximitySensor()</code></dt>
-        <dd>Creates an object serving as an accessor to the proximity sensor events.</dd>
+        <dd>Creates an object serving as an accessor to the proximity sensor readings.</dd>
         <dt><code>sensor.addEventListener('change', listener)</code></dt>
-        <dd>An event fired when the physical object proximity has changed, containing approximate distance information and boolean <code>near</code> flag.</dd>
+        <dd>An event fired when the physical object proximity has changed, containing approximate distance information in cm (<code>event.reading.distance</code>) and boolean <code>event.reading.near</code> flag.</dd>
         <dt><code>sensor.start()</code></dt>
-        <dd>Starts listening for the sensor events.</dd>
+        <dd>Starts listening for the sensor readings.</dd>
       </dl>`,
       caniuse: 'proximity',
       tests: [
@@ -395,11 +395,11 @@ self.addEventListener('fetch', function (event) {
       <p><b>The new, generic API</b></p>
       <dl>
         <dt><code>sensor = new AmbientLightSensor()</code></dt>
-        <dd>Creates an object serving as an accessor to the light intensity sensor events.</dd>
+        <dd>Creates an object serving as an accessor to the light intensity sensor readings.</dd>
         <dt><code>sensor.addEventListener('change', listener)</code></dt>
-        <dd>An event fired when the light intensity has changed, with <code>illuminance</code> property containing the light intensity expressed in lux.</dd>
+        <dd>An event fired when the light intensity has changed, with <code>event.reading.illuminance</code> property containing the light intensity expressed in lux.</dd>
         <dt><code>sensor.start()</code></dt>
-        <dd>Starts listening for the sensor events.</dd>
+        <dd>Starts listening for the sensor readings.</dd>
       </dl>`,
       caniuse: 'ambient-light',
       tests: [
@@ -767,11 +767,13 @@ self.addEventListener('fetch', function (event) {
 
     accelerometer: new Feature({
       id: 'accelerometer',
-      name: 'Accelerometer',
-      description: [`The accelerometer support is a part of <b>Device Orientation API</b>. It allows web applications to access the accelerometer data
-        expressed as acceleration (in m/s<sup>2</sup>) and rotation angle change (in &deg;/s) for each of the three dimensions, provided as events.`,
-        `For the detenction of the device's static position and orientation, see <a href="/device-orientation.html">Device Orientation</a>.`],
-      api: `<dl>
+      name: 'Device Motions',
+      description: [`The first-generation device motions support is a part of <b>Device Orientation API</b>. It allows web applications to access the accelerometer data
+        expressed as acceleration (in m/s<sup>2</sup>) and gyroscope data expressed as rotation angle change (in &deg;/s) for each of the three dimensions, provided as events.`,
+        `There also exist the newer, separate specifications for each sensor type, based on <b>Generic Sensor API</b> - the <b>Accelerometer Sensor API</b> and <b>Gyroscope Sensor API</b>. Both are expected to be implemented for the first time in Chrome in late 2016.`,
+        `For the detection of the device's static position and orientation, see <a href="/device-orientation.html">Device Orientation</a>.`],
+      api: `<p><b>As a part of Device Orientation API</b></p>
+      <dl>
         <dt><code>window.addEventListener('devicemotion', listener)</code></dt>
         <dd>An event fired when the significant changes in the device's acceleration or rotation has occured.</dd>
         <dt><code>event.acceleration</code></dt>
@@ -785,12 +787,37 @@ self.addEventListener('fetch', function (event) {
          (<code>rotationRate.alpha</code>, <code>rotationRate.beta</code>, <code>rotationRate.gamma</code>).</dd>
         <dt><code>event.interval</code></dt>
         <dd>A part of the event's payload returning the interval (in ms) at which the data is obtained from the accelerometer.</dd>
+      </dl>
+      <p><b>Accelerometer API</b></p>
+      <dl>
+        <dt><code>sensor = new AccelerometerSensor({includeGravity: true})</code></dt>
+        <dd>Creates an object serving as an accessor to the accelerometer readings and specifying whether the acceleration values should include gravity.</dd>
+        <dt><code>sensor.addEventListener('change', listener)</code></dt>
+        <dd>An event fired when the accelerometer reading has changed, containing acceleration values in m/s<sup>2</sup> for all three axes (<code>event.reading.accelerationX</code>, <code>event.reading.accelerationY</code>, <code>event.reading.accelerationZ</code>).</dd>
+        <dt><code>sensor.start()</code></dt>
+        <dd>Starts listening for the sensor readings.</dd>
+      </dl>
+      <p><b>Gyroscope API</b></p>
+      <dl>
+        <dt><code>sensor = new GyroscopeSensor()</code></dt>
+        <dd>Creates an object serving as an accessor to the gyroscope readings.</dd>
+        <dt><code>sensor.addEventListener('change', listener)</code></dt>
+        <dd>An event fired when the gyroscope reading has changed, containing rotation rates in rad/s for all three axes (<code>event.reading.rotationRateX</code>, <code>event.reading.rotationRateY</code>, <code>event.reading.rotationRateZ</code>).</dd>
+        <dt><code>sensor.start()</code></dt>
+        <dd>Starts listening for the sensor readings.</dd>
       </dl>`,
       caniuse: 'deviceorientation',
-      tests: [Feature.windowContains('DeviceMotionEvent')],
+      tests: [
+        Feature.windowContains('DeviceMotionEvent'),
+        Feature.windowContains('AccelerometerSensor'),
+        Feature.windowContains('GyroscopeSensor'),
+      ],
       demoPen: 'BodzBg',
       links: [
-        {url: 'https://w3c.github.io/deviceorientation/spec-source-orientation.html#devicemotion', title: 'Specification Draft'},
+        {url: 'https://w3c.github.io/deviceorientation/spec-source-orientation.html#devicemotion', title: 'Device Orientation API Specification Draft'},
+        {url: 'https://w3c.github.io/accelerometer/', title: 'Accelerometer API Specification Draft'},
+        {url: 'https://w3c.github.io/gyroscope/', title: 'Gyroscope API Specification Draft'},
+        {url: 'https://w3c.github.io/sensors/', title: 'Generic Sensor API Specification Draft'},
         {url: 'http://www.html5rocks.com/en/tutorials/device/orientation/', title: 'HTML5 Rocks: This End Up: Using Device Orientation'}
       ]
     }),
