@@ -770,7 +770,7 @@ self.addEventListener('fetch', function (event) {
       name: 'Device Motions',
       description: [`The first-generation device motions support is a part of <b>Device Orientation API</b>. It allows web applications to access the accelerometer data
         expressed as acceleration (in m/s<sup>2</sup>) and gyroscope data expressed as rotation angle change (in &deg;/s) for each of the three dimensions, provided as events.`,
-        `There also exist the newer, separate specifications for each sensor type, based on <b>Generic Sensor API</b> - the <b>Accelerometer Sensor API</b> and <b>Gyroscope Sensor API</b>. Both are expected to be implemented for the first time in Chrome in late 2016.`,
+        `There also exist the newer, separate specifications for each sensor type, based on the <b>Generic Sensor API</b> - the <b>Accelerometer Sensor API</b> and <b>Gyroscope Sensor API</b>. Both are expected to be implemented for the first time in Chrome in late 2016.`,
         `For the detection of the device's static position and orientation, see <a href="/device-orientation.html">Device Orientation</a>.`],
       api: `<p><b>As a part of Device Orientation API</b></p>
       <dl>
@@ -951,7 +951,7 @@ self.addEventListener('fetch', function (event) {
       name: 'Device Orientation',
       description: [`The <b>Device Orientation API</b> allows web applications to access the gyroscope and compass data in order to determine the orientation
         of the user's device in all the three dimensions, expressed in degrees of divergence from the "natural" northbound lie flat position.`,
-        `For the detection of the device's movements, see <a href="/accelerometer.html">Accelerometer</a>.`],
+        `For the detection of the device's movements, see <a href="/accelerometer.html">Device Motions</a>.`],
       api: `<dl>
         <dt><code>window.addEventListener('deviceorientation', listener)</code></dt>
         <dd>An event fired when the significant changes in the device's orientation has occured.</dd>
