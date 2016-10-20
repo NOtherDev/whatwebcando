@@ -233,6 +233,7 @@ self.addEventListener('fetch', function (event) {
   "display": "standalone"
 }</code></pre>
 <p>See also <b><a href="manifest.json" target="_blank">this website's own manifest.json</a></b>.</p>`,
+      caniuse: 'web-app-manifest',
       links: [
         {url: 'https://w3c.github.io/manifest/', title: 'Specification Draft'},
         {
