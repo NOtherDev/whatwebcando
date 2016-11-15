@@ -8,6 +8,8 @@
 // If you want to recursively match all subfolders, use:
 // 'test/spec/**/*.js'
 
+var git = require('git-rev-sync');
+
 module.exports = function (grunt) {
 
   // Time how long tasks take. Can help when optimizing build times
@@ -245,10 +247,16 @@ module.exports = function (grunt) {
           '<%= config.dist %>',
           '<%= config.dist %>/images',
           '<%= config.dist %>/styles'
-        ]
+        ],
+        patterns: {
+          js: [
+            [/'\/([^']+)'/gm, 'Update the js value to reference our revved url']
+          ]
+        }
       },
       html: ['<%= config.dist %>/{,*/}*.html'],
-      css: ['<%= config.dist %>/styles/{,*/}*.css']
+      css: ['<%= config.dist %>/styles/{,*/}*.css'],
+      js: ['<%= config.dist %>/sw.js']
     },
 
     // The following *-min tasks produce minified files in the dist folder
@@ -318,9 +326,18 @@ module.exports = function (grunt) {
     //     }
     //   }
     // },
-    // concat: {
-    //   dist: {}
-    // },
+
+    concat: {
+      sw: {
+        options: {
+          banner: 'const VERSION = \'' + git.short() + '\'; const groups = ',
+          separator: ';\n'
+        },
+
+        src: ['build/groups.json', '<%= config.app %>/scripts/sw.js'],
+        dest: '<%= config.dist %>/sw.js'
+      }
+    },
 
     // Copies remaining files to places other tasks can use
     copy: {
@@ -497,6 +514,11 @@ module.exports = function (grunt) {
     'usemin',
     'staticify',
     'htmlmin'
+  ]);
+
+  grunt.registerTask('serve-dist', [
+    'build',
+    'browserSync:dist'
   ]);
 
   grunt.registerTask('default', [
