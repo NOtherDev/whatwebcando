@@ -37,9 +37,21 @@ this.addEventListener('activate', function (event) {
 });
 
 this.addEventListener('fetch', function (event) {
+  var url = event.request.url;
+  var isPageRegex = /^https:\/\/whatwebcando\.today\/?(.*\.html)?$/
+
   event.respondWith(
     caches.open(VERSION)
       .then(function (cache) {
+        if (isPageRegex.test(url)) {
+  	    // network first, fallback to cache - to make sure html updates like new script & style revved urls are handled
+  	      return fetch(event.request)
+  		    .catch(function () {
+      		  return cache.match(event.request);
+    	    });
+	    }
+
+	    // else cache first, fallback to network
         return cache.match(event.request, {ignoreSearch: true})
           .then(function (response) {
             if (response) {
@@ -48,7 +60,8 @@ this.addEventListener('fetch', function (event) {
 
             return fetch(event.request)
               .then(function (fetchResponse) {
-                if (event.request.url.indexOf('https://raw.githubusercontent.com') === 0) {
+              	// cache already fetched caniuse data
+                if (url.indexOf('https://raw.githubusercontent.com') === 0) {
                   cache.put(event.request, fetchResponse.clone());
                 }
                 return fetchResponse;
