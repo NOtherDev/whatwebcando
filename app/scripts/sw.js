@@ -40,7 +40,7 @@ this.addEventListener('fetch', function (event) {
   event.respondWith(
     caches.open(VERSION)
       .then(function (cache) {
-        if (request.mode === 'navigate') {
+        if (event.request.mode === 'navigate') {
   	    // network first, fallback to cache - to make sure html updates like new script & style revved urls are handled
   	      return fetch(event.request)
   		    .catch(function () {
