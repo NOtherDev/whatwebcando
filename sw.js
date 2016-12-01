@@ -1,4 +1,4 @@
-const VERSION = '2f5af60'; const groups = [
+const VERSION = 'b317ce7'; const groups = [
   {
     "heading": "Native Behaviors",
     "features": [
@@ -268,7 +268,7 @@ this.addEventListener('fetch', function (event) {
   event.respondWith(
     caches.open(VERSION)
       .then(function (cache) {
-        if (request.mode === 'navigate') {
+        if (event.request.mode === 'navigate') {
   	    // network first, fallback to cache - to make sure html updates like new script & style revved urls are handled
   	      return fetch(event.request)
   		    .catch(function () {
