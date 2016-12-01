@@ -1,4 +1,4 @@
-const VERSION = '578c4a2'; const groups = [
+const VERSION = 'b449714'; const groups = [
   {
     "heading": "Native Behaviors",
     "features": [
@@ -233,7 +233,7 @@ this.addEventListener('install', function (event) {
       let files = [
         '/',
         '/index.html',
-        '/scripts/main.8ebee9f1.js',
+        '/scripts/main.0c7074c1.js',
         '/scripts/vendor.efb5208a.js',
         '/styles/main.5f3293b6.css',
         '/styles/vendor.48a8ebac.css',
@@ -265,13 +265,10 @@ this.addEventListener('activate', function (event) {
 });
 
 this.addEventListener('fetch', function (event) {
-  var url = event.request.url;
-  var isPageRegex = /^https:\/\/whatwebcando\.today\/?(.*\.html)?$/
-
   event.respondWith(
     caches.open(VERSION)
       .then(function (cache) {
-        if (isPageRegex.test(url)) {
+        if (request.mode === 'navigate') {
   	    // network first, fallback to cache - to make sure html updates like new script & style revved urls are handled
   	      return fetch(event.request)
   		    .catch(function () {
@@ -289,7 +286,7 @@ this.addEventListener('fetch', function (event) {
             return fetch(event.request)
               .then(function (fetchResponse) {
               	// cache already fetched caniuse data
-                if (url.indexOf('https://raw.githubusercontent.com') === 0) {
+                if (fetchResponse && fetchResponse.status === 200 && event.request.url.indexOf('https://raw.githubusercontent.com') === 0) {
                   cache.put(event.request, fetchResponse.clone());
                 }
                 return fetchResponse;
