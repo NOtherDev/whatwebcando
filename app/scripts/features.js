@@ -126,7 +126,6 @@
       })
   );
 });</code></pre>
-        <p>See also <b><a href="sw.js" target="_blank">this website's own Service Worker implementation</a></b>.</p>
         <dl>
           <dt><code>self.addEventListener('install', listener)</code></dt>
           <dd>An event fired within the Service Worker when it is being installed. Useful to prefetch the resources needed in the offline mode and to prefill the cache.</dd>
@@ -180,7 +179,8 @@ self.addEventListener('fetch', function (event) {
           <dt><code>caches.match(event.request)</code></dt>
           <dd>Returns a <code>Promise</code> resolved when the <code>fetch</code> event represents a request to the resource already cached within
             the Service Worker's cache.</dd>
-      </dl>`,
+      </dl>
+      <p>See also <b><a href="sw.js" target="_blank">this website's own Service Worker implementation</a></b>.</p>`,
       caniuse: 'serviceworkers',
       tests: [Feature.navigatorContains('serviceWorker')],
       links: [
