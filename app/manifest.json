@@ -1,9 +1,12 @@
 {
   "background_color": "#ffffff",
+  "theme_color": "#ffffff",
   "name": "What Web Can Do Today",
   "short_name": "What Web Can Do",
+  "description": "Can I rely on the Web Platform features to build my app? An overview of the device integration HTML5 APIs",
   "display": "standalone",
   "start_url": "/",
+  "lang": "en-US",
   "icons": [
     {
       "src": "icon-32x32.png",
