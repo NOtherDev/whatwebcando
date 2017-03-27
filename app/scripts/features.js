@@ -1075,6 +1075,7 @@ self.addEventListener('fetch', function (event) {
       demoPen: 'AXzVqV',
       links: [
         {url: 'https://w3c.github.io/mediacapture-image/', title: 'W3C Specification Draft'},
+        {url: 'https://developers.google.com/web/updates/2016/12/imagecapture', title: 'Google Developers: Take Photos and Control Camera Settings'},
         {url: 'https://rawgit.com/Miguelao/demos/master/imagecapture.html', title: 'Demo'}
       ]
     }),
