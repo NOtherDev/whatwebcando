@@ -332,7 +332,7 @@ self.addEventListener('fetch', function (event) {
       name: 'NFC',
       description: [
         `The <b>Web NFC API</b> is a low-level API allowing web applications to access and exchange the data with the Near-Field Communication devices, such as NFC tags.`,
-        `Current support is limited to Firefox OS applications, where the implementation is experimental, <code>moz</code>-prefixed and doesn't follow the current state of the specification draft. The first experimental implementation in Chromium is expected to be available late 2016.`
+        `Current support is limited to an experimental implementation in Chrome, available behind an "Experimental Web Platform Features" on Android. There was also Firefox OS experimental implementation that is <code>moz</code>-prefixed and doesn't follow the current state of the specification draft.`
       ],
       api: `<dl>
         <dt><code>navigator.nfc.watch(callback, options)</code></dt>
