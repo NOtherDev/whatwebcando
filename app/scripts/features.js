@@ -660,7 +660,7 @@ self.addEventListener('fetch', function (event) {
         {url: 'https://w3c.github.io/ServiceWorker/v1/#cache', title: 'Cache API Specification'},
         {url: 'https://developer.mozilla.org/en-US/docs/Web/API/Cache', title: 'MDN: Cache API'},
         {url: 'https://storage.spec.whatwg.org/', title: 'Storage API Specification'},
-        {url: 'https://developer.mozilla.org/en-US/docs/Web/API/Storage_API', title: 'MDN: Storage API'}
+        {url: 'https://developers.google.com/web/updates/2016/06/persistent-storage', title: 'Google Developers: Persistent Storage'}
       ]
     }),
 
