@@ -751,31 +751,26 @@ self.addEventListener('fetch', function (event) {
       id: 'storage-quota',
       name: 'Storage Quotas',
       description: [
-        `The <b>Quota Management API</b> allows web applications to query the system for the size of the storage space currently used and
-        available for the application and to request for more storage space, if needed. The API maintains a separation between the temporary
-        and persistent storage. The temporary storage, to be used by the Application Cache and other non-critical data, might be removed by the browser
-        whenever it decides to do so, while persistent storage might not.`,
-        `The current support is limited to Google Chrome that implements <code>webkit-</code>prefixed older, incompatible version of the specification draft.`
+        `There were several attempts made, mostly by Google Chrome, to allow web applications to query the system for the size of the storage space
+         currently used and available for the application. The most recent one, <b>Quota Estimation API</b>, is also in development in Firefox as of June 2017.`,
+        `The older implementation, supported only in Chrome with <code>webkit-</code> prefix, maintained a separation between the temporary and persistent storage
+         and allowed the web applications to request for more storage space, if needed.`
       ],
       api: `<dl>
-        <dt><code>navigator.storageQuota.queryInfo(storageType)</code></dt>
-        <dd>Returns a <code>Promise</code> resolved with the storage info for the storage type requested
-          (<code>temporary</code> or <code>persistent</code>).</dd>
-        <dt><code>storageInfo.usage</code></dt>
-        <dd>Returns the size of the storage currently used by the application, in bytes.</dd>
-        <dt><code>storageInfo.quota</code></dt>
-        <dd>Returns the total size of the storage available for the application, in bytes, including already used.</dd>
-        <dt><code>navigator.storageQuota.requestPersistentQuota(size)</code></dt>
-        <dd>Requests for the increase of the quota available up to specified size, in bytes. The browser might not necessarily grant the quota requested
-         or it might ask the user for the permission to do so.</dd>
+        <dt><code>navigator.storage.estimate()</code></dt>
+        <dd>Returns a <code>Promise</code> resolved with the storage space estimated values; see below.</dd>
+        <dt><code>estimate.usage</code></dt>
+        <dd>Returns the estimated size of the storage currently used by the application, in bytes.</dd>
+        <dt><code>estimate.quota</code></dt>
+        <dd>Returns the estimated total size of the storage available for the application, in bytes, including already used.</dd>
       </dl>`,
       tests: [
-        Feature.navigatorContains('storageQuota'),
-        Feature.navigatorContains('persistentStorage')
+        Feature.containedIn('navigator.storage', (global.navigator || {}).storage, 'estimate'),
+        Feature.navigatorContains('persistentStorage', false)
       ],
+      demoPen: 'LLyLpG',
       links: [
-        {url: 'https://w3c.github.io/quota-api/', title: 'Specification Draft'},
-        {url: 'https://developer.chrome.com/apps/offline_storage', title: 'Details on Chrome implementation'},
+        {url: 'https://storage.spec.whatwg.org/', title: 'Specification Draft'},
         {url: 'http://www.html5rocks.com/en/tutorials/offline/quota-research/', title: 'Quota limitations analysis'}
       ]
     }),
