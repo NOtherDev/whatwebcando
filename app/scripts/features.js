@@ -1089,23 +1089,34 @@ self.addEventListener('fetch', function (event) {
     wakeLock: new Feature({
       id: 'wake-lock',
       name: 'Wake Lock',
-      description: [`The <b>Wake Lock API</b> allows web applications to prevent the resource such as the screen, WiFi connection or CPU from becoming
-        available as long as the application holds a lock for that resource. The purpose of the API is to let the user or the application to complete
-        the activity uninterrupted.`,
-        `At the moment there are two distinct technologies named Wake Lock API. One is a non-standard implementation available only on Firefox OS,
-        while the second is a W3C proposal at the stage of initial drafts, with no vendor support yet.`],
-      api: `<dl>
-        <dt><code>lock = navigator.requestWakeLock('screen')</code></dt>
-        <dd>Acquires a wake lock on the resource specified, such as <code>screen</code>, <code>wifi</code> or <code>cpu</code> (Firefox OS implementation).</dd>
-        <dt><code>lock.unlock()</code></dt>
-        <dd>Releases the existing lock (Firefox OS implementation),</dd>
+      description: [`The <b>Wake Lock API</b> allows web applications to prevent the resource such as the screen or system from becoming
+        unavailable as long as the application holds a lock for that resource. The purpose of the API is to let the user or the application to complete
+        the ongoing long activity - like navigation or reading - uninterrupted.`,
+        `The only available implementation, available behind an "Experimental Web Platform Features" flag in Google Chrome on desktop, is just a boolean flag controllable by the application, 
+        based on the previous version of the specification. It is now considered too open for abuse and is lacking user consent, so the recent specification draft
+        (published June 2017) proposes more explicit approach. It is not implemented by any vendor, yet.`],
+      api: `<p><b>Newer specification</b></p>
+      <dl>
+        <dt><code>navigator.getWakeLock('screen')</code></dt>
+        <dd>Requests a wake lock managing object on the resource specified, such as <code>screen</code> or <code>system</code>. 
+        Returns a <code>Promise</code> with the lock managing object.</dd>
+        <dt><code>lockRequest = lock.createRequest()</code></dt>
+        <dd>Activates the wake lock on the previously acquired managing object.</dd>
+        <dt><code>lockRequest.cancel()</code></dt>
+        <dd>Releases the existing lock.</dd>
+      </dl>
+      <p><b>Older specification</b></p>
+      <dl>
         <dt><code>screen.keepAwake = true</code></dt>
-        <dd>The property allowing to acquire a screen wake lock when set to <code>true</code> and release it when set to <code>false</code> (W3C proposal).</dd>
+        <dd>The property allowing to acquire a screen wake lock when set to <code>true</code> and release it when set to <code>false</code>.</dd>
       </dl>`,
-      tests: [Feature.navigatorContains('requestWakeLock')],
+      demoPen: 'XggJKK',
+      tests: [
+        Feature.containedIn('screen', global.screen, 'keepAwake'),
+        Feature.navigatorContains('getWakeLock')
+      ],
       links: [
-        {url: 'https://w3c.github.io/wake-lock/', title: 'W3C Specification Draft'},
-        {url: 'https://developer.mozilla.org/en-US/docs/Web/API/Wake_Lock_API', title: 'MDN Documentation: Wake Lock API on Firefox OS'}
+        {url: 'https://w3c.github.io/wake-lock/', title: 'W3C Specification Draft'}
       ]
     }),
 
