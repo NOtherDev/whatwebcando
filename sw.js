@@ -1,4 +1,4 @@
-const VERSION = '8977fb3'; const groups = [
+const VERSION = '78a8478'; const groups = [
   {
     "heading": "Native Behaviors",
     "features": [
@@ -233,7 +233,7 @@ this.addEventListener('install', function (event) {
       let files = [
         '/',
         '/index.html',
-        '/scripts/main.33c236f5.js',
+        '/scripts/main.bdfea4e9.js',
         '/scripts/vendor.f1fab690.js',
         '/styles/main.b1119fb2.css',
         '/styles/vendor.5d38139c.css',
