@@ -215,7 +215,8 @@ self.addEventListener('fetch', function (event) {
        get non-obtrusive "add to home screen" banners in most Android browsers.`,
        `Browser-assisted adding to the home screen is also possible on iOS using <a href="https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html" target="_blank">non-standard Apple meta tags</a>
        describing icons and allowing to run without the Safari UI (standalone mode).`],
-      api: `<pre><code>{
+      api: `<p><b>Manifest Elements</b></p>
+<pre><code>{
   "short_name": "Example App",
   "name": "The Example Application",
   "icons": [
@@ -233,21 +234,30 @@ self.addEventListener('fetch', function (event) {
   "start_url": "index.html",
   "display": "standalone"
 }</code></pre>
-<p>See also <b><a href="manifest.json" target="_blank">this website's own manifest.json</a></b>.</p>`,
+<p>See also <b><a href="manifest.json" target="_blank">this website's own manifest.json</a></b>.</p>
+<p><b>Install Banner API</b></p>
+<dl>
+  <dt><code>window.addEventListener('beforeinstallprompt')</code></dt>
+  <dd>An event fired immediately before the browser decides to present the "add to home screen" banner to the user. Allows tracking the user's decision,
+  delaying or preventing the banner.</dd>
+</dl>`,
       caniuse: 'web-app-manifest',
+      tests: [
+        Feature.windowContains('BeforeInstallPromptEvent')
+      ],
       links: [
         {url: 'https://w3c.github.io/manifest/', title: 'Specification Draft'},
-        {
-          url: 'https://developers.google.com/web/fundamentals/device-access/stickyness/?hl=en',
-          title: 'Device Access & Integration: Add To Home Screen'
-        },
         {
           url: 'https://developers.google.com/web/updates/2014/11/Support-for-installable-web-apps-with-webapp-manifest-in-chrome-38-for-Android?hl=en',
           title: 'Installable Web Apps with the WebApp Manifest in Chrome for Android'
         },
         {url: 'http://html5doctor.com/web-manifest-specification/', title: 'HTML5 Doctor: The Web Manifest specification'},
         {url: 'http://brucelawson.github.io/manifest/', title: 'Manifest Generator by Bruce Lawson'},
-        {url: 'https://pwa.rocks/', title: 'A selection of Progressive Web Apps'}
+        {url: 'https://pwa.rocks/', title: 'A selection of Progressive Web Apps'},
+        {
+          url: 'https://developers.google.com/web/fundamentals/engage-and-retain/app-install-banners/',
+          title: 'Google Developers: Web App Install Banners'
+        }
       ]
     }),
 
