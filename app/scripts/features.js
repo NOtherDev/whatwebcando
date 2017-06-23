@@ -1060,8 +1060,11 @@ self.addEventListener('fetch', function (event) {
     orientationLock: new Feature({
       id: 'orientation-lock',
       name: 'Screen Orientation & Lock',
-      description: `The <b>Screen Orientation API</b> allows web applications to get the information about the current orientation of the document
+      description: [`The <b>Screen Orientation API</b> allows web applications to get the information about the current orientation of the document
         (portrait or landscape) as well as to lock the screen orientation in a requested state.`,
+        `The current version of the specification defines this feature fully within <code>window.screen.orientation</code> object. The previous version,
+        still available in Microsoft Edge as of June 2017, separated the orientation lock to <code>window.screen.lockOrientation</code>.`
+      ],
       api: `<dl>
         <dt><code>window.screen.orientation.type</code></dt>
         <dd>Returns the current screen orientation type as one of <code>portrait-primary</code>, <code>portrait-secondary</code> (upside down),
@@ -1077,7 +1080,7 @@ self.addEventListener('fetch', function (event) {
       demoPen: 'EVbpeX',
       tests: [
         Feature.containedIn('screen', global.screen, 'orientation'),
-        Feature.containedIn('screen', global.screen, 'lockOrientation')
+        Feature.containedIn('screen', global.screen, 'lockOrientation', false)
       ],
       links: [
         {url: 'https://w3c.github.io/screen-orientation/', title: 'Specification Draft'},
