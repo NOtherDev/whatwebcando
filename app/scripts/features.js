@@ -310,9 +310,7 @@ self.addEventListener('fetch', function (event) {
       id: 'bluetooth',
       name: 'Bluetooth',
       description: [
-        `The <b>Web Bluetooth API</b> is a low-level API allowing web applications to access the services exposed by nearby Bluetooth-enabled devices.`,
-        `Current support is limited to a partial and experimental (flag-disabled by default) implementation in Google Chrome 45+ on ChromeOS, Android M, Linux and Mac.
-        It might be enabled for specific domains using <a href="https://github.com/jpchase/OriginTrials/blob/gh-pages/developer-guide.md" target="_blank">Origin Trials</a>.`
+        `The <b>Web Bluetooth API</b> is a low-level API allowing web applications to access the services exposed by nearby Bluetooth-enabled devices.`
       ],
       api: `<dl>
         <dt><code>navigator.bluetooth.requestDevice(serviceFilters)</code></dt>
