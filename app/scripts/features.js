@@ -395,8 +395,8 @@ self.addEventListener('fetch', function (event) {
     ambientLight: new Feature({
       id: 'ambient-light',
       name: 'Ambient Light',
-      description: [`The <b>Ambient Light API</b> allows web applications to access the light intensity level measured by the device's light sensor.`,
-        `The first approach to supporting light intensity sensor on the web - as a standalone API - was implemented in Firefox. Since then the specification was rewritten to make use of the new <b>Generic Sensors API</b>, but no vendor implemented that spec as of September 2016.`],
+      description: [`The <b>Ambient Light API</b> allows web applications to access the light intensity level measured by the device's light sensor, normally built-in with the device's camera.`,
+        `The first approach to supporting light intensity sensor on the web - as a standalone API - was implemented in Firefox back in 2013. Since then the specification was rewritten to make use of the new <b>Generic Sensors API</b>. This flavor, as of summer 2017, is implemented in Microsoft Edge and - behind the "Experimental Web Platform Features" flag - in Google Chrome.`],
       api: `<p><b>The old, standalone API</b></p>
       <dl>
         <dt><code>window.addEventListener('devicelight', listener)</code></dt>
@@ -406,7 +406,7 @@ self.addEventListener('fetch', function (event) {
       <dl>
         <dt><code>sensor = new AmbientLightSensor()</code></dt>
         <dd>Creates an object serving as an accessor to the light intensity sensor readings.</dd>
-        <dt><code>sensor.addEventListener('change', listener)</code></dt>
+        <dt><code>sensor.addEventListener('reading', listener)</code></dt>
         <dd>An event fired when the light intensity has changed, with <code>event.reading.illuminance</code> property containing the light intensity expressed in lux.</dd>
         <dt><code>sensor.start()</code></dt>
         <dd>Starts listening for the sensor readings.</dd>
