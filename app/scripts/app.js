@@ -1,8 +1,6 @@
 (function (container) {
   'use strict';
 
-  $.material.ripples();
-
   let notifyPageChanged = path => {
     if (window.ga) {
       window.ga('set', 'page', path);
