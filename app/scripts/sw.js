@@ -8,9 +8,11 @@ this.addEventListener('install', function (event) {
         '/scripts/main.js',
         '/scripts/vendor.js',
         '/styles/main.css',
+        '/styles/layout.css',
         '/styles/vendor.css',
         '/images/logo.svg',
-        '/fonts/Material-Design-Icons.woff'
+        '/fonts/Material-Design-Icons.woff',
+        'https://fonts.gstatic.com/s/lato/v13/MDadn8DQ_3oT6kvnUq_2r_esZW2xOQ-xsNqO47m55DA.woff2'
       ];
 
       groups.forEach(function (group) {
