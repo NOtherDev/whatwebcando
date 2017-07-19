@@ -22,12 +22,6 @@
       /* eslint-disable no-underscore-dangle */
       if (feature.demoPen && window.__CPEmbed) {
         window.__CPEmbed();
-
-        if (!window.location.protocol.startsWith('https')) {
-          // force CodePen frame in HTTPS, even if WWCD isn't
-          let $penFrame = $('iframe.cp_embed_iframe');
-          $penFrame.attr('src', `https:${$penFrame.attr('src')}`);
-        }
       }
       /* eslint-enable no-underscore-dangle */
     };
@@ -59,8 +53,8 @@
     };
 
     const setAccesibilityFeatures = () => {
-      $('.features-list .btn').attr('tabindex', '-1');
-      $('.hide-on-feature-page').attr('aria-expanded', 'false');
+      $$('.features-list .btn').forEach(n => n.setAttribute('tabindex', '-1'));
+      $$('.hide-on-feature-page').forEach(n => n.setAttribute('aria-expanded', 'false'));
     };
 
     const initializeFeatureBoxElements = caniuseReportPromise => {
@@ -75,16 +69,27 @@
     };
 
     let $target = templateEngine.targetElementFor(prefix);
-    $target.one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', () => {
-      if ($target.height()) {
-        let heightCorrectionForNavbar = $('.navbar').outerHeight(true);
-        $('html,body').animate({scrollTop: $target.offset().top - heightCorrectionForNavbar}, 500);
+
+    const onTransitionEndEvents = 'webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend'.split(' ');
+    const onTransitionEnd = () => {
+      if ($target.offsetHeight) {
+        let heightCorrectionForNavbar = outerHeight(document.querySelector('.navbar'));
+        let targetOffsetTop = $target.getBoundingClientRect().top + window.pageYOffset;
+        window.scrollTo({left: 0, top: targetOffsetTop - heightCorrectionForNavbar, behavior: 'smooth'});
       }
-    });
+
+      for (let event of onTransitionEndEvents) {
+        $target.removeEventListener(event, onTransitionEnd);
+      }
+    };
+
+    for (let event of onTransitionEndEvents) {
+      $target.addEventListener(event, onTransitionEnd);
+    }
 
     let caniuseReportPromise = beginFetchingCaniuseReport();
-    templateEngine.run(prefix, {feature: feature})
-      .then(() => initializeFeatureBoxElements(caniuseReportPromise));
+    templateEngine.run(prefix, {feature: feature});
+    initializeFeatureBoxElements(caniuseReportPromise);
   };
 
   container.configure(register => register.singleton('featurePageCtrl', featurePageCtrl));

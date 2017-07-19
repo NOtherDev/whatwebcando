@@ -14,7 +14,7 @@
         title="${feature.name} is not available in your current browser" aria-label="Not available in your browser"></i>`;
     }
 
-    $('.legend').show();
+    document.querySelector('.legend').style.display = 'block';
   };
 
   let addFeatureSupportInfos = function (features) {
@@ -23,8 +23,8 @@
 
   let indexPageCtrl = function ({templateEngine, features}) {
     templateEngine.annotateBody('features-list');
-    $('.features-list .btn').removeAttr('tabindex');
-    $('.hide-on-feature-page').attr('aria-expanded', 'true');
+    $$('.features-list .btn').forEach(n => n.removeAttribute('tabindex'));
+    $$('.hide-on-feature-page').forEach(n => n.setAttribute('aria-expanded', 'true'));
 
     if (!supportInfosAdded) {
       addFeatureSupportInfos(features);

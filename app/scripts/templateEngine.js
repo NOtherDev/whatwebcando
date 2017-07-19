@@ -18,35 +18,36 @@
     }
 
     $compile(prefix, context = {}) {
-      let template = Handlebars.compile(this.templateFor(prefix).html());
+      let template = Handlebars.compile(this.templateFor(prefix).innerHTML);
       let compiled = new CompiledTemplate(template(context));
       return compiled.dom;
     }
 
     annotateBody(prefix) {
       let newBodyClass = `page-${prefix}`;
-      $('body').removeClass(this.$bodyClass).addClass(newBodyClass);
+      let $body = document.querySelector('body');
+      $body.className = $body.className.replace(this.$bodyClass, newBodyClass);
       this.$bodyClass = newBodyClass;
     }
 
     run(prefix, context = {}) {
       this.annotateBody(prefix);
-      return this.targetElementFor(prefix).html(this.$compileMemoized(prefix, context)).promise();
+      this.targetElementFor(prefix).innerHTML = this.$compileMemoized(prefix, context);
     }
 
     templateFor(prefix) {
       if (!this.$cache[prefix]) {
-        this.$cache[prefix] = this.templateElementFor(prefix).clone();
+        this.$cache[prefix] = this.templateElementFor(prefix).cloneNode(true);
       }
       return this.$cache[prefix];
     }
 
     templateElementFor(prefix) {
-      return $(`\.${prefix}-template`);
+      return document.querySelector(`\.${prefix}-template`);
     }
 
     targetElementFor(prefix) {
-      return $(`\.${prefix}-target`);
+      return document.querySelector(`\.${prefix}-target`);
     }
   }
 
