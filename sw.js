@@ -1,4 +1,4 @@
-const VERSION = 'e134f76'; const groups = [
+const VERSION = 'c90f7aa'; const groups = [
   {
     "heading": "Native Behaviors",
     "features": [
@@ -236,9 +236,11 @@ this.addEventListener('install', function (event) {
         '/scripts/main.d7c4165b.js',
         '/scripts/vendor.a3e03746.js',
         '/styles/main.c4577264.css',
+        '/styles/layout.b8fde942.css',
         '/styles/vendor.ee939541.css',
         '/images/logo.svg',
-        '/fonts/Material-Design-Icons.woff'
+        '/fonts/Material-Design-Icons.woff',
+        'https://fonts.gstatic.com/s/lato/v13/MDadn8DQ_3oT6kvnUq_2r_esZW2xOQ-xsNqO47m55DA.woff2'
       ];
 
       groups.forEach(function (group) {
