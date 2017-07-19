@@ -23,6 +23,11 @@
     "bootstrap-material-design": {
       "main": []
     },
+    "chartist": {
+      "main": [
+        "dist/chartist.min.js"
+      ]
+    },
     "memoize.js": {
       "main": [
         "memoize.js"
