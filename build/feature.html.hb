@@ -33,7 +33,7 @@
       </section>
       {{/if}}
 
-      {{#if feature.caniuseReport}}
+      {{#if feature.caniuseKey}}
       <section aria-hidden="true">
         <h3>Browser support</h3>
         <div class="caniuse-report clearfix">

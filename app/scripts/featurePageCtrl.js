@@ -4,19 +4,21 @@
   let featurePageCtrl = function (feature, {templateEngine, CaniuseReportFetch}) {
     const prefix = 'feature';
 
-    let collectFeatureBoxElements = function *() {
+    const beginFetchingCaniuseReport = () => {
       if (feature.caniuseKey) {
-        yield new CaniuseReportFetch(feature).fetch();
+        return new CaniuseReportFetch(feature).fetch();
       }
+
+      return Promise.resolve();
     };
 
-    let initHighlight = () => {
+    const initHighlight = () => {
       if (feature.api) {
         Prism.highlightAll();
       }
     };
 
-    let initCodePen = () => {
+    const initCodePen = () => {
       /* eslint-disable no-underscore-dangle */
       if (feature.demoPen && window.__CPEmbed) {
         window.__CPEmbed();
@@ -30,7 +32,7 @@
       /* eslint-enable no-underscore-dangle */
     };
 
-    let initTests = () => {
+    const initTests = () => {
       let testsContainer = document.getElementById('tests-placeholder');
       if (feature.tests.length) {
         let tests = feature.tests.map(test => {
@@ -56,14 +58,14 @@
       }
     };
 
-    let setAccesibilityFeatures = () => {
+    const setAccesibilityFeatures = () => {
       $('.features-list .btn').attr('tabindex', '-1');
       $('.hide-on-feature-page').attr('aria-expanded', 'false');
     };
 
-    let initializeFeatureBoxElements = function *() {
-      if (feature.caniuseReport) {
-        yield feature.caniuseReport.initVisuals();
+    const initializeFeatureBoxElements = caniuseReportPromise => {
+      if (feature.caniuseKey) {
+        caniuseReportPromise.then(() => feature.caniuseReport.initVisuals());
       }
 
       initHighlight();
@@ -80,9 +82,9 @@
       }
     });
 
-    Promise.all([...collectFeatureBoxElements()])
-      .then(() => templateEngine.run(prefix, {feature: feature}))
-      .then(() => Promise.all([...initializeFeatureBoxElements()]));
+    let caniuseReportPromise = beginFetchingCaniuseReport();
+    templateEngine.run(prefix, {feature: feature})
+      .then(() => initializeFeatureBoxElements(caniuseReportPromise));
   };
 
   container.configure(register => register.singleton('featurePageCtrl', featurePageCtrl));
