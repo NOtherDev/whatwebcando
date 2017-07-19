@@ -42,10 +42,6 @@ module.exports = function (grunt) {
         files: ['<%= config.app %>/scripts/{,*/}*.js'],
         tasks: ['babel:dist']
       },
-      babelTest: {
-        files: ['test/spec/{,*/}*.js'],
-        tasks: ['babel:test', 'test:watch']
-      },
       gruntfile: {
         files: ['Gruntfile.js']
       },
@@ -59,41 +55,24 @@ module.exports = function (grunt) {
       }
     },
 
-    browserSync: {
+    connect: {
       options: {
-        notify: false,
-        background: true
+        port: 3000,
+        hostname: 'localhost',
+        keepalive: true
       },
       server: {
         options: {
-          background: false,
-          server: {
-            baseDir: ['.tmp', config.dist],
-            routes: {
-              '/bower_components': './bower_components',
-              '/images': './' + config.app + '/images'
-            }
-          }
-        }
-      },
-      test: {
-        options: {
-          port: 9001,
-          open: false,
-          logLevel: 'silent',
-          host: 'localhost',
-          server: {
-            baseDir: ['.tmp', './test', config.app],
-            routes: {
-              '/bower_components': './bower_components'
-            }
-          }
+          base: [
+            '',
+            '.tmp',
+            '<%= config.app %>'
+          ]
         }
       },
       dist: {
         options: {
-          background: false,
-          server: '<%= config.dist %>'
+          base: '<%= config.dist %>'
         }
       }
     },
@@ -122,25 +101,7 @@ module.exports = function (grunt) {
         'Gruntfile.js',
         '<%= config.app %>/scripts/{,*/}*.js',
         '!<%= config.app %>/scripts/vendor/*'
-      ],
-      test: {
-        options: {
-          configFile: 'test/.eslintrc'
-        },
-        src: [
-          'test/spec/{,*/}*.js'
-        ]
-      }
-    },
-
-    // Mocha testing framework configuration options
-    mocha: {
-      all: {
-        options: {
-          run: true,
-          urls: ['http://<%= browserSync.test.options.host %>:<%= browserSync.test.options.port %>/index.html']
-        }
-      }
+      ]
     },
 
     // Compiles ES6 with Babel
@@ -154,15 +115,6 @@ module.exports = function (grunt) {
           cwd: '<%= config.app %>/scripts',
           src: '{,*/}*.js',
           dest: '.tmp/scripts',
-          ext: '.js'
-        }]
-      },
-      test: {
-        files: [{
-          expand: true,
-          cwd: 'test/spec',
-          src: '{,*/}*.js',
-          dest: '.tmp/spec',
           ext: '.js'
         }]
       }
@@ -381,9 +333,6 @@ module.exports = function (grunt) {
         'babel:dist',
         'sass'
       ],
-      test: [
-        'babel'
-      ],
       dist: [
         'babel:dist',
         'sass',
@@ -482,23 +431,8 @@ module.exports = function (grunt) {
     'postcss',
     'copy:dist',
     'staticify',
-    'browserSync:server'
+    'connect:server'
   ]);
-
-  grunt.registerTask('test', function (target) {
-    if (target !== 'watch') {
-      grunt.task.run([
-        'clean:server',
-        'concurrent:test',
-        'postcss'
-      ]);
-    }
-
-    grunt.task.run([
-      'browserSync:test',
-      'mocha'
-    ]);
-  });
 
   grunt.registerTask('build', [
     'clean:dist',
@@ -518,12 +452,11 @@ module.exports = function (grunt) {
 
   grunt.registerTask('serve-dist', [
     'build',
-    'browserSync:dist'
+    'connect:dist'
   ]);
 
   grunt.registerTask('default', [
     'newer:eslint',
-    'test',
     'build'
   ]);
 };
