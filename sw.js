@@ -233,10 +233,10 @@ this.addEventListener('install', function (event) {
       let files = [
         '/',
         '/index.html',
-        '/scripts/main.f7e480e2.js',
+        '/scripts/main.45dc76fc.js',
         '/scripts/vendor.d0b6192f.js',
-        '/styles/main.f86b34f0.css',
-        '/styles/vendor.3cca36cc.css',
+        '/styles/main.bf73fd68.css',
+        '/styles/vendor.ee939541.css',
         '/images/logo.svg',
         '/fonts/Material-Design-Icons.woff'
       ];
