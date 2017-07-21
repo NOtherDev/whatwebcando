@@ -7,7 +7,6 @@
     "page": "visionmedia/page.js#~1.6.3",
     "handlebars": "~4.0.10",
     "fetch": "~0.9.0",
-    "babel-polyfill": "~0.0.1",
     "chartist": "~0.9.4",
     "chartist-plugin-tooltip": "~0.0.11",
     "chartist-plugin-axistitle": "CodeYellowBV/chartist-plugin-axistitle#89f3b057a328aaaad7af82bf7ceaea7b4d00c332",
@@ -23,9 +22,7 @@
       "main": []
     },
     "chartist": {
-      "main": [
-        "dist/chartist.min.js"
-      ]
+      "main": []
     },
     "memoize.js": {
       "main": [
