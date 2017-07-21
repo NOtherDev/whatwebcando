@@ -155,16 +155,12 @@
       </footer>
     </div>
 
-    <script class="feature-template" type="text/x-handlebars-template">
-      <!-- process:include build/feature.html.hb --><!-- /process -->
-    </script>
-
     <script src="//assets.codepen.io/assets/embed/ei.js" async></script>
 
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
     <script src="/bower_components/page/page.js"></script>
-    <script src="/bower_components/handlebars/handlebars.js"></script>
+    <script src="/bower_components/handlebars/handlebars.runtime.js"></script>
     <script src="/bower_components/fetch/fetch.js"></script>
     <script src="/bower_components/babel-polyfill/browser-polyfill.js"></script>
     <script src="/bower_components/chartist/dist/chartist.min.js"></script>
@@ -178,6 +174,7 @@
     <!-- endbuild -->
 
     <!-- build:js(.tmp) scripts/main.js -->
+    <script src="scripts/feature.html.js"></script>
     <script src="scripts/utils.js"></script>
     <script src="scripts/container.js"></script>
     <script src="scripts/feature.js"></script>

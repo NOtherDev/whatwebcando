@@ -355,6 +355,17 @@ module.exports = function (grunt) {
         tmpPattern: '<%= config.dist %>/{ID}.html.hb',
         targetPattern: '<%= config.dist %>/{ID}.html'
       }
+    },
+
+    handlebars: {
+      options: {
+        namespace: 'Handlebars.templates'
+      },
+      precompile: {
+        files: {
+          '.tmp/scripts/feature.html.js': 'build/feature.html.hb'
+        }
+      }
     }
   });
 
@@ -437,6 +448,7 @@ module.exports = function (grunt) {
   grunt.registerTask('build', [
     'clean:dist',
     'wiredep',
+    'handlebars:precompile',
     'useminPrepare',
     'concurrent:dist',
     'postcss',

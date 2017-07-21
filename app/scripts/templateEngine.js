@@ -18,7 +18,7 @@
     }
 
     $compile(prefix, context = {}) {
-      let template = Handlebars.compile(this.templateFor(prefix).innerHTML);
+      let template = Handlebars.templates[`build/${prefix}.html.hb`];
       let compiled = new CompiledTemplate(template(context));
       return compiled.dom;
     }
