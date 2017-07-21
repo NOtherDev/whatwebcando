@@ -1,5 +1,6 @@
-
 this.addEventListener('install', function (event) {
+  self.skipWaiting();
+
   event.waitUntil(
     caches.open(VERSION).then(function (cache) {
       let files = [
@@ -38,19 +39,13 @@ this.addEventListener('activate', function (event) {
   );
 });
 
+const isCacheable = request => request.mode === 'navigate' || request.url.indexOf('https://raw.githubusercontent.com') === 0;
+
 this.addEventListener('fetch', function (event) {
   event.respondWith(
     caches.open(VERSION)
       .then(function (cache) {
-        if (event.request.mode === 'navigate') {
-  	    // network first, fallback to cache - to make sure html updates like new script & style revved urls are handled
-  	      return fetch(event.request)
-  		    .catch(function () {
-      		  return cache.match(event.request);
-    	    });
-	    }
-
-	    // else cache first, fallback to network
+        // cache first, fallback to network
         return cache.match(event.request, {ignoreSearch: true})
           .then(function (response) {
             if (response) {
@@ -59,8 +54,8 @@ this.addEventListener('fetch', function (event) {
 
             return fetch(event.request)
               .then(function (fetchResponse) {
-              	// cache already fetched caniuse data
-                if (fetchResponse && fetchResponse.status === 200 && event.request.url.indexOf('https://raw.githubusercontent.com') === 0) {
+                // cache already fetched data
+                if (fetchResponse && fetchResponse.status === 200 && isCacheable(event.request)) {
                   cache.put(event.request, fetchResponse.clone());
                 }
                 return fetchResponse;

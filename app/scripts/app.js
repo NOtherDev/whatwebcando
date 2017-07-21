@@ -1,14 +1,14 @@
 (function (container) {
   'use strict';
 
-  let notifyPageChanged = path => {
+  const notifyPageChanged = path => {
     if (window.ga) {
       window.ga('set', 'page', path);
       window.ga('send', 'pageview');
     }
   };
 
-  let defineRouting = function ({indexPageCtrl, featurePageCtrl, features}) {
+  const defineRouting = ({indexPageCtrl, featurePageCtrl, features}) => {
     let base = location.pathname.split('/');
     base.pop();
     page.base(base.join('/'));
@@ -28,7 +28,7 @@
     page();
   };
 
-  let initializeAndRun = function ({indexPageCtrl}) {
+  const initializeAndRun = ({indexPageCtrl}) => {
     container.resolveAndCall(indexPageCtrl);
     container.resolveAndCall(defineRouting);
   };
@@ -37,9 +37,8 @@
 
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/sw.js')
-      .catch(function (error) {
-        console.warn('SW registration failed with ' + error);
-      });
+      .then(registration => registration.update())
+      .catch(error => console.warn('SW registration failed with ' + error));
   }
 
 })(WWCD.container);
