@@ -101,7 +101,7 @@
         but is now in the process of deprecation due to <a href="http://alistapart.com/article/application-cache-is-a-douchebag" target="_blank">various
         conceptual and design flaws</a>. It is not covered here.`,
         `The modern alternative is called <b>Service Worker</b>. Web applications running on HTTPS can request the browser to install the separate
-        code unit called Service Worker. This unit is then run in the separation from the owning web application, communicating with it via events.
+        code unit called Service Worker. This unit is then run in separation from the owning web application, communicating with it via events.
         Besides being the enabler for multiple complex APIs like <a href="/push-notifications.html">Push Notifications</a>, <a href="/background-sync.html">Background Sync</a>
         or <a href="/geofencing.html">Geofencing</a>, it can work as a fully featured network proxy. It can intercept all the HTTP requests, alter its content or behaviors,
         or - most notably - manage offline caching.`,
