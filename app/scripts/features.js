@@ -1226,7 +1226,7 @@ self.addEventListener('fetch', function (event) {
       description: [`There were several attempts to establish the universal, multi-platform, asynchronous way of data exchange from the web applications to native apps or another web apps and up to date no standardized solution was concieved.`,
         `There are, however, some basic workarounds for sending data to another applications. Native applications can register handlers to receive data from the web apps using special URL prefixes (although differences exist between <a href="https://developer.apple.com/library/ios/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Inter-AppCommunication/Inter-AppCommunication.html#//apple_ref/doc/uid/TP40007072-CH6-SW1" target="_blank">iOS</a> and <a href="https://developer.android.com/training/app-links/index.html" target="_blank">Android</a>). There are also third-party non-standard services that coordinate sharing data between web applications.`,
         `Google Chrome 18 implemented the <b>Web Intents</b> experimental API. It was conceptually based on <a href="https://developer.android.com/guide/components/intents-filters.html" target="_blank">Android Intents</a> system. The apps interested in receiving data were required to be registered in Chrome Web Store and declare the intent support in the manifest file. The apps sending the data were able to invoke the Intent of the particular type and let the system handle the selection of the target application and its proper invocation. The API was removed in Chrome 24 because of various interoperability and usability issues. No other vendor implemented Web Intents.`,
-        `The newest proposal, <b>Web Share API</b>, as of May 2017 implemented in Chrome on Android behind an experimental flag, is much simpler and consists of a method to invoke the platform-specific share mechanism and is limited to sharing named URLs only. There is a complementary <b>Web Share Target API</b> <a href="https://github.com/WICG/web-share-target" target="_blank">in an early design phase</a> to allow registering web applications as the share receivers.`],
+        `The newest implementation, <b>Web Share API</b>, as of September 2017 available in Chrome on Android, is much simpler and consists of a method to invoke the platform-specific share mechanism and is limited to sharing named URLs only. There is a complementary <b>Web Share Target API</b> <a href="https://github.com/WICG/web-share-target" target="_blank">in an early design phase</a> to allow registering web applications as the share receivers.`],
       api: `<p><b>Web Intents API</b></p>
       <dl>
         <dt><code>intent = new Intent(action, type, href)</code></dt>
@@ -1242,6 +1242,7 @@ self.addEventListener('fetch', function (event) {
         <dd>Invokes the system-defined application selection and data share dialog to send the named URL to another application and returns a <code>Promise</code> resolved when the share was successful.</dd>
       </dl>`,
       tests: [Feature.windowContains('Intent', false), Feature.navigatorContains('share', false)],
+      caniuse: 'web-share',
       demoPen: 'kkaLOP',
       links: [
         {url: 'https://www.w3.org/TR/web-intents/', title: 'W3C Working Group Note about Web Intents'},
