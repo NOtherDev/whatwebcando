@@ -834,7 +834,7 @@ self.addEventListener('fetch', function (event) {
       name: 'Device Motions',
       description: [`The first-generation device motions support is a part of <b>Device Orientation API</b>. It allows web applications to access the accelerometer data
         expressed as acceleration (in m/s<sup>2</sup>) and gyroscope data expressed as rotation angle change (in &deg;/s) for each of the three dimensions, provided as events.`,
-        `There also exist the newer, separate specifications for each sensor type, based on the <b>Generic Sensor API</b> - the <b>Accelerometer Sensor API</b> and <b>Gyroscope Sensor API</b>. Both are expected to be implemented for the first time in Chrome in late 2016.`,
+        `There also exist the newer, separate specifications for each sensor type, based on the <b>Generic Sensor API</b> - the <b>Accelerometer Sensor API</b> and <b>Gyroscope Sensor API</b>. They are implemented in Chrome, as of September 2017 available via <a href="https://github.com/GoogleChrome/OriginTrials/blob/gh-pages/developer-guide.md" target="_blank">Origin Trial</a>.`,
         `For the detection of the device's static position and orientation, see <a href="/device-orientation.html">Device Orientation</a>.`],
       api: `<p><b>As a part of Device Orientation API</b></p>
       <dl>
@@ -882,7 +882,8 @@ self.addEventListener('fetch', function (event) {
         {url: 'https://w3c.github.io/accelerometer/', title: 'Accelerometer API Specification Draft'},
         {url: 'https://w3c.github.io/gyroscope/', title: 'Gyroscope API Specification Draft'},
         {url: 'https://w3c.github.io/sensors/', title: 'Generic Sensor API Specification Draft'},
-        {url: 'http://www.html5rocks.com/en/tutorials/device/orientation/', title: 'HTML5 Rocks: This End Up: Using Device Orientation'}
+        {url: 'http://www.html5rocks.com/en/tutorials/device/orientation/', title: 'HTML5 Rocks: This End Up: Using Device Orientation'},
+        {url: 'https://developers.google.com/web/updates/2017/09/sensors-for-the-web', title: 'Google Developers: Sensors For The Web'}
       ]
     }),
 
