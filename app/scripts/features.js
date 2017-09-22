@@ -360,7 +360,7 @@ self.addEventListener('fetch', function (event) {
       id: 'proximity',
       name: 'Proximity Sensors',
       description: [`The <b>Proximity Events API</b> allows web applications to get the access to the data from the device's proximity sensors, detecting whether there is a physical object near the device.`,
-        `The first approach to supporting proximity sensor on the web - as a standalone API - was implemented in Firefox. Since then the specification was rewritten to make use of the new <b>Generic Sensors API</b>, but no vendor implemented that spec as of September 2016.`],
+        `The first approach to supporting proximity sensor on the web - as a standalone API - was implemented in Firefox. Since then the specification was rewritten to make use of the new <b>Generic Sensors API</b>, but no vendor implemented that spec as of September 2017.`],
       api: `<p><b>The old, standalone API</b></p>
       <dl>
         <dt><code>window.addEventListener('deviceproximity', listener)</code></dt>
@@ -372,8 +372,8 @@ self.addEventListener('fetch', function (event) {
       <dl>
         <dt><code>sensor = new ProximitySensor()</code></dt>
         <dd>Creates an object serving as an accessor to the proximity sensor readings.</dd>
-        <dt><code>sensor.addEventListener('change', listener)</code></dt>
-        <dd>An event fired when the physical object proximity has changed, containing approximate distance information in cm (<code>event.reading.distance</code>) and boolean <code>event.reading.near</code> flag.</dd>
+        <dt><code>sensor.addEventListener('reading', listener)</code></dt>
+        <dd>An event fired when the physical object proximity reading has changed, indicating that the sensor object contains updated approximate distance information in cm (<code>sensor.distance</code>) and boolean <code>sensor.near</code> flag.</dd>
         <dt><code>sensor.start()</code></dt>
         <dd>Starts listening for the sensor readings.</dd>
       </dl>`,
@@ -407,7 +407,7 @@ self.addEventListener('fetch', function (event) {
         <dt><code>sensor = new AmbientLightSensor()</code></dt>
         <dd>Creates an object serving as an accessor to the light intensity sensor readings.</dd>
         <dt><code>sensor.addEventListener('reading', listener)</code></dt>
-        <dd>An event fired when the light intensity has changed, with <code>event.reading.illuminance</code> property containing the light intensity expressed in lux.</dd>
+        <dd>An event fired when the light intensity reading has changed, indicating that the sensor object contains updated light intensity expressed in lux, in <code>sensor.illuminance</code> property.</dd>
         <dt><code>sensor.start()</code></dt>
         <dd>Starts listening for the sensor readings.</dd>
       </dl>`,
