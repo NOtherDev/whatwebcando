@@ -834,7 +834,7 @@ self.addEventListener('fetch', function (event) {
       name: 'Device Motions',
       description: [`The first-generation device motions support is a part of <b>Device Orientation API</b>. It allows web applications to access the accelerometer data
         expressed as acceleration (in m/s<sup>2</sup>) and gyroscope data expressed as rotation angle change (in &deg;/s) for each of the three dimensions, provided as events.`,
-        `There also exist the newer, separate specifications for each sensor type, based on the <b>Generic Sensor API</b> - the <b>Accelerometer Sensor API</b> and <b>Gyroscope Sensor API</b>. They are implemented in Chrome, as of September 2017 available via <a href="https://github.com/GoogleChrome/OriginTrials/blob/gh-pages/developer-guide.md" target="_blank">Origin Trial</a>.`,
+        `There also exist the newer, separate specifications for each sensor type, based on the <b>Generic Sensor API</b> - the <b>Accelerometer API</b> and <b>Gyroscope API</b>. They are implemented in Chrome, as of September 2017 available via <a href="https://github.com/GoogleChrome/OriginTrials/blob/gh-pages/developer-guide.md" target="_blank">Origin Trial</a>.`,
         `For the detection of the device's static position and orientation, see <a href="/device-orientation.html">Device Orientation</a>.`],
       api: `<p><b>As a part of Device Orientation API</b></p>
       <dl>
@@ -854,27 +854,27 @@ self.addEventListener('fetch', function (event) {
       </dl>
       <p><b>Accelerometer API</b></p>
       <dl>
-        <dt><code>sensor = new AccelerometerSensor({includeGravity: true})</code></dt>
+        <dt><code>sensor = new Accelerometer({includeGravity: true})</code></dt>
         <dd>Creates an object serving as an accessor to the accelerometer readings and specifying whether the acceleration values should include gravity.</dd>
-        <dt><code>sensor.addEventListener('change', listener)</code></dt>
-        <dd>An event fired when the accelerometer reading has changed, containing acceleration values in m/s<sup>2</sup> for all three axes (<code>event.reading.accelerationX</code>, <code>event.reading.accelerationY</code>, <code>event.reading.accelerationZ</code>).</dd>
+        <dt><code>sensor.addEventListener('reading', listener)</code></dt>
+        <dd>An event fired when the accelerometer reading has changed, indicating that the sensor object contains updated acceleration values in m/s<sup>2</sup> for all three axes (<code>sensor.x</code>, <code>sensor.y</code>, <code>sensor.z</code>).</dd>
         <dt><code>sensor.start()</code></dt>
         <dd>Starts listening for the sensor readings.</dd>
       </dl>
       <p><b>Gyroscope API</b></p>
       <dl>
-        <dt><code>sensor = new GyroscopeSensor()</code></dt>
+        <dt><code>sensor = new Gyroscope()</code></dt>
         <dd>Creates an object serving as an accessor to the gyroscope readings.</dd>
-        <dt><code>sensor.addEventListener('change', listener)</code></dt>
-        <dd>An event fired when the gyroscope reading has changed, containing rotation rates in rad/s for all three axes (<code>event.reading.rotationRateX</code>, <code>event.reading.rotationRateY</code>, <code>event.reading.rotationRateZ</code>).</dd>
+        <dt><code>sensor.addEventListener('reading', listener)</code></dt>
+        <dd>An event fired when the gyroscope reading has changed, indicating that the sensor object contains updated rotation rates in rad/s for all three axes (<code>sensor.x</code>, <code>sensor.y</code>, <code>sensor.z</code>).</dd>
         <dt><code>sensor.start()</code></dt>
         <dd>Starts listening for the sensor readings.</dd>
       </dl>`,
       caniuse: 'deviceorientation',
       tests: [
         Feature.windowContains('DeviceMotionEvent'),
-        Feature.windowContains('AccelerometerSensor'),
-        Feature.windowContains('GyroscopeSensor'),
+        Feature.windowContains('Accelerometer'),
+        Feature.windowContains('Gyroscope'),
       ],
       demoPen: 'BodzBg',
       links: [
