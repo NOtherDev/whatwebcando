@@ -20,9 +20,18 @@
 
     page('/', () => container.resolveAndCall(indexPageCtrl));
 
+    let currentFeature
+
     Object.keys(features).forEach(function (featureId) {
       let feature = features[featureId];
-      page(`/${feature.id}.html`, () => container.resolveAndCall(featurePageCtrl, feature));
+      page(`/${feature.id}.html`, () => {
+        if (currentFeature) {
+          featurePageCtrl.onExit(currentFeature);
+        }
+
+        currentFeature = feature;
+        container.resolveAndCall(featurePageCtrl, feature);
+      });
     });
 
     page();

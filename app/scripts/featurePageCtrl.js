@@ -19,6 +19,10 @@
     };
 
     const initCodePen = () => {
+      if (feature.demo) {
+        cleanAndRunScript(feature.demo.js);
+      }
+
       /* eslint-disable no-underscore-dangle */
       if (feature.demoPen && window.__CPEmbed) {
         window.__CPEmbed();
@@ -90,6 +94,12 @@
     let caniuseReportPromise = beginFetchingCaniuseReport();
     templateEngine.run(prefix, {feature: feature});
     initializeFeatureBoxElements(caniuseReportPromise);
+  };
+
+  featurePageCtrl.onExit = feature => {
+    if (feature.demo && feature.demo.jsOnExit) {
+      runOneOffScript(feature.demo.jsOnExit);
+    }
   };
 
   container.configure(register => register.singleton('featurePageCtrl', featurePageCtrl));

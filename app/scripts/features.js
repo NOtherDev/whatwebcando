@@ -35,6 +35,43 @@
         })
       ],
       demoPen: 'yYJdWO',
+      demo: {
+        html: `<p>
+  <button class="btn btn-default" onclick="notifyMe()">Notify me!</button>
+</p>
+
+<p><small>Based on demo from <a href="https://developer.mozilla.org/en-US/docs/Web/API/notification">MDN</a>.</small></p>`,
+        js: `function showNotification() {
+  try {
+    var notification = new Notification("Hi there!");
+  } catch (err) {
+    alert('Notification API not available: ' + err);
+  }
+}
+
+function notifyMe() {
+  if (!("Notification" in window)) {
+    alert('Notification API not supported.');
+    return;
+  }
+
+  // Let's check whether notification permissions have already been granted
+  else if (Notification.permission === "granted") {
+    // If it's okay let's create a notification
+    showNotification();
+  }
+
+  // Otherwise, we need to ask the user for permission
+  else if (Notification.permission !== 'denied') {
+    Notification.requestPermission(function (permission) {
+      // If the user accepts, let's create a notification
+      if (permission === "granted") {
+        showNotification();
+      }
+    });
+  }
+}`
+      },
       links: [
         {url: 'http://www.w3.org/TR/notifications/', title: 'Specification'},
         {url: 'https://developer.mozilla.org/en-US/docs/Web/API/Notifications_API', title: 'MDN: Notifications API'},
@@ -277,6 +314,44 @@ self.addEventListener('fetch', function (event) {
       </dl>`,
       caniuse: 'pagevisibility',
       demoPen: 'avBpOb',
+      demo: {
+        html: `<p>Switch the browser tab to see the changes.</p>
+<p>Initial page visibility was <b id="status">unknown</b>.</p>
+<div id="target"></div>
+<p><small>Based on demo from <a href="https://developer.mozilla.org/en-US/docs/Web/API/Page_Visibility_API">MDN</a>.</small></p>`,
+        js: `var hidden, visibilityChange;
+if (typeof document.hidden !== "undefined") {
+  hidden = "hidden";
+  visibilityChange = "visibilitychange";
+} else if (typeof document.mozHidden !== "undefined") {
+  hidden = "mozHidden";
+  visibilityChange = "mozvisibilitychange";
+} else if (typeof document.msHidden !== "undefined") {
+  hidden = "msHidden";
+  visibilityChange = "msvisibilitychange";
+} else if (typeof document.webkitHidden !== "undefined") {
+  hidden = "webkitHidden";
+  visibilityChange = "webkitvisibilitychange";
+} else {
+  alert('Page Visibility API not supported.');
+}
+
+var target = document.getElementById('target');
+
+function handleVisibilityChange() {
+  var timeBadge = new Date().toTimeString().split(' ')[0];
+  var newState = document.createElement('p');
+  newState.innerHTML = '<span class="badge">' + timeBadge + '</span> Page visibility changed to <b>' + (document[hidden] ? 'hidden' : 'visible') + '</b>.';
+  target.appendChild(newState);
+}
+
+document.addEventListener(visibilityChange, handleVisibilityChange, false);
+
+if (hidden in document) {
+  document.getElementById('status').innerHTML = document[hidden] ? 'hidden' : 'visible';
+}`,
+        jsOnExit: `document.removeEventListener(visibilityChange, handleVisibilityChange);`
+      },
       tests: [Feature.containedIn('document', global.document, 'visibilityState')],
       links: [
         {url: 'https://w3c.github.io/page-visibility/', title: 'Specification Draft'},

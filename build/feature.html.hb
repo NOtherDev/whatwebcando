@@ -23,14 +23,46 @@
         <div id="tests-placeholder"></div>
       </section>
 
-      {{#if feature.demoPen}}
-      <section aria-hidden="true">
+      {{#if feature.demo}}
+      <section>
         <h3>Live Demo</h3>
-        <p data-height="275" data-theme-id="19170" data-slug-hash="{{feature.demoPen}}" data-default-tab="js,result" data-user="WhatWebCanDo" data-embed-version="2" class="codepen">
-          See the Pen <a href="https://codepen.io/WhatWebCanDo/pen/{{feature.demoPen}}/">{{feature.demoPen}}</a>
-          by WhatWebCanDo (<a href="https://codepen.io/WhatWebCanDo">@WhatWebCanDo</a>) on <a href="https://codepen.io">CodePen</a>.
-        </p>
+        <div id="demo-placeholder">
+          <style>{{{feature.demo.css}}}</style>
+          {{{feature.demo.html}}}
+        </div>
+
+        <ul class="tabs">
+          <li class="tab">
+            <input type="radio" name="tabs" checked="checked" id="demo-code-js" />
+            <label for="demo-code-js">JavaScript</label>
+            <pre id="demo-code-content-js" class="demo-code-tab"><code class="language-javascript">{{feature.demo.js}}</code></pre>
+          </li>
+          <li class="tab">
+            <input type="radio" name="tabs" id="demo-code-html" />
+            <label for="demo-code-html">HTML</label>
+            <pre id="demo-code-content-html" class="demo-code-tab"><code class="language-html">{{feature.demo.html}}</code></pre>
+          </li>
+          {{#if feature.demo.css}}
+          <li class="tab">
+            <input type="radio" name="tabs" id="demo-code-css" />
+            <label for="demo-code-css">CSS</label>
+            <pre id="demo-code-content-css" class="demo-code-tab"><code class="language-css">{{feature.demo.css}}</code></pre>
+          </li>
+          {{/if}}
+        </ul>
       </section>
+      {{else}}
+        <script>window.WWCD_initFeatureDemo = null</script>
+
+        {{#if feature.demoPen}}
+        <section aria-hidden="true">
+          <h3>Live Demo</h3>
+          <p data-height="275" data-theme-id="19170" data-slug-hash="{{feature.demoPen}}" data-default-tab="js,result" data-user="WhatWebCanDo" data-embed-version="2" class="codepen">
+            See the Pen <a href="https://codepen.io/WhatWebCanDo/pen/{{feature.demoPen}}/">{{feature.demoPen}}</a>
+            by WhatWebCanDo (<a href="https://codepen.io/WhatWebCanDo">@WhatWebCanDo</a>) on <a href="https://codepen.io">CodePen</a>.
+          </p>
+        </section>
+        {{/if}}
       {{/if}}
 
       {{#if feature.caniuseKey}}

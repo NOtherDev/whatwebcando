@@ -255,6 +255,69 @@ header {
   }
 }
 
+/* demo */
+
+#demo-placeholder {
+  background: #f5f2f0;
+  background: repeating-linear-gradient(45deg, #f5f2f0, #f5f2f0 20px, transparent 20px, transparent 40px);
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.tabs {
+  margin: 30px auto;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+  height: 350px;
+}
+
+.tabs .tab {
+  float: left;
+  display: block;
+}
+
+.tabs .tab > input[type="radio"] {
+  position: absolute;
+  left: -9999px;
+}
+
+.tabs .tab > label {
+  display: block;
+  padding: 6px 21px;
+  cursor: pointer;
+  position: relative;
+  color: #FFF;
+  background: #009688;
+}
+
+.tabs .demo-code-tab {
+  z-index: 0; /* or display: none; */
+  width: 100%;
+  height: calc(100% - 33px);
+  padding: 15px;
+  position: absolute;
+  margin: 0;
+  left: 0;
+
+  opacity: 0;
+  transition: opacity 400ms ease-out;
+}
+
+.tabs > .tab > [id^="demo-code"]:checked + label {
+  top: 0;
+  background: #fff;
+  color: #009688;
+}
+
+.tabs > .tab > [id^="demo-code"]:checked ~ [id^="demo-code-content"] {
+  z-index: 1; /* or display: block; */
+
+  opacity: 1;
+  transition: opacity 400ms ease-out;
+}
+
+/* cont. */
 footer {
   padding-top: 10px;
   color: #777;
