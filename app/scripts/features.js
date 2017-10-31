@@ -35,7 +35,7 @@
         })
       ],
       demoPen: 'yYJdWO',
-      demo: {
+      /*demo: {
         html: `<p>
   <button class="btn btn-default" onclick="notifyMe()">Notify me!</button>
 </p>
@@ -71,7 +71,7 @@ function notifyMe() {
     });
   }
 }`
-      },
+      },*/
       links: [
         {url: 'http://www.w3.org/TR/notifications/', title: 'Specification'},
         {url: 'https://developer.mozilla.org/en-US/docs/Web/API/Notifications_API', title: 'MDN: Notifications API'},
@@ -374,6 +374,31 @@ if (hidden in document) {
       </dl>`,
       caniuse: 'geolocation',
       demoPen: 'ojYoqB',
+      demo: {
+        html: `<button class="btn btn-default" id="askButton">Ask for location</button>
+<div id="target"></div>`,
+        js: `var target = document.getElementById('target');
+var watchId;
+
+function appendLocation(location, verb) {
+  verb = verb || 'updated';
+  var newLocation = document.createElement('p');
+  newLocation.innerHTML = 'Location ' + verb + ': <a href="https://maps.google.com/maps?&z=15&q=' + location.coords.latitude + '+' + location.coords.longitude + '&ll=' + location.coords.latitude + '+' + location.coords.longitude + '" target="_blank">' + location.coords.latitude + ', ' + location.coords.longitude + '</a>';
+  target.appendChild(newLocation);
+}
+
+if ('geolocation' in navigator) {
+  document.getElementById('askButton').addEventListener('click', function() {
+    navigator.geolocation.getCurrentPosition(function(location) {
+      appendLocation(location, 'fetched');
+    });
+    watchId = navigator.geolocation.watchPosition(appendLocation);
+  });
+} else {
+  alert('Geolocation API not supported.');
+}`,
+        jsOnExit: `if (watchId) navigator.geolocation.clearWatch(watchId)`
+      },
       tests: [Feature.navigatorContains('geolocation')],
       links: [
         {url: 'http://www.w3.org/TR/geolocation-API/', title: 'Specification'},
@@ -404,6 +429,47 @@ if (hidden in document) {
       tests: [Feature.navigatorContains('bluetooth')],
       caniuse: 'web-bluetooth',
       demoPen: 'VvPaRY',
+      demo: {
+        html: `<p>
+  <button class="btn btn-lg btn-default" onclick="readBatteryLevel()">Read Bluetooth device's battery level</button>
+</p>
+
+<p id="target"></p>
+
+<p><small>Based on code snippets from <a href="https://developers.google.com/web/updates/2015/07/interact-with-ble-devices-on-the-web" target="_blank">Google Developers</a>.</small></p>`,
+        js: `function readBatteryLevel() {
+  var $target = document.getElementById('target');
+  
+  if (!('bluetooth' in navigator)) {
+    $target.innerText = 'Bluetooth API not supported.';
+    return;
+  }
+  
+  navigator.bluetooth.requestDevice({
+      filters: [{
+        services: ['battery_service']
+      }]
+    })
+    .then(function (device) {
+      return device.gatt.connect();
+    })
+    .then(function (server) {
+      return server.getPrimaryService('battery_service');
+    })
+    .then(function (service) {
+      return service.getCharacteristic('battery_level');
+    })
+    .then(function (characteristic) {
+      return characteristic.readValue();
+    })
+    .then(function (value) {
+      $target.innerHTML = 'Battery percentage is <b>' + value.getUint8(0) + '</b>.';
+    })
+    .catch(function (error) {
+      $target.innerText = error;
+    });
+}`
+      },
       links: [
         {url: 'https://webbluetoothcg.github.io/web-bluetooth/', title: 'Specification Draft'},
         {url: 'https://developers.google.com/web/updates/2015/07/interact-with-ble-devices-on-the-web', title: 'Interact with BLE devices on the Web'}
@@ -425,6 +491,70 @@ if (hidden in document) {
       </dl>`,
       tests: [Feature.navigatorContains('nfc')],
       demoPen: 'XmpKjQ',
+      demo: {
+        html: `<p>
+  <button class="btn btn-lg btn-default" onclick="readWriteNfc()">Test NFC Read/Write</button>
+</p>
+
+<pre id="log"></pre>
+
+<p><small>Based on the code snippets from <a href="https://w3c.github.io/web-nfc/#examples">specification draft</a>.</small></p>`,
+        js: `function readWriteNfc() {
+  if ('nfc' in navigator) {
+    navigator.nfc.watch(function(message) {
+        consoleLog("NFC message received from URL " + message.url);
+        if (message.data[0].recordType === 'empty') {
+          navigator.nfc.push([{
+            url: message.url,
+            data: [{
+              recordType: "text",
+              data: 'Hello World'
+            }]
+          }]);
+        }
+        processMessage(message);
+      })
+      .then(() => consoleLog("Added a watch."))
+      .catch(err => consoleLog("Adding watch failed: " + err.name));
+  } else {
+    alert('NFC API not supported.');
+  }
+}
+
+function consoleLog(data) {
+  var logElement = document.getElementById('log');
+  logElement.innerHTML += '\\n' + data;
+}
+
+function processMessage(message) {
+  message.data.forEach(function(record) {
+    if (record.recordType == "string") {
+      consoleLog('Data is string: ' + record.data);
+    } else if (record.recordType == "json") {
+      processJSON(record.data);
+    } else if (record.recordType == "url") {
+      consoleLog("Data is URL: " + record.data);
+    } else if (record.recordType == "opaque" && record.mediaType == 'image/png') {
+      processPng(record.data);
+    };
+  });
+}
+
+function processPng(data) {
+  consoleLog("Known image/png data");
+
+  var img = document.createElement("img");
+  img.src = URL.createObjectURL(new Blob(data, 'image/png'));
+  img.onload = function() {
+    window.URL.revokeObjectURL(this.src);
+  };
+};
+
+function processJSON(data) {
+  var obj = JSON.parse(data);
+  consoleLog("JSON data: " + obj.myProperty.toString());
+};`
+      },
       links: [
         {url: 'https://w3c.github.io/web-nfc/', title: 'Specification Draft'},
         {url: 'https://developer.mozilla.org/en-US/docs/Web/API/NFC_API/Using_the_NFC_API', title: 'MDN: Using the NFC API (covers outdated spec revision)'}
@@ -459,6 +589,43 @@ if (hidden in document) {
         Feature.windowContains('ProximitySensor')
       ],
       demoPen: 'jWMRNw',
+      demo: {
+        html: `<p>Current approximate distance to object is <b id="deviceValue">unknown</b>.</p>
+<p>Currently, the object is <b id="nearValue">in unknown proximity</b>.</p>
+
+<div id="box"></div>`,
+        css: `#box {
+  width: 100px;
+  height: 100px;
+  border: 1px solid #000;
+  margin-left: 10px;
+  background-color: gray;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}`,
+        js: `var box = document.getElementById('box');
+
+function onDeviceProximityChanged(event) {
+  document.getElementById('deviceValue').innerHTML = event.value + ' cm (' + event.min + '-' + event.max + ' cm range)';
+  
+  var size = Math.min(200, Math.max(20, 500 / (event.value || 1)));
+  
+  box.style.width = size + 'px';
+  box.style.height = size + 'px';
+}
+
+function onUserProximityChanged(event) {
+  document.getElementById('nearValue').innerHTML = event.near ? 'near' : 'rather far';
+  box.style.backgroundColor = event.near ? 'red' : 'green';
+}
+
+window.addEventListener('deviceproximity', onDeviceProximityChanged);
+window.addEventListener('userproximity', onUserProximityChanged);`,
+        jsOnExit: `window.removeEventListener('deviceproximity', onDeviceProximityChanged);
+window.removeEventListener('userproximity', onUserProximityChanged);`
+      },
       links: [
         {url: 'https://w3c.github.io/proximity/', title: 'Proximity API Specification Draft'},
         {url: 'https://w3c.github.io/sensors/', title: 'Generic Sensor API Specification Draft'},
