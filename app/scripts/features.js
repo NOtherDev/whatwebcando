@@ -376,6 +376,7 @@ if (hidden in document) {
       demoPen: 'ojYoqB',
       demo: {
         html: `<button class="btn btn-default" id="askButton">Ask for location</button>
+
 <div id="target"></div>`,
         js: `var target = document.getElementById('target');
 var watchId;
@@ -659,6 +660,44 @@ window.removeEventListener('userproximity', onUserProximityChanged);`
         Feature.windowContains('AmbientLightSensor')
       ],
       demoPen: 'OyWZqY',
+      demo: {
+        html: `<p>Current light intensity is <b id="value">unknown</b>.</p>
+
+<div id="box"></div>`,
+        css: `#box {
+  width: 100px;
+  height: 100px;
+  border: 1px solid #000;
+  margin-left: 10px;
+}`,
+        js: `function update(illuminance) {
+  document.getElementById("value").innerHTML = illuminance + " lux";
+
+  var colorPart = Math.min(255, illuminance).toFixed(0);
+  document.getElementById("box").style.backgroundColor =
+    "rgb(" + colorPart + ", " + colorPart + ", " + colorPart + ")";
+}
+
+if ("AmbientLightSensor" in window) {
+  try {
+    var sensor = new AmbientLightSensor();
+    sensor.addEventListener("reading", function (event) {
+      update(sensor.illuminance);
+    });
+    sensor.start();
+  } catch (e) {
+    console.error(e);
+  }
+}
+if ("ondevicelight" in window) {
+  function onUpdateDeviceLight(event) {
+    update(event.value);
+  }
+  
+  window.addEventListener("devicelight", onUpdateDeviceLight);
+}`,
+        jsOnExit: `if (onUpdateDeviceLight) window.removeEventListener('devicelight', onUpdateDeviceLight);`
+      },
       links: [
         {url: 'https://w3c.github.io/ambient-light/', title: 'Ambient Light API Specification Draft'},
         {url: 'https://w3c.github.io/sensors/', title: 'Generic Sensor API Specification Draft'},
@@ -695,6 +734,46 @@ window.removeEventListener('userproximity', onUserProximityChanged);`
         Feature.navigatorContains('mediaDevices')
       ],
       demoPen: 'YyZKPJ',
+      demo: {
+        html: `<div class="container" style="margin-top: 10px">
+  <div class="row">
+    <div class="col-sm-6">
+      <p><button type="button" class="btn btn-lg btn-default" onclick="getStream('video')">Grab video</button></p>
+      
+      <video controls autoplay style="height:180px; width: 240px;"></video>
+    </div>
+    <div class="col-sm-6">
+      <p><button type="button" class="btn btn-lg btn-default" onclick="getStream('audio')">Grab audio</button></p>
+      
+      <audio controls autoplay></audio>
+    </div>
+  </div>
+</div>`,
+        js: `function getUserMedia (options, successCallback, failureCallback) {
+  var api = navigator.getUserMedia || navigator.webkitGetUserMedia ||
+    navigator.mozGetUserMedia || navigator.msGetUserMedia;
+  if (api) {
+    return api.bind(navigator)(options, successCallback, failureCallback);
+  }
+  alert('User Media API not supported.');
+}
+
+function getStream (type) {
+  var constraints = {};
+  constraints[type] = true;
+  getUserMedia(constraints, function (stream) {
+    var mediaControl = document.querySelector(type);
+    if (navigator.mozGetUserMedia) {
+      mediaControl.mozSrcObject = stream;
+    } else {
+      mediaControl.srcObject = stream;
+      mediaControl.src = (window.URL || window.webkitURL).createObjectURL(stream);
+    }
+  }, function(err) {
+    alert('Error: ' + err);
+  });
+}`
+      },
       links: [
         {url: 'https://w3c.github.io/mediacapture-main/', title: 'Specification Draft'},
         {url: 'http://www.html5rocks.com/en/tutorials/getusermedia/intro/', title: 'HTML5 Rocks: Capturing Audio & Video in HTML5'},
@@ -730,6 +809,28 @@ window.removeEventListener('userproximity', onUserProximityChanged);`
       tests: [Feature.navigatorContains('connection')],
       caniuse: 'netinfo',
       demoPen: 'LpWPvv',
+      demo: {
+        html: `<p>Current theoretical network type is <b id="networkType">not available</b>.</p>
+<p>Current effective network type is <b id="effectiveNetworkType">not available</b>.</p>
+<p>Current max downlink speed is <b id="downlinkMax">not available</b>.`,
+        js: `function getConnection() {
+  return navigator.connection || navigator.mozConnection ||
+    navigator.webkitConnection || navigator.msConnection;
+}
+
+function updateNetworkInfo(info) {
+  document.getElementById('networkType').innerHTML = info.type;
+  document.getElementById('effectiveNetworkType').innerHTML = info.effectiveType;
+  document.getElementById('downlinkMax').innerHTML = info.downlinkMax;
+}
+
+var info = getConnection();
+if (info) {
+  info.addEventListener('change', updateNetworkInfo);
+  updateNetworkInfo(info);
+}`,
+        jsOnExit: `if (info) info.removeEventListener('change', updateNetworkInfo);`
+      },
       links: [
         {url: 'https://wicg.github.io/netinfo/', title: 'Specification Draft'},
         {url: 'https://developer.mozilla.org/en-US/docs/Web/API/Network_Information_API', title: 'MDN: Network Information API'}
@@ -752,6 +853,29 @@ window.removeEventListener('userproximity', onUserProximityChanged);`
       caniuse: 'online-status',
       tests: [Feature.navigatorContains('onLine')],
       demoPen: 'Qjpveg',
+      demo: {
+        html: `<p>Turn the network connection on/off to see the changes.</p>
+
+<p>Initial connection state was <b id="status">unknown</b>.</p>
+
+<div id="target"></div>`,
+        js: `document.getElementById('status').innerHTML = navigator.onLine ? 'online' : 'offline';
+
+var target = document.getElementById('target');
+
+function handleStateChange() {
+  var timeBadge = new Date().toTimeString().split(' ')[0];
+  var newState = document.createElement('p');
+  var state = navigator.onLine ? 'online' : 'offline';
+  newState.innerHTML = '<span class="badge">' + timeBadge + '</span> Connection state changed to <b>' + state + '</b>.';
+  target.appendChild(newState);
+}
+
+window.addEventListener('online', handleStateChange);
+window.addEventListener('offline', handleStateChange);`,
+        jsOnExit: `window.removeEventListener('online', handleStateChange);
+window.removeEventListener('offline', handleStateChange);`
+      },
       links: [
         {url: 'https://html.spec.whatwg.org/multipage/browsers.html#browser-state', title: 'Specification'},
         {url: 'https://developer.mozilla.org/en-US/docs/Web/API/NavigatorOnLine/onLine#Specification', title: 'MDN description'}
@@ -769,6 +893,17 @@ window.removeEventListener('userproximity', onUserProximityChanged);`
       caniuse: 'vibration',
       tests: [Feature.navigatorContains('vibrate')],
       demoPen: 'VvpxrM',
+      demo: {
+        html: `<button class="btn btn-default" onclick="vibrateSimple()">Vibrate for 200 ms</button>
+<button class="btn btn-default" onclick="vibratePattern()">Vibrate with pattern</button>`,
+        js: `function vibrateSimple() {
+  navigator.vibrate(200);
+}
+
+function vibratePattern() {
+  navigator.vibrate([100, 200, 200, 200, 500]);
+}`
+      },
       links: [
         {url: 'http://dev.w3.org/2009/dap/vibration/', title: 'Specification Draft'},
         {url: 'https://developer.mozilla.org/en-US/docs/Web/API/Vibration_API', title: 'MDN: Vibration API'},
@@ -811,8 +946,72 @@ window.removeEventListener('userproximity', onUserProximityChanged);`
         Feature.navigatorContains('battery')
       ],
       demoPen: 'epvKNB',
+      demo: {
+        html: `<p>Initial battery status was <b id="charging">unknown</b>, charging time <b id="chargingTime">unknown</b>, discharging time <b id="dischargingTime">unknown</b>, level <b id="level">unknown</b>.</p>
+
+<div id="target"></div>`,
+        js: `if ('getBattery' in navigator || ('battery' in navigator && 'Promise' in window)) {
+  var target = document.getElementById('target');
+
+  function handleChange(change) {
+    var timeBadge = new Date().toTimeString().split(' ')[0];
+    var newState = document.createElement('p');
+    newState.innerHTML = '<span class="badge">' + timeBadge + '</span> ' + change + '.';
+    target.appendChild(newState);
+  }
+  
+  function onChargingChange() {
+    handleChange('Battery charging changed to <b>' + (this.charging ? 'charging' : 'discharging') + '</b>')
+  }
+  function onChargingTimeChange() {
+    handleChange('Battery charging time changed to <b>' + this.chargingTime + ' s</b>');
+  }
+  function onDischargingTimeChange() {
+    handleChange('Battery discharging time changed to <b>' + this.dischargingTime + ' s</b>');
+  }
+  function onLevelChange() {
+    handleChange('Battery level changed to <b>' + this.level + '</b>');
+  }
+
+  var batteryPromise;
+  
+  if ('getBattery' in navigator) {
+    batteryPromise = navigator.getBattery();
+  } else {
+    batteryPromise = Promise.resolve(navigator.battery);
+  }
+  
+  batteryPromise.then(function (battery) {
+    document.getElementById('charging').innerHTML = battery.charging ? 'charging' : 'discharging';
+    document.getElementById('chargingTime').innerHTML = battery.chargingTime + ' s';
+    document.getElementById('dischargingTime').innerHTML = battery.dischargingTime + ' s';
+    document.getElementById('level').innerHTML = battery.level;
+    
+    battery.addEventListener('chargingchange', onChargingChange);
+    battery.addEventListener('chargingtimechange', onChargingTimeChange);
+    battery.addEventListener('dischargingtimechange', onDischargingTimeChange);
+    battery.addEventListener('levelchange', onLevelChange);
+  });
+}`,
+        jsOnExit: `if ('getBattery' in navigator || ('battery' in navigator && 'Promise' in window)) {
+  var batteryPromise;
+  
+  if ('getBattery' in navigator) {
+    batteryPromise = navigator.getBattery();
+  } else {
+    batteryPromise = Promise.resolve(navigator.battery);
+  }
+  
+  batteryPromise.then(function (battery) {
+    battery.removeEventListener('chargingchange', onChargingChange);
+    battery.removeEventListener('chargingtimechange', onChargingTimeChange);
+    battery.removeEventListener('dischargingtimechange', onDischargingTimeChange);
+    battery.removeEventListener('levelchange', onLevelChange);
+  });
+}`
+      },
       links: [
-        {url: 'https://dvcs.w3.org/hg/dap/raw-file/default/battery/Overview.html', title: 'Specification Draft'},
+        {url: 'https://w3c.github.io/battery/', title: 'Specification Draft'},
         {url: 'https://developer.mozilla.org/en-US/docs/Web/API/Battery_Status_API', title: 'MDN: Battery Status API'}
       ]
     }),
