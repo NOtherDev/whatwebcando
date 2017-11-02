@@ -1105,6 +1105,81 @@ function vibratePattern() {
         Feature.navigatorContains('storage')
       ],
       demoPen: 'NGpoON',
+      demo: {
+        html: `<p>
+  <label>Engine</label>
+</p>
+<div class="btn-group" role="group" id="selectEngine">
+  <button type="button" class="btn btn-default" data-engine="localStorage">Persistent Storage</button>
+  <button type="button" class="btn btn-default" data-engine="sessionStorage">Per-Session Storage</button>
+</div>
+
+<p>
+  <label for="value">Value for <code>myKey</code></label>
+  <input type="text" class="form-control" id="value">
+</p>
+
+<p>Open the example in another tab and change the value there to see the synchronization via <code>storage</code> event.</p>
+<div id="target"></div>`,
+        js: `if ('localStorage' in window || 'sessionStorage' in window) {
+  var selectedEngine;
+
+  var logTarget = document.getElementById('target');
+  var valueInput = document.getElementById('value');
+
+  var reloadInputValue = function () {
+    valueInput.value =  window[selectedEngine].getItem('myKey') || '';
+  }
+  
+  var selectEngine = function(engine) {
+    document.querySelector('[data-engine=' + engine + ']').classList.add('active');
+    if (selectedEngine) {
+      document.querySelector('[data-engine=' + selectedEngine + ']').classList.remove('active');
+    }
+
+    selectedEngine = engine;
+    reloadInputValue();
+  };
+
+  var getSelectEngineFn = function(button) {
+    return function() {
+      var engine = button.getAttribute('data-engine');
+      if (selectedEngine !== engine) {
+        selectEngine(engine);
+      }
+    };
+  };
+
+  function handleChange(change) {
+    var timeBadge = new Date().toTimeString().split(' ')[0];
+    var newState = document.createElement('p');
+    newState.innerHTML = '<span class="badge">' + timeBadge + '</span> ' + change + '.';
+    logTarget.appendChild(newState);
+  }
+
+  var buttons = document.querySelectorAll('#selectEngine button');
+  for (var i = 0; i < buttons.length; ++i) {
+    buttons[i].addEventListener('click', getSelectEngineFn(buttons[i]));
+  }
+  
+  selectEngine('localStorage');
+
+  valueInput.addEventListener('keyup', function() {
+    window[selectedEngine].setItem('myKey', this.value);
+  });
+
+  var onStorageChanged = function (change) {
+    var engine = change.storageArea === window.localStorage ? 'localStorage' : 'sessionStorage';
+    handleChange('External change in <b>' + engine + '</b>: key <b>' + change.key + '</b> changed from <b>' + change.oldValue + '</b> to <b>' + change.newValue + '</b>');
+    if (engine === selectedEngine) {
+      reloadInputValue();
+    }
+  }
+
+  window.addEventListener('storage', onStorageChanged);
+}`,
+        jsOnExit: `window.removeEventListener('storage', onStorageChanged);`
+      },
       links: [
         {url: 'https://html.spec.whatwg.org/multipage/webstorage.html', title: 'Web Storage Specification'},
         {url: 'https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API', title: 'MDN: Web Storage API'},
@@ -1141,6 +1216,59 @@ function vibratePattern() {
       caniuse: 'fileapi',
       tests: [Feature.windowContains('File')],
       demoPen: 'pjPLRW',
+      demo: {
+        html: `<span class="btn btn-default btn-file">
+    Choose some files <input type="file" onchange="handleFiles(this.files)" multiple>
+</span>
+
+<p>Number of selected files: <b id="count">N/A</b></p>
+
+<ul id="target"></ul>`,
+        css: `.btn-file {
+    position: relative;
+    overflow: hidden;
+    margin: 10px;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    opacity: 0;
+    outline: none;
+    background: #fff;
+    cursor: inherit;
+    display: block;
+}`,
+        js: `function getReadFile(reader, i) {
+  return function() {
+    var li = document.querySelector('[data-idx="' + i + '"]');
+
+    li.innerHTML += 'File starts with "' + reader.result.substr(0, 25) + '"';
+  }
+}
+
+function handleFiles(files) {
+  document.getElementById('count').innerHTML = files.length;
+
+  var target = document.getElementById('target');
+  target.innerHTML = '';
+
+  for (var i = 0; i < files.length; ++i) {
+    var item = document.createElement('li');
+    item.setAttribute('data-idx', i);
+    var file = files[i];
+
+    var reader = new FileReader();
+    reader.addEventListener('load', getReadFile(reader, i));
+    reader.readAsText(file);
+
+    item.innerHTML = '<b>' + file.name + '</b>, ' + file.type + ', ' + file.size + ' bytes, last modified ' + file.lastModifiedDate + '<br>';
+    target.appendChild(item);
+  };
+}`
+      },
       links: [
         {url: 'https://w3c.github.io/FileAPI/', title: 'Specification Draft'},
         {
@@ -1168,6 +1296,80 @@ function vibratePattern() {
       caniuse: 'permissions-api',
       tests: [Feature.navigatorContains('permissions')],
       demoPen: 'OymKdE',
+      demo: {
+        html: `<p>
+  <b>Geolocation</b> permission status is <b id="geolocationStatus">unknown</b>.
+  
+  <button class="btn btn-default" onclick="requestGeolocation()">Request</button>
+</p>
+<p>
+  <b>Notifications</b> permission status is <b id="notificationsStatus">unknown</b>.
+  
+  <button class="btn btn-default" onclick="requestNotifications()">Request</button>
+</p>
+<p>
+  <b>Push</b> permission status is <b id="pushStatus">unknown</b>.
+  
+  <button class="btn btn-default" onclick="requestPush()">Request</button>
+</p>
+<p>
+  <b>Midi</b> permission status is <b id="midiStatus">unknown</b>.
+  
+  <button class="btn btn-default" onclick="requestMidi()">Request</button>
+</p>
+
+<p id="logTarget"></p>`,
+        js: `if ('permissions' in navigator) {
+  var logTarget = document.getElementById('logTarget');
+
+  function handleChange(permissionName, newState) {
+    var timeBadge = new Date().toTimeString().split(' ')[0];
+    var newStateInfo = document.createElement('p');
+    newStateInfo.innerHTML = '<span class="badge">' + timeBadge + '</span> State of <b>' + permissionName + '</b> permission status changed to <b>' + newState + '</b>.';
+    logTarget.appendChild(newStateInfo);
+  }
+
+  function checkPermission(permissionName, descriptor) {
+    navigator.permissions.query(descriptor || {
+        name: permissionName
+      })
+      .then(function (permission) {
+        document.getElementById(permissionName + 'Status').innerHTML = permission.state;
+        permission.addEventListener('change', function(e) {
+          document.getElementById(permissionName + 'Status').innerHTML = permission.state;
+          handleChange(permissionName, permission.state);
+        });
+      });
+  }
+
+  checkPermission('geolocation');
+  checkPermission('notifications');
+  checkPermission('push', {
+    name: 'push',
+    userVisibleOnly: true
+  });
+  checkPermission('midi');
+
+  function requestGeolocation() {
+    navigator.geolocation.getCurrentPosition(function() {});
+  }
+
+  function requestNotifications() {
+    Notification.requestPermission();
+  }
+
+  function requestPush() {
+    navigator.serviceWorker.register('')
+      .then(function (serviceWorkerRegistration) {
+        serviceWorkerRegistration.pushManager.subscribe();
+      });
+  }
+
+  function requestMidi() {
+    navigator.requestMIDIAccess();
+  }
+}`
+      },
       links: [
         {url: 'https://w3c.github.io/permissions/', title: 'Specification Draft'},
         {url: 'https://developers.google.com/web/updates/2015/04/permissions-api-for-the-web', title: 'Permissions API for the Web'}
@@ -1194,6 +1396,46 @@ function vibratePattern() {
       </dl>`,
       tests: [Feature.containedIn('navigator.contacts', global.navigator && (global.navigator.contacts || global.navigator.mozContacts), 'oncontactschange')],
       demoPen: 'rxWYjy',
+      demo: {
+        html: `<p>
+  <button class="btn btn-lg btn-default" onclick="readContacts()">Read Contacts</button>
+</p>
+
+<pre id="log"></pre>
+`,
+        js: `function readContacts() {
+  var api = navigator.contacts || navigator.mozContacts;
+
+  if (api) {
+    var criteria = {
+      sortBy: 'familyName',
+      sortOrder: 'ascending'
+    };
+
+    var finder = api.find(criteria);
+    if (finder && finder.then) {
+      finder.then(function(contacts) {
+          consoleLog('Found ' + contacts.length + ' contacts.');
+          if (contacts.length) {
+            consoleLog('First contact: ' + contacts[0].givenName[0] + ' ' + contacts[0].familyName[0]);
+          }
+        })
+        .catch(function(err) {
+          consoleLog('Fetching contacts failed: ' + err.name);
+        });
+    } else {
+      consoleLog('Only obsolete Contacts API accessible.');
+    }
+  } else {
+    consoleLog('Contacts API not supported.');
+  }
+}
+
+function consoleLog(data) {
+  var logElement = document.getElementById('log');
+  logElement.innerHTML += data + '\\n';
+}`
+      },
       links: [
         {url: 'https://www.w3.org/2012/sysapps/contacts-manager-api/', title: 'Specification Draft'},
         {url: 'https://developer.mozilla.org/en-US/docs/Web/API/Contacts_API', title: 'MDN: Contacts API'}
@@ -1222,6 +1464,19 @@ function vibratePattern() {
         Feature.navigatorContains('persistentStorage', false)
       ],
       demoPen: 'LLyLpG',
+      demo: {
+        html: `<p>Estimated storage usage is <b id="usage">unknown</b> bytes.</p>
+<p>Estimated storage quota is <b id="quota">unknown</b> bytes.</p>
+<p>Estimated usage is <b id="percent">unknown</b>%.</p>`,
+        js: `if ('storage' in navigator && 'estimate' in navigator.storage) {
+  navigator.storage.estimate()
+    .then(estimate => {
+      document.getElementById('usage').innerHTML = estimate.usage;
+      document.getElementById('quota').innerHTML = estimate.quota;
+      document.getElementById('percent').innerHTML = (estimate.usage * 100 / estimate.quota).toFixed(0);
+    });
+}`
+      },
       links: [
         {url: 'https://storage.spec.whatwg.org/', title: 'Specification Draft'},
         {url: 'http://www.html5rocks.com/en/tutorials/offline/quota-research/', title: 'Quota limitations analysis'}
