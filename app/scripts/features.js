@@ -2616,6 +2616,45 @@ function takePhoto() {
       </dl>`,
       tests: [Feature.windowContains('Intent', false), Feature.navigatorContains('share', false)],
       caniuse: 'web-share',
+      demo: {
+        html: `<p>
+  <button class="btn btn-lg btn-default" onclick="intent()">Share whatwebcando.today<br>with <b>Web Intents</b></button>
+</p>
+
+<p>
+  <button class="btn btn-lg btn-default" onclick="share()">Share whatwebcando.today<br>with <b>Web Share</b></button>
+</p>`,
+        js: `function intent() {
+  if (!("Intent" in window)) {
+    alert('Web Intents API not supported.');
+    return;
+  }
+
+  var intent = new Intent('http://webintents.org/share',
+    'text/uri-list',
+    'https://whatwebcando.today');
+  navigator.startActivity(intent, function () {
+    console.log('Successful share')
+  }, function (error) {
+    console.log('Error sharing:', error);
+  });
+}
+
+function share() {
+  if (!("share" in navigator)) {
+    alert('Web Share API not supported.');
+    return;
+  }
+
+  navigator.share({
+      title: 'What Web Can Do Today',
+      text: 'Can I rely on the Web Platform features to build my app? An overview of the device integration HTML5 APIs',
+      url: 'https://whatwebcando.today/'
+    })
+    .then(() => console.log('Successful share'))
+    .catch(error => console.log('Error sharing:', error));
+}`
+      },
       demoPen: 'kkaLOP',
       links: [
         {url: 'https://www.w3.org/TR/web-intents/', title: 'W3C Working Group Note about Web Intents'},
@@ -2640,6 +2679,80 @@ function takePhoto() {
       </dl>`,
       tests: [Feature.windowContains('MediaRecorder')],
       caniuse: 'mediarecorder',
+      demo: {
+        html: `<video autoplay style="height:180px; width: 240px;" poster="https://image.freepik.com/free-icon/video-camera-symbol_318-40225.png"></video>
+<p><button class="btn btn-lg btn-default" onclick="getStream()">Grab video & start recording</button></p>
+<p><button class="btn btn-lg btn-default" onclick="download()">Download!</button></p>
+  
+<p><small>Demo by <a href="http://www.mcasas.tk/" target="_blank">Miguel Casas-Sanchez</a>.</small></p>`,
+        cssHidden: `video {
+  background-color: #fff;
+}`,
+        js: `function getUserMedia(options, successCallback, failureCallback) {
+  var api = navigator.getUserMedia || navigator.webkitGetUserMedia ||
+    navigator.mozGetUserMedia || navigator.msGetUserMedia;
+  if (api) {
+    return api.bind(navigator)(options, successCallback, failureCallback);
+  }
+  alert('User Media API not supported.');
+}
+
+var theStream;
+var theRecorder;
+var recordedChunks = [];
+
+function getStream() {
+  var constraints = {video: true, audio: true};
+  getUserMedia(constraints, function (stream) {
+    var mediaControl = document.querySelector('video');
+    if (navigator.mozGetUserMedia) {
+      mediaControl.mozSrcObject = stream;
+    } else {
+      mediaControl.srcObject = stream;
+      mediaControl.src = (window.URL || window.webkitURL).createObjectURL(stream);
+    }
+    
+    theStream = stream;
+    try {
+      recorder = new MediaRecorder(stream, {mimeType : "video/webm"});
+    } catch (e) {
+      console.error('Exception while creating MediaRecorder: ' + e);
+      return;
+    }
+    theRecorder = recorder;
+    console.log('MediaRecorder created');
+    recorder.ondataavailable = recorderOnDataAvailable;
+    recorder.start(100);
+  }, function (err) {
+    alert('Error: ' + err);
+  });
+}
+
+function recorderOnDataAvailable (event) {
+  if (event.data.size == 0) return;
+  recordedChunks.push(event.data);
+}
+
+function download() {
+  console.log('Saving data');
+  theRecorder.stop();
+  theStream.getTracks()[0].stop();
+
+  var blob = new Blob(recordedChunks, {type: "video/webm"});
+  var url = (window.URL || window.webkitURL).createObjectURL(blob);
+  var a = document.createElement("a");
+  document.body.appendChild(a);
+  a.style = "display: none";
+  a.href = url;
+  a.download = 'test.webm';
+  a.click();
+  
+  // setTimeout() here is needed for Firefox.
+  setTimeout(function () {
+      (window.URL || window.webkitURL).revokeObjectURL(url);
+  }, 100); 
+}`
+      },
       demoPen: 'WGZkjm',
       links: [
         {url: 'https://w3c.github.io/mediacapture-record/MediaRecorder.html', title: 'Specification Draft'},
@@ -2673,6 +2786,87 @@ function takePhoto() {
       </dl>`,
       tests: [Feature.windowContains('RTCPeerConnection')],
       caniuse: 'rtcpeerconnection',
+      demo: {
+        html: `
+<p><button class="btn btn-lg btn-default" onclick="getStream()">Grab video & start local peer connection</button></p>
+
+<p>Local video</p>
+<video autoplay id="localVideo" style="height:180px; width: 240px;" poster="https://image.freepik.com/free-icon/video-camera-symbol_318-40225.png"></video>
+
+<p>Remote video</p>
+<video autoplay id="remoteVideo" style="height:180px; width: 240px;"></video>
+
+<p><small>Demo by <a href="http://www.mcasas.tk/" target="_blank">Miguel Casas-Sanchez</a>.</small></p>`,
+        cssHidden: `video {
+  background-color: #fff;
+}`,
+        js: `function getUserMedia(options, successCallback, failureCallback) {
+  var api = navigator.getUserMedia || navigator.webkitGetUserMedia ||
+    navigator.mozGetUserMedia || navigator.msGetUserMedia;
+  if (api) {
+    return api.bind(navigator)(options, successCallback, failureCallback);
+  }
+  alert('User Media API not supported.');
+}
+
+var pc1;
+var pc2;
+var theStreamB;
+
+function getStream() {
+  var constraints = {
+    video: true
+  };
+  getUserMedia(constraints, function(stream) {
+    addStreamToVideoTag(stream, 'localVideo');
+
+    // RTCPeerConnection is prefixed in Blink-based browsers.
+    window.RTCPeerConnection = window.RTCPeerConnection || window.webkitRTCPeerConnection;
+    pc1 = new RTCPeerConnection(null);
+    pc1.addStream(stream);
+    pc1.onicecandidate = event => {
+      if (event.candidate == null) return;
+      pc2.addIceCandidate(new RTCIceCandidate(event.candidate));
+    };
+
+    pc2 = new RTCPeerConnection(null);
+    pc2.onaddstream = event => {
+      theStreamB = event.stream;
+      addStreamToVideoTag(event.stream, 'remoteVideo');
+    };
+    pc2.onicecandidate = event => {
+      if (event.candidate == null) return;
+      pc1.addIceCandidate(new RTCIceCandidate(event.candidate));
+    };
+
+    pc1.createOffer({offerToReceiveVideo: 1})
+      .then(desc => {
+        pc1.setLocalDescription(desc);
+        pc2.setRemoteDescription(desc);
+        return pc2.createAnswer({offerToReceiveVideo: 1});
+      })
+      .then(desc => {
+        pc1.setRemoteDescription(desc);
+        pc2.setLocalDescription(desc);
+      })
+      .catch(err => {
+        console.error('createOffer()/createAnswer() failed ' + err);
+      });
+  }, function(err) {
+    alert('Error: ' + err);
+  });
+}
+
+function addStreamToVideoTag(stream, tag) {
+  var mediaControl = document.getElementById(tag);
+  if (navigator.mozGetUserMedia) {
+    mediaControl.mozSrcObject = stream;
+  } else {
+    mediaControl.srcObject = stream;
+    mediaControl.src = (window.URL || window.webkitURL).createObjectURL(stream);
+  }
+}`
+      },
       demoPen: 'amoLwm',
       links: [
         {url: 'https://w3c.github.io/webrtc-pc/', title: 'Specification Draft'},
