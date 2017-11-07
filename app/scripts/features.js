@@ -2012,6 +2012,61 @@ document.removeEventListener('paste', logUserOperation);`
       </dl>`,
       caniuse: 'deviceorientation',
       demoPen: 'EVvyaw',
+      demo: {
+        html: `<table class="table table-striped table-bordered">
+  <tr>
+    <td>Tilt Left/Right [gamma]</td>
+    <td id="doTiltLR"></td>
+  </tr>
+  <tr>
+    <td>Tilt Front/Back [beta]</td>
+    <td id="doTiltFB"></td>
+  </tr>
+  <tr>
+    <td>Direction [alpha]</td>
+    <td id="doDirection"></td>
+  </tr>
+</table>
+
+<div class="container">
+  <img src="https://www.w3.org/html/logo/downloads/HTML5_Badge_512.png" id="imgLogo">
+</div>
+
+<p><small>Demo from <a href="https://www.html5rocks.com/en/tutorials/device/orientation/" target="_blank">HTML5 Rocks</a> article.</small></p>`,
+        css: `.container {
+  perspective: 300;
+  -webkit-perspective: 300;
+}
+
+#imgLogo {
+  width: 275px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  padding: 15px;
+}`,
+        js: `if ('DeviceOrientationEvent' in window) {
+  window.addEventListener('deviceorientation', deviceOrientationHandler, false);
+} else {
+  alert('Device orientation not supported.');
+}
+
+function deviceOrientationHandler (eventData) {
+  var tiltLR = eventData.gamma;
+  var tiltFB = eventData.beta;
+  var dir = eventData.alpha;
+  
+  document.getElementById("doTiltLR").innerHTML = Math.round(tiltLR);
+  document.getElementById("doTiltFB").innerHTML = Math.round(tiltFB);
+  document.getElementById("doDirection").innerHTML = Math.round(dir);
+
+  var logo = document.getElementById("imgLogo");
+  logo.style.webkitTransform = "rotate(" + tiltLR + "deg) rotate3d(1,0,0, " + (tiltFB * -1) + "deg)";
+  logo.style.MozTransform = "rotate(" + tiltLR + "deg)";
+  logo.style.transform = "rotate(" + tiltLR + "deg) rotate3d(1,0,0, " + (tiltFB * -1) + "deg)";
+}`,
+        jsOnExit: `window.removeEventListener('deviceorientation', deviceOrientationHandler);`
+      },
       tests: [Feature.windowContains('DeviceOrientationEvent')],
       links: [
         {url: 'https://w3c.github.io/deviceorientation/spec-source-orientation.html', title: 'Specification Draft'},
@@ -2038,6 +2093,110 @@ document.removeEventListener('paste', logUserOperation);`
       </dl>`,
       caniuse: 'fullscreen',
       demoPen: 'LpewpQ',
+      demo: {
+        html: `<p>
+  <button class="btn btn-default start" id="startFull">Start fullscreen on the whole page</button>
+  <button class="btn btn-default" id="exit">Exit fullscreen</button>
+</p>
+
+<div>
+  <button class="btn btn-default start" id="startBox">Start fullscreen on just the green box</button>
+  <div id="box">THE BOX</div>
+</div>
+
+<p id="logTarget"></p>`,
+        css: `#box {
+  width: 90px;
+  height: 20px;
+  background-color: green;
+  color: white;
+  text-align: center;
+  display: inline-block;
+  border-radius: 5px;
+}
+
+#exit {
+  display: none;
+}`,
+        js: `var $ = document.querySelector.bind(document);
+var $$ = function(selector) {
+  return [].slice.call(document.querySelectorAll(selector), 0);
+}
+var target = $('#logTarget');
+
+function logChange (event) {
+  var timeBadge = new Date().toTimeString().split(' ')[0];
+  var newState = document.createElement('p');
+  newState.innerHTML = '<span class="badge">' + timeBadge + '</span> ' + event + '.';
+  target.appendChild(newState);
+}
+
+var prefix = null;
+if ('requestFullscreen' in document.documentElement) {
+  prefix = 'fullscreen';
+} else if ('mozRequestFullScreen' in document.documentElement) {
+  prefix = 'mozFullScreen';
+} else if ('webkitRequestFullscreen' in document.documentElement) {
+  prefix = 'webkitFullscreen';
+} else if ('msRequestFullscreen') {
+  prefix = 'msFullscreen';
+}
+
+var onFullscreenChange = function () {
+  var elementName = 'not set';
+  if (document[prefix + 'Element']) {
+    elementName = document[prefix + 'Element'].nodeName;
+  }
+  logChange('New fullscreen element is <b>' + elementName + '</b>');
+  onFullscreenHandler(!!document[prefix + 'Element']);
+}
+
+if (document[prefix + 'Enabled']) {
+  var onFullscreenHandler = function (started) {
+    $('#exit').style.display = started ? 'inline-block' : 'none';
+    $$('.start').forEach(function (x) {
+      x.style.display = started ? 'none' : 'inline-block';
+    });
+  };
+
+  document.addEventListener(prefix.toLowerCase() + 'change', onFullscreenChange);
+
+  var goFullScreen = null;
+  var exitFullScreen = null;
+  if ('requestFullscreen' in document.documentElement) {
+    goFullScreen = 'requestFullscreen';
+    exitFullScreen = 'exitFullscreen';
+  } else if ('mozRequestFullScreen' in document.documentElement) {
+    goFullScreen = 'mozRequestFullScreen';
+    exitFullScreen = 'mozCancelFullScreen';
+  } else if ('webkitRequestFullscreen' in document.documentElement) {
+    goFullScreen = 'webkitRequestFullscreen';
+    exitFullScreen = 'webkitExitFullscreen';
+  } else if ('msRequestFullscreen') {
+    goFullScreen = 'msRequestFullscreen';
+    exitFullScreen = 'msExitFullscreen';
+  }
+
+  var goFullscreenHandler = function (element) {
+    return function() {
+      var maybePromise = element[goFullScreen]();
+      if (maybePromise && maybePromise.catch) {
+        maybePromise.catch(function(err) {
+          logChange('Cannot acquire fullscreen mode: ' + err);
+        });
+      }
+    };
+  };
+
+  $('#startFull').addEventListener('click', goFullscreenHandler(document.documentElement));
+  $('#startBox').addEventListener('click', goFullscreenHandler($('#box')));
+
+  $('#exit').addEventListener('click', function () {
+    document[exitFullScreen]();
+  });
+}`,
+        jsOnExit: `document.removeEventListener(prefix.toLowerCase() + 'change', onFullscreenChange);`
+      },
       tests: [
         Feature.containedIn('document.documentElement', global.document && document.documentElement, 'requestFullScreen'),
         Feature.containedIn('document.documentElement', global.document && document.documentElement, 'requestFullscreen')
@@ -2072,6 +2231,155 @@ document.removeEventListener('paste', logUserOperation);`
         <dd>Removes previously acquired screen orientation lock.</dd>
       </dl>`,
       caniuse: 'screen-orientation',
+      demo: {
+        html: `<div id="device"></div>
+
+<p>Current screen orientation is <b id="orientationType">unknown</b>.</p>
+
+<p>
+  <button class="btn btn-default" id="lock">Lock in current orientation</button>
+  <button class="btn btn-default" id="unlock">Release the lock</button>
+</p>
+
+<p id="logTarget"></p>`,
+        css: `#device {
+  margin: 10px;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+#device:after {
+  content: 'A';
+  font: 80px serif;
+  display: block;
+  text-align: center;
+}
+
+#unlock {
+  display: none;
+}`,
+        js: `var $ = document.getElementById.bind(document);
+
+var orientKey = 'orientation';
+if ('mozOrientation' in screen) {
+  orientKey = 'mozOrientation';
+} else if ('msOrientation' in screen) {
+  orientKey = 'msOrientation';
+}
+
+var target = $('logTarget');
+var device = $('device');
+var orientationTypeLabel = $('orientationType');
+
+function logChange (event) {
+  var timeBadge = new Date().toTimeString().split(' ')[0];
+  var newState = document.createElement('p');
+  newState.innerHTML = '<span class="badge">' + timeBadge + '</span> ' + event + '.';
+  target.appendChild(newState);
+}
+
+if (screen[orientKey]) {
+  function update() {
+    var type = screen[orientKey].type || screen[orientKey];
+    orientationTypeLabel.innerHTML = type;
+
+    var landscape = type.indexOf('landscape') !== -1;
+
+    if (landscape) {
+      device.style.width = '180px';
+      device.style.height = '100px';
+    } else {
+      device.style.width = '100px';
+      device.style.height = '180px';
+    }
+
+    var rotate = type.indexOf('secondary') === -1 ? 0 : 180;
+    var rotateStr = 'rotate(' + rotate + 'deg)';
+
+    device.style.webkitTransform = rotateStr;
+    device.style.MozTransform = rotateStr;
+    device.style.transform = rotateStr;
+  }
+
+  update();
+
+  var onOrientationChange = null;
+
+  if ('onchange' in screen[orientKey]) { // newer API
+    onOrientationChange = function () {
+      logChange('Orientation changed to <b>' + screen[orientKey].type + '</b>');
+      update();
+    };
+  
+    screen[orientKey].addEventListener('change', onOrientationChange);
+  } else if ('onorientationchange' in screen) { // older API
+    onOrientationChange = function () {
+      logChange('Orientation changed to <b>' + screen[orientKey] + '</b>');
+      update();
+    };
+  
+    screen.addEventListener('orientationchange', onOrientationChange);
+  }
+
+  // browsers require full screen mode in order to obtain the orientation lock
+  var goFullScreen = null;
+  var exitFullScreen = null;
+  if ('requestFullscreen' in document.documentElement) {
+    goFullScreen = 'requestFullscreen';
+    exitFullScreen = 'exitFullscreen';
+  } else if ('mozRequestFullScreen' in document.documentElement) {
+    goFullScreen = 'mozRequestFullScreen';
+    exitFullScreen = 'mozCancelFullScreen';
+  } else if ('webkitRequestFullscreen' in document.documentElement) {
+    goFullScreen = 'webkitRequestFullscreen';
+    exitFullScreen = 'webkitExitFullscreen';
+  } else if ('msRequestFullscreen') {
+    goFullScreen = 'msRequestFullscreen';
+    exitFullScreen = 'msExitFullscreen';
+  }
+
+  $('lock').addEventListener('click', function() {
+    document.documentElement[goFullScreen] && document.documentElement[goFullScreen]();
+
+    var promise = null;
+    if (screen[orientKey].lock) {
+      promise = screen[orientKey].lock(screen[orientKey].type);
+    } else {
+      promise = screen.orientationLock(screen[orientKey]);
+    }
+
+    promise
+      .then(function () {
+        logChange('Screen lock acquired');
+        $('unlock').style.display = 'block';
+        $('lock').style.display = 'none';
+      })
+      .catch(function (err) {
+        logChange('Cannot acquire orientation lock: ' + err);
+        document[exitFullScreen] && document[exitFullScreen]();
+      });
+  });
+
+  $('unlock').addEventListener('click', function () {
+    document[exitFullScreen] && document[exitFullScreen]();
+
+    if (screen[orientKey].unlock) {
+      screen[orientKey].unlock();
+    } else {
+      screen.orientationUnlock();
+    }
+
+    logChange('Screen lock removed.');
+    $('unlock').style.display = 'none';
+    $('lock').style.display = 'block';
+  });
+}`,
+        jsOnExit: `if ('onchange' in screen[orientKey]) { // newer API
+    screen[orientKey].removeEventListener('change', onOrientationChange);
+  } else if ('onorientationchange' in screen) { // older API
+    screen.removeEventListener('orientationchange', onOrientationChange);
+  }`
+      },
       demoPen: 'EVbpeX',
       tests: [
         Feature.containedIn('screen', global.screen, 'orientation'),
@@ -2108,6 +2416,26 @@ document.removeEventListener('paste', logUserOperation);`
         <dt><code>screen.keepAwake = true</code></dt>
         <dd>The property allowing to acquire a screen wake lock when set to <code>true</code> and release it when set to <code>false</code>.</dd>
       </dl>`,
+      demo: {
+        html: `<p>Wake Lock status is <b id="status">unknown (not supported)</b>.</p>
+<p><button class="btn btn-default" onclick="toggle()">Toggle</button></p>`,
+        js: `function printStatus() {
+  document.getElementById("status").innerHTML = screen.keepAwake
+    ? "enabled"
+    : "disabled";
+}
+
+function toggle() {
+  if ("keepAwake" in screen) {
+    screen.keepAwake = !screen.keepAwake;
+    printStatus();
+  }
+}
+
+if ("keepAwake" in screen) {
+  printStatus();
+}`
+      },
       demoPen: 'XggJKK',
       tests: [
         Feature.containedIn('screen', global.screen, 'keepAwake'),
@@ -2131,6 +2459,64 @@ document.removeEventListener('paste', logUserOperation);`
         <dd>Configures the <code>photoSettings</code> for subsequent captures; if visible, the effects of the configuration can be seen in the Track used as input.</dd>
       </dl>`,
       tests: [Feature.windowContains('ImageCapture')],
+      demo: {
+        html: `<p><button class="btn btn-lg btn-default" onclick="getStream()">Grab video</button></p>
+<p><video autoplay style="height: 180px; width: 240px;"></video></p>
+<p><button class="btn btn-lg btn-default" onclick="takePhoto()">Take Photo!</button></p>
+<p><img id="imageTag" width="240" height="180"></p>
+
+<p><small>Demo by <a href="http://www.mcasas.tk/" target="_blank">Miguel Casas-Sanchez</a>.</small></p>`,
+        js: `function getUserMedia(options, successCallback, failureCallback) {
+  var api = navigator.getUserMedia || navigator.webkitGetUserMedia ||
+    navigator.mozGetUserMedia || navigator.msGetUserMedia;
+  if (api) {
+    return api.bind(navigator)(options, successCallback, failureCallback);
+  }
+  alert('User Media API not supported.');
+}
+
+var theStream;
+
+function getStream() {
+  var constraints = {
+    video: true
+  };
+
+  getUserMedia(constraints, function (stream) {
+    var mediaControl = document.querySelector('video');
+    if (navigator.mozGetUserMedia) {
+      mediaControl.mozSrcObject = stream;
+    } else {
+      mediaControl.srcObject = stream;
+      mediaControl.src = (window.URL || window.webkitURL).createObjectURL(stream);
+    }
+    theStream = stream;
+  }, function (err) {
+    alert('Error: ' + err);
+  });
+}
+
+function takePhoto() {
+  if (!('ImageCapture' in window)) {
+    alert('ImageCapture is not available');
+    return;
+  }
+  
+  if (!theStream) {
+    alert('Grab the video stream first!');
+    return;
+  }
+  
+  var theImageCapturer = new ImageCapture(theStream.getVideoTracks()[0]);
+
+  theImageCapturer.takePhoto()
+    .then(blob => {
+      var theImageTag = document.getElementById("imageTag");
+      theImageTag.src = URL.createObjectURL(blob);
+    })
+    .catch(err => alert('Error: ' + err));
+}`
+      },
       demoPen: 'AXzVqV',
       links: [
         {url: 'https://w3c.github.io/mediacapture-image/', title: 'W3C Specification Draft'},
