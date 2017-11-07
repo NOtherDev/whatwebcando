@@ -261,6 +261,7 @@ header {
 /* demo */
 
 #demo-placeholder {
+  position: relative;
   background: #f5f2f0;
   background: repeating-linear-gradient(45deg, #f5f2f0, #f5f2f0 20px, transparent 20px, transparent 40px);
   padding: 10px;

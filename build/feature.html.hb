@@ -27,18 +27,23 @@
       <section>
         <h3>Live Demo</h3>
         <div id="demo-placeholder">
-          <style>{{{feature.demo.css}}}</style>
+          <style>
+            {{{feature.demo.css}}}
+            {{{feature.demo.cssHidden}}}
+          </style>
           {{{feature.demo.html}}}
         </div>
 
         <ul class="tabs">
+          {{#if feature.demo.js}}
           <li class="tab">
             <input type="radio" name="tabs" checked="checked" id="demo-code-js" />
             <label for="demo-code-js">JavaScript</label>
             <pre id="demo-code-content-js" class="demo-code-tab"><code class="language-javascript">{{feature.demo.js}}</code></pre>
           </li>
+          {{/if}}
           <li class="tab">
-            <input type="radio" name="tabs" id="demo-code-html" />
+            <input type="radio" name="tabs" {{#unless feature.demo.js}}checked="checked"{{/unless}} id="demo-code-html" />
             <label for="demo-code-html">HTML</label>
             <pre id="demo-code-content-html" class="demo-code-tab"><code class="language-html">{{feature.demo.html}}</code></pre>
           </li>

@@ -595,7 +595,7 @@ function processJSON(data) {
 <p>Currently, the object is <b id="nearValue">in unknown proximity</b>.</p>
 
 <div id="box"></div>`,
-        css: `#box {
+        cssHidden: `#box {
   width: 100px;
   height: 100px;
   border: 1px solid #000;
@@ -664,7 +664,7 @@ window.removeEventListener('userproximity', onUserProximityChanged);`
         html: `<p>Current light intensity is <b id="value">unknown</b>.</p>
 
 <div id="box"></div>`,
-        css: `#box {
+        cssHidden: `#box {
   width: 100px;
   height: 100px;
   border: 1px solid #000;
@@ -1513,6 +1513,81 @@ function consoleLog(data) {
       //caniuse: ['touch', 'pointer'], //TODO multiple caniuse refs
       caniuse: 'touch',
       demoPen: 'LpbVoV',
+      demo: {
+        html: `<div class="test-element">Drag me with one finger</div>
+<div class="test-element">Drag me with another finger</div>
+<div class="test-element">Drag me too</div>
+
+<p><small>Based on demo from <a href="https://www.quirksmode.org/m/tests/drag2.html">QuirksMode.org</a>.</small></p>`,
+        css: `.test-element {
+  height: 100px;
+  background-color: black;
+  width: 100px;
+  z-index: 5;
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  color: white;
+  text-align: center;
+  -ms-touch-action: none;
+}
+
+.test-element:nth-child(2) {
+  top: 150px;
+  left: 150px;
+}
+
+.test-element:nth-child(3) {
+  top: 50px;
+  left: 100px;
+}`,
+        cssHidden: `#demo-placeholder {
+  min-height: 300px;
+}`,
+        js: `function startDrag(e) {
+  this.ontouchmove = this.onmspointermove = moveDrag;
+
+  this.ontouchend = this.onmspointerup = function () {
+    this.ontouchmove = this.onmspointermove = null;
+    this.ontouchend = this.onmspointerup = null;
+  }
+
+  var pos = [this.offsetLeft, this.offsetTop];
+  var that = this;
+  var origin = getCoors(e);
+
+  function moveDrag(e) {
+    var currentPos = getCoors(e);
+    var deltaX = currentPos[0] - origin[0];
+    var deltaY = currentPos[1] - origin[1];
+    this.style.left = (pos[0] + deltaX) + 'px';
+    this.style.top = (pos[1] + deltaY) + 'px';
+    return false; // cancels scrolling
+  }
+
+  function getCoors(e) {
+    var coors = [];
+    if (e.targetTouches && e.targetTouches.length) {
+      var thisTouch = e.targetTouches[0];
+      coors[0] = thisTouch.clientX;
+      coors[1] = thisTouch.clientY;
+    } else {
+      coors[0] = e.clientX;
+      coors[1] = e.clientY;
+    }
+    return coors;
+  }
+}
+
+var elements = document.querySelectorAll('.test-element');
+[].forEach.call(elements, function (element) {
+  element.ontouchstart = element.onmspointerdown = startDrag;
+});
+
+document.ongesturechange = function () {
+  return false;
+}`
+      },
       tests: [
         Feature.windowContains('ontouchstart'),
         Feature.windowContains('onpointerdown')
@@ -1573,6 +1648,92 @@ function consoleLog(data) {
         Feature.windowContains('Gyroscope'),
       ],
       demoPen: 'BodzBg',
+      demo: {
+        html: `<table class="table table-striped table-bordered">
+  <tr>
+    <td>API used</td>
+    <td id="moApi"></td>
+  </tr>
+  <tr>
+    <td>acceleration (excl. gravity)</td>
+    <td id="moAccel"></td>
+  </tr>
+  <tr>
+    <td>acceleration (incl. gravity)</td>
+    <td id="moAccelGrav"></td>
+  </tr>
+  <tr>
+    <td>rotation rate</td>
+    <td id="moRotation"></td>
+  </tr>
+  <tr>
+    <td>interval</td>
+    <td id="moInterval"></td>
+  </tr>
+</table>
+
+<p><small>Demo based on <a href="https://www.html5rocks.com/en/tutorials/device/orientation/" target="_blank">HTML5 Rocks</a> article.</small></p>`,
+        js: `if ('Accelerometer' in window && 'Gyroscope' in window) {
+  document.getElementById('moApi').innerHTML = 'Generic Sensor API';
+  
+  let accelerometer = new Accelerometer();
+  accelerometer.addEventListener('reading', e => accelerationHandler(accelerometer, 'moAccel'));
+  accelerometer.start();
+  
+  let accelerometerWithGravity = new Accelerometer({includeGravity: true});
+  accelerometerWithGravity.addEventListener('reading', e => accelerationHandler(accelerometerWithGravity, 'moAccelGrav'));
+  accelerometerWithGravity.start();
+  
+  let gyroscope = new Gyroscope();
+  gyroscope.addEventListener('reading', e => rotationHandler({
+    alpha: gyroscope.x,
+    beta: gyroscope.y,
+    gamma: gyroscope.z
+  }));
+  gyroscope.start();
+  
+  intervalHandler('Not available in Generic Sensor API');
+  
+} else if ('DeviceMotionEvent' in window) {
+  document.getElementById('moApi').innerHTML = 'Device Motion API';
+  
+  var onDeviceMotion = function (eventData) {
+    accelerationHandler(eventData.acceleration, 'moAccel');
+    accelerationHandler(eventData.accelerationIncludingGravity, 'moAccelGrav');
+    rotationHandler(eventData.rotationRate);
+    intervalHandler(eventData.interval);
+  }
+  
+  window.addEventListener('devicemotion', onDeviceMotion, false);
+} else {
+  document.getElementById('moApi').innerHTML = 'No Accelerometer & Gyroscope API available';
+}
+
+function accelerationHandler(acceleration, targetId) {
+  var info, xyz = "[X, Y, Z]";
+
+  info = xyz.replace("X", acceleration.x && acceleration.x.toFixed(3));
+  info = info.replace("Y", acceleration.y && acceleration.y.toFixed(3));
+  info = info.replace("Z", acceleration.z && acceleration.z.toFixed(3));
+  document.getElementById(targetId).innerHTML = info;
+}
+
+function rotationHandler(rotation) {
+  var info, xyz = "[X, Y, Z]";
+
+  info = xyz.replace("X", rotation.alpha && rotation.alpha.toFixed(3));
+  info = info.replace("Y", rotation.beta && rotation.beta.toFixed(3));
+  info = info.replace("Z", rotation.gamma && rotation.gamma.toFixed(3));
+  document.getElementById("moRotation").innerHTML = info;
+}
+
+function intervalHandler(interval) {
+  document.getElementById("moInterval").innerHTML = interval;
+}`,
+        jsOnExit: `if (onDeviceMotion) {
+    window.removeEventListener('devicemotion', onDeviceMotion);
+}`
+      },
       links: [
         {url: 'https://w3c.github.io/deviceorientation/spec-source-orientation.html#devicemotion', title: 'Device Orientation API Specification Draft'},
         {url: 'https://w3c.github.io/accelerometer/', title: 'Accelerometer API Specification Draft'},
@@ -1650,6 +1811,89 @@ function consoleLog(data) {
         Feature.containedIn('document', global.document, 'onpaste')
       ],
       demoPen: 'bVozGY',
+      demo: {
+        html: `<p class="heading">Use the forms below for programmatic clipboard access or invoke standard copy/cut/paste operations with your keyboard.</p>
+<section>
+  <h2>Cut/Paste Example</h2>
+  <p>
+    <textarea class="js-cuttextarea form-control">Hello! Cut me programatically or maybe try pasting here.</textarea>
+  </p>
+
+  <p>
+    <button class="js-textareacutbtn btn btn-default">Cut text programatically</button>
+  </p>
+</section>
+
+<section>
+  <h2>Copy Example</h2>
+  <p>Email me at <a class="js-emaillink" href="mailto:matt@example.co.uk">matt@example.co.uk</a></p>
+  <p>
+    <button class="js-emailcopybtn btn btn-default">Copy Email Address programatically</button>
+  </p>
+</section>
+
+<p id="logTarget"></p>
+
+<p><small>Demo based on <a href="https://googlechrome.github.io/samples/cut-and-copy/index.html" target="_blank">Google Chrome examples</a>.</small></p>`,
+        js: `var logTarget = document.getElementById('logTarget');
+
+function log(event) {
+  var timeBadge = new Date().toTimeString().split(' ')[0];
+  var newInfo = document.createElement('p');
+  newInfo.innerHTML = '<span class="badge">' + timeBadge + '</span> ' + event + '</b>.';
+  logTarget.appendChild(newInfo);
+}
+
+function performCopyEmail() {
+  var emailLink = document.querySelector('.js-emaillink');
+
+  var range = document.createRange();
+  range.selectNode(emailLink);
+  window.getSelection().addRange(range);
+
+  try {
+    var successful = document.execCommand('copy');
+    var msg = successful ? 'successful' : 'unsuccessful';
+    log('Copy email command was ' + msg);
+  } catch (err) {
+    log('execCommand Error', err);
+  }
+  window.getSelection().removeAllRanges();
+}
+
+function performCutTextarea() {
+  var hasSelection = document.queryCommandEnabled('cut');
+  var cutTextarea = document.querySelector('.js-cuttextarea');
+  cutTextarea.select();
+
+  try {
+    var successful = document.execCommand('cut');
+    var msg = successful ? 'successful' : 'unsuccessful';
+    log('Cutting text command was ' + msg);
+  } catch (err) {
+    log('execCommand Error', err);
+  }
+}
+
+// Get the buttons
+var cutTextareaBtn = document.querySelector('.js-textareacutbtn');
+var copyEmailBtn = document.querySelector('.js-emailcopybtn');
+
+// Add click event listeners
+copyEmailBtn.addEventListener('click', performCopyEmail);
+cutTextareaBtn.addEventListener('click', performCutTextarea);
+
+function logUserOperation(event) {
+  log('User performed <b>' + event.type + '</b> operation. Payload is: <b>' + event.clipboardData.getData('text/plain') + '</b>');
+}
+
+document.addEventListener('cut', logUserOperation);
+document.addEventListener('copy', logUserOperation);
+document.addEventListener('paste', logUserOperation);`,
+        jsOnExit: `document.removeEventListener('cut', logUserOperation);
+document.removeEventListener('copy', logUserOperation);
+document.removeEventListener('paste', logUserOperation);`
+      },
       links: [
         {url: 'https://w3c.github.io/clipboard-apis/', title: 'Specification Draft'},
         {url: 'https://developer.mozilla.org/en-US/docs/Web/API/ClipboardEvent', title: 'MDN: ClipboardEvent'},
@@ -1692,6 +1936,48 @@ function consoleLog(data) {
         Feature.rawTest('window', `matchMedia('(hover), not(hover)').matches`, () => global.matchMedia && global.matchMedia('(hover), not(hover)').matches)
       ],
       demoPen: 'pjdyoK',
+      demo: {
+        html: `<p>The button is larger when the primary pointer is coarse. The tooltip is  visible on hover when the pointer allows hovering.</p>
+
+<div class="text-center">
+  <button id="button" class="btn btn-default">The button</button>
+  <div id="tooltip" class="tooltip bottom" role="tooltip">
+    <div class="tooltip-arrow"></div>
+    <div class="tooltip-inner">
+      Tooltip visible on hover when pointer allows hover
+    </div>
+  </div>
+</div>`,
+        css: `@media (hover: hover) {
+  #tooltip {
+    display: none;
+  }
+  #button:hover ~ #tooltip {
+    display: block;
+  }
+}
+
+@media (pointer: fine) {
+  #button {
+    font-size: x-small;
+  }
+}
+@media (pointer: coarse) {
+  #button {
+    font-size: x-large;
+  }
+}`,
+        cssHidden: `p, button {
+  margin: 10px;
+}
+#tooltip {
+  position: relative;
+  opacity: 1;
+}
+#tooltip .tooltip-inner {
+  margin: 0 auto;
+}`
+      },
       links: [
         {url: 'http://www.w3.org/TR/mediaqueries-4/#mf-interaction', title: 'Specification Draft'},
         {
