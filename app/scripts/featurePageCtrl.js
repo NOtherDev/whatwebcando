@@ -18,16 +18,10 @@
       }
     };
 
-    const initCodePen = () => {
+    const initDemo = () => {
       if (feature.demo) {
         cleanAndRunScript(feature.demo.js);
       }
-
-      /* eslint-disable no-underscore-dangle */
-      if (feature.demoPen && window.__CPEmbed) {
-        window.__CPEmbed();
-      }
-      /* eslint-enable no-underscore-dangle */
     };
 
     const initTests = () => {
@@ -67,7 +61,7 @@
       }
 
       initHighlight();
-      initCodePen();
+      initDemo();
       initTests();
       setAccesibilityFeatures();
     };

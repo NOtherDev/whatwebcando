@@ -46,7 +46,6 @@
         Feature.containedIn('ServiceWorkerRegistration',
           global.ServiceWorkerRegistration && global.ServiceWorkerRegistration.prototype, 'showNotification')
       ],
-      demoPen: 'yYJdWO',
       demo: {
         html: `<p>Current permission status is <b id="status">unavailable</b>.</p>
 
@@ -334,7 +333,6 @@ self.addEventListener('fetch', function (event) {
         <dd>An event fired when the visibility state of the page has changed.</dd>
       </dl>`,
       caniuse: 'pagevisibility',
-      demoPen: 'avBpOb',
       demo: {
         html: `<p>Switch the browser tab to see the changes.</p>
 <p>Initial page visibility was <b id="status">unknown</b>.</p>
@@ -394,7 +392,6 @@ if (hidden in document) {
         <dd>Sets up observing for location changes, invoking callback for every change.</dd>
       </dl>`,
       caniuse: 'geolocation',
-      demoPen: 'ojYoqB',
       demo: {
         html: `<button class="btn btn-default" id="askButton">Ask for location</button>
 
@@ -450,7 +447,6 @@ if ('geolocation' in navigator) {
       </dl>`,
       tests: [Feature.navigatorContains('bluetooth')],
       caniuse: 'web-bluetooth',
-      demoPen: 'VvPaRY',
       demo: {
         html: `<p>
   <button class="btn btn-lg btn-default" onclick="readBatteryLevel()">Read Bluetooth device's battery level</button>
@@ -512,7 +508,6 @@ if ('geolocation' in navigator) {
         <dd>Triggers sending the <code>message</code> (string, <code>ArrayBuffer</code> or NDEF record structure) to the NFC adapter specified by <code>options</code>.</dd>
       </dl>`,
       tests: [Feature.navigatorContains('nfc')],
-      demoPen: 'XmpKjQ',
       demo: {
         html: `<p>
   <button class="btn btn-lg btn-default" onclick="readWriteNfc()">Test NFC Read/Write</button>
@@ -610,7 +605,6 @@ function processJSON(data) {
         Feature.windowContains('onuserproximity'),
         Feature.windowContains('ProximitySensor')
       ],
-      demoPen: 'jWMRNw',
       demo: {
         html: `<p>Current approximate distance to object is <b id="deviceValue">unknown</b>.</p>
 <p>Currently, the object is <b id="nearValue">in unknown proximity</b>.</p>
@@ -680,7 +674,6 @@ window.removeEventListener('userproximity', onUserProximityChanged);`
         Feature.windowContains('ondevicelight'),
         Feature.windowContains('AmbientLightSensor')
       ],
-      demoPen: 'OyWZqY',
       demo: {
         html: `<p>Current light intensity is <b id="value">unknown</b>.</p>
 
@@ -754,7 +747,6 @@ if ("ondevicelight" in window) {
         Feature.navigatorContains('getUserMedia'),
         Feature.navigatorContains('mediaDevices')
       ],
-      demoPen: 'YyZKPJ',
       demo: {
         html: `<div class="container" style="margin-top: 10px">
   <div class="row">
@@ -829,7 +821,6 @@ function getStream (type) {
       </dl>`,
       tests: [Feature.navigatorContains('connection')],
       caniuse: 'netinfo',
-      demoPen: 'LpWPvv',
       demo: {
         html: `<p>Current theoretical network type is <b id="networkType">not available</b>.</p>
 <p>Current effective network type is <b id="effectiveNetworkType">not available</b>.</p>
@@ -873,7 +864,6 @@ if (info) {
       </dl>`,
       caniuse: 'online-status',
       tests: [Feature.navigatorContains('onLine')],
-      demoPen: 'Qjpveg',
       demo: {
         html: `<p>Turn the network connection on/off to see the changes.</p>
 
@@ -913,7 +903,6 @@ window.removeEventListener('offline', handleStateChange);`
       </dl>`,
       caniuse: 'vibration',
       tests: [Feature.navigatorContains('vibrate')],
-      demoPen: 'VvpxrM',
       demo: {
         html: `<button class="btn btn-default" onclick="vibrateSimple()">Vibrate for 200 ms</button>
 <button class="btn btn-default" onclick="vibratePattern()">Vibrate with pattern</button>`,
@@ -966,7 +955,6 @@ function vibratePattern() {
         Feature.navigatorContains('getBattery'),
         Feature.navigatorContains('battery')
       ],
-      demoPen: 'epvKNB',
       demo: {
         html: `<p>Initial battery status was <b id="charging">unknown</b>, charging time <b id="chargingTime">unknown</b>, discharging time <b id="dischargingTime">unknown</b>, level <b id="level">unknown</b>.</p>
 
@@ -1125,7 +1113,6 @@ function vibratePattern() {
         Feature.windowContains('caches'),
         Feature.navigatorContains('storage')
       ],
-      demoPen: 'NGpoON',
       demo: {
         html: `<p>
   <label>Engine</label>
@@ -1236,7 +1223,6 @@ function vibratePattern() {
       </dl>`,
       caniuse: 'fileapi',
       tests: [Feature.windowContains('File')],
-      demoPen: 'pjPLRW',
       demo: {
         html: `<span class="btn btn-default btn-file">
     Choose some files <input type="file" onchange="handleFiles(this.files)" multiple>
@@ -1316,7 +1302,6 @@ function handleFiles(files) {
       </dl>`,
       caniuse: 'permissions-api',
       tests: [Feature.navigatorContains('permissions')],
-      demoPen: 'OymKdE',
       demo: {
         html: `<p>
   <b>Geolocation</b> permission status is <b id="geolocationStatus">unknown</b>.
@@ -1416,7 +1401,6 @@ function handleFiles(files) {
         <dd>An event fired when the address book data has changed, containing all the added, removed and changed contact entries.</dd>
       </dl>`,
       tests: [Feature.containedIn('navigator.contacts', global.navigator && (global.navigator.contacts || global.navigator.mozContacts), 'oncontactschange')],
-      demoPen: 'rxWYjy',
       demo: {
         html: `<p>
   <button class="btn btn-lg btn-default" onclick="readContacts()">Read Contacts</button>
@@ -1484,7 +1468,6 @@ function consoleLog(data) {
         Feature.containedIn('navigator.storage', (global.navigator || {}).storage, 'estimate'),
         Feature.navigatorContains('persistentStorage', false)
       ],
-      demoPen: 'LLyLpG',
       demo: {
         html: `<p>Estimated storage usage is <b id="usage">unknown</b> bytes.</p>
 <p>Estimated storage quota is <b id="quota">unknown</b> bytes.</p>
@@ -1533,7 +1516,6 @@ function consoleLog(data) {
         </dl>`,
       //caniuse: ['touch', 'pointer'], //TODO multiple caniuse refs
       caniuse: 'touch',
-      demoPen: 'LpbVoV',
       demo: {
         html: `<div class="test-element">Drag me with one finger</div>
 <div class="test-element">Drag me with another finger</div>
@@ -1668,7 +1650,6 @@ document.ongesturechange = function () {
         Feature.windowContains('Accelerometer'),
         Feature.windowContains('Gyroscope'),
       ],
-      demoPen: 'BodzBg',
       demo: {
         html: `<table class="table table-striped table-bordered">
   <tr>
@@ -1831,7 +1812,6 @@ function intervalHandler(interval) {
         Feature.containedIn('document', global.document, 'oncopy'),
         Feature.containedIn('document', global.document, 'onpaste')
       ],
-      demoPen: 'bVozGY',
       demo: {
         html: `<p class="heading">Use the forms below for programmatic clipboard access or invoke standard copy/cut/paste operations with your keyboard.</p>
 <section>
@@ -1956,7 +1936,6 @@ document.removeEventListener('paste', logUserOperation);`
       tests: [
         Feature.rawTest('window', `matchMedia('(hover), not(hover)').matches`, () => global.matchMedia && global.matchMedia('(hover), not(hover)').matches)
       ],
-      demoPen: 'pjdyoK',
       demo: {
         html: `<p>The button is larger when the primary pointer is coarse. The tooltip is  visible on hover when the pointer allows hovering.</p>
 
@@ -2032,7 +2011,6 @@ document.removeEventListener('paste', logUserOperation);`
         <dd>Returns device's current left/right tilt in degrees, from -90 when turned left to 90 when turned right.</dd>
       </dl>`,
       caniuse: 'deviceorientation',
-      demoPen: 'EVvyaw',
       demo: {
         html: `<table class="table table-striped table-bordered">
   <tr>
@@ -2113,7 +2091,6 @@ function deviceOrientationHandler (eventData) {
         <dd>An event fired when the fullscreen mode has been entered or exited.</dd>
       </dl>`,
       caniuse: 'fullscreen',
-      demoPen: 'LpewpQ',
       demo: {
         html: `<p>
   <button class="btn btn-default start" id="startFull">Start fullscreen on the whole page</button>
@@ -2401,7 +2378,6 @@ if (screen[orientKey]) {
     screen.removeEventListener('orientationchange', onOrientationChange);
   }`
       },
-      demoPen: 'EVbpeX',
       tests: [
         Feature.containedIn('screen', global.screen, 'orientation'),
         Feature.containedIn('screen', global.screen, 'lockOrientation', false)
@@ -2457,7 +2433,6 @@ if ("keepAwake" in screen) {
   printStatus();
 }`
       },
-      demoPen: 'XggJKK',
       tests: [
         Feature.containedIn('screen', global.screen, 'keepAwake'),
         Feature.navigatorContains('getWakeLock')
@@ -2538,7 +2513,6 @@ function takePhoto() {
     .catch(err => alert('Error: ' + err));
 }`
       },
-      demoPen: 'AXzVqV',
       links: [
         {url: 'https://w3c.github.io/mediacapture-image/', title: 'W3C Specification Draft'},
         {url: 'https://developers.google.com/web/updates/2016/12/imagecapture', title: 'Google Developers: Take Photos and Control Camera Settings'},
@@ -2679,7 +2653,6 @@ function share() {
     .catch(error => console.log('Error sharing:', error));
 }`
       },
-      demoPen: 'kkaLOP',
       links: [
         {url: 'https://www.w3.org/TR/web-intents/', title: 'W3C Working Group Note about Web Intents'},
         {url: 'https://www.chromium.org/developers/web-intents-in-chrome', title: 'Web Intents in Chrome - description from 2012'},
@@ -2777,7 +2750,6 @@ function download() {
   }, 100); 
 }`
       },
-      demoPen: 'WGZkjm',
       links: [
         {url: 'https://w3c.github.io/mediacapture-record/MediaRecorder.html', title: 'Specification Draft'},
         {url: 'https://webrtc.github.io/samples/src/content/getusermedia/record/', title: 'Demo recording local data'}
@@ -2891,7 +2863,6 @@ function addStreamToVideoTag(stream, tag) {
   }
 }`
       },
-      demoPen: 'amoLwm',
       links: [
         {url: 'https://w3c.github.io/webrtc-pc/', title: 'Specification Draft'},
         {
