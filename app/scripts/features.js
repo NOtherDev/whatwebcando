@@ -338,7 +338,9 @@ self.addEventListener('fetch', function (event) {
 <p>Initial page visibility was <b id="status">unknown</b>.</p>
 <div id="target"></div>
 <p><small>Based on demo from <a href="https://developer.mozilla.org/en-US/docs/Web/API/Page_Visibility_API">MDN</a>.</small></p>`,
-        js: `var hidden, visibilityChange;
+        js: `var target = document.getElementById('target');
+
+var hidden, visibilityChange;
 if (typeof document.hidden !== "undefined") {
   hidden = "hidden";
   visibilityChange = "visibilitychange";
@@ -352,10 +354,8 @@ if (typeof document.hidden !== "undefined") {
   hidden = "webkitHidden";
   visibilityChange = "webkitvisibilitychange";
 } else {
-  alert('Page Visibility API not supported.');
+  target.innerText = 'Page Visibility API not supported.';
 }
-
-var target = document.getElementById('target');
 
 function handleVisibilityChange() {
   var timeBadge = new Date().toTimeString().split(' ')[0];
@@ -414,7 +414,7 @@ if ('geolocation' in navigator) {
     watchId = navigator.geolocation.watchPosition(appendLocation);
   });
 } else {
-  alert('Geolocation API not supported.');
+  target.innerText = 'Geolocation API not supported.';
 }`,
         jsOnExit: `if (watchId) navigator.geolocation.clearWatch(watchId)`
       },
@@ -534,7 +534,7 @@ if ('geolocation' in navigator) {
       .then(() => consoleLog("Added a watch."))
       .catch(err => consoleLog("Adding watch failed: " + err.name));
   } else {
-    alert('NFC API not supported.');
+    consoleLog('NFC API not supported.');
   }
 }
 
@@ -762,16 +762,21 @@ if ("ondevicelight" in window) {
     </div>
   </div>
 </div>`,
-        js: `function getUserMedia (options, successCallback, failureCallback) {
+        js: `function getUserMedia(options, successCallback, failureCallback) {
   var api = navigator.getUserMedia || navigator.webkitGetUserMedia ||
     navigator.mozGetUserMedia || navigator.msGetUserMedia;
   if (api) {
     return api.bind(navigator)(options, successCallback, failureCallback);
   }
-  alert('User Media API not supported.');
 }
 
 function getStream (type) {
+  if (!navigator.getUserMedia && !navigator.webkitGetUserMedia &&
+    !navigator.mozGetUserMedia && !navigator.msGetUserMedia) {
+    alert('User Media API not supported.');
+    return;
+  }
+
   var constraints = {};
   constraints[type] = true;
   getUserMedia(constraints, function (stream) {
@@ -2027,7 +2032,7 @@ document.removeEventListener('paste', logUserOperation);`
   </tr>
 </table>
 
-<div class="container">
+<div class="container" id="logoContainer">
   <img src="https://www.w3.org/html/logo/downloads/HTML5_Badge_512.png" id="imgLogo">
 </div>
 
@@ -2047,7 +2052,7 @@ document.removeEventListener('paste', logUserOperation);`
         js: `if ('DeviceOrientationEvent' in window) {
   window.addEventListener('deviceorientation', deviceOrientationHandler, false);
 } else {
-  alert('Device orientation not supported.');
+  document.getElementById('logoContainer').innerText = 'Device Orientation API not supported.';
 }
 
 function deviceOrientationHandler (eventData) {
@@ -2468,12 +2473,17 @@ if ("keepAwake" in screen) {
   if (api) {
     return api.bind(navigator)(options, successCallback, failureCallback);
   }
-  alert('User Media API not supported.');
 }
 
 var theStream;
 
 function getStream() {
+  if (!navigator.getUserMedia && !navigator.webkitGetUserMedia &&
+    !navigator.mozGetUserMedia && !navigator.msGetUserMedia) {
+    alert('User Media API not supported.');
+    return;
+  }
+  
   var constraints = {
     video: true
   };
@@ -2691,7 +2701,6 @@ function share() {
   if (api) {
     return api.bind(navigator)(options, successCallback, failureCallback);
   }
-  alert('User Media API not supported.');
 }
 
 var theStream;
@@ -2699,6 +2708,12 @@ var theRecorder;
 var recordedChunks = [];
 
 function getStream() {
+  if (!navigator.getUserMedia && !navigator.webkitGetUserMedia &&
+    !navigator.mozGetUserMedia && !navigator.msGetUserMedia) {
+    alert('User Media API not supported.');
+    return;
+  }
+  
   var constraints = {video: true, audio: true};
   getUserMedia(constraints, function (stream) {
     var mediaControl = document.querySelector('video');
@@ -2725,7 +2740,7 @@ function getStream() {
   });
 }
 
-function recorderOnDataAvailable (event) {
+function recorderOnDataAvailable(event) {
   if (event.data.size == 0) return;
   recordedChunks.push(event.data);
 }
@@ -2802,7 +2817,6 @@ function download() {
   if (api) {
     return api.bind(navigator)(options, successCallback, failureCallback);
   }
-  alert('User Media API not supported.');
 }
 
 var pc1;
@@ -2810,6 +2824,12 @@ var pc2;
 var theStreamB;
 
 function getStream() {
+  if (!navigator.getUserMedia && !navigator.webkitGetUserMedia &&
+    !navigator.mozGetUserMedia && !navigator.msGetUserMedia) {
+    alert('User Media API not supported.');
+    return;
+  }
+  
   var constraints = {
     video: true
   };
