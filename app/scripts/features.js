@@ -407,8 +407,8 @@ function appendLocation(location, verb) {
 }
 
 if ('geolocation' in navigator) {
-  document.getElementById('askButton').addEventListener('click', function() {
-    navigator.geolocation.getCurrentPosition(function(location) {
+  document.getElementById('askButton').addEventListener('click', function () {
+    navigator.geolocation.getCurrentPosition(function (location) {
       appendLocation(location, 'fetched');
     });
     watchId = navigator.geolocation.watchPosition(appendLocation);
@@ -518,7 +518,7 @@ if ('geolocation' in navigator) {
 <p><small>Based on the code snippets from <a href="https://w3c.github.io/web-nfc/#examples">specification draft</a>.</small></p>`,
         js: `function readWriteNfc() {
   if ('nfc' in navigator) {
-    navigator.nfc.watch(function(message) {
+    navigator.nfc.watch(function (message) {
         consoleLog("NFC message received from URL " + message.url);
         if (message.data[0].recordType === 'empty') {
           navigator.nfc.push([{
@@ -544,7 +544,7 @@ function consoleLog(data) {
 }
 
 function processMessage(message) {
-  message.data.forEach(function(record) {
+  message.data.forEach(function (record) {
     if (record.recordType == "string") {
       consoleLog('Data is string: ' + record.data);
     } else if (record.recordType == "json") {
@@ -562,7 +562,7 @@ function processPng(data) {
 
   var img = document.createElement("img");
   img.src = URL.createObjectURL(new Blob(data, 'image/png'));
-  img.onload = function() {
+  img.onload = function () {
     window.URL.revokeObjectURL(this.src);
   };
 };
@@ -787,7 +787,7 @@ function getStream (type) {
       mediaControl.srcObject = stream;
       mediaControl.src = (window.URL || window.webkitURL).createObjectURL(stream);
     }
-  }, function(err) {
+  }, function (err) {
     alert('Error: ' + err);
   });
 }`
@@ -1144,7 +1144,7 @@ function vibratePattern() {
     valueInput.value =  window[selectedEngine].getItem('myKey') || '';
   }
   
-  var selectEngine = function(engine) {
+  var selectEngine = function (engine) {
     document.querySelector('[data-engine=' + engine + ']').classList.add('active');
     if (selectedEngine) {
       document.querySelector('[data-engine=' + selectedEngine + ']').classList.remove('active');
@@ -1154,8 +1154,8 @@ function vibratePattern() {
     reloadInputValue();
   };
 
-  var getSelectEngineFn = function(button) {
-    return function() {
+  var getSelectEngineFn = function (button) {
+    return function () {
       var engine = button.getAttribute('data-engine');
       if (selectedEngine !== engine) {
         selectEngine(engine);
@@ -1177,7 +1177,7 @@ function vibratePattern() {
   
   selectEngine('localStorage');
 
-  valueInput.addEventListener('keyup', function() {
+  valueInput.addEventListener('keyup', function () {
     window[selectedEngine].setItem('myKey', this.value);
   });
 
@@ -1254,7 +1254,7 @@ function vibratePattern() {
     display: block;
 }`,
         js: `function getReadFile(reader, i) {
-  return function() {
+  return function () {
     var li = document.querySelector('[data-idx="' + i + '"]');
 
     li.innerHTML += 'File starts with "' + reader.result.substr(0, 25) + '"';
@@ -1346,7 +1346,7 @@ function handleFiles(files) {
       })
       .then(function (permission) {
         document.getElementById(permissionName + 'Status').innerHTML = permission.state;
-        permission.addEventListener('change', function(e) {
+        permission.addEventListener('change', function (e) {
           document.getElementById(permissionName + 'Status').innerHTML = permission.state;
           handleChange(permissionName, permission.state);
         });
@@ -1362,7 +1362,7 @@ function handleFiles(files) {
   checkPermission('midi');
 
   function requestGeolocation() {
-    navigator.geolocation.getCurrentPosition(function() {});
+    navigator.geolocation.getCurrentPosition(function () {});
   }
 
   function requestNotifications() {
@@ -1424,13 +1424,13 @@ function handleFiles(files) {
 
     var finder = api.find(criteria);
     if (finder && finder.then) {
-      finder.then(function(contacts) {
+      finder.then(function (contacts) {
           consoleLog('Found ' + contacts.length + ' contacts.');
           if (contacts.length) {
             consoleLog('First contact: ' + contacts[0].givenName[0] + ' ' + contacts[0].familyName[0]);
           }
         })
-        .catch(function(err) {
+        .catch(function (err) {
           consoleLog('Fetching contacts failed: ' + err.name);
         });
     } else {
@@ -2122,7 +2122,7 @@ function deviceOrientationHandler (eventData) {
   display: none;
 }`,
         js: `var $ = document.querySelector.bind(document);
-var $$ = function(selector) {
+var $$ = function (selector) {
   return [].slice.call(document.querySelectorAll(selector), 0);
 }
 var target = $('#logTarget');
@@ -2181,10 +2181,10 @@ if (document[prefix + 'Enabled']) {
   }
 
   var goFullscreenHandler = function (element) {
-    return function() {
+    return function () {
       var maybePromise = element[goFullScreen]();
       if (maybePromise && maybePromise.catch) {
-        maybePromise.catch(function(err) {
+        maybePromise.catch(function (err) {
           logChange('Cannot acquire fullscreen mode: ' + err);
         });
       }
@@ -2341,7 +2341,7 @@ if (screen[orientKey]) {
     exitFullScreen = 'msExitFullscreen';
   }
 
-  $('lock').addEventListener('click', function() {
+  $('lock').addEventListener('click', function () {
     document.documentElement[goFullScreen] && document.documentElement[goFullScreen]();
 
     var promise = null;
@@ -2833,7 +2833,7 @@ function getStream() {
   var constraints = {
     video: true
   };
-  getUserMedia(constraints, function(stream) {
+  getUserMedia(constraints, function (stream) {
     addStreamToVideoTag(stream, 'localVideo');
 
     // RTCPeerConnection is prefixed in Blink-based browsers.
@@ -2868,7 +2868,7 @@ function getStream() {
       .catch(err => {
         console.error('createOffer()/createAnswer() failed ' + err);
       });
-  }, function(err) {
+  }, function (err) {
     alert('Error: ' + err);
   });
 }
