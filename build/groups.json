@@ -46,6 +46,11 @@
         "id": "app-communication",
         "icon": "mdi-action-explore",
         "name": "Inter-App Communication"
+      },
+      {
+        "id": "payments",
+        "icon": "mdi-action-payment",
+        "name": "Payments"
       }
     ]
   },

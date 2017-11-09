@@ -83,6 +83,9 @@
 .mdi-action-lock:before {
   content: "\e644";
 }
+.mdi-action-payment:before {
+  content: "\e64c";
+}
 .mdi-action-settings-applications:before {
   content: "\e662";
 }
