@@ -34,14 +34,13 @@
       this.browsers = [...this.$rollupRarelyUsedBrowsers(allBrowsers)].reverse();
     }
 
-    *$compileBrowserReports(supportData) {
+    $compileBrowserReports(supportData) {
       let browserStats = (supportData || {}).stats;
-      for (let browserKey of Object.keys(browserStats)) {
-        yield this.$getBrowserReport(browserKey, browserStats[browserKey], this.$browserUsage.usageOf(browserKey));
-      }
+      return Object.keys(browserStats)
+        .map(browserKey => this.$getBrowserReport(browserKey, browserStats[browserKey], this.$browserUsage.usageOf(browserKey)));
     }
 
-    *$rollupRarelyUsedBrowsers(browsers) {
+    $rollupRarelyUsedBrowsers(browsers) {
       let rollup = {
         browserName: OTHERS_KEY,
         noSupport: {share: 0},
@@ -49,9 +48,11 @@
         hasSupport: {share: 0}
       };
 
+      let result = [];
+
       for (let report of browsers) {
         if (this.$browserUsage.isAboveThreshold(report.browserKey)) {
-          yield report;
+          result.push(report);
         } else {
           rollup.noSupport.share += report.noSupport.share || 0;
           rollup.partialSupport.share += report.partialSupport.share || 0;
@@ -59,7 +60,8 @@
         }
       }
 
-      yield rollup;
+      result.push(rollup);
+      return result;
     }
 
     static $normalizeSupportFlag(key) {
@@ -216,7 +218,10 @@
             value: new CaniuseReport(this.$feature.caniuseKey, featureReport, usageReport)
           });
         })
-        .catch(err => console.warn(err));
+        .catch(err => {
+          console.warn(err);
+          throw err;
+        });
     }
   }
 

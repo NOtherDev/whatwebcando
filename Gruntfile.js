@@ -175,9 +175,9 @@ module.exports = function (grunt) {
     filerev: {
       dist: {
         src: [
-          '<%= config.dist %>/scripts/{,*/}*.js',
-          '<%= config.dist %>/styles/{,*/}*.css',
-          '<%= config.dist %>/styles/fonts/{,*/}*.*'
+          '<%= config.dist %>/scripts/*.js',
+          '<%= config.dist %>/styles/*.css',
+          '<%= config.dist %>/styles/fonts/*.*'
         ]
       }
     },
@@ -322,6 +322,15 @@ module.exports = function (grunt) {
           dest: '<%= config.dist %>',
           src: [
             'fonts/{,*/}*.*'
+          ]
+        }, {
+          expand: true,
+          dot: true,
+          cwd: 'bower_components',
+          dest: '<%= config.dist %>/scripts',
+          src: [
+            'babel-polyfill/*.js',
+            '*/dist/*.min.js',
           ]
         }]
       }
