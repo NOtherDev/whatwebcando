@@ -1,4 +1,4 @@
-const VERSION = '2c2de1e'; const groups = [
+const VERSION = 'd36c6ef'; const groups = [
   {
     "heading": "Native Behaviors",
     "features": [
@@ -21,56 +21,6 @@ const VERSION = '2c2de1e'; const groups = [
         "id": "permissions",
         "icon": "mdi-action-lock-open",
         "name": "Permissions"
-      }
-    ]
-  },
-  {
-    "heading": "Seamless Experience",
-    "features": [
-      {
-        "id": "offline",
-        "icon": "mdi-action-settings-applications",
-        "name": "Offline Mode"
-      },
-      {
-        "id": "installation",
-        "icon": "mdi-action-get-app",
-        "name": "Home Screen Installation"
-      },
-      {
-        "id": "background-sync",
-        "icon": "mdi-action-backup",
-        "name": "Background Sync"
-      },
-      {
-        "id": "app-communication",
-        "icon": "mdi-action-explore",
-        "name": "Inter-App Communication"
-      }
-    ]
-  },
-  {
-    "heading": "Input",
-    "features": [
-      {
-        "id": "touch",
-        "icon": "mdi-content-gesture",
-        "name": "Touch Gestures"
-      },
-      {
-        "id": "speech-recognition",
-        "icon": "mdi-av-mic",
-        "name": "Speech Recognition"
-      },
-      {
-        "id": "clipboard",
-        "icon": "mdi-content-content-paste",
-        "name": "Clipboard (Copy & Paste)"
-      },
-      {
-        "id": "pointer-adaptation",
-        "icon": "mdi-hardware-mouse",
-        "name": "Pointing Device Adaptation"
       }
     ]
   },
@@ -100,56 +50,6 @@ const VERSION = '2c2de1e'; const groups = [
     ]
   },
   {
-    "heading": "Camera & Microphone",
-    "features": [
-      {
-        "id": "camera-microphone",
-        "icon": "mdi-image-camera-alt",
-        "name": "Audio & Video Capture"
-      },
-      {
-        "id": "photos",
-        "icon": "mdi-image-camera-roll",
-        "name": "Advanced Camera Controls"
-      },
-      {
-        "id": "recording",
-        "icon": "mdi-av-mic",
-        "name": "Recording Media"
-      },
-      {
-        "id": "realtime",
-        "icon": "mdi-av-videocam",
-        "name": "Real-time Communication"
-      }
-    ]
-  },
-  {
-    "heading": "Location & Position",
-    "features": [
-      {
-        "id": "geolocation",
-        "icon": "mdi-device-gps-fixed",
-        "name": "Geolocation"
-      },
-      {
-        "id": "geofencing",
-        "icon": "mdi-action-group-work",
-        "name": "Geofencing"
-      },
-      {
-        "id": "device-orientation",
-        "icon": "mdi-device-screen-rotation",
-        "name": "Device Orientation"
-      },
-      {
-        "id": "accelerometer",
-        "icon": "mdi-action-3d-rotation",
-        "name": "Device Motions"
-      }
-    ]
-  },
-  {
     "heading": "Device Features",
     "features": [
       {
@@ -175,6 +75,61 @@ const VERSION = '2c2de1e'; const groups = [
     ]
   },
   {
+    "heading": "Seamless Experience",
+    "features": [
+      {
+        "id": "offline",
+        "icon": "mdi-action-settings-applications",
+        "name": "Offline Mode"
+      },
+      {
+        "id": "installation",
+        "icon": "mdi-action-get-app",
+        "name": "Home Screen Installation"
+      },
+      {
+        "id": "background-sync",
+        "icon": "mdi-action-backup",
+        "name": "Background Sync"
+      },
+      {
+        "id": "app-communication",
+        "icon": "mdi-action-explore",
+        "name": "Inter-App Communication"
+      },
+      {
+        "id": "payments",
+        "icon": "mdi-action-payment",
+        "name": "Payments"
+      }
+    ]
+  },
+  {
+    "heading": "Camera & Microphone",
+    "features": [
+      {
+        "id": "camera-microphone",
+        "icon": "mdi-image-camera-alt",
+        "name": "Audio & Video Capture"
+      },
+      {
+        "id": "photos",
+        "icon": "mdi-image-camera-roll",
+        "name": "Advanced Camera Controls"
+      },
+      {
+        "id": "recording",
+        "icon": "mdi-av-mic",
+        "name": "Recording Media"
+      },
+      {
+        "id": "realtime",
+        "icon": "mdi-av-videocam",
+        "name": "Real-time Communication"
+      }
+    ]
+  },
+  {
     "heading": "Screen & Output",
     "features": [
       {
@@ -196,6 +151,56 @@ const VERSION = '2c2de1e'; const groups = [
         "id": "presentation",
         "icon": "mdi-hardware-tv",
         "name": "Presentation Features"
+      }
+    ]
+  },
+  {
+    "heading": "Input",
+    "features": [
+      {
+        "id": "touch",
+        "icon": "mdi-content-gesture",
+        "name": "Touch Gestures"
+      },
+      {
+        "id": "speech-recognition",
+        "icon": "mdi-av-mic",
+        "name": "Speech Recognition"
+      },
+      {
+        "id": "clipboard",
+        "icon": "mdi-content-content-paste",
+        "name": "Clipboard (Copy & Paste)"
+      },
+      {
+        "id": "pointer-adaptation",
+        "icon": "mdi-hardware-mouse",
+        "name": "Pointing Device Adaptation"
+      }
+    ]
+  },
+  {
+    "heading": "Location & Position",
+    "features": [
+      {
+        "id": "geolocation",
+        "icon": "mdi-device-gps-fixed",
+        "name": "Geolocation"
+      },
+      {
+        "id": "geofencing",
+        "icon": "mdi-action-group-work",
+        "name": "Geofencing"
+      },
+      {
+        "id": "device-orientation",
+        "icon": "mdi-device-screen-rotation",
+        "name": "Device Orientation"
+      },
+      {
+        "id": "accelerometer",
+        "icon": "mdi-action-3d-rotation",
+        "name": "Device Motions"
       }
     ]
   },
@@ -234,11 +239,11 @@ this.addEventListener('install', function (event) {
       let files = [
         '/',
         '/index.html',
-        '/scripts/main.d9232f3a.js',
+        '/scripts/main.76b58d15.js',
         '/scripts/vendor.65ca8f8f.js',
-        '/styles/main.ad7da6e7.css',
-        '/styles/layout.a4a774ba.css',
-        '/styles/vendor.ee939541.css',
+        '/styles/main.0570461b.css',
+        '/styles/layout.3530cda1.css',
+        '/styles/vendor.f0c6d102.css',
         '/images/logo.svg',
         '/fonts/Material-Design-Icons.woff',
         'https://fonts.gstatic.com/s/lato/v13/MDadn8DQ_3oT6kvnUq_2r_esZW2xOQ-xsNqO47m55DA.woff2',
