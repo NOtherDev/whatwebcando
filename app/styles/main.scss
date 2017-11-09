@@ -194,6 +194,27 @@ header {
   }
 }
 
+.features-list-container {
+  .panel {
+    display: inline-block;
+    width: 100%;
+    box-shadow: 0 2px 6px 0 rgba(0,0,0,.24), 0 -2px 0 #fff;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .features-list-container {
+    column-count: 2;
+    column-gap: 30px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .features-list-container {
+    column-count: 3;
+  }
+}
+
 .features-list {
   list-style-type: none;
 
@@ -323,7 +344,8 @@ header {
 
 /* cont. */
 footer {
-  padding-top: 10px;
+  padding-top: 1.5em;
+  border-top: 1px solid #eee;
   color: #777;
 
   .icon {
@@ -347,19 +369,20 @@ footer {
 
 /* transitions */
 @mixin slidable() {
-  overflow-y: hidden;
   transition-property: all;
   transition-duration: .5s;
   transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
 }
 
 @mixin slidable-hidden() {
+  overflow-y: hidden;
   min-height: 0;
   max-height: 0;
 }
 
 @mixin slidable-visible() {
   max-height: 5000px;
+  overflow-y: visible;
 }
 
 .show-on-feature-page {
@@ -378,6 +401,7 @@ footer {
   .page-feature & {
     @include slidable-hidden();
     padding: 0;
+    margin: 0;
   }
 }
 

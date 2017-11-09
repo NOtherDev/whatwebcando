@@ -25,6 +25,56 @@
     ]
   },
   {
+    "heading": "Surroundings",
+    "features": [
+      {
+        "id": "bluetooth",
+        "icon": "mdi-device-bluetooth",
+        "name": "Bluetooth"
+      },
+      {
+        "id": "nfc",
+        "icon": "mdi-device-nfc",
+        "name": "NFC"
+      },
+      {
+        "id": "proximity",
+        "icon": "mdi-image-leak-add",
+        "name": "Proximity Sensors"
+      },
+      {
+        "id": "ambient-light",
+        "icon": "mdi-device-brightness-low",
+        "name": "Ambient Light"
+      }
+    ]
+  },
+  {
+    "heading": "Device Features",
+    "features": [
+      {
+        "id": "network-type-speed",
+        "icon": "mdi-device-wifi-tethering",
+        "name": "Network Type & Speed"
+      },
+      {
+        "id": "online-state",
+        "icon": "mdi-device-signal-cellular-connected-no-internet-3-bar",
+        "name": "Online State"
+      },
+      {
+        "id": "vibration",
+        "icon": "mdi-notification-vibration",
+        "name": "Vibration"
+      },
+      {
+        "id": "battery-status",
+        "icon": "mdi-device-battery-80",
+        "name": "Battery Status"
+      }
+    ]
+  },
+  {
     "heading": "Seamless Experience",
     "features": [
       {
@@ -55,56 +105,6 @@
     ]
   },
   {
-    "heading": "Input",
-    "features": [
-      {
-        "id": "touch",
-        "icon": "mdi-content-gesture",
-        "name": "Touch Gestures"
-      },
-      {
-        "id": "speech-recognition",
-        "icon": "mdi-av-mic",
-        "name": "Speech Recognition"
-      },
-      {
-        "id": "clipboard",
-        "icon": "mdi-content-content-paste",
-        "name": "Clipboard (Copy & Paste)"
-      },
-      {
-        "id": "pointer-adaptation",
-        "icon": "mdi-hardware-mouse",
-        "name": "Pointing Device Adaptation"
-      }
-    ]
-  },
-  {
-    "heading": "Surroundings",
-    "features": [
-      {
-        "id": "bluetooth",
-        "icon": "mdi-device-bluetooth",
-        "name": "Bluetooth"
-      },
-      {
-        "id": "nfc",
-        "icon": "mdi-device-nfc",
-        "name": "NFC"
-      },
-      {
-        "id": "proximity",
-        "icon": "mdi-image-leak-add",
-        "name": "Proximity Sensors"
-      },
-      {
-        "id": "ambient-light",
-        "icon": "mdi-device-brightness-low",
-        "name": "Ambient Light"
-      }
-    ]
-  },
-  {
     "heading": "Camera & Microphone",
     "features": [
       {
@@ -130,56 +130,6 @@
     ]
   },
   {
-    "heading": "Location & Position",
-    "features": [
-      {
-        "id": "geolocation",
-        "icon": "mdi-device-gps-fixed",
-        "name": "Geolocation"
-      },
-      {
-        "id": "geofencing",
-        "icon": "mdi-action-group-work",
-        "name": "Geofencing"
-      },
-      {
-        "id": "device-orientation",
-        "icon": "mdi-device-screen-rotation",
-        "name": "Device Orientation"
-      },
-      {
-        "id": "accelerometer",
-        "icon": "mdi-action-3d-rotation",
-        "name": "Device Motions"
-      }
-    ]
-  },
-  {
-    "heading": "Device Features",
-    "features": [
-      {
-        "id": "network-type-speed",
-        "icon": "mdi-device-wifi-tethering",
-        "name": "Network Type & Speed"
-      },
-      {
-        "id": "online-state",
-        "icon": "mdi-device-signal-cellular-connected-no-internet-3-bar",
-        "name": "Online State"
-      },
-      {
-        "id": "vibration",
-        "icon": "mdi-notification-vibration",
-        "name": "Vibration"
-      },
-      {
-        "id": "battery-status",
-        "icon": "mdi-device-battery-80",
-        "name": "Battery Status"
-      }
-    ]
-  },
-  {
     "heading": "Screen & Output",
     "features": [
       {
@@ -201,6 +151,56 @@
         "id": "presentation",
         "icon": "mdi-hardware-tv",
         "name": "Presentation Features"
+      }
+    ]
+  },
+  {
+    "heading": "Input",
+    "features": [
+      {
+        "id": "touch",
+        "icon": "mdi-content-gesture",
+        "name": "Touch Gestures"
+      },
+      {
+        "id": "speech-recognition",
+        "icon": "mdi-av-mic",
+        "name": "Speech Recognition"
+      },
+      {
+        "id": "clipboard",
+        "icon": "mdi-content-content-paste",
+        "name": "Clipboard (Copy & Paste)"
+      },
+      {
+        "id": "pointer-adaptation",
+        "icon": "mdi-hardware-mouse",
+        "name": "Pointing Device Adaptation"
+      }
+    ]
+  },
+  {
+    "heading": "Location & Position",
+    "features": [
+      {
+        "id": "geolocation",
+        "icon": "mdi-device-gps-fixed",
+        "name": "Geolocation"
+      },
+      {
+        "id": "geofencing",
+        "icon": "mdi-action-group-work",
+        "name": "Geofencing"
+      },
+      {
+        "id": "device-orientation",
+        "icon": "mdi-device-screen-rotation",
+        "name": "Device Orientation"
+      },
+      {
+        "id": "accelerometer",
+        "icon": "mdi-action-3d-rotation",
+        "name": "Device Motions"
       }
     ]
   },

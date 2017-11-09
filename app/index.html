@@ -116,25 +116,23 @@
         </ul>
       </div>
 
-      <nav class="row" role="navigation" aria-label="Features">
+      <nav class="features-list-container" role="navigation" aria-label="Features">
         {{#each groups}}
-        <div class="col-lg-4 col-sm-6 col-xs-12">
-          <div class="panel panel-primary">
-            <div class="panel-heading">
-              <div class="panel-title"><a href=".">{{heading}}</a></div>
-            </div>
-            <ul class="panel-body features-list hide-on-feature-page">
-              {{#each features}}
-              <li>
-                <a href="{{id}}.html" class="btn btn-flat btn-default ripple">
-                  {{#if icon}}<i class="{{icon}}" aria-hidden="true"></i>{{/if}}
-                  {{name}}
-                  <span class="support-info-placeholder" id="support-info-placeholder-{{id}}"></span>
-                </a>
-              </li>
-              {{/each}}
-            </ul>
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <div class="panel-title"><a href=".">{{heading}}</a></div>
           </div>
+          <ul class="panel-body features-list hide-on-feature-page">
+            {{#each features}}
+            <li>
+              <a href="{{id}}.html" class="btn btn-flat btn-default ripple">
+                {{#if icon}}<i class="{{icon}}" aria-hidden="true"></i>{{/if}}
+                {{name}}
+                <span class="support-info-placeholder" id="support-info-placeholder-{{id}}"></span>
+              </a>
+            </li>
+            {{/each}}
+          </ul>
         </div>
         {{/each}}
       </nav>
