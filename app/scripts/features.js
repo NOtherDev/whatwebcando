@@ -1939,10 +1939,10 @@ document.removeEventListener('paste', logUserOperation);`
       </dl>`,
       caniuse: 'css-media-interaction',
       tests: [
-        Feature.rawTest('window', `matchMedia('(hover), not(hover)').matches`, () => global.matchMedia && global.matchMedia('(hover), not(hover)').matches)
+        Feature.rawTest('window', `matchMedia('(pointer: none), (pointer: coarse), (pointer: fine)').matches`, () => global.matchMedia && global.matchMedia('(pointer: none), (pointer: coarse), (pointer: fine)').matches)
       ],
       demo: {
-        html: `<p>The button is larger when the primary pointer is coarse. The tooltip is  visible on hover when the pointer allows hovering.</p>
+        html: `<p>The button is larger when the primary pointer is coarse. The tooltip is visible on hover when the pointer allows hovering.</p>
 
 <div class="text-center">
   <button id="button" class="btn btn-default">The button</button>
