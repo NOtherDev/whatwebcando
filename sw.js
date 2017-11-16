@@ -1,4 +1,4 @@
-const VERSION = '8a2d76f'; const groups = [
+const VERSION = 'c2049dc'; const groups = [
   {
     "heading": "Native Behaviors",
     "features": [
@@ -11,6 +11,11 @@ const VERSION = '8a2d76f'; const groups = [
         "id": "push-notifications",
         "icon": "mdi-notification-tap-and-play",
         "name": "Push Messages"
+      },
+      {
+        "id": "installation",
+        "icon": "mdi-action-get-app",
+        "name": "Home Screen Installation"
       },
       {
         "id": "foreground-detection",
@@ -71,36 +76,6 @@ const VERSION = '8a2d76f'; const groups = [
         "id": "battery-status",
         "icon": "mdi-device-battery-80",
         "name": "Battery Status"
-      }
-    ]
-  },
-  {
-    "heading": "Seamless Experience",
-    "features": [
-      {
-        "id": "offline",
-        "icon": "mdi-action-settings-applications",
-        "name": "Offline Mode"
-      },
-      {
-        "id": "installation",
-        "icon": "mdi-action-get-app",
-        "name": "Home Screen Installation"
-      },
-      {
-        "id": "background-sync",
-        "icon": "mdi-action-backup",
-        "name": "Background Sync"
-      },
-      {
-        "id": "app-communication",
-        "icon": "mdi-action-explore",
-        "name": "Inter-App Communication"
-      },
-      {
-        "id": "payments",
-        "icon": "mdi-action-payment",
-        "name": "Payments"
       }
     ]
   },
@@ -180,6 +155,36 @@ const VERSION = '8a2d76f'; const groups = [
     ]
   },
   {
+    "heading": "Seamless Experience",
+    "features": [
+      {
+        "id": "offline",
+        "icon": "mdi-action-settings-applications",
+        "name": "Offline Mode"
+      },
+      {
+        "id": "background-sync",
+        "icon": "mdi-action-backup",
+        "name": "Background Sync"
+      },
+      {
+        "id": "app-communication",
+        "icon": "mdi-action-explore",
+        "name": "Inter-App Communication"
+      },
+      {
+        "id": "payments",
+        "icon": "mdi-action-payment",
+        "name": "Payments"
+      },
+      {
+        "id": "credentials",
+        "icon": "mdi-action-lock-open",
+        "name": "Credentials"
+      }
+    ]
+  },
+  {
     "heading": "Location & Position",
     "features": [
       {
@@ -239,10 +244,10 @@ this.addEventListener('install', function (event) {
       let files = [
         '/',
         '/index.html',
-        '/scripts/main.daed0f25.js',
+        '/scripts/main.e1cf4531.js',
         '/scripts/vendor.65ca8f8f.js',
         '/styles/main.0570461b.css',
-        '/styles/layout.3530cda1.css',
+        '/styles/layout.f59b7c5f.css',
         '/styles/vendor.f0c6d102.css',
         '/images/logo.svg',
         '/fonts/Material-Design-Icons.woff',
