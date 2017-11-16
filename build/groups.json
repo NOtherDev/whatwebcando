@@ -13,6 +13,11 @@
         "name": "Push Messages"
       },
       {
+        "id": "installation",
+        "icon": "mdi-action-get-app",
+        "name": "Home Screen Installation"
+      },
+      {
         "id": "foreground-detection",
         "icon": "mdi-action-flip-to-front",
         "name": "Foreground Detection"
@@ -71,36 +76,6 @@
         "id": "battery-status",
         "icon": "mdi-device-battery-80",
         "name": "Battery Status"
-      }
-    ]
-  },
-  {
-    "heading": "Seamless Experience",
-    "features": [
-      {
-        "id": "offline",
-        "icon": "mdi-action-settings-applications",
-        "name": "Offline Mode"
-      },
-      {
-        "id": "installation",
-        "icon": "mdi-action-get-app",
-        "name": "Home Screen Installation"
-      },
-      {
-        "id": "background-sync",
-        "icon": "mdi-action-backup",
-        "name": "Background Sync"
-      },
-      {
-        "id": "app-communication",
-        "icon": "mdi-action-explore",
-        "name": "Inter-App Communication"
-      },
-      {
-        "id": "payments",
-        "icon": "mdi-action-payment",
-        "name": "Payments"
       }
     ]
   },
@@ -176,6 +151,36 @@
         "id": "pointer-adaptation",
         "icon": "mdi-hardware-mouse",
         "name": "Pointing Device Adaptation"
+      }
+    ]
+  },
+  {
+    "heading": "Seamless Experience",
+    "features": [
+      {
+        "id": "offline",
+        "icon": "mdi-action-settings-applications",
+        "name": "Offline Mode"
+      },
+      {
+        "id": "background-sync",
+        "icon": "mdi-action-backup",
+        "name": "Background Sync"
+      },
+      {
+        "id": "app-communication",
+        "icon": "mdi-action-explore",
+        "name": "Inter-App Communication"
+      },
+      {
+        "id": "payments",
+        "icon": "mdi-action-payment",
+        "name": "Payments"
+      },
+      {
+        "id": "credentials",
+        "icon": "mdi-action-lock-open",
+        "name": "Credentials"
       }
     ]
   },
