@@ -1,22 +1,18 @@
 // bower:scss
 // endbower
 
-.browsehappy {
-  margin: 0.2em 0;
-  background: #ccc;
-  color: #000;
-  padding: 0.2em 0;
-}
+$primary-background: #eee;
 
 @mixin font() {
   font-family: 'Lato', sans-serif;
+  font-weight: 400;
 }
 
 body {
   @include font();
   padding-top: 20px;
   padding-bottom: 20px;
-  background-color: #fff;
+  background-color: $primary-background;
 }
 
 body, dt, dd {
@@ -104,12 +100,14 @@ header {
   transform: translate(0, 5px);
 }
 
-.panel-primary, .container .well {
-  background-color: #eee;
-}
-
 .panel-primary > .panel-heading a {
   color: inherit;
+
+  .page-features-list &:hover {
+    cursor: text;
+    text-decoration: none;
+    pointer-events: none;
+  }
 }
 
 .top-space {
@@ -173,8 +171,8 @@ header {
   }
 }
 
-@media screen and (max-width: 768px) {
-  .page-feature #features-list-target {
+@media screen and (max-width: 767px) {
+  .page-feature .features-list-container {
     margin-top: 50px;
   }
 
@@ -198,7 +196,7 @@ header {
   .panel {
     display: inline-block;
     width: 100%;
-    box-shadow: 0 2px 6px 0 rgba(0,0,0,.24), 0 -2px 0 #fff;
+    box-shadow: 0 2px 6px 0 rgba(0,0,0,.24), 0 -2px 0 $primary-background;
   }
 }
 
@@ -284,7 +282,7 @@ header {
 #demo-placeholder {
   position: relative;
   background: #f5f2f0;
-  background: repeating-linear-gradient(45deg, #f5f2f0, #f5f2f0 20px, transparent 20px, transparent 40px);
+  background: repeating-linear-gradient(45deg, #f5f2f0, #f5f2f0 20px, $primary-background 20px, $primary-background 40px);
   padding: 10px;
   border: 1px solid #ccc;
 }
@@ -295,57 +293,60 @@ header {
   position: relative;
   overflow: hidden;
   height: 350px;
-}
 
-.tabs .tab {
-  float: left;
-  display: block;
-}
+  .tab {
+    float: left;
+    display: block;
 
-.tabs .tab > input[type="radio"] {
-  position: absolute;
-  left: -9999px;
-}
+    & > input[type="radio"] {
+      position: absolute;
+      left: -9999px;
+    }
 
-.tabs .tab > label {
-  display: block;
-  padding: 6px 21px;
-  cursor: pointer;
-  position: relative;
-  color: #FFF;
-  background: #009688;
-}
+    & > label {
+      display: block;
+      padding: 6px 21px;
+      border: 2px solid transparent;
+      border-bottom: 0 !important;
+      cursor: pointer;
+      position: relative;
+      color: #FFF;
+      background: #009688;
+    }
+  }
 
-.tabs .demo-code-tab {
-  z-index: 0; /* or display: none; */
-  width: 100%;
-  height: calc(100% - 33px);
-  padding: 15px;
-  position: absolute;
-  margin: 0;
-  left: 0;
+  .demo-code-tab {
+    z-index: 0; /* or display: none; */
+    width: 100%;
+    height: calc(100% - 33px);
+    padding: 15px;
+    position: absolute;
+    margin: 0;
+    left: 0;
 
-  opacity: 0;
-  transition: opacity 400ms ease-out;
-}
+    opacity: 0;
+    transition: opacity 400ms ease-out;
+  }
 
-.tabs > .tab > [id^="demo-code"]:checked + label {
-  top: 0;
-  background: #fff;
-  color: #009688;
-}
+  & > .tab > [id^="demo-code"]:checked + label {
+    top: 0;
+    background: #fff;
+    color: #009688;
+    border: 2px solid #eee;
+  }
 
-.tabs > .tab > [id^="demo-code"]:checked ~ [id^="demo-code-content"] {
-  z-index: 1; /* or display: block; */
+  & > .tab > [id^="demo-code"]:checked ~ [id^="demo-code-content"] {
+    z-index: 1; /* or display: block; */
 
-  opacity: 1;
-  transition: opacity 400ms ease-out;
+    opacity: 1;
+    transition: opacity 400ms ease-out;
+  }
 }
 
 /* cont. */
 footer {
   padding-top: 1.5em;
-  border-top: 1px solid #eee;
+  border-top: 1px solid #ddd;
   color: #777;
 
   .icon {
@@ -409,7 +410,7 @@ footer {
   @include hide-on-feature-page();
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   .hide-on-feature-page-sm {
     @include hide-on-feature-page();
   }
