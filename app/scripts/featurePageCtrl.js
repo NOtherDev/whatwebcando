@@ -69,8 +69,8 @@
     let $target = templateEngine.targetElementFor(prefix);
 
     const onTransitionEndEvents = 'webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend'.split(' ');
-    const onTransitionEnd = () => {
-      if ($target.offsetHeight) {
+    const onTransitionEnd = event => {
+      if (event.target === $target && $target.offsetHeight) {
         let heightCorrectionForNavbar = outerHeight(document.querySelector('.navbar'));
         let targetOffsetTop = $target.getBoundingClientRect().top + window.pageYOffset;
         window.scrollTo({left: 0, top: targetOffsetTop - heightCorrectionForNavbar, behavior: 'smooth'});
