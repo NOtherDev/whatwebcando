@@ -3078,25 +3078,31 @@ function donate() {
       tests: [Feature.navigatorContains('credentials')],
       caniuse: 'credential-management',
       demo: {
-        html: `<form id="credential-form">
-  <p><b>Store your credentials:</b></p>
-  <p>
-    <label>login: <input type="text" name="username" class="form-control" required autocomplete="username"></label>
-    <label>password: <input type="password" name="password" class="form-control" required autocomplete="current-password"></label>
-  </p>
-  <p><button type="button" onclick="storeCredential()" class="btn btn-default">Store credential</button></p>
-
-  <p class="user-mediation">
-    <b>User mediation:</b>
-    <label><input type="radio" name="mediation" value="silent"> silent</label>
-    <label><input type="radio" name="mediation" value="optional" checked> optional</label>
-    <label><input type="radio" name="mediation" value="required"> required</label>
-  </p>
-  <p><button type="button" onclick="requestCredential()" class="btn btn-default">Request credential</button></p>
-  <p>Credential read: <b id="readResult">none</b>.</p>
-  <p><button type="button" onclick="preventSilentAccess()" class="btn btn-default">Prevent silent access (logout)</button></p>
-</form>`,
+        html: `<div class="row">
+<div class="col-sm-6">
+  <form id="credential-form" onsubmit="storeCredential(event)">
+    <p><b>Store your credentials:</b></p>
+    <p>
+      <label>login: <input type="text" name="username" class="form-control" required autocomplete="username"></label>
+      <label>password: <input type="password" name="password" class="form-control" required autocomplete="current-password"></label>
+    </p>
+    <p><button type="submit" class="btn btn-default">Store credential</button></p>
+  
+    <p class="user-mediation">
+      <b>User mediation:</b><br/>
+      <label><input type="radio" name="mediation" value="silent"> silent</label>
+      <label><input type="radio" name="mediation" value="optional" checked> optional</label>
+      <label><input type="radio" name="mediation" value="required"> required</label>
+    </p>
+    <p><button type="button" onclick="requestCredential()" class="btn btn-default">Request credential</button></p>
+    <p><button type="button" onclick="preventSilentAccess()" class="btn btn-default">Prevent silent access (logout)</button></p>
+  </form>
+</div>
+<div class="col-sm-6" id="result"></div>
+</div>`,
         js: `function storeCredential() {
+  event.preventDefault();
+
   if (!navigator.credentials) {
     alert('Credential Management API not supported');
     return;
@@ -3104,7 +3110,9 @@ function donate() {
   
   let credentialForm = document.getElementById('credential-form');
   let credential = new PasswordCredential(credentialForm);
-  navigator.credentials.store(credential);
+  navigator.credentials.store(credential)
+    .then(() => log('Storing credential for <b>' + credential.id + '</b> (result cannot be checked by the website)'))
+    .catch(err => log('Error storing credentials: ' + err));
 }
 
 function requestCredential() {
@@ -3120,9 +3128,9 @@ function requestCredential() {
       if (credential) {
         result = credential.id + ', ' + credential.password.replace(/./g, '*');
       }
-      document.getElementById('readResult').innerText = result;
+      log('Credential read: <b>' + result + '</b>');
     })
-    .catch(err => alert('Error reading credentials: ' + err));
+    .catch(err => log('Error reading credentials: ' + err));
 }
 
 function preventSilentAccess() {
@@ -3131,10 +3139,20 @@ function preventSilentAccess() {
     return;
   }
   
-  navigator.credentials.preventSilentAccess();
+  navigator.credentials.preventSilentAccess()
+    .then(() => log('Silent access prevented (mediation will be required for next credentials.get() call)'))
+    .catch(err => log('Error preventing silent acces: ' + err));
+}
+
+function log(info) {
+  var logTarget = document.getElementById('result');
+  var timeBadge = new Date().toTimeString().split(' ')[0];
+  var newInfo = document.createElement('p');
+  newInfo.innerHTML = '<span class="badge">' + timeBadge + '</span> ' + info + '</b>.';
+  logTarget.appendChild(newInfo);
 }`,
         cssHidden: `.user-mediation label {
-  margin-left: 1em;
+  margin-right: 1em;
 }`
       },
       links: [
