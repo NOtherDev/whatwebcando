@@ -45,9 +45,11 @@
   initializeAndRun(container.injector);
 
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js')
-      .then(registration => registration.update())
-      .catch(error => console.warn('SW registration failed with ' + error));
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js')
+        .then(registration => registration.update())
+        .catch(error => console.warn('SW registration failed with ' + error));
+    });
   }
 
 })(WWCD.container);
