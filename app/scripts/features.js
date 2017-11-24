@@ -3075,7 +3075,15 @@ function donate() {
         <dt><code>navigator.credentials.preventSilentAccess()</code></dt>
         <dd>Ensures the user mediation is required on the next credential access request, effectively "logging out" the user.</dd>
       </dl>`,
-      tests: [Feature.navigatorContains('credentials')],
+      tests: [Feature.asyncRawTest('navigator', 'credentials', () => {
+        if (!navigator.credentials) {
+          return Promise.resolve(false)
+        }
+
+        return navigator.credentials.get({mediation: 'silent', unmediated: true})
+          .then(() => true)
+          .catch(() => false)
+      })],
       caniuse: 'credential-management',
       demo: {
         html: `<div class="row">

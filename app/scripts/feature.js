@@ -20,11 +20,11 @@
     }
 
     static forPassed(property, standard, prefix) {
-      return new FeatureTestResult(true, property, standard, prefix);
+      return Promise.resolve(new FeatureTestResult(true, property, standard, prefix));
     }
 
     static forFailed(property, standard) {
-      return new FeatureTestResult(false, property, standard);
+      return Promise.resolve(new FeatureTestResult(false, property, standard));
     }
   }
 
@@ -89,6 +89,20 @@
     }
   }
 
+  class FeatureAsyncTest {
+    constructor(containerName, property, test, standard = true) {
+      this.containerName = containerName;
+      this.property = property;
+      this.test = test;
+      this.standard = standard;
+    }
+
+    get result() {
+      return this.test()
+        .then(result => (result ? FeatureTestResult.forPassed : FeatureTestResult.forFailed)(this.property, this.standard));
+    }
+  }
+
   class Feature {
     constructor({id, name, description = [], api = undefined, tests = [], demo = undefined, demoPen = undefined, links = [], caniuse = undefined}) {
       this.id = id;
@@ -102,16 +116,13 @@
       this.links = links;
     }
 
-    get supported() {
+    determineIsSupported() {
       if (!this.tests.length) {
-        return undefined;
+        return Promise.reject();
       }
 
-      return !!this.tests.find(x => x.result.passed);
-    }
-
-    get notSupported() {
-      return this.supported === false;
+      return Promise.all(this.tests.map(t => t.result))
+        .then(results => !!results.find(r => r.passed));
     }
   }
 
@@ -122,6 +133,7 @@
   Feature.windowContains = (property, standard) => Feature.containedIn('window', global, property, standard);
 
   Feature.rawTest = (containerName, property, test) => new FeatureRawTest(containerName, property, test);
+  Feature.asyncRawTest = (containerName, property, test) => new FeatureAsyncTest(containerName, property, test);
 
   global.WWCD.Feature = Feature;
 

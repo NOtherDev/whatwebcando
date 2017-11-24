@@ -6,13 +6,16 @@
   let addFeatureSupportInfo = function (feature) {
     let placeholder = document.getElementById(`support-info-placeholder-${feature.id}`);
 
-    if (feature.supported) {
-      placeholder.innerHTML = `<i class="mdi-navigation-check text-success"
+    feature.determineIsSupported()
+      .then(isSupported => {
+        if (isSupported) {
+          placeholder.innerHTML = `<i class="mdi-navigation-check text-success"
         title="${feature.name} is available in your current browser" aria-label="Available in your browser"></i>`;
-    } else if (feature.notSupported) {
-      placeholder.innerHTML = `<i class="mdi-navigation-close text-danger"
+        } else {
+          placeholder.innerHTML = `<i class="mdi-navigation-close text-danger"
         title="${feature.name} is not available in your current browser" aria-label="Not available in your browser"></i>`;
-    }
+        }
+      });
 
     document.querySelector('.legend').style.display = 'block';
   };
