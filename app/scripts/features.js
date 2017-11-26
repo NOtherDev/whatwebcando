@@ -449,7 +449,7 @@ if ('geolocation' in navigator) {
       caniuse: 'web-bluetooth',
       demo: {
         html: `<p>
-  <button class="btn btn-lg btn-default" onclick="readBatteryLevel()">Read Bluetooth device's battery level</button>
+  <button class="btn btn-lg btn-default" onclick="readBatteryLevel()">Read Bluetooth device's<br>battery level</button>
 </p>
 
 <p id="target"></p>
