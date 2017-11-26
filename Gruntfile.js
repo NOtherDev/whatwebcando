@@ -332,6 +332,14 @@ module.exports = function (grunt) {
             'babel-polyfill/*.js',
             '*/dist/*.min.js',
           ]
+        }, {
+          expand: true,
+          dot: true,
+          cwd: 'node_modules',
+          dest: '<%= config.dist %>/scripts',
+          src: [
+            'sw-offline-google-analytics/build/importScripts/*.js',
+          ]
         }]
       }
     },

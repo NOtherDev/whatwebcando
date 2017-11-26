@@ -1,4 +1,7 @@
-this.addEventListener('install', function (event) {
+importScripts('/scripts/sw-offline-google-analytics/build/importScripts/sw-offline-google-analytics.prod.v0.0.25.js');
+goog.offlineGoogleAnalytics.initialize();
+
+self.addEventListener('install', function (event) {
   self.skipWaiting();
 
   event.waitUntil(
@@ -29,7 +32,7 @@ this.addEventListener('install', function (event) {
   );
 });
 
-this.addEventListener('activate', function (event) {
+self.addEventListener('activate', function (event) {
   event.waitUntil(
     caches.keys().then(function (keyList) {
       return Promise.all(keyList.map(function (key) {
@@ -43,7 +46,7 @@ this.addEventListener('activate', function (event) {
 
 const isCacheable = request => request.mode === 'navigate' || request.url.indexOf('https://raw.githubusercontent.com') === 0;
 
-this.addEventListener('fetch', function (event) {
+self.addEventListener('fetch', function (event) {
   event.respondWith(
     caches.open(VERSION)
       .then(function (cache) {

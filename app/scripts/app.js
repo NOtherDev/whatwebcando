@@ -4,6 +4,7 @@
   const notifyPageChanged = path => {
     if (window.ga) {
       window.ga('set', 'page', path);
+      window.ga('set', 'online', navigator.onLine);
       window.ga('send', 'pageview');
     }
   };
@@ -20,7 +21,7 @@
 
     page('/', () => container.resolveAndCall(indexPageCtrl));
 
-    let currentFeature
+    let currentFeature;
 
     Object.keys(features).forEach(function (featureId) {
       let feature = features[featureId];
@@ -49,6 +50,13 @@
       navigator.serviceWorker.register('/sw.js')
         .then(registration => registration.update())
         .catch(error => console.warn('SW registration failed with ' + error));
+    });
+
+    window.addEventListener('beforeinstallprompt', event => {
+      if (window.ga) {
+        window.ga('send', 'event', 'PWA.install', 'prompt');
+        event.userChoice.then(choice => window.ga('send', 'event', 'PWA.install', choice.outcome));
+      }
     });
   }
 

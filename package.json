@@ -49,5 +49,8 @@
         "single"
       ]
     }
+  },
+  "dependencies": {
+    "sw-offline-google-analytics": "0.0.25"
   }
 }
