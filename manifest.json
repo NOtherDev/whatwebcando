@@ -5,7 +5,7 @@
   "short_name": "What Web Can Do",
   "description": "Can I rely on the Web Platform features to build my app? An overview of the device integration HTML5 APIs",
   "display": "standalone",
-  "start_url": "/",
+  "start_url": "/?utm_source=homescreen",
   "lang": "en-US",
   "icons": [
     {
