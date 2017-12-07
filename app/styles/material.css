@@ -140,6 +140,9 @@
 .mdi-device-wifi-tethering:before {
   content: "\e775";
 }
+.mdi-hardware-memory:before {
+   content: "\e7d1";
+ }
 .mdi-hardware-mouse:before {
   content: "\e7d2";
 }

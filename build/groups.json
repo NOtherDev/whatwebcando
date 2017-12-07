@@ -55,27 +55,27 @@
     ]
   },
   {
-    "heading": "Device Features",
+    "heading": "Input",
     "features": [
       {
-        "id": "network-type-speed",
-        "icon": "mdi-device-wifi-tethering",
-        "name": "Network Type & Speed"
+        "id": "touch",
+        "icon": "mdi-content-gesture",
+        "name": "Touch Gestures"
       },
       {
-        "id": "online-state",
-        "icon": "mdi-device-signal-cellular-connected-no-internet-3-bar",
-        "name": "Online State"
+        "id": "speech-recognition",
+        "icon": "mdi-av-mic",
+        "name": "Speech Recognition"
       },
       {
-        "id": "vibration",
-        "icon": "mdi-notification-vibration",
-        "name": "Vibration"
+        "id": "clipboard",
+        "icon": "mdi-content-content-paste",
+        "name": "Clipboard (Copy & Paste)"
       },
       {
-        "id": "battery-status",
-        "icon": "mdi-device-battery-80",
-        "name": "Battery Status"
+        "id": "pointer-adaptation",
+        "icon": "mdi-hardware-mouse",
+        "name": "Pointing Device Adaptation"
       }
     ]
   },
@@ -130,27 +130,32 @@
     ]
   },
   {
-    "heading": "Input",
+    "heading": "Device Features",
     "features": [
       {
-        "id": "touch",
-        "icon": "mdi-content-gesture",
-        "name": "Touch Gestures"
+        "id": "network-type-speed",
+        "icon": "mdi-device-wifi-tethering",
+        "name": "Network Type & Speed"
       },
       {
-        "id": "speech-recognition",
-        "icon": "mdi-av-mic",
-        "name": "Speech Recognition"
+        "id": "online-state",
+        "icon": "mdi-device-signal-cellular-connected-no-internet-3-bar",
+        "name": "Online State"
       },
       {
-        "id": "clipboard",
-        "icon": "mdi-content-content-paste",
-        "name": "Clipboard (Copy & Paste)"
+        "id": "vibration",
+        "icon": "mdi-notification-vibration",
+        "name": "Vibration"
       },
       {
-        "id": "pointer-adaptation",
-        "icon": "mdi-hardware-mouse",
-        "name": "Pointing Device Adaptation"
+        "id": "battery-status",
+        "icon": "mdi-device-battery-80",
+        "name": "Battery Status"
+      },
+      {
+        "id": "memory",
+        "icon": "mdi-hardware-memory",
+        "name": "Device Memory"
       }
     ]
   },
