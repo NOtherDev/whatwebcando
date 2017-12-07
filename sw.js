@@ -1,4 +1,4 @@
-const VERSION = 'a6473fc'; const groups = [
+const VERSION = '7087c04'; const groups = [
   {
     "heading": "Native Behaviors",
     "features": [
@@ -55,27 +55,27 @@ const VERSION = 'a6473fc'; const groups = [
     ]
   },
   {
-    "heading": "Device Features",
+    "heading": "Input",
     "features": [
       {
-        "id": "network-type-speed",
-        "icon": "mdi-device-wifi-tethering",
-        "name": "Network Type & Speed"
+        "id": "touch",
+        "icon": "mdi-content-gesture",
+        "name": "Touch Gestures"
       },
       {
-        "id": "online-state",
-        "icon": "mdi-device-signal-cellular-connected-no-internet-3-bar",
-        "name": "Online State"
+        "id": "speech-recognition",
+        "icon": "mdi-av-mic",
+        "name": "Speech Recognition"
       },
       {
-        "id": "vibration",
-        "icon": "mdi-notification-vibration",
-        "name": "Vibration"
+        "id": "clipboard",
+        "icon": "mdi-content-content-paste",
+        "name": "Clipboard (Copy & Paste)"
       },
       {
-        "id": "battery-status",
-        "icon": "mdi-device-battery-80",
-        "name": "Battery Status"
+        "id": "pointer-adaptation",
+        "icon": "mdi-hardware-mouse",
+        "name": "Pointing Device Adaptation"
       }
     ]
   },
@@ -130,27 +130,32 @@ const VERSION = 'a6473fc'; const groups = [
     ]
   },
   {
-    "heading": "Input",
+    "heading": "Device Features",
     "features": [
       {
-        "id": "touch",
-        "icon": "mdi-content-gesture",
-        "name": "Touch Gestures"
+        "id": "network-type-speed",
+        "icon": "mdi-device-wifi-tethering",
+        "name": "Network Type & Speed"
       },
       {
-        "id": "speech-recognition",
-        "icon": "mdi-av-mic",
-        "name": "Speech Recognition"
+        "id": "online-state",
+        "icon": "mdi-device-signal-cellular-connected-no-internet-3-bar",
+        "name": "Online State"
       },
       {
-        "id": "clipboard",
-        "icon": "mdi-content-content-paste",
-        "name": "Clipboard (Copy & Paste)"
+        "id": "vibration",
+        "icon": "mdi-notification-vibration",
+        "name": "Vibration"
       },
       {
-        "id": "pointer-adaptation",
-        "icon": "mdi-hardware-mouse",
-        "name": "Pointing Device Adaptation"
+        "id": "battery-status",
+        "icon": "mdi-device-battery-80",
+        "name": "Battery Status"
+      },
+      {
+        "id": "memory",
+        "icon": "mdi-hardware-memory",
+        "name": "Device Memory"
       }
     ]
   },
@@ -247,10 +252,10 @@ self.addEventListener('install', function (event) {
       let files = [
         '/',
         '/index.html',
-        '/scripts/main.9e49565f.js',
+        '/scripts/main.60333bc4.js',
         '/scripts/vendor.65ca8f8f.js',
         '/styles/main.f257732c.css',
-        '/styles/layout.f59b7c5f.css',
+        '/styles/layout.8c6864f7.css',
         '/styles/vendor.f0c6d102.css',
         '/images/logo.svg',
         '/fonts/Material-Design-Icons.woff',
