@@ -3252,7 +3252,9 @@ function log(info) {
       demo: {
         html: `<button class="btn btn-default" id="arduinoButton">Talk to Arduino</button>
 
-<div id="target"></div>`,
+<div id="target"></div>
+
+<p><small>Demo from <a href="https://developers.google.com/web/updates/2016/03/access-usb-devices-on-the-web" target="_blank">Google Developers</a> article.</small></p>`,
         js: `document.getElementById('arduinoButton').addEventListener('click', function () {
   if (navigator.usb) {
     talkToArduino();
