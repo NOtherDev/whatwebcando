@@ -257,7 +257,7 @@ self.addEventListener('install', function (event) {
       let files = [
         '/',
         '/index.html',
-        '/scripts/main.6d8b6608.js',
+        '/scripts/main.62ce8dd2.js',
         '/scripts/vendor.65ca8f8f.js',
         '/styles/main.f257732c.css',
         '/styles/layout.b43caeb4.css',
