@@ -38,6 +38,11 @@
         "name": "Bluetooth"
       },
       {
+        "id": "usb",
+        "icon": "mdi-device-usb",
+        "name": "USB"
+      },
+      {
         "id": "nfc",
         "icon": "mdi-device-nfc",
         "name": "NFC"

@@ -137,6 +137,9 @@
 .mdi-device-signal-cellular-connected-no-internet-3-bar:before {
   content: "\e75c";
 }
+.mdi-device-usb:before {
+  content: "\e773";
+}
 .mdi-device-wifi-tethering:before {
   content: "\e775";
 }
