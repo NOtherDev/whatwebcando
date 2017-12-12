@@ -48,11 +48,6 @@
         "name": "NFC"
       },
       {
-        "id": "proximity",
-        "icon": "mdi-image-leak-add",
-        "name": "Proximity Sensors"
-      },
-      {
         "id": "ambient-light",
         "icon": "mdi-device-brightness-low",
         "name": "Ambient Light"
@@ -216,6 +211,11 @@
         "id": "accelerometer",
         "icon": "mdi-action-3d-rotation",
         "name": "Device Motions"
+      },
+      {
+        "id": "proximity",
+        "icon": "mdi-image-leak-add",
+        "name": "Proximity Sensors"
       }
     ]
   },
