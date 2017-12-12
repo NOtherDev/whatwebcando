@@ -1,4 +1,4 @@
-const VERSION = '7087c04'; const groups = [
+const VERSION = '3a99f50'; const groups = [
   {
     "heading": "Native Behaviors",
     "features": [
@@ -36,6 +36,11 @@ const VERSION = '7087c04'; const groups = [
         "id": "bluetooth",
         "icon": "mdi-device-bluetooth",
         "name": "Bluetooth"
+      },
+      {
+        "id": "usb",
+        "icon": "mdi-device-usb",
+        "name": "USB"
       },
       {
         "id": "nfc",
@@ -252,10 +257,10 @@ self.addEventListener('install', function (event) {
       let files = [
         '/',
         '/index.html',
-        '/scripts/main.60333bc4.js',
+        '/scripts/main.6d8b6608.js',
         '/scripts/vendor.65ca8f8f.js',
         '/styles/main.f257732c.css',
-        '/styles/layout.8c6864f7.css',
+        '/styles/layout.b43caeb4.css',
         '/styles/vendor.f0c6d102.css',
         '/images/logo.svg',
         '/fonts/Material-Design-Icons.woff',
