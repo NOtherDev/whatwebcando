@@ -1,4 +1,4 @@
-const VERSION = '3a99f50'; const groups = [
+const VERSION = '06ed389'; const groups = [
   {
     "heading": "Native Behaviors",
     "features": [
@@ -46,11 +46,6 @@ const VERSION = '3a99f50'; const groups = [
         "id": "nfc",
         "icon": "mdi-device-nfc",
         "name": "NFC"
-      },
-      {
-        "id": "proximity",
-        "icon": "mdi-image-leak-add",
-        "name": "Proximity Sensors"
       },
       {
         "id": "ambient-light",
@@ -216,6 +211,11 @@ const VERSION = '3a99f50'; const groups = [
         "id": "accelerometer",
         "icon": "mdi-action-3d-rotation",
         "name": "Device Motions"
+      },
+      {
+        "id": "proximity",
+        "icon": "mdi-image-leak-add",
+        "name": "Proximity Sensors"
       }
     ]
   },
@@ -259,7 +259,7 @@ self.addEventListener('install', function (event) {
         '/index.html',
         '/scripts/main.62ce8dd2.js',
         '/scripts/vendor.65ca8f8f.js',
-        '/styles/main.f257732c.css',
+        '/styles/main.9afc3c79.css',
         '/styles/layout.b43caeb4.css',
         '/styles/vendor.f0c6d102.css',
         '/images/logo.svg',
