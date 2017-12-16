@@ -130,10 +130,6 @@ header {
 }
 
 /* Site */
-.ripple {
-  overflow: hidden;
-}
-
 .ripple-effect {
   position: absolute;
   border-radius: 50%;
@@ -216,8 +212,12 @@ header {
 .features-list {
   list-style-type: none;
 
+  li {
+    overflow: hidden;
+  }
+
   .btn {
-    margin: 3px 0;
+    margin: 3px;
     @include restore-outline();
   }
 }
