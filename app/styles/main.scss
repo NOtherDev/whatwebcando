@@ -167,6 +167,13 @@ header {
   }
 }
 
+.text-spur {
+  padding: 2em;
+  margin: 0;
+  border-top: 1px solid #ddd;
+  text-align: center;
+}
+
 @media screen and (max-width: 767px) {
   .page-feature .features-list-container {
     margin-top: 50px;
