@@ -1613,7 +1613,7 @@ document.ongesturechange = function () {
       name: 'Device Motions',
       description: [`The first-generation device motions support is a part of <b>Device Orientation API</b>. It allows Web applications to access the accelerometer data
         expressed as acceleration (in m/s<sup>2</sup>) and gyroscope data expressed as rotation angle change (in &deg;/s) for each of the three dimensions, provided as events.`,
-        `There also exist the newer, separate specifications for each sensor type, based on the <b>Generic Sensor API</b> - the <b>Accelerometer API</b> and <b>Gyroscope API</b>. They are implemented in Chrome, as of September 2017 available via <a href="https://github.com/GoogleChrome/OriginTrials/blob/gh-pages/developer-guide.md" target="_blank">Origin Trial</a>.`,
+        `There also exist the newer, separate specifications for each sensor type, based on the <b>Generic Sensor API</b> - the <b>Accelerometer APIs</b> (in linear and gravity variants) and <b>Gyroscope API</b>.`,
         `For the detection of the device's static position and orientation, see <a href="/device-orientation.html">Device Orientation</a>.`],
       api: `<p><b>As a part of Device Orientation API</b></p>
       <dl>
@@ -1633,8 +1633,17 @@ document.ongesturechange = function () {
       </dl>
       <p><b>Accelerometer API</b></p>
       <dl>
-        <dt><code>sensor = new Accelerometer({includeGravity: true})</code></dt>
-        <dd>Creates an object serving as an accessor to the accelerometer readings and specifying whether the acceleration values should include gravity.</dd>
+        <dt><code>sensor = new LinearAccelerationSensor()</code></dt>
+        <dd>Creates an object serving as an accessor to the linear accelerometer readings (excluding gravity).</dd>
+        <dt><code>sensor.addEventListener('reading', listener)</code></dt>
+        <dd>An event fired when the accelerometer reading has changed, indicating that the sensor object contains updated acceleration values in m/s<sup>2</sup> for all three axes (<code>sensor.x</code>, <code>sensor.y</code>, <code>sensor.z</code>).</dd>
+        <dt><code>sensor.start()</code></dt>
+        <dd>Starts listening for the sensor readings.</dd>
+      </dl>
+      <p><b>Gravity Sensor API</b></p>
+      <dl>
+        <dt><code>sensor = new GravitySensor()</code></dt>
+        <dd>Creates an object serving as an accessor to the accelerometer readings (including gravity).</dd>
         <dt><code>sensor.addEventListener('reading', listener)</code></dt>
         <dd>An event fired when the accelerometer reading has changed, indicating that the sensor object contains updated acceleration values in m/s<sup>2</sup> for all three axes (<code>sensor.x</code>, <code>sensor.y</code>, <code>sensor.z</code>).</dd>
         <dt><code>sensor.start()</code></dt>
@@ -1652,7 +1661,8 @@ document.ongesturechange = function () {
       caniuse: 'deviceorientation',
       tests: [
         Feature.windowContains('DeviceMotionEvent'),
-        Feature.windowContains('Accelerometer'),
+        Feature.windowContains('LinearAccelerationSensor'),
+        Feature.windowContains('GravitySensor'),
         Feature.windowContains('Gyroscope'),
       ],
       demo: {
@@ -1662,11 +1672,11 @@ document.ongesturechange = function () {
     <td id="moApi"></td>
   </tr>
   <tr>
-    <td>acceleration (excl. gravity)</td>
+    <td>linear acceleration (excl. gravity)</td>
     <td id="moAccel"></td>
   </tr>
   <tr>
-    <td>acceleration (incl. gravity)</td>
+    <td>acceleration incl. gravity</td>
     <td id="moAccelGrav"></td>
   </tr>
   <tr>
@@ -1680,16 +1690,18 @@ document.ongesturechange = function () {
 </table>
 
 <p><small>Demo based on <a href="https://www.html5rocks.com/en/tutorials/device/orientation/" target="_blank">HTML5 Rocks</a> article.</small></p>`,
-        js: `if ('Accelerometer' in window && 'Gyroscope' in window) {
+        js: `if ('LinearAccelerationSensor' in window && 'Gyroscope' in window) {
   document.getElementById('moApi').innerHTML = 'Generic Sensor API';
   
-  let accelerometer = new Accelerometer();
+  let accelerometer = new LinearAccelerationSensor();
   accelerometer.addEventListener('reading', e => accelerationHandler(accelerometer, 'moAccel'));
   accelerometer.start();
   
-  let accelerometerWithGravity = new Accelerometer({includeGravity: true});
-  accelerometerWithGravity.addEventListener('reading', e => accelerationHandler(accelerometerWithGravity, 'moAccelGrav'));
-  accelerometerWithGravity.start();
+  if ('GravitySensor' in window) {
+    let gravity = new GravitySensor();
+    gravity.addEventListener('reading', e => accelerationHandler(gravity, 'moAccelGrav'));
+    gravity.start();
+  }
   
   let gyroscope = new Gyroscope();
   gyroscope.addEventListener('reading', e => rotationHandler({
@@ -1747,7 +1759,8 @@ function intervalHandler(interval) {
         {url: 'https://w3c.github.io/gyroscope/', title: 'Gyroscope API Specification Draft'},
         {url: 'https://w3c.github.io/sensors/', title: 'Generic Sensor API Specification Draft'},
         {url: 'http://www.html5rocks.com/en/tutorials/device/orientation/', title: 'HTML5 Rocks: This End Up: Using Device Orientation'},
-        {url: 'https://developers.google.com/web/updates/2017/09/sensors-for-the-web', title: 'Google Developers: Sensors For The Web'}
+        {url: 'https://developers.google.com/web/updates/2017/09/sensors-for-the-web', title: 'Google Developers: Sensors For The Web'},
+        {url: 'https://github.com/kenchris/sensor-polyfills', title: 'Polyfills for the W3C Generic Sensor APIs'}
       ]
     }),
 
