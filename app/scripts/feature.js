@@ -104,16 +104,17 @@
   }
 
   class Feature {
-    constructor({id, name, description = [], api = undefined, tests = [], demo = undefined, demoPen = undefined, links = [], caniuse = undefined}) {
-      this.id = id;
-      this.name = name;
-      this.description = typeof description === 'string' ? [description] : description;
-      this.api = api;
-      this.caniuseKey = caniuse;
-      this.tests = tests;
-      this.demo = demo;
-      this.demoPen = demoPen;
-      this.links = links;
+    constructor(feature) {
+      this.id = feature.id;
+      this.aliases = feature.aliases || [];
+      this.name = feature.name;
+      this.description = (typeof feature.description === 'string' ? [feature.description] : feature.description) || [];
+      this.api = feature.api;
+      this.caniuseKey = feature.caniuse;
+      this.tests = feature.tests || [];
+      this.demo = feature.demo;
+      this.demoPen = feature.demoPen;
+      this.links = feature.links || [];
     }
 
     determineIsSupported() {

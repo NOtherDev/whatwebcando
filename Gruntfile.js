@@ -417,27 +417,31 @@ module.exports = function (grunt) {
         }
       }
     };
-    var processFiles = {};
+
+    const processFiles = {};
     processFiles[targetPathFor('index')] = [targetPathFor('index')];
 
     Object.keys(data.features).forEach(function (key) {
-      var id = data.features[key].id;
+      const featureId = data.features[key].id;
+      const allPages = [featureId].concat(data.features[key].aliases);
 
-      copyFiles[tmpPathFor(id)] = [tmpPathFor('index')];
-      hbCompile[id] = {
-        files: getFilesObject(targetPathFor(id), tmpPathFor(id)),
-        templateData: {
-          groups: data.groups,
-          featureId: id
-        }
-      };
-      hbCompile[id + '-feature'] = {
-        files: getFilesObject(targetPathFor(id + '-feature'), options.featureTemplate),
-        templateData: {
-          feature: data.features[key]
-        }
-      };
-      processFiles[targetPathFor(id)] = [targetPathFor(id)];
+      allPages.forEach(page => {
+        copyFiles[tmpPathFor(page)] = [tmpPathFor('index')];
+        hbCompile[page] = {
+          files: getFilesObject(targetPathFor(page), tmpPathFor(page)),
+          templateData: {
+            groups: data.groups,
+            featureId
+          }
+        };
+        hbCompile[page + '-feature'] = {
+          files: getFilesObject(targetPathFor(page + '-feature'), options.featureTemplate),
+          templateData: {
+            feature: data.features[key]
+          }
+        };
+        processFiles[targetPathFor(page)] = [targetPathFor(page)];
+      });
     });
 
     grunt.verbose.writeln('copy:staticify keys built: ' + JSON.stringify(Object.keys(copyFiles)));

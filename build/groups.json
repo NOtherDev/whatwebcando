@@ -113,7 +113,7 @@
         "name": "Fullscreen"
       },
       {
-        "id": "orientation-lock",
+        "id": "screen-orientation",
         "icon": "mdi-device-screen-lock-rotation",
         "name": "Screen Orientation & Lock"
       },
@@ -203,14 +203,14 @@
         "name": "Geofencing"
       },
       {
-        "id": "device-orientation",
+        "id": "device-position",
         "icon": "mdi-device-screen-rotation",
-        "name": "Device Orientation"
+        "name": "Device Position"
       },
       {
-        "id": "accelerometer",
+        "id": "device-motion",
         "icon": "mdi-action-3d-rotation",
-        "name": "Device Motions"
+        "name": "Device Motion"
       },
       {
         "id": "proximity",

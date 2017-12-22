@@ -1608,13 +1608,14 @@ document.ongesturechange = function () {
       ]
     }),
 
-    accelerometer: new Feature({
-      id: 'accelerometer',
-      name: 'Device Motions',
+    deviceMotion: new Feature({
+      id: 'device-motion',
+      aliases: ['accelerometer'],
+      name: 'Device Motion',
       description: [`The first-generation device motions support is a part of <b>Device Orientation API</b>. It allows Web applications to access the accelerometer data
         expressed as acceleration (in m/s<sup>2</sup>) and gyroscope data expressed as rotation angle change (in &deg;/s) for each of the three dimensions, provided as events.`,
         `There also exist the newer, separate specifications for each sensor type, based on the <b>Generic Sensor API</b> - the <b>Accelerometer APIs</b> (in linear and gravity variants) and <b>Gyroscope API</b>.`,
-        `For the detection of the device's static position and orientation, see <a href="/device-orientation.html">Device Orientation</a>.`],
+        `For the detection of the device's static position and orientation, see <a href="/device-position.html">Device Position</a>.`],
       api: `<p><b>As a part of Device Orientation API</b></p>
       <dl>
         <dt><code>window.addEventListener('devicemotion', listener)</code></dt>
@@ -2011,12 +2012,13 @@ document.removeEventListener('paste', logUserOperation);`
       ]
     }),
 
-    deviceOrientation: new Feature({
-      id: 'device-orientation',
-      name: 'Device Orientation',
+    devicePosition: new Feature({
+      id: 'device-position',
+      aliases: ['device-orientation'],
+      name: 'Device Position',
       description: [`The <b>Device Orientation API</b> allows Web applications to access the gyroscope and compass data in order to determine the orientation
         of the user's device in all the three dimensions, expressed in degrees of divergence from the "natural" northbound lie flat position.`,
-        `For the detection of the device's movements, see <a href="/accelerometer.html">Device Motions</a>.`],
+        `For the detection of the device's movements, see <a href="/device-motion.html">Device Motion</a>.`],
       api: `<dl>
         <dt><code>window.addEventListener('deviceorientation', listener)</code></dt>
         <dd>An event fired when the significant changes in the device's orientation has occured.</dd>
@@ -2227,8 +2229,9 @@ if (document[prefix + 'Enabled']) {
       ]
     }),
 
-    orientationLock: new Feature({
-      id: 'orientation-lock',
+    screenOrientation: new Feature({
+      id: 'screen-orientation',
+      aliases: ['orientation-lock'],
       name: 'Screen Orientation & Lock',
       description: [`The <b>Screen Orientation API</b> allows Web applications to get the information about the current orientation of the document
         (portrait or landscape) as well as to lock the screen orientation in a requested state.`,
