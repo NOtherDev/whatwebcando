@@ -1707,7 +1707,7 @@ document.ongesturechange = function () {
     <td id="moRotation"></td>
   </tr>
   <tr>
-    <td>interval</td>
+    <td>interval (ms)</td>
     <td id="moInterval"></td>
   </tr>
 </table>
@@ -1720,7 +1720,7 @@ document.ongesturechange = function () {
   let accelerometer = new LinearAccelerationSensor();
   accelerometer.addEventListener('reading', e => {
     if (lastReadingTimestamp) {
-      intervalHandler(accelerometer.timestamp - lastReadingTimestamp);
+      intervalHandler(Math.round(accelerometer.timestamp - lastReadingTimestamp));
     }
     lastReadingTimestamp = accelerometer.timestamp
     accelerationHandler(accelerometer, 'moAccel');
