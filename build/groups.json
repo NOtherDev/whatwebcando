@@ -105,31 +105,6 @@
     ]
   },
   {
-    "heading": "Screen & Output",
-    "features": [
-      {
-        "id": "fullscreen",
-        "icon": "mdi-action-settings-overscan",
-        "name": "Fullscreen"
-      },
-      {
-        "id": "screen-orientation",
-        "icon": "mdi-device-screen-lock-rotation",
-        "name": "Screen Orientation & Lock"
-      },
-      {
-        "id": "wake-lock",
-        "icon": "mdi-action-lock",
-        "name": "Wake Lock"
-      },
-      {
-        "id": "presentation",
-        "icon": "mdi-hardware-tv",
-        "name": "Presentation Features"
-      }
-    ]
-  },
-  {
     "heading": "Device Features",
     "features": [
       {
@@ -156,6 +131,36 @@
         "id": "memory",
         "icon": "mdi-hardware-memory",
         "name": "Device Memory"
+      }
+    ]
+  },
+  {
+    "heading": "Operating System",
+    "features": [
+      {
+        "id": "storage",
+        "icon": "mdi-notification-folder-special",
+        "name": "Offline Storage"
+      },
+      {
+        "id": "files",
+        "icon": "mdi-device-sd-storage",
+        "name": "File Access"
+      },
+      {
+        "id": "contacts",
+        "icon": "mdi-action-account-box",
+        "name": "Contacts"
+      },
+      {
+        "id": "sms",
+        "icon": "mdi-communication-message",
+        "name": "SMS"
+      },
+      {
+        "id": "storage-quota",
+        "icon": "mdi-notification-sim-card-alert",
+        "name": "Storage Quotas"
       }
     ]
   },
@@ -220,27 +225,27 @@
     ]
   },
   {
-    "heading": "Operating System",
+    "heading": "Screen & Output",
     "features": [
       {
-        "id": "storage",
-        "icon": "mdi-notification-folder-special",
-        "name": "Offline Storage"
+        "id": "fullscreen",
+        "icon": "mdi-action-settings-overscan",
+        "name": "Fullscreen"
       },
       {
-        "id": "files",
-        "icon": "mdi-device-sd-storage",
-        "name": "File Access"
+        "id": "screen-orientation",
+        "icon": "mdi-device-screen-lock-rotation",
+        "name": "Screen Orientation & Lock"
       },
       {
-        "id": "contacts",
-        "icon": "mdi-action-account-box",
-        "name": "Contacts"
+        "id": "wake-lock",
+        "icon": "mdi-action-lock",
+        "name": "Wake Lock"
       },
       {
-        "id": "storage-quota",
-        "icon": "mdi-notification-sim-card-alert",
-        "name": "Storage Quotas"
+        "id": "presentation",
+        "icon": "mdi-hardware-tv",
+        "name": "Presentation Features"
       }
     ]
   }

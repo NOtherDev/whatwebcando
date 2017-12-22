@@ -104,6 +104,9 @@
 .mdi-av-videocam:before {
   content: "\e6d1";
 }
+.mdi-communication-message:before {
+  content: "\e6ee";
+}
 .mdi-content-content-paste:before {
   content: "\e708";
 }
