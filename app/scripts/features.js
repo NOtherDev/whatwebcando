@@ -2073,7 +2073,7 @@ document.removeEventListener('paste', logUserOperation);`
       </dl>
       <p><b>Relative Orientation Sensor API</b></p>
       <dl>
-        <dt><code>sensor = new AbsoluteOrientationSensor()</code></dt>
+        <dt><code>sensor = new RelativeOrientationSensor()</code></dt>
         <dd>Creates an object serving as an accessor to the orientation readings in relation to a stationary reference coordinate system, based on accelerometer and gyroscope readings.</dd>
         <dt><code>sensor.addEventListener('reading', listener)</code></dt>
         <dd>An event fired when the orientation reading has changed, indicating that the sensor object contains updated quaternion representing the device's orientation.</dd>
