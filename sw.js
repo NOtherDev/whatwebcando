@@ -1,4 +1,4 @@
-const VERSION = 'e23c4c8'; const groups = [
+const VERSION = 'bd24e43'; const groups = [
   {
     "heading": "Native Behaviors",
     "features": [
@@ -105,31 +105,6 @@ const VERSION = 'e23c4c8'; const groups = [
     ]
   },
   {
-    "heading": "Screen & Output",
-    "features": [
-      {
-        "id": "fullscreen",
-        "icon": "mdi-action-settings-overscan",
-        "name": "Fullscreen"
-      },
-      {
-        "id": "orientation-lock",
-        "icon": "mdi-device-screen-lock-rotation",
-        "name": "Screen Orientation & Lock"
-      },
-      {
-        "id": "wake-lock",
-        "icon": "mdi-action-lock",
-        "name": "Wake Lock"
-      },
-      {
-        "id": "presentation",
-        "icon": "mdi-hardware-tv",
-        "name": "Presentation Features"
-      }
-    ]
-  },
-  {
     "heading": "Device Features",
     "features": [
       {
@@ -156,6 +131,36 @@ const VERSION = 'e23c4c8'; const groups = [
         "id": "memory",
         "icon": "mdi-hardware-memory",
         "name": "Device Memory"
+      }
+    ]
+  },
+  {
+    "heading": "Operating System",
+    "features": [
+      {
+        "id": "storage",
+        "icon": "mdi-notification-folder-special",
+        "name": "Offline Storage"
+      },
+      {
+        "id": "files",
+        "icon": "mdi-device-sd-storage",
+        "name": "File Access"
+      },
+      {
+        "id": "contacts",
+        "icon": "mdi-action-account-box",
+        "name": "Contacts"
+      },
+      {
+        "id": "sms",
+        "icon": "mdi-communication-message",
+        "name": "SMS"
+      },
+      {
+        "id": "storage-quota",
+        "icon": "mdi-notification-sim-card-alert",
+        "name": "Storage Quotas"
       }
     ]
   },
@@ -203,14 +208,14 @@ const VERSION = 'e23c4c8'; const groups = [
         "name": "Geofencing"
       },
       {
-        "id": "device-orientation",
+        "id": "device-position",
         "icon": "mdi-device-screen-rotation",
-        "name": "Device Orientation"
+        "name": "Device Position"
       },
       {
-        "id": "accelerometer",
+        "id": "device-motion",
         "icon": "mdi-action-3d-rotation",
-        "name": "Device Motions"
+        "name": "Device Motion"
       },
       {
         "id": "proximity",
@@ -220,27 +225,27 @@ const VERSION = 'e23c4c8'; const groups = [
     ]
   },
   {
-    "heading": "Operating System",
+    "heading": "Screen & Output",
     "features": [
       {
-        "id": "storage",
-        "icon": "mdi-notification-folder-special",
-        "name": "Offline Storage"
+        "id": "fullscreen",
+        "icon": "mdi-action-settings-overscan",
+        "name": "Fullscreen"
       },
       {
-        "id": "files",
-        "icon": "mdi-device-sd-storage",
-        "name": "File Access"
+        "id": "screen-orientation",
+        "icon": "mdi-device-screen-lock-rotation",
+        "name": "Screen Orientation & Lock"
       },
       {
-        "id": "contacts",
-        "icon": "mdi-action-account-box",
-        "name": "Contacts"
+        "id": "wake-lock",
+        "icon": "mdi-action-lock",
+        "name": "Wake Lock"
       },
       {
-        "id": "storage-quota",
-        "icon": "mdi-notification-sim-card-alert",
-        "name": "Storage Quotas"
+        "id": "presentation",
+        "icon": "mdi-hardware-tv",
+        "name": "Presentation Features"
       }
     ]
   }
@@ -257,10 +262,10 @@ self.addEventListener('install', function (event) {
       let files = [
         '/',
         '/index.html',
-        '/scripts/main.50031dac.js',
+        '/scripts/main.d1d5a120.js',
         '/scripts/vendor.65ca8f8f.js',
         '/styles/main.9afc3c79.css',
-        '/styles/layout.b43caeb4.css',
+        '/styles/layout.50426379.css',
         '/styles/vendor.f0c6d102.css',
         '/images/logo.svg',
         '/fonts/Material-Design-Icons.woff',
