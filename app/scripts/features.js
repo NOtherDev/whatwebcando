@@ -1614,7 +1614,9 @@ document.ongesturechange = function () {
       name: 'Device Motion',
       description: [`The first-generation device motions support is a part of <b>Device Orientation API</b>. It allows Web applications to access the accelerometer data
         expressed as acceleration (in m/s<sup>2</sup>) and gyroscope data expressed as rotation angle change (in &deg;/s) for each of the three dimensions, provided as events.`,
-        `There also exist the newer, separate specifications for each sensor type, based on the <b>Generic Sensor API</b> - the <b>Accelerometer APIs</b> (in linear and gravity variants) and <b>Gyroscope API</b>.`,
+        `There also exist the newer, separate specifications for each sensor type, based on the <b>Generic Sensor API</b> - the APIs providing direct access to the readings
+        of physical devices (<b>Accelerometer API</b>, <b>Gyroscope API</b> and <b>Magnetometer API</b>) as well as high-level fusion sensors made up by combining
+         the readings of the physical sensors (<b>Linear Acceleration Sensor API</b> and <b>Gravity Sensor API</b>).`,
         `For the detection of the device's static position and orientation, see <a href="/device-position.html">Device Position</a>.`],
       api: `<p><b>As a part of Device Orientation API</b></p>
       <dl>
@@ -1634,8 +1636,35 @@ document.ongesturechange = function () {
       </dl>
       <p><b>Accelerometer API</b></p>
       <dl>
+        <dt><code>sensor = new Accelerometer()</code></dt>
+        <dd>Creates an object serving as a direct accessor to the accelerometer readings.</dd>
+        <dt><code>sensor.addEventListener('reading', listener)</code></dt>
+        <dd>An event fired when the accelerometer reading has changed, indicating that the sensor object contains updated acceleration in rad/s for all three axes (<code>sensor.x</code>, <code>sensor.y</code>, <code>sensor.z</code>).</dd>
+        <dt><code>sensor.start()</code></dt>
+        <dd>Starts listening for the sensor readings.</dd>
+      </dl>
+      <p><b>Gyroscope API</b></p>
+      <dl>
+        <dt><code>sensor = new Gyroscope()</code></dt>
+        <dd>Creates an object serving as a direct accessor to the gyroscope readings.</dd>
+        <dt><code>sensor.addEventListener('reading', listener)</code></dt>
+        <dd>An event fired when the gyroscope reading has changed, indicating that the sensor object contains updated angular velocity in rad/s for all three axes (<code>sensor.x</code>, <code>sensor.y</code>, <code>sensor.z</code>).</dd>
+        <dt><code>sensor.start()</code></dt>
+        <dd>Starts listening for the sensor readings.</dd>
+      </dl>
+      <p><b>Magnetometer API</b></p>
+      <dl>
+        <dt><code>sensor = new Magnetometer()</code></dt>
+        <dd>Creates an object serving as a direct accessor to the magnetometer readings.</dd>
+        <dt><code>sensor.addEventListener('reading', listener)</code></dt>
+        <dd>An event fired when the magnetometer reading has changed, indicating that the sensor object contains updated magnetic field for all three axes (<code>sensor.x</code>, <code>sensor.y</code>, <code>sensor.z</code>).</dd>
+        <dt><code>sensor.start()</code></dt>
+        <dd>Starts listening for the sensor readings.</dd>
+      </dl>
+      <p><b>Linear Acceleration Sensor API</b></p>
+      <dl>
         <dt><code>sensor = new LinearAccelerationSensor()</code></dt>
-        <dd>Creates an object serving as an accessor to the linear accelerometer readings (excluding gravity).</dd>
+        <dd>Creates an object serving as an accessor to the linear acceleration readings based on accelerometer and either gyroscope or magnetometer.</dd>
         <dt><code>sensor.addEventListener('reading', listener)</code></dt>
         <dd>An event fired when the accelerometer reading has changed, indicating that the sensor object contains updated acceleration values in m/s<sup>2</sup> for all three axes (<code>sensor.x</code>, <code>sensor.y</code>, <code>sensor.z</code>).</dd>
         <dt><code>sensor.start()</code></dt>
@@ -1644,27 +1673,20 @@ document.ongesturechange = function () {
       <p><b>Gravity Sensor API</b></p>
       <dl>
         <dt><code>sensor = new GravitySensor()</code></dt>
-        <dd>Creates an object serving as an accessor to the accelerometer readings (including gravity).</dd>
+        <dd>Creates an object serving as an accessor to the gravity readings based on accelerometer and gyroscope.</dd>
         <dt><code>sensor.addEventListener('reading', listener)</code></dt>
         <dd>An event fired when the accelerometer reading has changed, indicating that the sensor object contains updated acceleration values in m/s<sup>2</sup> for all three axes (<code>sensor.x</code>, <code>sensor.y</code>, <code>sensor.z</code>).</dd>
-        <dt><code>sensor.start()</code></dt>
-        <dd>Starts listening for the sensor readings.</dd>
-      </dl>
-      <p><b>Gyroscope API</b></p>
-      <dl>
-        <dt><code>sensor = new Gyroscope()</code></dt>
-        <dd>Creates an object serving as an accessor to the gyroscope readings.</dd>
-        <dt><code>sensor.addEventListener('reading', listener)</code></dt>
-        <dd>An event fired when the gyroscope reading has changed, indicating that the sensor object contains updated rotation rates in rad/s for all three axes (<code>sensor.x</code>, <code>sensor.y</code>, <code>sensor.z</code>).</dd>
         <dt><code>sensor.start()</code></dt>
         <dd>Starts listening for the sensor readings.</dd>
       </dl>`,
       caniuse: 'deviceorientation',
       tests: [
         Feature.windowContains('DeviceMotionEvent'),
+        Feature.windowContains('Accelerometer'),
+        Feature.windowContains('Gyroscope'),
+        Feature.windowContains('Magnetometer'),
         Feature.windowContains('LinearAccelerationSensor'),
         Feature.windowContains('GravitySensor'),
-        Feature.windowContains('Gyroscope'),
       ],
       demo: {
         html: `<table class="table table-striped table-bordered">
@@ -1694,8 +1716,15 @@ document.ongesturechange = function () {
         js: `if ('LinearAccelerationSensor' in window && 'Gyroscope' in window) {
   document.getElementById('moApi').innerHTML = 'Generic Sensor API';
   
+  let lastReadingTimestamp;
   let accelerometer = new LinearAccelerationSensor();
-  accelerometer.addEventListener('reading', e => accelerationHandler(accelerometer, 'moAccel'));
+  accelerometer.addEventListener('reading', e => {
+    if (lastReadingTimestamp) {
+      intervalHandler(accelerometer.timestamp - lastReadingTimestamp);
+    }
+    lastReadingTimestamp = accelerometer.timestamp
+    accelerationHandler(accelerometer, 'moAccel');
+  });
   accelerometer.start();
   
   if ('GravitySensor' in window) {
@@ -1711,8 +1740,6 @@ document.ongesturechange = function () {
     gamma: gyroscope.z
   }));
   gyroscope.start();
-  
-  intervalHandler('Not available in Generic Sensor API');
   
 } else if ('DeviceMotionEvent' in window) {
   document.getElementById('moApi').innerHTML = 'Device Motion API';
@@ -1759,7 +1786,7 @@ function intervalHandler(interval) {
         {url: 'https://w3c.github.io/accelerometer/', title: 'Accelerometer API Specification Draft'},
         {url: 'https://w3c.github.io/gyroscope/', title: 'Gyroscope API Specification Draft'},
         {url: 'https://w3c.github.io/sensors/', title: 'Generic Sensor API Specification Draft'},
-        {url: 'http://www.html5rocks.com/en/tutorials/device/orientation/', title: 'HTML5 Rocks: This End Up: Using Device Orientation'},
+        {url: 'https://www.w3.org/TR/motion-sensors/', title: 'Motion Sensors Explainer'},
         {url: 'https://developers.google.com/web/updates/2017/09/sensors-for-the-web', title: 'Google Developers: Sensors For The Web'},
         {url: 'https://github.com/kenchris/sensor-polyfills', title: 'Polyfills for the W3C Generic Sensor APIs'}
       ]
@@ -2016,10 +2043,13 @@ document.removeEventListener('paste', logUserOperation);`
       id: 'device-position',
       aliases: ['device-orientation'],
       name: 'Device Position',
-      description: [`The <b>Device Orientation API</b> allows Web applications to access the gyroscope and compass data in order to determine the orientation
+      description: [`The first-generation device position support is a part of <b>Device Orientation API</b>. It allows Web applications to access the gyroscope and compass data in order to determine the static orientation
         of the user's device in all the three dimensions, expressed in degrees of divergence from the "natural" northbound lie flat position.`,
+        `The newer specification based on the <strong>Generic Sensor API</strong> also exists - the Orientation Sensor APIs (in absolute and relative variants). 
+          Contrary to the previous specification it provides readings expressed as <a href="https://en.wikipedia.org/wiki/Quaternions_and_spatial_rotation" target="_blank">quaternions</a> what makes it directly compatible with drawing environments like WebGL.`,
         `For the detection of the device's movements, see <a href="/device-motion.html">Device Motion</a>.`],
-      api: `<dl>
+      api: `<p><b>As a part of Device Orientation API</b></p>
+      <dl>
         <dt><code>window.addEventListener('deviceorientation', listener)</code></dt>
         <dd>An event fired when the significant changes in the device's orientation has occured.</dd>
         <dt><code>event.alpha</code></dt>
@@ -2029,6 +2059,28 @@ document.removeEventListener('paste', logUserOperation);`
           -90 in vertical upside down, -180 when horizontal upside down.</dd>
         <dt><code>event.gamma</code></dt>
         <dd>Returns device's current left/right tilt in degrees, from -90 when turned left to 90 when turned right.</dd>
+      </dl>
+      <p><b>Absolute Orientation Sensor API</b></p>
+      <dl>
+        <dt><code>sensor = new AbsoluteOrientationSensor()</code></dt>
+        <dd>Creates an object serving as an accessor to the orientation readings in relation to the Earth’s reference coordinate system, based on accelerometer, gyroscope and magenetometer readings.</dd>
+        <dt><code>sensor.addEventListener('reading', listener)</code></dt>
+        <dd>An event fired when the orientation reading has changed, indicating that the sensor object contains updated quaternion representing the device's orientation.</dd>
+        <dt><code>sensor.start()</code></dt>
+        <dd>Starts listening for the sensor readings.</dd>
+        <dt><code>sensor.quaternion</code></dt>
+        <dd>Returns the last available reading expressed as quaternion representing the device's orientation.</dd>
+      </dl>
+      <p><b>Relative Orientation Sensor API</b></p>
+      <dl>
+        <dt><code>sensor = new AbsoluteOrientationSensor()</code></dt>
+        <dd>Creates an object serving as an accessor to the orientation readings in relation to a stationary reference coordinate system, based on accelerometer and gyroscope readings.</dd>
+        <dt><code>sensor.addEventListener('reading', listener)</code></dt>
+        <dd>An event fired when the orientation reading has changed, indicating that the sensor object contains updated quaternion representing the device's orientation.</dd>
+        <dt><code>sensor.start()</code></dt>
+        <dd>Starts listening for the sensor readings.</dd>
+        <dt><code>sensor.quaternion</code></dt>
+        <dd>Returns the last available reading expressed as quaternion representing the device's orientation.</dd>
       </dl>`,
       caniuse: 'deviceorientation',
       demo: {
@@ -2086,10 +2138,17 @@ function deviceOrientationHandler (eventData) {
 }`,
         jsOnExit: `window.removeEventListener('deviceorientation', deviceOrientationHandler);`
       },
-      tests: [Feature.windowContains('DeviceOrientationEvent')],
+      tests: [
+        Feature.windowContains('DeviceOrientationEvent'),
+        Feature.windowContains('AbsoluteOrientationSensor'),
+        Feature.windowContains('RelativeOrientationSensor')
+      ],
       links: [
-        {url: 'https://w3c.github.io/deviceorientation/spec-source-orientation.html', title: 'Specification Draft'},
-        {url: 'http://www.html5rocks.com/en/tutorials/device/orientation/', title: 'HTML5 Rocks: This End Up: Using Device Orientation'}
+        {url: 'https://w3c.github.io/deviceorientation/spec-source-orientation.html', title: 'Older Device Orientation API Specification Draft'},
+        {url: 'https://www.w3.org/TR/orientation-sensor/', title: 'Orientation Sensors specification draft'},
+        {url: 'https://www.w3.org/TR/motion-sensors/', title: 'Motion Sensors Explainer'},
+        {url: 'https://developers.google.com/web/updates/2017/09/sensors-for-the-web', title: 'Google Developers: Sensors For The Web'},
+        {url: 'https://github.com/kenchris/sensor-polyfills', title: 'Polyfills for the W3C Generic Sensor APIs'}
       ]
     }),
 
