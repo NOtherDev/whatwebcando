@@ -56,6 +56,9 @@
 .mdi-action-3d-rotation:before {
   content: "\e600";
 }
+.mdi-action-alarm:before {
+  content: "\e60b";
+}
 .mdi-action-account-box:before {
   content: "\e604";
 }

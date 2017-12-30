@@ -132,6 +132,8 @@
 
   Feature.navigatorContains = (property, standard) => Feature.containedIn('navigator', global.navigator, property, standard);
   Feature.windowContains = (property, standard) => Feature.containedIn('window', global, property, standard);
+  Feature.serviceWorkerRegistrationContains = (property, standard) => Feature.containedIn('ServiceWorkerRegistration',
+    global.ServiceWorkerRegistration && global.ServiceWorkerRegistration.prototype, property, standard);
 
   Feature.rawTest = (containerName, property, test) => new FeatureRawTest(containerName, property, test);
   Feature.asyncRawTest = (containerName, property, test) => new FeatureAsyncTest(containerName, property, test);
