@@ -2701,7 +2701,10 @@ function takePhoto() {
         <dt><code>navigator.share({name, title, url})</code></dt>
         <dd>Invokes the system-defined application selection and data share dialog to send the named URL to another application and returns a <code>Promise</code> resolved when the share was successful.</dd>
       </dl>`,
-      tests: [Feature.windowContains('Intent', false), Feature.navigatorContains('share', false)],
+      tests: [
+        Feature.windowContains('Intent', false),
+        Feature.navigatorContains('share')
+      ],
       caniuse: 'web-share',
       demo: {
         html: `<p>
@@ -2747,7 +2750,7 @@ function share() {
         {url: 'https://www.chromium.org/developers/web-intents-in-chrome', title: 'Web Intents in Chrome - description from 2012'},
         {url: 'https://paul.kinlan.me/what-happened-to-web-intents/', title: 'Paul Kinlan: What happened to Web Intents?'},
         {url: 'https://paul.kinlan.me/navigator.share/', title: 'Paul Kinlan: Simple sharing on the Web with navigator.share'},
-        {url: 'https://github.com/mgiuca/web-share', title: 'Web Share API notes'}
+        {url: 'https://wicg.github.io/web-share/', title: 'Web Share API Specification'}
       ]
     }),
 
