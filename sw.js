@@ -1,4 +1,4 @@
-const VERSION = '043d057'; const groups = [
+const VERSION = '4df2eac'; const groups = [
   {
     "heading": "Native Behaviors",
     "features": [
@@ -55,56 +55,6 @@ const VERSION = '043d057'; const groups = [
     ]
   },
   {
-    "heading": "Input",
-    "features": [
-      {
-        "id": "touch",
-        "icon": "mdi-content-gesture",
-        "name": "Touch Gestures"
-      },
-      {
-        "id": "speech-recognition",
-        "icon": "mdi-av-mic",
-        "name": "Speech Recognition"
-      },
-      {
-        "id": "clipboard",
-        "icon": "mdi-content-content-paste",
-        "name": "Clipboard (Copy & Paste)"
-      },
-      {
-        "id": "pointer-adaptation",
-        "icon": "mdi-hardware-mouse",
-        "name": "Pointing Device Adaptation"
-      }
-    ]
-  },
-  {
-    "heading": "Camera & Microphone",
-    "features": [
-      {
-        "id": "camera-microphone",
-        "icon": "mdi-image-camera-alt",
-        "name": "Audio & Video Capture"
-      },
-      {
-        "id": "photos",
-        "icon": "mdi-image-camera-roll",
-        "name": "Advanced Camera Controls"
-      },
-      {
-        "id": "recording",
-        "icon": "mdi-av-mic",
-        "name": "Recording Media"
-      },
-      {
-        "id": "realtime",
-        "icon": "mdi-av-videocam",
-        "name": "Real-time Communication"
-      }
-    ]
-  },
-  {
     "heading": "Device Features",
     "features": [
       {
@@ -135,6 +85,31 @@ const VERSION = '043d057'; const groups = [
     ]
   },
   {
+    "heading": "Camera & Microphone",
+    "features": [
+      {
+        "id": "camera-microphone",
+        "icon": "mdi-image-camera-alt",
+        "name": "Audio & Video Capture"
+      },
+      {
+        "id": "photos",
+        "icon": "mdi-image-camera-roll",
+        "name": "Advanced Camera Controls"
+      },
+      {
+        "id": "recording",
+        "icon": "mdi-av-mic",
+        "name": "Recording Media"
+      },
+      {
+        "id": "realtime",
+        "icon": "mdi-av-videocam",
+        "name": "Real-time Communication"
+      }
+    ]
+  },
+  {
     "heading": "Operating System",
     "features": [
       {
@@ -161,6 +136,36 @@ const VERSION = '043d057'; const groups = [
         "id": "storage-quota",
         "icon": "mdi-notification-sim-card-alert",
         "name": "Storage Quotas"
+      },
+      {
+        "id": "scheduler",
+        "icon": "mdi-action-alarm",
+        "name": "Task Scheduling"
+      }
+    ]
+  },
+  {
+    "heading": "Input",
+    "features": [
+      {
+        "id": "touch",
+        "icon": "mdi-content-gesture",
+        "name": "Touch Gestures"
+      },
+      {
+        "id": "speech-recognition",
+        "icon": "mdi-av-mic",
+        "name": "Speech Recognition"
+      },
+      {
+        "id": "clipboard",
+        "icon": "mdi-content-content-paste",
+        "name": "Clipboard (Copy & Paste)"
+      },
+      {
+        "id": "pointer-adaptation",
+        "icon": "mdi-hardware-mouse",
+        "name": "Pointing Device Adaptation"
       }
     ]
   },
@@ -262,10 +267,10 @@ self.addEventListener('install', function (event) {
       let files = [
         '/',
         '/index.html',
-        '/scripts/main.728796a7.js',
+        '/scripts/main.24436cc0.js',
         '/scripts/vendor.65ca8f8f.js',
         '/styles/main.9afc3c79.css',
-        '/styles/layout.50426379.css',
+        '/styles/layout.b4be66b0.css',
         '/styles/vendor.f0c6d102.css',
         '/images/logo.svg',
         '/fonts/Material-Design-Icons.woff',
