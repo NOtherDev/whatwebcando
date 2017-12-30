@@ -3016,7 +3016,10 @@ function addStreamToVideoTag(stream, tag) {
       the order summary information including the subtotals, order items and shipping options.`,
       `With <code>options</code> parameter the Web application might specify what kind of customer data it requires to be able to fulfill the request.
       It may require a shipping address (<code>requestShipping</code>), email (<code>requestPayerEmail</code>), phone (<code>requestPayerPhone</code>) 
-      or name (<code>requestPayerName</code>).`],
+      or name (<code>requestPayerName</code>).`,
+      `The only payment method available on Apple devices is <a href="https://www.apple.com/apple-pay/" target="_blank">Apple Pay</a> and it is only functional on devices with fingerprint authentication (Touch ID).
+      It is accessible via the proprietary non-standard <code>ApplePaySession</code> API instead of the Payment Request API described here.
+      The support for standard Payment Request API in Safari is expected to ship in early 2018. As of the end of 2017 it is only available in Safari Technology Preview.`],
       api: `<dl>
         <dt><code>paymentRequest = new PaymentRequest({supportedMethods, details, options})</code></dt>
         <dd>Creates a payment request object with the requested amounts, currencies and methods configured.</dd>
@@ -3037,10 +3040,13 @@ function addStreamToVideoTag(stream, tag) {
         <dt><code>response.complete(result)</code></dt>
         <dd>Signals the browser that the app-specific steps of payment processing (like sending the order data to the server-side) has completed. Returns a <code>Promise</code> resolved when the Payment Request UI is cleared.</dd>
       </dl>`,
-      tests: [Feature.windowContains('PaymentRequest')],
+      tests: [
+        Feature.windowContains('PaymentRequest'),
+        Feature.windowContains('ApplePaySession', false)
+      ],
       caniuse: 'payment-request',
       demo: {
-        html: `<p><button class="btn btn-default" onclick="donate()">Donate 10€ to What Web Can Do 😉</button></p>
+        html: `<p><button class="btn btn-default" onclick="donate()">Donate 10€ to What Web Can Do 😉</button> (demo only, no actual payment is processed)</p>
 
 <p id="log"></p>
 
@@ -3049,13 +3055,23 @@ function addStreamToVideoTag(stream, tag) {
  * Builds PaymentRequest for credit cards, but does not show any UI yet.
  */
 function initPaymentRequest() {
-  let networks = ['amex', 'diners', 'jcb', 'mastercard', 'unionpay', 'visa'];
-  let types = ['debit', 'credit', 'prepaid'];
+  let networks = ['amex', 'jcb', 'visa'];
+  
   let supportedInstruments = [{
-    supportedMethods: networks,
-  }, {
     supportedMethods: ['basic-card'],
-    data: {supportedNetworks: networks, supportedTypes: types},
+    data: {
+      supportedNetworks: networks, 
+      supportedTypes: ['debit', 'credit', 'prepaid']
+    }
+  }, {
+    supportedMethods: 'https://apple.com/apple-pay',
+    data: {
+        version: 2,
+        supportedNetworks: networks,
+        countryCode: 'US',
+        merchantIdentifier: 'whatwebcando.today.sample',
+        merchantCapabilities: ['supportsDebit', 'supportsCredit', 'supports3DS']
+    }
   }];
 
   let details = {
@@ -3063,13 +3079,13 @@ function initPaymentRequest() {
     displayItems: [
       {
         label: 'Original donation amount',
-        amount: {currency: 'EUR', value: '15.00'},
+        amount: {currency: 'EUR', value: '15.00'}
       },
       {
         label: 'Friends and family discount',
-        amount: {currency: 'EUR', value: '-5.00'},
-      },
-    ],
+        amount: {currency: 'EUR', value: '-5.00'}
+      }
+    ]
   };
 
   return new PaymentRequest(supportedInstruments, details);
@@ -3115,7 +3131,7 @@ function resultToTable(result) {
 
 function donate() {
   if (!window.PaymentRequest) {
-    alert('This browser does not support web payments');
+    alert('This browser does not support Web Payments API');
     return;
   }
     
