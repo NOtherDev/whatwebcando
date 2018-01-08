@@ -1389,11 +1389,13 @@ function handleFiles(files) {
     contacts: new Feature({
       id: 'contacts',
       name: 'Contacts',
-      description: [`The <b>Contacts API</b> gives privileged Web applications an access to the user's address book maintained in the system
+      description: [`The <b>Contacts API</b> gives privileged Web applications a programmatic access to the user's address book maintained in the system
         and allow reading & modifying the contacts through the vCard-like format.`,
         `The initial version of the API was created for Firefox OS and implemented in Firefox, but
         <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=927869" target="_blank">disabled</a> due to implementation flaws. There is
-        no working implementation available as of today and no interest in that area is visible.`],
+        no working implementation available as of today and no interest in that area is visible.`,
+        `The applications might however ask for pre-filling the form data from the device address book with the help of <a href="https://www.w3.org/TR/html51/sec-forms.html#element-attrdef-autocompleteelements-autocomplete" target="_blank">form elements' <code>autocomplete</code> attribute values</a>
+        - there is no programmatic access to the raw data, though.`],
       api: `<dl>
         <dt><code>navigator.contacts.find(filterAndSortOptions)</code></dt>
         <dd>Returns a <code>Promise</code> resolved with the array of contacts from the address book according to the criteria specified.</dd>
@@ -1447,7 +1449,8 @@ function consoleLog(data) {
       },
       links: [
         {url: 'https://www.w3.org/2012/sysapps/contacts-manager-api/', title: 'Specification Draft'},
-        {url: 'https://developer.mozilla.org/en-US/docs/Web/API/Contacts_API', title: 'MDN: Contacts API'}
+        {url: 'https://developer.mozilla.org/en-US/docs/Web/API/Contacts_API', title: 'MDN: Contacts API'},
+        {url: 'https://cloudfour.com/thinks/autofill-what-web-devs-should-know-but-dont/', title: 'Article about auto-fill attribute values support'}
       ]
     }),
 
