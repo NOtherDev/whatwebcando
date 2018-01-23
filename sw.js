@@ -1,4 +1,4 @@
-const VERSION = '1650a89'; const groups = [
+const VERSION = 'a6fe524'; const groups = [
   {
     "heading": "Native Behaviors",
     "features": [
@@ -233,6 +233,11 @@ const VERSION = '1650a89'; const groups = [
     "heading": "Screen & Output",
     "features": [
       {
+        "id": "vr",
+        "icon": "mdi-maps-local-play",
+        "name": "Virtual & Augmented Reality"
+      },
+      {
         "id": "fullscreen",
         "icon": "mdi-action-settings-overscan",
         "name": "Fullscreen"
@@ -267,10 +272,10 @@ self.addEventListener('install', function (event) {
       let files = [
         '/',
         '/index.html',
-        '/scripts/main.37c75dc1.js',
+        '/scripts/main.aac87336.js',
         '/scripts/vendor.65ca8f8f.js',
         '/styles/main.9afc3c79.css',
-        '/styles/layout.b4be66b0.css',
+        '/styles/layout.60a43676.css',
         '/styles/vendor.f0c6d102.css',
         '/images/logo.svg',
         '/fonts/Material-Design-Icons.woff',
