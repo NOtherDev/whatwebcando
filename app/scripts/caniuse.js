@@ -167,7 +167,7 @@
         ]
       };
 
-      return new Chartist.Pie(selector, chartData);
+      return new Chartist.Pie(selector, chartData, {ignoreEmptyValues: true});
     }
 
     initVisuals() {
