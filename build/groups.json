@@ -233,6 +233,11 @@
     "heading": "Screen & Output",
     "features": [
       {
+        "id": "vr",
+        "icon": "mdi-maps-local-play",
+        "name": "Virtual & Augmented Reality"
+      },
+      {
         "id": "fullscreen",
         "icon": "mdi-action-settings-overscan",
         "name": "Fullscreen"

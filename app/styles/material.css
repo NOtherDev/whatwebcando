@@ -191,6 +191,9 @@
 .mdi-notification-vibration:before {
   content: "\e8d4";
 }
+.mdi-maps-local-play:before {
+  content: "\e88d";
+}
 
 body,
 h1,
