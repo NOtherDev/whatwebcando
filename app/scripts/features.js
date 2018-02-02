@@ -780,11 +780,12 @@ function getStream (type) {
   constraints[type] = true;
   getUserMedia(constraints, function (stream) {
     var mediaControl = document.querySelector(type);
-    if (navigator.mozGetUserMedia) {
-      mediaControl.mozSrcObject = stream;
-    } else {
+    
+    if ('srcObject' in mediaControl) {
       mediaControl.srcObject = stream;
       mediaControl.src = (window.URL || window.webkitURL).createObjectURL(stream);
+    } else if (navigator.mozGetUserMedia) {
+      mediaControl.mozSrcObject = stream;
     }
   }, function (err) {
     alert('Error: ' + err);
@@ -2567,11 +2568,11 @@ function getStream() {
 
   getUserMedia(constraints, function (stream) {
     var mediaControl = document.querySelector('video');
-    if (navigator.mozGetUserMedia) {
-      mediaControl.mozSrcObject = stream;
-    } else {
+    if ('srcObject' in mediaControl) {
       mediaControl.srcObject = stream;
       mediaControl.src = (window.URL || window.webkitURL).createObjectURL(stream);
+    } else if (navigator.mozGetUserMedia) {
+      mediaControl.mozSrcObject = stream;
     }
     theStream = stream;
   }, function (err) {
@@ -2801,11 +2802,12 @@ function getStream() {
   var constraints = {video: true, audio: true};
   getUserMedia(constraints, function (stream) {
     var mediaControl = document.querySelector('video');
-    if (navigator.mozGetUserMedia) {
-      mediaControl.mozSrcObject = stream;
-    } else {
+    
+    if ('srcObject' in mediaControl) {
       mediaControl.srcObject = stream;
       mediaControl.src = (window.URL || window.webkitURL).createObjectURL(stream);
+    } else if (navigator.mozGetUserMedia) {
+      mediaControl.mozSrcObject = stream;
     }
     
     theStream = stream;
@@ -2959,11 +2961,11 @@ function getStream() {
 
 function addStreamToVideoTag(stream, tag) {
   var mediaControl = document.getElementById(tag);
-  if (navigator.mozGetUserMedia) {
-    mediaControl.mozSrcObject = stream;
-  } else {
+  if ('srcObject' in mediaControl) {
     mediaControl.srcObject = stream;
     mediaControl.src = (window.URL || window.webkitURL).createObjectURL(stream);
+  } else if (navigator.mozGetUserMedia) {
+    mediaControl.mozSrcObject = stream;
   }
 }`
       },
