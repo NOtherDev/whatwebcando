@@ -3065,7 +3065,7 @@ function initPaymentRequest() {
   let networks = ['amex', 'jcb', 'visa'];
   
   let supportedInstruments = [{
-    supportedMethods: ['basic-card'],
+    supportedMethods: 'basic-card',
     data: {
       supportedNetworks: networks, 
       supportedTypes: ['debit', 'credit', 'prepaid']
