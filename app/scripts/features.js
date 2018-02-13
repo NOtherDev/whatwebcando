@@ -2677,6 +2677,7 @@ function takePhoto() {
         <dd>An event fired within the Service Worker instance when there is a connection available and the synchronization is possible. The <code>listener</code> is expected to call <code>event.waitUntil(promise)</code> specifying a <code>Promise</code> that resolves when the sync handling has been completed.</dd>
       </dl>`,
       tests: [Feature.windowContains('SyncManager')],
+      caniuse: 'background-sync',
       links: [
         {url: 'https://wicg.github.io/BackgroundSync/spec/', title: 'Specification Draft (non-W3C)'},
         {url: 'https://developers.google.com/web/updates/2015/12/background-sync', title: 'Google Developers: Introducing Background Sync'}
