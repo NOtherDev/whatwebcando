@@ -1295,8 +1295,8 @@ function handleFiles(files) {
       id: 'permissions',
       name: 'Permissions',
       description: `The <b>Permissions API</b> provides the uniform way for Web applications to query for the permission status for the features
-        that require user consent, like notifications or geolocation. With Permissions API the app can list the permissions
-        granted by the user without actually trying to use the feature.`,
+        that might require user consent, like notifications or geolocation. With Permissions API the app can list the permissions
+        granted by the user without actually triggering the feature itself.`,
       api: `<dl>
         <dt><code>navigator.permissions.query({name: feature})</code></dt>
         <dd>Returns a <code>Promise</code> resolved with the object representing the permission status of the requested feature.</dd>
@@ -1308,26 +1308,53 @@ function handleFiles(files) {
       caniuse: 'permissions-api',
       tests: [Feature.navigatorContains('permissions')],
       demo: {
-        html: `<p>
-  <b>Geolocation</b> permission status is <b id="geolocationStatus">unknown</b>.
-  
-  <button class="btn btn-default" onclick="requestGeolocation()">Request</button>
-</p>
-<p>
-  <b>Notifications</b> permission status is <b id="notificationsStatus">unknown</b>.
-  
-  <button class="btn btn-default" onclick="requestNotifications()">Request</button>
-</p>
-<p>
-  <b>Push</b> permission status is <b id="pushStatus">unknown</b>.
-  
-  <button class="btn btn-default" onclick="requestPush()">Request</button>
-</p>
-<p>
-  <b>Midi</b> permission status is <b id="midiStatus">unknown</b>.
-  
-  <button class="btn btn-default" onclick="requestMidi()">Request</button>
-</p>
+        html: `<div>
+  <p>
+    <b><a href="/geolocation.html">Geolocation</a></b> permission status is <b id="geolocation-status">unknown</b>.
+    
+    <button class="btn btn-sm btn-default" onclick="requestGeolocation()">Request</button>
+  </p>
+  <p>
+    <b><a href="/local-notifications.html">Notifications</a></b> permission status is <b id="notifications-status">unknown</b>.
+    
+    <button class="btn btn-default" onclick="requestNotifications()">Request</button>
+  </p>
+  <p>
+    <b><a href="/push-notifications.html">Push</a></b> permission status is <b id="push-status">unknown</b>.
+    
+    <button class="btn btn-default" onclick="requestPush()">Request</button>
+  </p>
+  <p>
+    <b>Midi</b> permission status is <b id="midi-status">unknown</b>.
+    
+    <button class="btn btn-default" onclick="requestMidi()">Request</button>
+  </p>
+  <p>
+    <b><a href="/camera-microphone.html">Camera</a></b> permission status is <b id="camera-status">unknown</b>.
+    
+    <button class="btn btn-default" onclick="requestCamera()">Request</button>
+  </p>
+  <p>
+    <b><a href="/camera-microphone.html">Microphone</a></b> permission status is <b id="microphone-status">unknown</b>.
+    
+    <button class="btn btn-default" onclick="requestMicrophone()">Request</button>
+  </p>
+  <p>
+    <b><a href="/background-sync.html">Background Sync</a></b> permission status is <b id="background-sync-status">unknown</b>.
+  </p>
+  <p>
+    <b><a href="/ambient-light.html">Ambient Light Sensor</a></b> permission status is <b id="ambient-light-sensor-status">unknown</b>.
+  </p>
+  <p>
+    <b><a href="/device-motion.html">Accelerometer</a></b> permission status is <b id="accelerometer-status">unknown</b>.
+  </p>
+  <p>
+    <b><a href="/device-motion.html">Gyroscope</a></b> permission status is <b id="gyroscope-status">unknown</b>.
+  </p>
+  <p>
+    <b><a href="/device-motion.html">Magnetometer</a></b> permission status is <b id="magnetometer-status">unknown</b>.
+  </p>
+</div>
 
 <p id="logTarget"></p>`,
         js: `if ('permissions' in navigator) {
@@ -1341,28 +1368,36 @@ function handleFiles(files) {
   }
 
   function checkPermission(permissionName, descriptor) {
-    navigator.permissions.query(descriptor || {
-        name: permissionName
-      })
+    try {
+    navigator.permissions.query(Object.assign({name: permissionName}, descriptor))
       .then(function (permission) {
-        document.getElementById(permissionName + 'Status').innerHTML = permission.state;
+        document.getElementById(permissionName + '-status').innerHTML = permission.state;
         permission.addEventListener('change', function (e) {
-          document.getElementById(permissionName + 'Status').innerHTML = permission.state;
+          document.getElementById(permissionName + '-status').innerHTML = permission.state;
           handleChange(permissionName, permission.state);
         });
       });
+    } catch (e) {
+    }
   }
 
   checkPermission('geolocation');
   checkPermission('notifications');
-  checkPermission('push', {
-    name: 'push',
-    userVisibleOnly: true
-  });
-  checkPermission('midi');
+  checkPermission('push', {userVisibleOnly: true});
+  checkPermission('midi', {sysex: true});
+  checkPermission('camera');
+  checkPermission('microphone');
+  checkPermission('background-sync');
+  checkPermission('ambient-light-sensor');
+  checkPermission('accelerometer');
+  checkPermission('gyroscope');
+  checkPermission('magnetometer');
 
+  var noop = function () {};
+  navigator.getUserMedia = (navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia);
+  
   function requestGeolocation() {
-    navigator.geolocation.getCurrentPosition(function () {});
+    navigator.geolocation.getCurrentPosition(noop);
   }
 
   function requestNotifications() {
@@ -1370,20 +1405,37 @@ function handleFiles(files) {
   }
 
   function requestPush() {
-    navigator.serviceWorker.register('')
+    navigator.serviceWorker.getRegistration()
       .then(function (serviceWorkerRegistration) {
         serviceWorkerRegistration.pushManager.subscribe();
       });
   }
 
   function requestMidi() {
-    navigator.requestMIDIAccess();
+    navigator.requestMIDIAccess({sysex: true});
   }
+  
+  function requestCamera() {
+    navigator.getUserMedia({video: true}, noop, noop)
+  }
+  
+  function requestMicrophone() {
+    navigator.getUserMedia({audio: true}, noop, noop)
+  }
+}`,
+        cssHidden: `#demo-placeholder {
+  overflow: hidden;
+}
+
+#logTarget, #demo-placeholder div {
+  float: left;
+  width: 50%;
 }`
       },
       links: [
         {url: 'https://w3c.github.io/permissions/', title: 'Specification Draft'},
-        {url: 'https://developers.google.com/web/updates/2015/04/permissions-api-for-the-web', title: 'Permissions API for the Web'}
+        {url: 'https://developers.google.com/web/updates/2015/04/permissions-api-for-the-web', title: 'Permissions API for the Web'},
+        {url: 'https://permission.site', title: 'Permissions Demo'}
       ]
     }),
 
