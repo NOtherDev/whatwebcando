@@ -1947,11 +1947,13 @@ function log(event) {
 }
 
 function performCopyEmail() {
+  var selection = window.getSelection();
   var emailLink = document.querySelector('.js-emaillink');
 
+  selection.removeAllRanges();
   var range = document.createRange();
-  range.selectNode(emailLink);
-  window.getSelection().addRange(range);
+  range.selectNodeContent(emailLink);
+  selection.addRange(range);
 
   try {
     var successful = document.execCommand('copy');
@@ -1960,7 +1962,8 @@ function performCopyEmail() {
   } catch (err) {
     log('execCommand Error', err);
   }
-  window.getSelection().removeAllRanges();
+  
+  selection.removeAllRanges();
 }
 
 function performCutTextarea() {
