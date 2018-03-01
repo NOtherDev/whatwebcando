@@ -1952,7 +1952,7 @@ function performCopyEmail() {
 
   selection.removeAllRanges();
   var range = document.createRange();
-  range.selectNodeContent(emailLink);
+  range.selectNode(emailLink);
   selection.addRange(range);
 
   try {
