@@ -274,7 +274,7 @@ self.addEventListener('install', function (event) {
         '/index.html',
         '/scripts/main.50ed630a.js',
         '/scripts/vendor.65ca8f8f.js',
-        '/styles/main.9afc3c79.css',
+        '/styles/main.ee6f0840.css',
         '/styles/layout.60a43676.css',
         '/styles/vendor.f0c6d102.css',
         '/images/logo.svg',
