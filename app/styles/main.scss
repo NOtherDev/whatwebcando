@@ -218,13 +218,18 @@ header {
 
 .features-list {
   list-style-type: none;
+  padding: 15px 0;
 
   li {
     overflow: hidden;
+    position: relative;
   }
 
   .btn {
+    position: initial;
     margin: 3px;
+    width: calc(100% - 6px);
+    text-align: left;
     @include restore-outline();
   }
 }
