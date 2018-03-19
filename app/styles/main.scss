@@ -182,12 +182,12 @@ header {
   .features-list .btn {
     width: 100%;
     text-align: left;
-    padding: 8px 6px;
+    padding: 8px 16px;
 
     &:after {
       content: '»';
       position: absolute;
-      right: 5px;
+      right: 15px;
       top: 6px;
       color: rgba(0, 0, 0, 0.2);
       font-size: larger;
