@@ -355,6 +355,28 @@ header {
   }
 }
 
+#carbonads {
+  margin: 0 15px -10px;
+  position: relative;
+
+  .carbon-wrap {
+    display: flex;
+    align-items: start;
+  }
+
+  .carbon-text {
+    margin-left: 15px;
+    color: black;
+  }
+
+  .carbon-poweredby {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    display: inline-block;
+  }
+}
+
 /* cont. */
 footer {
   padding-top: 1.5em;
