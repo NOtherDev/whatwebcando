@@ -1,33 +1,33 @@
-const VERSION = '8f0e23c'; const groups = [
+const VERSION = '4b07862'; const groups = [
   {
-    "heading": "Native Behaviors",
+    "heading": "Camera & Microphone",
     "features": [
       {
-        "id": "local-notifications",
-        "icon": "mdi-notification-system-update",
-        "name": "Local Notifications"
+        "id": "camera-microphone",
+        "icon": "mdi-image-camera-alt",
+        "name": "Audio & Video Capture"
       },
       {
-        "id": "push-notifications",
-        "icon": "mdi-notification-tap-and-play",
-        "name": "Push Messages"
+        "id": "photos",
+        "icon": "mdi-image-camera-roll",
+        "name": "Advanced Camera Controls"
       },
       {
-        "id": "installation",
-        "icon": "mdi-action-get-app",
-        "name": "Home Screen Installation"
+        "id": "recording",
+        "icon": "mdi-av-mic",
+        "name": "Recording Media"
       },
       {
-        "id": "foreground-detection",
-        "icon": "mdi-action-flip-to-front",
-        "name": "Foreground Detection"
-      },
-      {
-        "id": "permissions",
-        "icon": "mdi-action-lock-open",
-        "name": "Permissions"
+        "id": "realtime",
+        "icon": "mdi-av-videocam",
+        "name": "Real-time Communication"
       }
     ]
+  },
+  {
+    "heading": "Advertisement",
+    "features": [],
+    "html": "<script async type=\"text/javascript\" src=\"//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=whatwebcandotoday\" id=\"_carbonads_js\"></script>"
   },
   {
     "heading": "Surroundings",
@@ -85,27 +85,32 @@ const VERSION = '8f0e23c'; const groups = [
     ]
   },
   {
-    "heading": "Camera & Microphone",
+    "heading": "Native Behaviors",
     "features": [
       {
-        "id": "camera-microphone",
-        "icon": "mdi-image-camera-alt",
-        "name": "Audio & Video Capture"
+        "id": "local-notifications",
+        "icon": "mdi-notification-system-update",
+        "name": "Local Notifications"
       },
       {
-        "id": "photos",
-        "icon": "mdi-image-camera-roll",
-        "name": "Advanced Camera Controls"
+        "id": "push-notifications",
+        "icon": "mdi-notification-tap-and-play",
+        "name": "Push Messages"
       },
       {
-        "id": "recording",
-        "icon": "mdi-av-mic",
-        "name": "Recording Media"
+        "id": "installation",
+        "icon": "mdi-action-get-app",
+        "name": "Home Screen Installation"
       },
       {
-        "id": "realtime",
-        "icon": "mdi-av-videocam",
-        "name": "Real-time Communication"
+        "id": "foreground-detection",
+        "icon": "mdi-action-flip-to-front",
+        "name": "Foreground Detection"
+      },
+      {
+        "id": "permissions",
+        "icon": "mdi-action-lock-open",
+        "name": "Permissions"
       }
     ]
   },
@@ -274,7 +279,7 @@ self.addEventListener('install', function (event) {
         '/index.html',
         '/scripts/main.50ed630a.js',
         '/scripts/vendor.65ca8f8f.js',
-        '/styles/main.ee6f0840.css',
+        '/styles/main.067b3d39.css',
         '/styles/layout.60a43676.css',
         '/styles/vendor.f0c6d102.css',
         '/images/logo.svg',
