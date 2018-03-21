@@ -1,4 +1,4 @@
-const VERSION = '4b07862'; const groups = [
+const VERSION = '62ad8f9'; const groups = [
   {
     "heading": "Camera & Microphone",
     "features": [
@@ -277,7 +277,7 @@ self.addEventListener('install', function (event) {
       let files = [
         '/',
         '/index.html',
-        '/scripts/main.50ed630a.js',
+        '/scripts/main.182b01c9.js',
         '/scripts/vendor.65ca8f8f.js',
         '/styles/main.067b3d39.css',
         '/styles/layout.60a43676.css',
@@ -315,6 +315,10 @@ self.addEventListener('activate', function (event) {
 const isCacheable = request => request.mode === 'navigate' || request.url.indexOf('https://raw.githubusercontent.com') === 0;
 
 self.addEventListener('fetch', function (event) {
+  if (event.request.url.indexOf('srv.carbonads.net') !== -1) {
+    return;
+  }
+
   event.respondWith(
     caches.open(VERSION)
       .then(function (cache) {
