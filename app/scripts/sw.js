@@ -47,6 +47,10 @@ self.addEventListener('activate', function (event) {
 const isCacheable = request => request.mode === 'navigate' || request.url.indexOf('https://raw.githubusercontent.com') === 0;
 
 self.addEventListener('fetch', function (event) {
+  if (event.request.url.indexOf('srv.carbonads.net') !== -1) {
+    return;
+  }
+
   event.respondWith(
     caches.open(VERSION)
       .then(function (cache) {
