@@ -1,11 +1,19 @@
 (function (container) {
   'use strict';
 
+  let pageChangedCounter = 0;
+
   const notifyPageChanged = path => {
+    pageChangedCounter += 1;
+
     if (window.ga) {
       window.ga('set', 'page', path);
       window.ga('set', 'online', navigator.onLine);
       window.ga('send', 'pageview');
+    }
+
+    if (!!document.querySelector('#carbonads') && typeof window._carbonads !== 'undefined' && pageChangedCounter % 3 === 0) {
+      window._carbonads.refresh();
     }
   };
 
