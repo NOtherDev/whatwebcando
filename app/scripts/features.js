@@ -725,7 +725,7 @@ if ("ondevicelight" in window) {
         interfaces, i.e. to use the data available from the camera and the microphone. The streams exposed by the API can be bound directly to the HTML
         <code>&lt;audio&gt;</code> or <code>&lt;video&gt;</code> elements or read and manipulated in the code, including further more specific processing via <a href="/photos.html">Image Capture API</a>, <a href="/recording.html">Media Recorder API</a> or <a href="/realtime.html">Real-Time Communication</a>.`,
         `There is also a higher level alternative <a href="http://www.wufoo.com/html5/attributes/20-accept.html">built-in into mobile operating systems</a>
-        like iOS and Android that doesn't require any JavaScript API - the basic HTML <code>&lt;file type="input" accept="image/*"&gt;</code> element allows
+        like iOS and Android that doesn't require any JavaScript API - the basic HTML <code>&lt;input type="file" accept="image/*"&gt;</code> element allows
         launching any application that provides an image file, including camera.`],
       api: `<dl>
         <dt><code>navigator.mediaDevices.getUserMedia(constraints)</code></dt>
