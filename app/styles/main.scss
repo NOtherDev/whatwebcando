@@ -410,7 +410,7 @@ footer {
 }
 
 @mixin slidable-hidden() {
-  overflow-y: hidden;
+  overflow-y: auto; /* was hidden but it caused a bug (?) in Chrome */
   min-height: 0;
   max-height: 0;
 }
