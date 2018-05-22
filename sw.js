@@ -1,4 +1,4 @@
-const VERSION = '2b9bb9b'; const groups = [
+const VERSION = '08a5a51'; const groups = [
   {
     "heading": "Camera & Microphone",
     "features": [
@@ -27,7 +27,7 @@ const VERSION = '2b9bb9b'; const groups = [
   {
     "heading": "Advertisement",
     "features": [],
-    "html": "<script async type=\"text/javascript\" src=\"//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=whatwebcandotoday\" id=\"_carbonads_js\"></script>"
+    "html": "<script async type=\"text/javascript\" src=\"//cdn.carbonads.com/carbon.js?serve=CK7DT23L&placement=whatwebcandotoday\" id=\"_carbonads_js\"></script>"
   },
   {
     "heading": "Surroundings",
