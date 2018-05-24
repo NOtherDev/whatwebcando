@@ -11,14 +11,7 @@
     <link rel="preload" as="font" crossorigin="anonymous" type="font/woff2" href="/fonts/Material-Design-Icons.woff?3ocs8m"/>
     <link rel="preload" as="image" type="image/svg+xml" href="/images/logo.svg"/>
 
-    <!-- Origin Trial Token, feature = WebVR (For Chrome M62+), origin = https://whatwebcando.today, expires = 2018-06-19 -->
-    <meta http-equiv="origin-trial" data-feature="WebVR (For Chrome M62+)" data-expires="2018-06-19" content="Aht2y05BR2FUeqSLdRUU3TxoD5kFqbN+8OoVwCb/T3jPfBAOYJdBSgQRGohnEIDFeg1vhXz3BgQOltRebxyN7gMAAABXeyJvcmlnaW4iOiJodHRwczovL3doYXR3ZWJjYW5kby50b2RheTo0NDMiLCJmZWF0dXJlIjoiV2ViVlIxLjFNNjIiLCJleHBpcnkiOjE1Mjk0MzM4MjF9">
-
-    {{#if featureId}}
-    <link rel="canonical" href="https://whatwebcando.today/{{featureId}}.html" />
-    {{else}}
-    <link rel="canonical" href="https://whatwebcando.today/" />
-    {{/if}}
+    <link rel="canonical" href="https://whatwebcando.today/privacy.html" />
 
     <link rel="apple-touch-icon" sizes="60x60 72x72 76x76" href="icon-76x76.png">
     <link rel="apple-touch-icon" sizes="114x114 120x120" href="icon-120x120.png">
@@ -79,11 +72,7 @@
     </style>
   </head>
 
-  {{#if featureId}}
-  <body class="page-feature">
-  {{else}}
-  <body class="page-features-list">
-  {{/if}}
+  <body>
 
     <div class="navbar navbar-white navbar-fixed-top show-on-feature-page hidden-sm hidden-md hidden-lg" role="navigation">
       <div class="navbar-header">
@@ -101,45 +90,35 @@
         <p>An overview of the device integration HTML5 APIs</p>
       </header>
 
-      <div class="legend clearfix hide-on-feature-page" aria-hidden="true">
-        <ul>
-          <li><i class="mdi-navigation-check text-success"></i> Feature available in your current browser</li>
-          <li><i class="mdi-navigation-close text-danger"></i> Feature not available in your current browser</li>
-        </ul>
-      </div>
+      <main>
+        <p><a href="/">Return to the site</a></p>
 
-      <nav class="features-list-container" role="navigation" aria-label="Features">
-        {{#each groups}}
-        <div class="panel panel-primary">
-          <div class="panel-heading">
-            <div class="panel-title"><a href="/">{{heading}}</a></div>
-          </div>
-          <ul class="panel-body features-list {{#if features.length}}hide-on-feature-page{{/if}}">
-            {{#if html}}
-              {{{html}}}
-            {{else}}
-              {{#each features}}
-              <li>
-                <a href="{{id}}.html" class="btn btn-flat btn-default ripple">
-                  {{#if icon}}<i class="{{icon}}" aria-hidden="true"></i>{{/if}}
-                  {{name}}
-                  <span class="support-info-placeholder" id="support-info-placeholder-{{id}}"></span>
-                </a>
-              </li>
-              {{/each}}
-            {{/if}}
-          </ul>
-        </div>
-        {{/each}}
-      </nav>
+        <h1>Privacy policy</h1>
 
-      <main class="row show-on-feature-page feature-target" role="main" aria-label="Feature description">
-        {{#if featureId}}
-        <!-- process:include dist/{{featureId}}-feature.html --><!-- /process -->
-        {{/if}}
+        <h2>Introduction</h2>
+
+        <p>This privacy policy is used to inform you regarding policies with the collection, use, and disclosure of Personal Information if anyone decided to use this Service.</p>
+
+        <p>The data shared with the Service are controlled by the sole business registered as NOtherDev Adam Bar, Fitelberga 3/13, 80-271 Gdańsk, Poland. Data Protection Officer of this entity – Adam Bar – can be reached via email: <a href="mailto:dpo@adambar.pl">dpo@adambar.pl</a> or post mail to the entity registered address.</p>
+
+        <h2>What information do we collect?</h2>
+
+        <p>The Service does not directly collect any kind of personally identifiable data. However, The Service uses third party services such as Google Analytics for tracking and traffic statistics and Carbon Ads to display advertisements.</p>
+
+        <p>Google Analytics uses cookies and other tracking means to collect statistics and generate anonymized reports about the traffic, its sources, users behaviors, equipment, language or browser settings. The IP address tracking is explicitly disabled for the Service. The Privacy Policy of Google services is available <a href="https://policies.google.com/privacy/update" target="_blank">here</a>.</p>
+
+        <p>Carbon Ads uses cookies and other tracking means to serve advertisements and generate anonymized usage reports. The information shared with the service might include browser fingerprint or other software-generated identifiers that might identify the user. However, no personal information such as name or email addresses are available to the service. The Privacy Policy of Carbon Ads services is available <a href="https://www.buysellads.com/about/privacy" target="_blank">here</a>.</p>
+
+        <h2>Your rights in relation to personal data</h2>
+
+        <p>You, as the user of the Service are permitted to control your data shared with the service, especially in respect of claiming access to information collected or correction and deletion of the data. To exercise this right, you should contact Data Protection Officer specified above.</p>
+
+        <p>You can disable sharing any data with the Service without losing the access to the Service by disabling cookies and setting privacy protection options in your browser.</p>
+
+        <p><strong>Last updated</strong>: May 24, 2018</p>
+
+        <p><a href="/">Return to the site</a></p>
       </main>
-
-      <p class="text-spur">Interested in a <a href="https://adambar.pl/#workshops" target="_blank">workshop about modern Mobile Web capabilities</a>?</p>
 
       <footer class="clearfix" role="contentinfo" aria-label="Website footer">
         <address class="pull-left">
@@ -148,8 +127,7 @@
         </address>
         <p class="pull-right text-right">
           Created by <a href="https://adambar.pl">Adam Bar</a><br/>
-          Licenced under <a href="http://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a><br/>
-          <a href="/privacy.html">Privacy Policy</a>
+          Licenced under <a href="http://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a>
         </p>
       </footer>
     </div>
