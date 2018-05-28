@@ -268,7 +268,8 @@ self.addEventListener('fetch', function (event) {
         `Having the Web Manifest is one of the key factors (apart from being served via HTTPS and providing
        a <a href="/offline.html">Service Worker-based offline behavior</a>) for the Web applications to be treated
        as a <a href="https://developers.google.com/web/progressive-web-apps" target="_blank">Progressive Web App</a>. Such applications
-       get non-obtrusive "add to home screen" banners in most Android browsers.`,
+       get "add to home screen" banners in Google Chrome and simplified saving flow in most other browsers. Note that starting Chrome 68 the banner appears
+       only when both the heuristic is met and the explicit JavaScript call on <code>beforeinstallprompt</code> event was made.`,
         `Browser-assisted adding to the home screen is also possible on iOS using <a href="https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html" target="_blank">non-standard Apple meta tags</a>
        describing icons and allowing to run without the Safari UI (standalone mode).`],
       api: `<p><b>Manifest Elements</b></p>
@@ -294,8 +295,14 @@ self.addEventListener('fetch', function (event) {
 <p><b>Install Banner API</b></p>
 <dl>
   <dt><code>window.addEventListener('beforeinstallprompt')</code></dt>
-  <dd>An event fired immediately before the browser decides to present the "add to home screen" banner to the user. Allows tracking the user's decision,
+  <dd>An event fired when the browser's heuristic starts allowing displaying the "add to home screen" banner to the user. Allows tracking the user's decision,
   delaying or preventing the banner.</dd>
+  <dt><code>event.prompt()</code></dt>
+  <dd>Triggers displaying the "add to home screen" banner.</dd>
+  <dt><code>event.userChoice</code></dt>
+  <dd>Returns <code>Promise</code> resolved with the outcome of the "add to home screen" banner – either <code>accepted</code> or <code>dismissed</code>.</dd>
+  <dt><code>window.addEventListener('appinstalled')</code></dt>
+  <dd>An event fired when the Web application has been successfully added to the user's home screen.</dd>
 </dl>`,
       caniuse: 'web-app-manifest',
       tests: [

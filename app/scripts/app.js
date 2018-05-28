@@ -61,10 +61,37 @@
     });
 
     window.addEventListener('beforeinstallprompt', event => {
-      if (window.ga) {
-        window.ga('send', 'event', 'PWA.install', 'prompt');
-        event.userChoice.then(choice => window.ga('send', 'event', 'PWA.install', choice.outcome));
-      }
+      window.ga = window.ga || (() => {});
+      window.ga('send', 'event', 'PWA.install', 'prompt');
+
+      event.preventDefault();
+
+      const $header = document.querySelector('header');
+      $header.insertAdjacentHTML('afterend', `<div id="triggerPrompt" class="panel panel-body install-prompt">
+          <p class="pull-left">Do you want to install this application to your Home Screen?</p>
+          <button class="pull-right btn bg-success" id="triggerPromptPositive">Yes, I do!</button>
+          <button class="pull-right btn btn-default" id="triggerPromptNegative">No</button>
+        </div>`);
+
+      const $triggerPrompt = document.querySelector('#triggerPrompt');
+
+      const $triggerPromptPositive = document.querySelector('#triggerPromptPositive');
+      $triggerPromptPositive.addEventListener('click', () => {
+        window.ga('send', 'event', 'PWA.install', 'triggerPromptPositive');
+
+        event.userChoice.then(choice => {
+          window.ga('send', 'event', 'PWA.install', choice.outcome);
+          $triggerPrompt.parentElement.removeChild($triggerPrompt);
+        });
+
+        event.prompt();
+      });
+
+      const $triggerPromptNegative = document.querySelector('#triggerPromptNegative');
+      $triggerPromptNegative.addEventListener('click', () => {
+        window.ga('send', 'event', 'PWA.install', 'triggerPromptNegative');
+        $triggerPrompt.parentElement.removeChild($triggerPrompt);
+      });
     });
   }
 
