@@ -1901,9 +1901,12 @@ function intervalHandler(interval) {
     clipboard: new Feature({
       id: 'clipboard',
       name: 'Clipboard (Copy & Paste)',
-      description: `The <b>Clipboard API</b> gives Web applications a way to react on cut, copy and paste operations performed by the user as well as
+      description: [`The <b>Clipboard API</b> gives Web applications a way to react on cut, copy and paste operations performed by the user as well as
         read from or write to the system clipboard directly on behalf of user.`,
-      api: `<dl>
+        `There are two flavors of Clipboard API available - the older, synchronous, and the newer, asynchronous. The newer API is only available
+        on HTTPS and require explicit <a href="/permissions.html">user permission</a>.`],
+      api: `<p><b>Older, synchronous API</b></p>
+      <dl>
         <dt><code>document.addEventListener('cut/copy/paste', listener)</code></dt>
         <dd>An event fired when the user invoked the particular clipboard operation (either cut, copy or paste).</dd>
         <dt><code>event.clipboardData.setData('text/plain', data)</code></dt>
@@ -1912,16 +1915,28 @@ function intervalHandler(interval) {
         <dd>Returns the data that has been read from the clipboard by the paste operation in the specified format.</dd>
         <dt><code>document.execCommand('cut/copy/paste')</code></dt>
         <dd>Programatically invokes the specified clipboard operation (either cut, copy or paste) on the data or element currently having a focus.</dd>
+      </dl>
+      <p><b>Newer, asynchronous API</b></p>
+      <dl>
+        <dt><code>navigator.clipboard.writeText(text)</code></dt>
+        <dd>Writes the data to the clipboard. Returns a <code>Promise</code> resolved when the operation has succeeded.</dd>
+        <dt><code>navigator.clipboard.readText()</code></dt>
+        <dd>Returns a <code>Promise</code> resolved with the data read from the clipboard.</dd>
       </dl>`,
       caniuse: 'clipboard',
       tests: [
         Feature.windowContains('ClipboardEvent'),
         Feature.containedIn('document', global.document, 'oncut'),
         Feature.containedIn('document', global.document, 'oncopy'),
-        Feature.containedIn('document', global.document, 'onpaste')
+        Feature.containedIn('document', global.document, 'onpaste'),
+        Feature.navigatorContains('clipboard')
       ],
       demo: {
         html: `<p class="heading">Use the forms below for programmatic clipboard access or invoke standard copy/cut/paste operations with your keyboard.</p>
+<section>
+  <label><input type="radio" name="api" value="sync"> Use older, synchronous API</label><br/>
+  <label><input type="radio" name="api" value="async" checked> Use newer, asynchronous API</label>
+</section>
 <section>
   <h2>Cut/Paste Example</h2>
   <p>
@@ -1946,6 +1961,10 @@ function intervalHandler(interval) {
 <p><small>Demo based on <a href="https://googlechrome.github.io/samples/cut-and-copy/index.html" target="_blank">Google Chrome examples</a>.</small></p>`,
         js: `var logTarget = document.getElementById('logTarget');
 
+function useAsyncApi() {
+  return document.querySelector('input[value=async]').checked;
+}
+
 function log(event) {
   var timeBadge = new Date().toTimeString().split(' ')[0];
   var newInfo = document.createElement('p');
@@ -1957,33 +1976,49 @@ function performCopyEmail() {
   var selection = window.getSelection();
   var emailLink = document.querySelector('.js-emaillink');
 
-  selection.removeAllRanges();
-  var range = document.createRange();
-  range.selectNode(emailLink);
-  selection.addRange(range);
-
-  try {
-    var successful = document.execCommand('copy');
-    var msg = successful ? 'successful' : 'unsuccessful';
-    log('Copy email command was ' + msg);
-  } catch (err) {
-    log('execCommand Error', err);
-  }
+  if (useAsyncApi()) {
+    navigator.clipboard.writeText(emailLink.textContent)
+      .then(() => log('Async writeText successful, "' + emailLink.textContent + '" written'))
+      .catch(err => log('Async writeText failed with error: "' + err + '"'));
+  } else {
+    selection.removeAllRanges();
+    var range = document.createRange();
+    range.selectNode(emailLink);
+    selection.addRange(range);
   
-  selection.removeAllRanges();
+    try {
+      var successful = document.execCommand('copy');
+      var msg = successful ? 'successful' : 'unsuccessful';
+      log('Copy email command was ' + msg);
+    } catch (err) {
+      log('execCommand Error', err);
+    }
+    
+    selection.removeAllRanges();
+  }
 }
 
 function performCutTextarea() {
-  var hasSelection = document.queryCommandEnabled('cut');
   var cutTextarea = document.querySelector('.js-cuttextarea');
-  cutTextarea.select();
 
-  try {
-    var successful = document.execCommand('cut');
-    var msg = successful ? 'successful' : 'unsuccessful';
-    log('Cutting text command was ' + msg);
-  } catch (err) {
-    log('execCommand Error', err);
+  if (useAsyncApi()) {
+    navigator.clipboard.writeText(cutTextarea.textContent)
+      .then(() => {
+        log('Async writeText successful, "' + cutTextarea.textContent + '" written');
+        cutTextarea.textContent = '';
+      })
+      .catch(err => log('Async writeText failed with error: "' + err + '"'));
+  } else {
+    var hasSelection = document.queryCommandEnabled('cut');
+    cutTextarea.select();
+  
+    try {
+      var successful = document.execCommand('cut');
+      var msg = successful ? 'successful' : 'unsuccessful';
+      log('Cutting text command was ' + msg);
+    } catch (err) {
+      log('execCommand Error', err);
+    }
   }
 }
 
@@ -2012,7 +2047,8 @@ document.removeEventListener('paste', logUserOperation);`
         {
           url: 'https://www.lucidchart.com/techblog/2014/12/02/definitive-guide-copying-pasting-javascript/',
           title: 'The Definitive Guide to Copying and Pasting in JavaScript'
-        }
+        },
+        {url: 'https://developers.google.com/web/updates/2018/03/clipboardapi', title: 'Unblocking Clipboard Access'}
       ]
     }),
 
