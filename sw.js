@@ -1,4 +1,4 @@
-const VERSION = '9087c4f'; const groups = [
+const VERSION = '5a8441e'; const groups = [
   {
     "heading": "Camera & Microphone",
     "features": [
