@@ -505,6 +505,7 @@ if ('geolocation' in navigator) {
       name: 'NFC',
       description: [
         `The <b>Web NFC API</b> is a low-level API allowing Web applications to access and exchange the data with the Near-Field Communication devices, such as NFC tags.`,
+        `It allows setting up a watch that informs when the NFC tag matching the <code>options</code> has appeared in the device sensor proximity. It also provides a method to push a message via NFC interface.`,
         `Current support is limited to an experimental implementation in Chrome, available behind an "Experimental Web Platform Features" on Android. There was also Firefox OS experimental implementation that is <code>moz</code>-prefixed and doesn't follow the current state of the specification draft.`
       ],
       api: `<dl>
@@ -536,7 +537,7 @@ if ('geolocation' in navigator) {
           }]);
         }
         processMessage(message);
-      })
+      }, {mode: 'any'})
       .then(() => consoleLog("Added a watch."))
       .catch(err => consoleLog("Adding watch failed: " + err.name));
   } else {
