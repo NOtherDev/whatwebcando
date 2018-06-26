@@ -1,4 +1,4 @@
-const VERSION = '5a8441e'; const groups = [
+const VERSION = 'b7f6332'; const groups = [
   {
     "heading": "Camera & Microphone",
     "features": [
@@ -277,7 +277,7 @@ self.addEventListener('install', function (event) {
       let files = [
         '/',
         '/index.html',
-        '/scripts/main.1b7e0b1c.js',
+        '/scripts/main.59205fb4.js',
         '/scripts/vendor.65ca8f8f.js',
         '/styles/main.056f5696.css',
         '/styles/layout.60a43676.css',
