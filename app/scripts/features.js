@@ -722,7 +722,7 @@ if ("ondevicelight" in window) {
       links: [
         {url: 'https://w3c.github.io/ambient-light/', title: 'Ambient Light API Specification Draft'},
         {url: 'https://w3c.github.io/sensors/', title: 'Generic Sensor API Specification Draft'},
-        {url: 'http://modernweb.com/2014/05/27/introduction-to-the-ambient-light-api/', title: 'Introduction to the Ambient Light API'}
+        {url: 'https://deanhume.com/ambient-light-sensor/', title: 'Getting started with the Ambient Light Sensor'}
       ]
     }),
 
@@ -858,7 +858,8 @@ if (info) {
       },
       links: [
         {url: 'https://wicg.github.io/netinfo/', title: 'Specification Draft'},
-        {url: 'https://developer.mozilla.org/en-US/docs/Web/API/Network_Information_API', title: 'MDN: Network Information API'}
+        {url: 'https://developer.mozilla.org/en-US/docs/Web/API/Network_Information_API', title: 'MDN: Network Information API'},
+        {url: 'https://mxb.at/blog/connection-aware-components/', title: 'Connection-Aware Components'}
       ]
     }),
 
