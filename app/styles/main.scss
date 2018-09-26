@@ -449,26 +449,3 @@ footer {
     @include hide-on-feature-page();
   }
 }
-
-.install-prompt {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  background: #fff;
-  z-index: 2;
-
-  p {
-    font-size: large;
-    margin: 4px 0;
-  }
-  button {
-    margin: 0 0 0 10px;
-  }
-}
-
-@media screen and (max-width: 767px) {
-  .install-prompt {
-    top: 50px;
-  }
-}
