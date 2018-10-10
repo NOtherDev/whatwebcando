@@ -386,13 +386,14 @@ if (hidden in document) {
     geolocation: new Feature({
       id: 'geolocation',
       name: 'Geolocation',
-      description: `The <b>Geolocation API</b> lets authorized Web applications to access the location data provided by the device -
+      description: [`The <b>Geolocation API</b> lets authorized Web applications to access the location data provided by the device -
         obtained using either GPS or from the network environment. Apart from the one-off location query, it gives a way for the app to be notified
         about the location changes.`,
+        `See <a href="/permissions.html">Permissions</a> for a way to check whether the user has granted or denied the permission to obtain the location by the origin.`],
       api: `<dl>
-        <dt><code>navigator.geolocation.getCurrentLocation(callback)</code></dt>
+        <dt><code>navigator.geolocation.getCurrentPosition(callback)</code></dt>
         <dd>Runs one-off query for location with coordinates, accuracy, altitude & speed, if available.</dd>
-        <dt><code>navigator.geolocation.watchLocation(callback)</code></dt>
+        <dt><code>navigator.geolocation.watchPosition(callback)</code></dt>
         <dd>Sets up observing for location changes, invoking callback for every change.</dd>
       </dl>`,
       caniuse: 'geolocation',
