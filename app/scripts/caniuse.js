@@ -191,7 +191,9 @@
   }
 
   let fetchCaniuseBrowserUsage = memoize(() => {
-    return fetch('https://raw.githubusercontent.com/Fyrd/caniuse/master/region-usage-json/alt-ww.json')
+    const locale = (navigator.languages && navigator.languages[0]) || navigator.language || 'en-US';
+    const [, countryCode] = locale.split('-');
+    return fetch(`https://cdn.jsdelivr.net/gh/Fyrd/caniuse/region-usage-json/${countryCode.toUpperCase()}.json`)
       .then(result => handleFetchErrors(result))
       .then(result => result.json())
       .then(data => new CaniuseBrowserUsage(data));
@@ -207,7 +209,7 @@
         return new Promise(resolve => resolve()); // run once
       }
 
-      let caniuseFeatureReport = fetch(`https://raw.githubusercontent.com/Fyrd/caniuse/master/features-json/${this.$feature.caniuseKey}.json`)
+      let caniuseFeatureReport = fetch(`https://cdn.jsdelivr.net/gh/Fyrd/caniuse/features-json/${this.$feature.caniuseKey}.json`)
         .then(result => handleFetchErrors(result))
         .then(result => result.json());
 
