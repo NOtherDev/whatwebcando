@@ -1,4 +1,4 @@
-const VERSION = 'f807d82'; const groups = [
+const VERSION = '3ca0933'; const groups = [
   {
     "heading": "Camera & Microphone",
     "features": [
@@ -277,7 +277,7 @@ self.addEventListener('install', function (event) {
       let files = [
         '/',
         '/index.html',
-        '/scripts/main.e1bd2e0b.js',
+        '/scripts/main.8817b39f.js',
         '/scripts/vendor.65ca8f8f.js',
         '/styles/main.846371e4.css',
         '/styles/layout.60a43676.css',
@@ -285,8 +285,8 @@ self.addEventListener('install', function (event) {
         '/images/logo.svg',
         '/fonts/Material-Design-Icons.woff',
         'https://fonts.gstatic.com/s/lato/v13/MDadn8DQ_3oT6kvnUq_2r_esZW2xOQ-xsNqO47m55DA.woff2',
-        'https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.23.0/polyfill.min.js',
-        'https://cdnjs.cloudflare.com/ajax/libs/chartist/0.9.8/chartist.min.js'
+        'https://cdn.jsdelivr.net/npm/babel-polyfill@6.26.0/dist/polyfill.min.js',
+        'https://cdn.jsdelivr.net/npm/chartist@0.9.8/dist/chartist.min.js'
       ];
 
       groups.forEach(function (group) {
