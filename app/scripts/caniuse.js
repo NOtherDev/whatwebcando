@@ -2,7 +2,7 @@
   'use strict';
 
   const OTHERS_KEY = 'Others';
-  const MIN_USAGE_THRESHOLD = 5.0;
+  const MIN_USAGE_THRESHOLD = 2.0;
 
   /* eslint-disable camelcase */
   const BROWSERS = {
