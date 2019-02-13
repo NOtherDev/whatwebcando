@@ -91,13 +91,21 @@
       </div>
     </div>
 
-    <div class="container">
-      <header class="well text-center hide-on-feature-page-sm" role="banner" aria-label="Main">
+    <div class="well text-center hide-on-feature-page-sm" role="banner" aria-label="Main">
+      <header>
         <h1>What Web Can Do Today</h1>
         <p>Can I rely on the Web Platform features to build my app?</p>
         <p>An overview of the device integration HTML5 APIs</p>
       </header>
 
+      <ul class="nav-tabs">
+        <li class="active tab"><a href="/">Features</a></li>
+        <li class="tab"><a href="https://adambar.pl/#workshops" target="_blank">Trainings</a></li>
+        <li class="tab"><a href="https://adambar.pl/#services" target="_blank">Services</a></li>
+      </ul>
+    </div>
+
+    <div class="container">
       <div class="legend clearfix hide-on-feature-page" aria-hidden="true">
         <ul>
           <li><i class="mdi-navigation-check text-success"></i> Feature available in your current browser</li>
@@ -135,8 +143,6 @@
         <!-- process:include dist/{{featureId}}-feature.html --><!-- /process -->
         {{/if}}
       </main>
-
-      <p class="text-spur">Interested in a <a href="https://adambar.pl/#workshops" target="_blank">workshop about modern Mobile Web capabilities</a>?</p>
 
       <footer class="clearfix" role="contentinfo" aria-label="Website footer">
         <address class="pull-left">

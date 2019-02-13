@@ -206,24 +206,15 @@ a:hover,
 a:focus {
   color: #009688;
 }
-body .well,
-.container .well,
-body .well:not([class^="well well-material-"]),
-.container .well:not([class^="well well-material-"]) {
-  color: rgba(0, 0, 0, 0.84);
-}
 
-body .well,
-.container .well {
+body .well {
   background-color: #fff;
-  padding: 19px;
-  margin-bottom: 20px;
-  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  border-radius: 2px;
+  padding: 0;
+  box-shadow: inset 0 -10px 15px -5px rgba(0,0,0,.3);
+  border-radius: 0;
   border: 0;
 }
-body .well p,
-.container .well p {
+body .well p {
   font-weight: 300;
 }
 
