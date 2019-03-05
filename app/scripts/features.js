@@ -1082,7 +1082,7 @@ function vibratePattern() {
         <dt><code>let openRequest = window.indexedDB.open(name, version)</code></dt>
         <dd>Triggers opening a database connection to either existing or newly-created database. 
           Returns an object that fires <code>success</code> event when the connection is established.</dd>
-        <dt><code>let db = openReques.result</code></dt>
+        <dt><code>let db = openRequest.result</code></dt>
         <dd>Gives an access to the open database connection instance - available after <code>success</code> was fired.</dd>
         <dt><code>db.createObjectStore(storeName, options)</code></dt>
         <dd>Creates a named container (object store) for objects in the opened database.</dd>
