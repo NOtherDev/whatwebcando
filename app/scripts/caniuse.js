@@ -132,11 +132,11 @@
         stackBars: true,
         plugins: [
           Chartist.plugins.tooltip({
-            tooltipFnc: (meta, value) => `${meta}<br/>Global market share: ${parseFloat(value).toFixed(2)}%`
+            tooltipFnc: (meta, value) => `${meta}<br/>Market share: ${parseFloat(value).toFixed(2)}%`
           }),
           Chartist.plugins.ctAxisTitle({
             axisX: {
-              axisTitle: 'Global market share (%)',
+              axisTitle: `Market share (${this.$browserUsage.regionName}, %)`,
               offset: {x: 0, y: 30}
             }
           })
@@ -177,8 +177,9 @@
   }
 
   class CaniuseBrowserUsage {
-    constructor(rawData = {}) {
+     constructor(rawData = {}) {
       this.$data = rawData.data || {};
+      this.regionName = rawData.name;
     }
 
     usageOf(browser) {
@@ -191,9 +192,11 @@
   }
 
   let fetchCaniuseBrowserUsage = memoize(() => {
-    const locale = (navigator.languages && navigator.languages[0]) || navigator.language || 'en-US';
+    const locale = (navigator.languages && navigator.languages[0]) || navigator.language || '';
     const [, countryCode] = locale.split('-');
-    return fetch(`https://cdn.jsdelivr.net/gh/Fyrd/caniuse/region-usage-json/${countryCode.toUpperCase()}.json`)
+    const jsonCode = countryCode ? countryCode.toUpperCase() : 'alt-ww';
+
+    return fetch(`https://cdn.jsdelivr.net/gh/Fyrd/caniuse/region-usage-json/${jsonCode}.json`)
       .then(result => handleFetchErrors(result))
       .then(result => result.json())
       .then(data => new CaniuseBrowserUsage(data));
