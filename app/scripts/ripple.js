@@ -1,7 +1,10 @@
 (function () {
 
   document.addEventListener('mousedown', function (event) {
-    if (event.target && event.target.className.indexOf('ripple') !== -1) {
+    if (event.target &&
+      event.target.className &&
+      event.target.className.indexOf &&
+      event.target.className.indexOf('ripple') !== -1) {
       let $div = document.createElement('div'),
         btnRect = event.target.getBoundingClientRect(),
         height = event.target.clientHeight,
