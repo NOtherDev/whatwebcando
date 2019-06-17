@@ -3184,7 +3184,7 @@ function addStreamToVideoTag(stream, tag) {
  * Builds PaymentRequest for credit cards, but does not show any UI yet.
  */
 function initPaymentRequest() {
-  let networks = ['amex', 'jcb', 'visa'];
+  let networks = ['amex', 'jcb', 'visa', 'maestro', 'mastercard'];
   
   let supportedInstruments = [{
     supportedMethods: 'basic-card',
