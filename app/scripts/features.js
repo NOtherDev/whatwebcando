@@ -2691,9 +2691,10 @@ function getStream() {
     var mediaControl = document.querySelector('video');
     if ('srcObject' in mediaControl) {
       mediaControl.srcObject = stream;
-      mediaControl.src = (window.URL || window.webkitURL).createObjectURL(stream);
     } else if (navigator.mozGetUserMedia) {
       mediaControl.mozSrcObject = stream;
+    } else {
+      mediaControl.src = (window.URL || window.webkitURL).createObjectURL(stream);
     }
     theStream = stream;
   }, function (err) {
