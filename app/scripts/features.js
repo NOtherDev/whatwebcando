@@ -3147,14 +3147,12 @@ function addStreamToVideoTag(stream, tag) {
       `With <code>options</code> parameter the Web application might specify what kind of customer data it requires to be able to fulfill the request.
       It may require a shipping address (<code>requestShipping</code>), email (<code>requestPayerEmail</code>), phone (<code>requestPayerPhone</code>) 
       or name (<code>requestPayerName</code>).`,
-      `The only payment method available on Apple devices is <a href="https://www.apple.com/apple-pay/" target="_blank">Apple Pay</a> and it is only functional on devices with fingerprint authentication (Touch ID).
-      It is accessible via the proprietary non-standard <code>ApplePaySession</code> API instead of the Payment Request API described here.
-      The support for standard Payment Request API in Safari is expected to ship in early 2018. As of the end of 2017 it is only available in Safari Technology Preview.`],
+      `The only payment method available on iOS devices is <a href="https://www.apple.com/apple-pay/" target="_blank">Apple Pay</a> and it is only functional on devices with fingerprint authentication (Touch ID). It is accessible both via the standard Payment Request API described here as well as the older proprietary non-standard <code>ApplePaySession</code> API. The <code>basic-card</code> payments are not supported.`],
       api: `<dl>
-        <dt><code>paymentRequest = new PaymentRequest({supportedMethods, details, options})</code></dt>
+        <dt><code>paymentRequest = new PaymentRequest(paymentMethods, details, options)</code></dt>
         <dd>Creates a payment request object with the requested amounts, currencies and methods configured.</dd>
         <dt><code>paymentRequest.canMakePayment()</code></dt>
-        <dd>Returns a <code>Promise</code> resolved with the value indicating if it is possible to conduct a payment using any of the <code>supportedMethods</code> specified.</dd>
+        <dd>Returns a <code>Promise</code> resolved with the value indicating if it is possible to conduct a payment using any of the <code>paymentMethods</code> specified.</dd>
         <dt><code>paymentRequest.show()</code></dt>
         <dd>Presents the checkout confirmation UI to the user or redirects to the system-defined application that accepts payments by a method selected.
           Returns a <code>Promise</code> resolved with the <code>response</code> object when the payment is successfully confirmed by the payment provider.
