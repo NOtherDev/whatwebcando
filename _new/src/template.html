@@ -1,33 +1,75 @@
 <!doctype html>
-<html lang='en'>
+<html lang="en">
 <head>
-	<meta charset='utf-8'>
-	<meta name='viewport' content='width=device-width,initial-scale=1.0'>
-	<meta name='theme-color' content='#333333'>
+  <meta charset="utf-8">
+  <meta name="description" content="Can I rely on the Web Platform features to build my app? An overview of the device integration HTML5 APIs">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
 	%sapper.base%
 
-	<link rel='stylesheet' href='global.css'>
-	<link rel='manifest' href='manifest.json'>
-	<link rel='icon' type='image/png' href='favicon.png'>
+  <link rel="preload" as="font" crossorigin="anonymous" type="font/woff2"
+          href="https://fonts.gstatic.com/s/sourcesanspro/v13/6xK3dSBYKcSV-LCoeQqfX1RYOo3qOK7lujVj9w.woff2"/>
+  <link rel="preload" as="font" crossorigin="anonymous" type="font/woff2"
+          href="https://fonts.gstatic.com/s/sourcesanspro/v13/6xKydSBYKcSV-LCoeQqfX1RYOo3ig4vwlxdu3cOWxw.woff2"/>
+	<style type="text/css">
+    /* embed from https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700&display=swap */
+    @font-face {
+      font-family: 'Source Sans Pro';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: local('Source Sans Pro Regular'), local('SourceSansPro-Regular'), url(https://fonts.gstatic.com/s/sourcesanspro/v13/6xK3dSBYKcSV-LCoeQqfX1RYOo3qOK7lujVj9w.woff2) format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+    @font-face {
+      font-family: 'Source Sans Pro';
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      src: local('Source Sans Pro Bold'), local('SourceSansPro-Bold'), url(https://fonts.gstatic.com/s/sourcesanspro/v13/6xKydSBYKcSV-LCoeQqfX1RYOo3ig4vwlxdu3cOWxw.woff2) format('woff2');
+      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+    }
+  </style>
 
-	<!-- Sapper generates a <style> tag containing critical CSS
-	     for the current page. CSS for the rest of the app is
-	     lazily loaded when it precaches secondary pages -->
+	<link rel="stylesheet" href="global.css">
+
+	<link rel="apple-touch-icon" sizes="60x60 72x72 76x76" href="icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114 120x120" href="icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="167x167 180x180" href="icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="16x16 32x32" href="icon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="icon-96x96.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192x192.png">
+
+  <link rel="manifest" href="manifest.json">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="What Web Can Do Today">
+  <meta name="apple-mobile-web-app-title" content="What Web Can Do">
+  <meta name="msapplication-TileImage" content="https://whatwebcando.today/icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="msapplication-navbutton-color" content="#ffffff">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="msapplication-starturl" content="/">
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="What Web Can Do Today" />
+  <meta property="og:description" content="Can I rely on the Web Platform features to build my app? An overview of the device integration HTML5 APIs." />
+  <meta property="og:url" content="https://whatwebcando.today/" />
+  <meta property="og:site_name" content="WhatWebCanDo" />
+  <meta property="og:image" content="https://whatwebcando.today/images/share-image.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@WhatWebCanDo" />
+  <meta name="twitter:title" content="What Web Can Do Today" />
+  <meta name="twitter:description" content="Can I rely on the Web Platform features to build my app? An overview of the device integration HTML5 APIs" />
+  <meta name="twitter:image" content="https://whatwebcando.today/images/share-image.png" />
+
 	%sapper.styles%
-
-	<!-- This contains the contents of the <svelte:head> component, if
-	     the current page has one -->
 	%sapper.head%
 </head>
 <body>
-	<!-- The application will be rendered inside this element,
-	     because `src/client.js` references it -->
-	<div id='sapper'>%sapper.html%</div>
-
-	<!-- Sapper creates a <script> tag containing `src/client.js`
-	     and anything else it needs to hydrate the app and
-	     initialise the router -->
+	<div id="sapper">%sapper.html%</div>
 	%sapper.scripts%
 </body>
 </html>

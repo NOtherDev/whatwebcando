@@ -1,7 +1,7 @@
 {
-  "name": "TODO",
-  "description": "TODO",
-  "version": "0.0.1",
+  "name": "whatwebcando",
+  "description": "Can I rely on the Web Platform features to build my app? An overview of the device integration HTML5 APIs",
+  "private": true,
   "scripts": {
     "dev": "sapper dev",
     "build": "sapper build --legacy",
