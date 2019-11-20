@@ -1,5 +1,9 @@
 <style>
 
+  .container {
+    margin-top: 2em;
+  }
+
   footer {
     display: flex;
     justify-content: space-between;
@@ -56,7 +60,7 @@
 
 </style>
 
-<div aria-label="Website footer">
+<div class="container" aria-label="Website footer">
   <div class="contact text-center">
     <h2>Get in touch</h2>
     <ul>
@@ -74,5 +78,4 @@
       Licenced under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a>
     </p>
   </footer>
-
 </div>

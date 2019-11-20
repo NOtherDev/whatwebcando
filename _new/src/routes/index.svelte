@@ -1,39 +1,54 @@
+<script>
+  import FeaturesList from '../components/FeaturesList.svelte';
+  import ArticlesList from '../components/ArticlesList.svelte';
+</script>
+
 <style>
-	h1, figure, p {
-		text-align: center;
-		margin: 0 auto;
-	}
+  h2 {
+    font-size: 1.125em;
+    text-transform: uppercase;
+  }
 
-	h1 {
-		font-size: 2.8em;
-		text-transform: uppercase;
-		font-weight: 700;
-		margin: 0 0 0.5em 0;
-	}
+  main {
+    background-color: #F8F8F8;
+  }
 
-	figure {
-		margin: 0 0 1em 0;
-	}
+  aside > p {
+    margin-top: 2em;
+  }
 
-	img {
-		width: 100%;
-		max-width: 400px;
-		margin: 0 0 1em 0;
-	}
+  @media screen and (min-width: 768px) {
+    .container {
+      display: grid;
+      grid-template-columns: auto 50%;
+    }
+  }
 
-	p {
-		margin: 1em auto;
-	}
-
-	@media (min-width: 480px) {
-		h1 {
-			font-size: 4em;
-		}
-	}
+  @media screen and (min-width: 1024px) {
+    .container {
+      grid-template-columns: auto 30%;
+    }
+  }
 </style>
 
 <svelte:head>
-	<title>What Web Can Do</title>
+	<title>What Web Can Do Today</title>
 </svelte:head>
 
-<h1>Great success!</h1>
+<div class="container">
+  <main>
+    <h2>Features</h2>
+
+    <FeaturesList/>
+  </main>
+
+  <aside>
+    <h2>Articles</h2>
+
+    <ArticlesList/>
+
+    <p class="text-center">
+      <a href="/articles" class="button">See all</a>
+    </p>
+  </aside>
+</div>

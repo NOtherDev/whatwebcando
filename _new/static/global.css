@@ -14,21 +14,36 @@ body, dt, dd {
   /*line-height: 1.5;*/
 }
 
+main, aside {
+  position: relative;
+  padding: 2em;
+  box-sizing: border-box;
+}
+
+.page {
+  margin: 0 auto;
+  max-width: 85em;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: 700;
   margin: 0 0 0.5em 0;
 }
 
-a {
+a:not(.button) {
   color: var(--light-theme-color);
   text-decoration: none;
 }
-a:hover {
+a:not(.button):hover {
   text-decoration: underline;
 }
 
 p {
+  margin: 0 0 .5em;
+}
+
+figure {
   margin: 0;
 }
 
@@ -40,4 +55,18 @@ p {
 }
 .text-right {
   text-align: right;
+}
+
+.button {
+  padding: .5em 3em;
+  background: var(--light-theme-color);
+  border-radius: 50px;
+  color: #fff;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color ease .2s;
+}
+.button:hover {
+  background: var(--theme-color);
 }
