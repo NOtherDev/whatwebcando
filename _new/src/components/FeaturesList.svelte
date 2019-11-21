@@ -21,7 +21,7 @@
     width: 100%;
     margin-bottom: 1em;
     padding: 2em;
-    border: 1px solid #E9E9E9;
+    border: 1px solid var(--primary-border);
     background-color: #fff;
     border-radius: 10px;
   }

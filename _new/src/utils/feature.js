@@ -11,9 +11,9 @@ class FeatureTestResult {
       return this.passed ? 'Supported with non-standard solution' : 'Non-standard solution not supported';
     }
     if (!this.passed) {
-      return 'Not supported';
+      return '❌ Not supported';
     }
-    return this.prefix ? 'Prefixed' : 'Supported';
+    return this.prefix ? '✔ Prefixed' : '✔ Supported';
   }
 
   static forPassed(property, standard, prefix) {

@@ -1,7 +1,7 @@
 <style>
   .article {
     margin: 1em 0;
-    border: 1px solid #E9E9E9;
+    border: 1px solid var(--primary-border);
     background-color: #fff;
     border-radius: 10px;
     overflow: hidden;

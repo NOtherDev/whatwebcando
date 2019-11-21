@@ -6,7 +6,7 @@
 	  const feature = features.find(x => x.id === params.feature)
 
 		if (feature) {
-			return { feature, fetch: this.fetch };
+			return {feature};
 		} else {
 			this.error(404, 'Feature not found');
 		}
@@ -15,7 +15,6 @@
 
 <script>
   export let feature
-  export let fetch
 
   import Prism from 'prismjs';
   import {onMount, onDestroy, afterUpdate} from 'svelte';
@@ -34,13 +33,10 @@
           bgClass = 'danger';
         }
 
-        let iconClass = result.passed ? 'mdi-navigation-check' : 'mdi-navigation-close';
-
         return {
           test,
           result,
           bgClass,
-          iconClass
         }
       }));
     };
@@ -75,21 +71,6 @@
 
 <style>
 
-  dt code {
-    word-wrap: break-word;
-    white-space: pre-wrap;
-    display: inline-block;
-    width: 100%;
-  }
-
-  dt code.token.function {
-    display: inline-block;
-  }
-
-  dd {
-    margin-left: 40px;
-  }
-
   .feature-test {
     padding: 15px;
     overflow: hidden;
@@ -100,11 +81,7 @@
     border-bottom: 1px solid #ccc;
   }
 
-  code {
-    background: none;
-  }
-
-  #demo-placeholder {
+  .demo-placeholder {
     position: relative;
     background: #f5f2f0;
     background: repeating-linear-gradient(45deg, #f5f2f0, #f5f2f0 20px, var(--primary-background) 20px, var(--primary-background) 40px);
@@ -168,6 +145,31 @@
     transition: opacity 400ms ease-out;
   }
 
+  .legend {
+    text-align: center;
+  }
+
+  .legend ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 15px;
+  }
+
+  .legend li {
+    display: inline-block;
+    margin: 0 10px;
+  }
+
+  @media screen and (min-width: 768px) {
+    .row {
+      display: flex;
+      align-items: center;
+    }
+    .row > * {
+      width: 50%;
+    }
+  }
+
 </style>
 
 <svelte:head>
@@ -199,7 +201,7 @@
             {#each tests as t}
               <div class="feature-test bg-{t.bgClass}">
                 <div class="pull-left"><code>{t.test.containerName}.{t.result.prefix}{t.result.property}</code></div>
-                <div class="pull-right"><i class="{t.test.iconClass}"></i> {t.result.message}</div>
+                <div class="pull-right">️{t.result.message}</div>
               </div>
             {/each}
           </div>
@@ -210,7 +212,7 @@
     {#if feature.demo}
       <section>
         <h3>Live Demo</h3>
-        <div id="demo-placeholder">
+        <div class="demo-placeholder">
           {@html `<style>
             ${feature.demo.css || ''}
             ${feature.demo.cssHidden || ''}
@@ -245,21 +247,23 @@
     {#if feature.caniuseKey}
       <section aria-hidden="true">
         <h3>Browser support</h3>
-        <div class="caniuse-report clearfix">
+        <div class="caniuse-report">
           <div class="row">
             <div class="ct-chart browsers-chart col-sm-6"></div>
             <div class="ct-chart overall-chart col-sm-6"></div>
           </div>
-          <div class="pull-left top-space legend">
-            <ul>
-              <li><i class="cl-support cl-support-no"></i> No support</li>
-              <li><i class="cl-support cl-support-partial"></i> Partial support, <a href="http://caniuse.com/#feat={feature.caniuseKey}" target="_blank">see details</a></li>
-              <li><i class="cl-support cl-support-full"></i> Full support</li>
-            </ul>
+          <div class="row">
+            <div class="legend">
+              <ul>
+                <li><i class="cl-support cl-support-no"></i> No support</li>
+                <li><i class="cl-support cl-support-partial"></i> Partial support, <a href="http://caniuse.com/#feat={feature.caniuseKey}" target="_blank">see details</a></li>
+                <li><i class="cl-support cl-support-full"></i> Full support</li>
+              </ul>
+            </div>
+            <div class="text-right">
+              <a href="http://caniuse.com/#feat={feature.caniuseKey}" target="_blank">Data from caniuse.com</a>, <small>CC-BY 4.0 license</small>
+            </div>
           </div>
-          <p class="pull-right top-space">
-            <a href="http://caniuse.com/#feat={feature.caniuseKey}" target="_blank">Data from caniuse.com</a>, <small>CC-BY 4.0 license</small>
-          </p>
         </div>
       </section>
     {/if}

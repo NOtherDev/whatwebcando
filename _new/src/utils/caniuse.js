@@ -1,4 +1,3 @@
-import memoize from 'memoize.js'
 import compareVersions from 'compare-versions'
 import Chartist from 'chartist'
 import 'chartist/dist/chartist.css'
@@ -197,12 +196,14 @@ class CaniuseBrowserUsage {
 }
 
 const fetchCaniuseBrowserUsage = async () => {
-  const locale = (navigator.languages && navigator.languages[0]) || navigator.language || '';
-  const [, countryCode] = locale.split('-');
-  const jsonCode = countryCode ? countryCode.toUpperCase() : 'alt-ww';
+  if (process.browser) {
+    const locale = (navigator.languages && navigator.languages[0]) || navigator.language || '';
+    const [, countryCode] = locale.split('-');
+    const jsonCode = countryCode ? countryCode.toUpperCase() : 'alt-ww';
 
-  const result = handleFetchErrors(await fetch(`https://cdn.jsdelivr.net/gh/Fyrd/caniuse/region-usage-json/${jsonCode}.json`))
-  return new CaniuseBrowserUsage(await result.json())
+    const result = handleFetchErrors(await fetch(`https://cdn.jsdelivr.net/gh/Fyrd/caniuse/region-usage-json/${jsonCode}.json`))
+    return new CaniuseBrowserUsage(await result.json())
+  }
 }
 
 const usageReport = fetchCaniuseBrowserUsage()

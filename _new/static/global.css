@@ -10,10 +10,7 @@ body {
   --primary-dark-color: #0C3652;
   --inverse-color: #92ACBE;
   --primary-background: #F8F8F8;
-}
-
-body, dt, dd {
-  /*line-height: 1.5;*/
+  --primary-border: #E9E9E9;
 }
 
 main, aside {
@@ -25,6 +22,11 @@ main, aside {
 .page {
   margin: 0 auto;
   max-width: 85em;
+}
+
+.page h2, .page h3 {
+  line-height: 2;
+  margin-top: 1em;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -53,13 +55,18 @@ figure {
 .text-left {
   text-align: left;
 }
-
 .text-center {
   text-align: center;
 }
-
 .text-right {
   text-align: right;
+}
+
+.pull-left {
+  float: left;
+}
+.pull-right {
+  float: right;
 }
 
 .button {
@@ -75,4 +82,49 @@ figure {
 
 .button:hover {
   background: var(--primary-dark-color);
+}
+
+section {
+  clear: both;
+}
+
+pre {
+  border: 1px solid var(--primary-border);
+  border-radius: 4px;
+}
+
+dt, dd {
+  line-height: 1.5;
+}
+
+dt code {
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  display: inline-block;
+  width: 100%;
+}
+
+dt code.token.function {
+  display: inline-block;
+}
+
+dd {
+  margin-left: 40px;
+}
+
+code {
+  padding: 2px 4px;
+  font-size: 90%;
+  color: #c7254e;
+  border-radius: 4px;
+}
+
+.bg-success {
+  background-color: #dff0d8;
+}
+.bg-warning {
+  background-color:#fcf8e3;
+}
+.bg-danger {
+  background-color:#f2dede;
 }
