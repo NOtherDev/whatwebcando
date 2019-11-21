@@ -1,3 +1,13 @@
+<script>
+  import features from '../data/features'
+  import groups from '../data/groups'
+
+  groups.forEach(group => {
+    group.resolvedFeatures = group.features.map(feature => features.find(f => f.id === feature.id))
+  })
+
+</script>
+
 <style>
   .features-list-container {
     display: flex;
@@ -56,60 +66,24 @@
 </style>
 
 <div class="features-list-container">
+  {#each groups as group}
   <section>
-    <h3>Camera & Microphone</h3>
+    <h3>{group.heading}</h3>
 
     <ul>
+      {#each group.resolvedFeatures as feature}
       <li>
-        <span><a href="audio-video.html">Audio & Video Capture</a></span>
-        <span class="support support-yes">Yes</span>
+        <span><a href="/{feature.id}.html">{feature.name}</a></span>
+        {#await feature.determineIsSupported() then isSupported}
+          {#if isSupported}
+            <span class="support support-yes">Yes</span>
+          {:else}
+            <span class="support support-no">No</span>
+          {/if}
+        {/await}
       </li>
-      <li>
-        <span><a href="audio-video.html">Audio & Video Capture</a></span>
-        <span class="support support-no">No</span>
-      </li>
-      <li>
-        <span><a href="audio-video.html">Audio & Video Capture</a></span>
-        <span class="support support-yes">Yes</span>
-      </li>
+      {/each}
     </ul>
   </section>
-
-  <section>
-    <h3>Camera & Microphone</h3>
-
-    <ul>
-      <li>
-        <span><a href="audio-video.html">Audio & Video Capture</a></span>
-        <span class="support support-no">No</span>
-      </li>
-      <li>
-        <span>Audio Capture</span>
-        <span class="support support-yes">Yes</span>
-      </li>
-      <li>
-        <span><a href="audio-video.html">Audio & Video Capture</a></span>
-        <span class="support support-no">No</span>
-      </li>
-    </ul>
-  </section>
-
-  <section>
-    <h3>Camera & Microphone</h3>
-
-    <ul>
-      <li>
-        <span><a href="audio-video.html">Audio & Video Capture</a></span>
-        <span class="support support-yes">Yes</span>
-      </li>
-      <li>
-        <span><a href="audio-video.html">Audio & Video Capture</a></span>
-        <span class="support support-yes">Yes</span>
-      </li>
-      <li>
-        <span><a href="audio-video.html">Audio & Video Capture</a></span>
-        <span class="support support-yes">Yes</span>
-      </li>
-    </ul>
-  </section>
+  {/each}
 </div>

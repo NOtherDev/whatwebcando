@@ -9,6 +9,7 @@ body {
   --primary-color: #104A70;
   --primary-dark-color: #0C3652;
   --inverse-color: #92ACBE;
+  --primary-background: #F8F8F8;
 }
 
 body, dt, dd {
@@ -36,6 +37,7 @@ a:not(.button) {
   color: var(--primary-color);
   text-decoration: none;
 }
+
 a:not(.button):hover {
   text-decoration: underline;
 }
@@ -51,9 +53,11 @@ figure {
 .text-left {
   text-align: left;
 }
+
 .text-center {
   text-align: center;
 }
+
 .text-right {
   text-align: right;
 }
@@ -68,6 +72,7 @@ figure {
   font-weight: bold;
   transition: background-color ease .2s;
 }
+
 .button:hover {
   background: var(--primary-dark-color);
 }

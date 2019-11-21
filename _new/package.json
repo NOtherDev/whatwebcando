@@ -12,8 +12,14 @@
     "test": "run-p --race dev cy:run"
   },
   "dependencies": {
+    "chartist": "^0.11.4",
+    "chartist-plugin-axistitle": "github:CodeYellowBV/chartist-plugin-axistitle#89f3b057a328aaaad7af82bf7ceaea7b4d00c332",
+    "chartist-plugin-tooltip": "0.0.11",
+    "compare-versions": "^2.0.1",
     "compression": "^1.7.1",
+    "memoize.js": "0.0.2",
     "polka": "next",
+    "prismjs": "^1.17.1",
     "sirv": "^0.4.0"
   },
   "devDependencies": {

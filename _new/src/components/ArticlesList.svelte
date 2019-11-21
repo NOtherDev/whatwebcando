@@ -26,14 +26,44 @@
   }
 
   figcaption {
-    background: #F8F8F8;
+    background: var(--primary-background);
   }
 </style>
 
 <div class="article">
   <a href="/articles/the-article">
     <figure>
-      <img src="https://gssc.esa.int/navipedia/images/a/a9/Example.jpg"/>
+      <img alt="" src="https://gssc.esa.int/navipedia/images/a/a9/Example.jpg"/>
+      <figcaption>Whatever Tutorial</figcaption>
+    </figure>
+
+    <div class="description">
+      <h3>Progressive Web Apps - (r)evolution for the apps</h3>
+
+      <p>Progressive Web Apps (PWA) is modern way to build applications, including mobile ones, using purely web technologies and relying purely on the capabilities and strengths the Web platform. Historically, it was the lack of these capabilities on the Web that caused the boom of the mobile apps, using so-called "native" (platform-specific) development approaches.</p>
+    </div>
+  </a>
+</div>
+
+<div class="article">
+  <a href="/articles/the-article">
+    <figure>
+      <img alt="" src="https://gssc.esa.int/navipedia/images/a/a9/Example.jpg"/>
+      <figcaption>Whatever Tutorial</figcaption>
+    </figure>
+
+    <div class="description">
+      <h3>Progressive Web Apps - (r)evolution for the apps</h3>
+
+      <p>Progressive Web Apps (PWA) is modern way to build applications, including mobile ones, using purely web technologies and relying purely on the capabilities and strengths the Web platform. Historically, it was the lack of these capabilities on the Web that caused the boom of the mobile apps, using so-called "native" (platform-specific) development approaches.</p>
+    </div>
+  </a>
+</div>
+
+<div class="article">
+  <a href="/articles/the-article">
+    <figure>
+      <img alt="" src="https://gssc.esa.int/navipedia/images/a/a9/Example.jpg"/>
       <figcaption>Whatever Tutorial</figcaption>
     </figure>
 

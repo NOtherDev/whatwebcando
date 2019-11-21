@@ -10,7 +10,7 @@
   }
 
   main {
-    background-color: #F8F8F8;
+    background-color: var(--primary-background);
   }
 
   aside > p {
