@@ -6,8 +6,9 @@ body {
   background-color: #fff;
   color: #000;
 
-  --theme-color: #A81039;
-  --light-theme-color: #D75637;
+  --primary-color: #104A70;
+  --primary-dark-color: #0C3652;
+  --inverse-color: #92ACBE;
 }
 
 body, dt, dd {
@@ -32,7 +33,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 a:not(.button) {
-  color: var(--light-theme-color);
+  color: var(--primary-color);
   text-decoration: none;
 }
 a:not(.button):hover {
@@ -59,7 +60,7 @@ figure {
 
 .button {
   padding: .5em 3em;
-  background: var(--light-theme-color);
+  background: var(--primary-color);
   border-radius: 50px;
   color: #fff;
   text-transform: uppercase;
@@ -68,5 +69,5 @@ figure {
   transition: background-color ease .2s;
 }
 .button:hover {
-  background: var(--theme-color);
+  background: var(--primary-dark-color);
 }

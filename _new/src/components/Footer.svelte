@@ -30,6 +30,10 @@
     padding: 0 2vw;
   }
 
+  a {
+    color: var(--inverse-color);
+  }
+
   .icon {
     width: 48px;
     height: 48px;

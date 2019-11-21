@@ -38,7 +38,7 @@
   }
 
   .support-no {
-    color: var(--theme-color);
+    color: #A81039;
   }
 
   @media screen and (min-width: 1024px) {
