@@ -1,6 +1,6 @@
 import compareVersions from 'compare-versions'
 import Chartist from 'chartist'
-import 'chartist/dist/chartist.css'
+
 // import 'chartist-plugin-axistitle'
 // import 'chartist-plugin-tooltip'
 

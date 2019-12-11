@@ -5,8 +5,8 @@
 	export let segment;
 </script>
 
-<style>
-
+<style type="text/scss" global>
+  @import "../styles/charts.scss"
 </style>
 
 <Header {segment}/>

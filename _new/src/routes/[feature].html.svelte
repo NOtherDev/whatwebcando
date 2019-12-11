@@ -69,16 +69,16 @@
 
 </script>
 
-<style>
+<style type="text/scss">
 
   .feature-test {
     padding: 15px;
     overflow: hidden;
     border-top: 1px solid #ccc;
-  }
 
-  .feature-test:last-child {
-    border-bottom: 1px solid #ccc;
+    &:last-child {
+      border-bottom: 1px solid #ccc;
+    }
   }
 
   .demo-placeholder {
@@ -100,22 +100,22 @@
   .tab {
     float: left;
     display: block;
-  }
 
-  .tab > input[type="radio"] {
-    position: absolute;
-    left: -9999px;
-  }
+    & > input[type="radio"] {
+      position: absolute;
+      left: -9999px;
+    }
 
-  .tab > label {
-    display: block;
-    padding: 6px 21px;
-    border: 2px solid transparent;
-    border-bottom: 0 !important;
-    cursor: pointer;
-    position: relative;
-    color: #FFF;
-    background: #009688;
+    & > label {
+      display: block;
+      padding: 6px 21px;
+      border: 2px solid transparent;
+      border-bottom: 0 !important;
+      cursor: pointer;
+      position: relative;
+      color: #FFF;
+      background: #009688;
+    }
   }
 
   .demo-code-tab {
@@ -142,22 +142,21 @@
     z-index: 1; /* or display: block; */
 
     opacity: 1;
-    transition: opacity 400ms ease-out;
   }
 
   .legend {
     text-align: center;
-  }
 
-  .legend ul {
-    list-style: none;
-    padding: 0;
-    margin-bottom: 15px;
-  }
+    ul {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 15px;
+    }
 
-  .legend li {
-    display: inline-block;
-    margin: 0 10px;
+    li {
+      display: inline-block;
+      margin: 0 10px;
+    }
   }
 
   @media screen and (min-width: 768px) {
