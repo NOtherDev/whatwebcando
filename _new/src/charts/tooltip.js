@@ -161,7 +161,6 @@ function show(element) {
 
 function hide(element) {
   const regex = new RegExp('tooltip-show' + '\\s*', 'gi');
-  console.log(element, element.className, regex)
   element.className = element.className.replace(regex, '').trim();
 }
 
