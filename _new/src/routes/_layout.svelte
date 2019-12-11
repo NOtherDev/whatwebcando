@@ -6,7 +6,7 @@
 </script>
 
 <style type="text/scss" global>
-  @import "../styles/charts.scss"
+  @import "../charts/charts.scss"
 </style>
 
 <Header {segment}/>

@@ -1,8 +1,8 @@
 import compareVersions from 'compare-versions'
 import Chartist from 'chartist'
 
-// import 'chartist-plugin-axistitle'
-// import 'chartist-plugin-tooltip'
+import '../charts/axistitle'
+import '../charts/tooltip'
 
 const OTHERS_KEY = 'Others';
 const MIN_USAGE_THRESHOLD = 2.0;
@@ -135,15 +135,15 @@ class CaniuseReport {
       horizontalBars: true,
       stackBars: true,
       plugins: [
-        // Chartist.plugins.tooltip({
-        //   tooltipFnc: (meta, value) => `${meta}<br/>Market share: ${parseFloat(value).toFixed(2)}%`
-        // }),
-        // Chartist.plugins.ctAxisTitle({
-        //   axisX: {
-        //     axisTitle: `Market share (${this.$browserUsage.regionName}, %)`,
-        //     offset: {x: 0, y: 30}
-        //   }
-        // })
+        Chartist.plugins.tooltip({
+          tooltipFnc: (meta, value) => `${meta}<br/>Market share: ${parseFloat(value).toFixed(2)}%`
+        }),
+        Chartist.plugins.ctAxisTitle({
+          axisX: {
+            axisTitle: `Market share (${this.$browserUsage.regionName}, %)`,
+            offset: {x: 0, y: 30}
+          }
+        })
       ],
       axisY: {
         showGrid: false
