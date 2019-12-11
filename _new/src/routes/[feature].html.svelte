@@ -114,7 +114,7 @@
       cursor: pointer;
       position: relative;
       color: #FFF;
-      background: #009688;
+      background: var(--primary-color);
     }
   }
 
@@ -134,7 +134,7 @@
   .tabs > .tab > [id^="demo-code"]:checked + label {
     top: 0;
     background: #fff;
-    color: #009688;
+    color: var(--primary-color);
     border: 2px solid #eee;
   }
 
