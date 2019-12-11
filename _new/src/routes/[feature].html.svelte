@@ -42,17 +42,21 @@
     };
 
   if (process.browser) {
-    onMount(() => {
+    const initVisuals = () => {
       if (feature.api) {
-        Prism.highlightAll();
+       Prism.highlightAll();
       }
 
       if (feature.demo) {
-        cleanAndRunScript(feature.demo.js)
+       cleanAndRunScript(feature.demo.js)
       }
-    })
+    }
+
+    onMount(initVisuals)
 
     afterUpdate(async () => {
+      initVisuals()
+
       if (feature.caniuseKey && (!feature.caniuseReport || feature.caniuseReport.feature !== feature.caniuseKey)) {
         const report = await new CaniuseReportFetch(feature).fetch()
         feature.caniuseReport = report
@@ -87,6 +91,79 @@
     background: repeating-linear-gradient(45deg, #f5f2f0, #f5f2f0 20px, var(--primary-background) 20px, var(--primary-background) 40px);
     padding: 10px;
     border: 1px solid #ccc;
+
+    :global(button),
+    :global(input[type=text]),
+    :global(input[type=number]),
+    :global(input[type=password]),
+    :global(textarea) {
+      border-radius: 4px;
+      font-family: inherit;
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    :global(input[type=text]),
+    :global(input[type=number]),
+    :global(input[type=password]),
+    :global(textarea) {
+      border: 1px solid rgb(219, 219, 219);
+      padding: .5rem .75rem;
+    }
+
+    :global(button) {
+      padding: .25rem .5rem;
+      white-space: nowrap;
+      cursor: pointer;
+
+      &:hover {
+        background: var(--primary-background);
+      }
+    }
+
+    :global(input[type=text]) {
+      margin: 0;
+      max-width: 100%;
+    }
+
+    :global(textarea) {
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    :global(.badge) {
+      color: #fff;
+      background: var(--primary-color);
+      border-radius: 8px;
+      display: inline-flex;
+      font-size: .75rem;
+      padding-left: .5rem;
+      padding-right: .5rem;
+    }
+
+    :global(label) {
+      font-weight: bold;
+    }
+
+    :global(p) {
+      margin: 1rem 0;
+    }
+
+    :global(table) {
+      border-collapse: collapse;
+      line-height:1.5;
+      margin-bottom: 1.5rem;
+      width: 100%;
+
+      :global(td) {
+         border: 1px solid rgb(219, 219, 219);
+         padding: .25rem .5rem;
+      }
+
+      :global(tr):nth-child(2n+1) :global(td) {
+        background-color: #fff;
+      }
+    }
   }
 
   .tabs {
@@ -163,9 +240,17 @@
     .row {
       display: flex;
       align-items: center;
+
+      & > * {
+        width: 50%;
+      }
     }
-    .row > * {
-      width: 50%;
+
+    .demo-placeholder {
+      :global(.columns) {
+        display: flex;
+        justify-content: space-evenly;
+      }
     }
   }
 
