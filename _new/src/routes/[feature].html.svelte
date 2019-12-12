@@ -261,6 +261,13 @@
 </svelte:head>
 
 <main class="page">
+  <nav class="breadcrumb" aria-label="breadcrumbs">
+    <ul>
+      <li><a href="/">Features</a></li>
+      <li class="is-active"><a href="/{feature.id}.html" aria-current="page">{feature.name}</a></li>
+    </ul>
+  </nav>
+
   <article>
     <h2>{feature.name}</h2>
 

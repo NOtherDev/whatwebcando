@@ -55,9 +55,11 @@ figure {
 .text-left {
   text-align: left;
 }
+
 .text-center {
   text-align: center;
 }
+
 .text-right {
   text-align: right;
 }
@@ -65,6 +67,7 @@ figure {
 .pull-left {
   float: left;
 }
+
 .pull-right {
   float: right;
 }
@@ -122,9 +125,46 @@ code {
 .bg-success {
   background-color: #dff0d8;
 }
+
 .bg-warning {
-  background-color:#fcf8e3;
+  background-color: #fcf8e3;
 }
+
 .bg-danger {
-  background-color:#f2dede;
+  background-color: #f2dede;
+}
+
+.breadcrumb {
+  white-space: nowrap;
+  user-select: none;
+}
+
+.breadcrumb ul {
+  display: flex;
+  padding: 0;
+  border-bottom: 1px solid var(--primary-border)
+}
+
+.breadcrumb li {
+  align-items: center;
+  display: flex;
+}
+
+.breadcrumb li a {
+  padding: .75em;
+}
+
+.breadcrumb li:first-child a {
+  padding-left: 0;
+}
+
+.breadcrumb li + li::before {
+  color: var(--primary-color);
+  content: "\0002f";
+}
+
+.breadcrumb li.is-active a {
+  color: #000;
+  cursor: default;
+  pointer-events: none;
 }
