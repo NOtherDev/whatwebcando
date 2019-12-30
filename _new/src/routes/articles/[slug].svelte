@@ -14,47 +14,59 @@
 </script>
 
 <script>
+  import Meta from '../../components/Meta.svelte';
+
 	export let article;
 </script>
 
-<style>
-	/*
-		By default, CSS is locally scoped to the component,
-		and any unused styles are dead-code-eliminated.
-		In this page, Svelte can't know which elements are
-		going to appear inside the {{{article.html}}} block,
-		so we have to use the :global(...) modifier to target
-		all elements inside .content
-	*/
-	.content :global(h2) {
-		font-size: 1.4em;
-		font-weight: 500;
-	}
+<style type="text/scss">
+	.content {
+	  line-height: 1.5;
 
-	.content :global(pre) {
-		background-color: #f9f9f9;
-		box-shadow: inset 1px 1px 5px rgba(0,0,0,0.05);
-		padding: 0.5em;
-		border-radius: 2px;
-		overflow-x: auto;
-	}
+    :global(h2) {
+      font-size: 1.4em;
+      font-weight: 500;
+    }
 
-	.content :global(pre) :global(code) {
-		background-color: transparent;
-		padding: 0;
-	}
+    :global(pre) {
+      background-color: #f9f9f9;
+      box-shadow: inset 1px 1px 5px rgba(0,0,0,0.05);
+      padding: 0.5em;
+      border-radius: 4px;
+      overflow-x: auto;
+    }
 
-	.content :global(ul) {
-		line-height: 1.5;
-	}
+    :global(pre) :global(code) {
+      background-color: transparent;
+      padding: 0;
+    }
 
-	.content :global(li) {
-		margin: 0 0 0.5em 0;
-	}
+    :global(li) {
+      margin: 0 0 0.5em 0;
+    }
+
+	  :global(img) {
+      max-width: 30rem;
+      float: right;
+      margin: 1em 0 1em 1em;
+    }
+  }
+
+  .author {
+    margin-top: 2em;
+    border: 1px solid var(--primary-border);
+    border-radius: 4px;
+    background-color: var(--primary-background);
+    text-align: right;
+
+    :global(p) {
+      margin: 1em;
+    }
+  }
 </style>
 
 <svelte:head>
-	<title>What Web Can Do Today: {article.title}</title>
+	<Meta title={article.title} url="articles/{article.slug}" description={article.description} image={article.image} />
 </svelte:head>
 
 <main class="page">
@@ -66,7 +78,11 @@
     </ul>
   </nav>
 
-  <div class='content'>
+  <h1>{article.title}</h1>
+
+  <div class="content">
     {@html article.html}
   </div>
+
+  <div class="author">{@html article.author}</div>
 </main>

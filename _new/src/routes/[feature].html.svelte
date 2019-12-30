@@ -16,6 +16,8 @@
 <script>
   export let feature
 
+  import Meta from '../components/Meta.svelte'
+
   import Prism from 'prismjs';
   import {onMount, onDestroy, afterUpdate} from 'svelte';
 
@@ -257,7 +259,7 @@
 </style>
 
 <svelte:head>
-	<title>What Web Can Do Today: {feature.name}</title>
+  <Meta title={feature.name} url="{feature.id}.html" />
 </svelte:head>
 
 <main class="page">

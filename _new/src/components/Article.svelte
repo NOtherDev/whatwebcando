@@ -11,28 +11,34 @@
     background-color: #fff;
     border-radius: 10px;
     overflow: hidden;
-  }
 
-  a:not(.button) {
-    color: unset;
-  }
-  a:hover {
-    text-decoration: none;
-  }
-  a:hover h3 {
-    text-decoration: underline;
-  }
+    h3 {
+      margin-top: 0;
+    }
 
-  img {
-    width: 100%;
-  }
+    img {
+      width: 100%;
+    }
 
-  figcaption, .description {
-    padding: 1em;
-  }
+    a:not(.button) {
+      color: unset;
+    }
 
-  figcaption {
-    background: var(--primary-background);
+    a:hover {
+      text-decoration: none;
+
+      h3 {
+        text-decoration: underline;
+      }
+    }
+
+    figcaption, .description {
+      padding: 1em;
+    }
+
+    figcaption {
+      background: var(--primary-background);
+    }
   }
 </style>
 

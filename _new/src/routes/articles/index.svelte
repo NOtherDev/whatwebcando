@@ -8,6 +8,7 @@
 
 <script>
   import Article from '../../components/Article.svelte'
+  import Meta from '../../components/Meta.svelte';
 
 	export let articles;
 </script>
@@ -27,7 +28,7 @@
 </style>
 
 <svelte:head>
-	<title>What Web Can Do Today: Articles</title>
+	<Meta title="Articles" url="articles" />
 </svelte:head>
 
 <main class="page">

@@ -1,5 +1,9 @@
+<script>
+  import Meta from '../components/Meta.svelte';
+</script>
+
 <svelte:head>
-	<title>What Web Can Do Today: Privacy Policy</title>
+	<Meta title="Privacy Policy" url="privacy.html" />
 </svelte:head>
 
 <main class="page">

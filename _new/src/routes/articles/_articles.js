@@ -19,6 +19,7 @@ const articles = readdirSync(articlesPath)
       image: metadata.image || 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkqAcAAIUAgUW0RjgAAAAASUVORK5CYII=',
       tags: metadata.tags || [],
       description: metadata.description || '',
+      author: marked(metadata.author || '[Adam Bar](https://adambar.pl)'),
     }
   })
 

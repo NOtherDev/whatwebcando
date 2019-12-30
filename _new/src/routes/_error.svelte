@@ -1,4 +1,6 @@
 <script>
+  import Meta from '../components/Meta.svelte';
+
 	export let status;
 	export let error;
 
@@ -6,7 +8,7 @@
 </script>
 
 <svelte:head>
-	<title>What Web Can Do Today: {status}</title>
+  <Meta title="Error {status}" />
 </svelte:head>
 
 <main class="page">

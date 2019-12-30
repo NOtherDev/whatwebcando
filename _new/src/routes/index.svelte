@@ -48,6 +48,15 @@
 
 <svelte:head>
 	<title>What Web Can Do Today</title>
+
+	<meta property="og:title" content="What Web Can Do Today" />
+  <meta property="og:description" content="Can I rely on the Web Platform features to build my app? An overview of the device integration HTML5 APIs." />
+  <meta property="og:url" content="https://whatwebcando.today/" />
+  <meta property="og:image" content="https://whatwebcando.today/images/share-image.png" />
+
+  <meta name="twitter:title" content="What Web Can Do Today" />
+  <meta name="twitter:description" content="Can I rely on the Web Platform features to build my app? An overview of the device integration HTML5 APIs." />
+  <meta name="twitter:image" content="https://whatwebcando.today/images/share-image.png" />
 </svelte:head>
 
 <div class="container">
