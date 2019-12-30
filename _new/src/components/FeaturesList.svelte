@@ -73,7 +73,7 @@
     <ul>
       {#each group.resolvedFeatures as feature}
       <li>
-        <span><a href="/{feature.id}.html">{feature.name}</a></span>
+        <span><a rel="prefetch" href="/{feature.id}.html">{feature.name}</a></span>
         {#await feature.determineIsSupported() then isSupported}
           {#if isSupported}
             <span class="support support-yes">Yes</span>

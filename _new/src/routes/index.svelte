@@ -1,6 +1,18 @@
+<script context="module">
+	export function preload({ params, query }) {
+		return this.fetch(`/articles.json`)
+		  .then(r => r.json())
+		  .then(articles => {
+        return { articles };
+	  	});
+	}
+</script>
+
 <script>
   import FeaturesList from '../components/FeaturesList.svelte';
-  import ArticlesList from '../components/ArticlesList.svelte';
+  import Article from '../components/Article.svelte';
+
+  export let articles;
 </script>
 
 <style>
@@ -15,6 +27,9 @@
 
   aside > p {
     margin-top: 2em;
+  }
+  aside > h2 {
+    padding: 1em 1em 0;
   }
 
   @media screen and (min-width: 768px) {
@@ -45,7 +60,9 @@
   <aside>
     <h2>Articles</h2>
 
-    <ArticlesList/>
+    {#each articles.slice(0, 3) as article}
+      <Article article={article} />
+    {/each}
 
     <p class="text-center">
       <a href="/articles" class="button">See all</a>

@@ -15,7 +15,7 @@ body {
 
 main, aside {
   position: relative;
-  padding: 2em;
+  padding: 1em;
   box-sizing: border-box;
 }
 
@@ -167,4 +167,10 @@ code {
   color: #000;
   cursor: default;
   pointer-events: none;
+}
+
+@media screen and (min-width: 768px) {
+  main {
+    padding: 2em;
+  }
 }

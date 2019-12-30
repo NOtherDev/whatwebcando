@@ -2,11 +2,11 @@
 	export async function preload({ params, query }) {
 		// the `slug` parameter is available because
 		// this file is called [slug].svelte
-		const res = await this.fetch(`blog/${params.slug}.json`);
+		const res = await this.fetch(`articles/${params.slug}.json`);
 		const data = await res.json();
 
 		if (res.status === 200) {
-			return { post: data };
+			return { article: data };
 		} else {
 			this.error(res.status, data.message);
 		}
@@ -14,7 +14,7 @@
 </script>
 
 <script>
-	export let post;
+	export let article;
 </script>
 
 <style>
@@ -22,7 +22,7 @@
 		By default, CSS is locally scoped to the component,
 		and any unused styles are dead-code-eliminated.
 		In this page, Svelte can't know which elements are
-		going to appear inside the {{{post.html}}} block,
+		going to appear inside the {{{article.html}}} block,
 		so we have to use the :global(...) modifier to target
 		all elements inside .content
 	*/
@@ -54,11 +54,19 @@
 </style>
 
 <svelte:head>
-	<title>{post.title}</title>
+	<title>What Web Can Do Today: {article.title}</title>
 </svelte:head>
 
-<h1>{post.title}</h1>
+<main class="page">
+  <nav class="breadcrumb" aria-label="breadcrumbs">
+    <ul>
+      <li><a href="/">Features</a></li>
+      <li><a href="/articles">Articles</a></li>
+      <li class="is-active"><a href="/articles/{article.slug}" aria-current="page">{article.title}</a></li>
+    </ul>
+  </nav>
 
-<div class='content'>
-	{@html post.html}
-</div>
+  <div class='content'>
+    {@html article.html}
+  </div>
+</main>
