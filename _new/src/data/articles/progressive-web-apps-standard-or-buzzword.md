@@ -13,7 +13,7 @@ However, still, there also seems to exist a decent misunderstanding about what P
 
 ## Fact 1 - PWA is only a buzzword
 
-![Some Title](/articleimgs/adult-books-business-coffee.pexels.jpg)
+![Progressive Web Apps – standard or buzzword?](/articleimgs/adult-books-business-coffee.pexels.jpg)
 
 Progressive Web Apps as a term was [coined in 2015](https://infrequently.org/2015/06/progressive-apps-escaping-tabs-without-losing-our-soul/) by [Frances Berriman](https://fberriman.com/about/) and [Alex Russell](https://twitter.com/slightlylate) as the name for the new class of experiences utilizing the Web Platform in the new ways, allowing it to serve as the only technology required to achieve the native look-and-feel on mobile. It was rather a loose idea, and actually it stayed to be such. Even though most of the browser vendors use the PWA term in the developer-facing communication, no standard definition exists and no standard definition will probably exist in the future. 
 

@@ -1,4 +1,6 @@
 <script context="module">
+  import 'prismjs/themes/prism.css'
+
 	export async function preload({ params, query }) {
 		// the `slug` parameter is available because
 		// this file is called [slug].svelte
@@ -14,9 +16,18 @@
 </script>
 
 <script>
+  import Prism from 'prismjs';
+  import {onMount} from 'svelte';
+
   import Meta from '../../components/Meta.svelte';
 
 	export let article;
+
+	if (process.browser) {
+	  onMount(() => {
+      Prism.highlightAll();
+    })
+	}
 </script>
 
 <style type="text/scss">
@@ -28,17 +39,21 @@
       font-weight: 500;
     }
 
-    :global(pre) {
-      background-color: #f9f9f9;
-      box-shadow: inset 1px 1px 5px rgba(0,0,0,0.05);
-      padding: 0.5em;
+    :global(pre),
+    :global(figure) {
+      border: 1px solid var(--primary-border);
       border-radius: 4px;
-      overflow-x: auto;
+      background-color: var(--primary-background);
+      padding: 0.5em;
     }
 
-    :global(pre) :global(code) {
-      background-color: transparent;
-      padding: 0;
+    :global(pre) {
+      overflow-x: auto;
+
+      :global(code) {
+        background-color: transparent;
+        padding: 0;
+      }
     }
 
     :global(li) {
@@ -49,6 +64,15 @@
       max-width: 30rem;
       float: right;
       margin: 1em 0 1em 1em;
+    }
+
+    :global(figure) {
+      text-align: center;
+
+      :global(img) {
+        float: none;
+        margin: 0;
+      }
     }
   }
 
@@ -80,7 +104,7 @@
 
   <h1>{article.title}</h1>
 
-  <div class="content">
+  <div class="content language-javascript">
     {@html article.html}
   </div>
 
