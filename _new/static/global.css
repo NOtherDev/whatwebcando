@@ -133,7 +133,6 @@ code {
 }
 
 .breadcrumb {
-  white-space: nowrap;
   user-select: none;
 }
 

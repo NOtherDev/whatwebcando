@@ -14,6 +14,10 @@
 </script>
 
 <style type="text/scss">
+  .page {
+    padding: 1em;
+  }
+
   .list {
     display: flex;
     flex-wrap: wrap;

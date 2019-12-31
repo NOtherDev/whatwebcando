@@ -7,9 +7,9 @@ description: One of the most complex and possibly annoying aspect of the offline
 
 One of the most complex and possibly annoying aspect of the [offline mode](https://whatwebcando.today/offline.html) implementation for Progressive Web Apps is when it needs to deal with cross-origin requests, that is the requests that are issued by our application to the other, external origin. As Service Worker is intercepting all the HTTP requests originating from our application, it means that also these reaching the external servers are to be handled, and this in turn means we need to deal with [Cross-Origin Resource Sharing (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS).
 
-![Dealing with opaque responses in Service Worker](/articleimgs/phone-taking-photo-selfie.pexels.jpg)
-
 ## How is CORS related with Service Worker caching
+
+![Dealing with opaque responses in Service Worker](/articleimgs/phone-taking-photo-selfie.pexels.jpg)
 
 Cross-Origin Resource Sharing is a safety measure implemented within the browsers to limit the risk of unwanted (potentially insecure or malicious) access to the resources from origins other than whitelisted. We can use it to protect our APIs from being used from clients we don't accept. Unless we whitelist some external domains by adding appropriate response headers in of our APIs, the browser will not allow it to call us from anywhere except our own origin. 
 
