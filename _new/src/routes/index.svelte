@@ -24,6 +24,9 @@
   main {
     background-color: var(--primary-background);
   }
+  aside {
+    padding: 1em;
+  }
 
   aside > p {
     margin-top: 2em;

@@ -4,8 +4,8 @@
 
 <style type="text/scss">
   .article {
-    min-width: 18rem;
-    flex: 1 0 18rem;
+    min-width: 18em;
+    flex: 1 0 18em;
     margin: 1em;
     border: 1px solid var(--primary-border);
     background-color: #fff;

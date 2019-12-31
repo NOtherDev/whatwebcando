@@ -8,7 +8,10 @@
 		const data = await res.json();
 
 		if (res.status === 200) {
-			return { article: data };
+		  const allArticlesResponse = await this.fetch(`/articles.json`)
+      const allArticles = await allArticlesResponse.json() // TODO filter based on tags
+
+			return { article: data, allArticles };
 		} else {
 			this.error(res.status, data.message);
 		}
@@ -20,8 +23,10 @@
   import {onMount} from 'svelte';
 
   import Meta from '../../components/Meta.svelte';
+  import Article from '../../components/Article.svelte';
 
 	export let article;
+	export let allArticles;
 
 	if (process.browser) {
 	  onMount(() => {
@@ -31,6 +36,21 @@
 </script>
 
 <style type="text/scss">
+  main {
+    padding: 1em;
+  }
+
+  aside {
+    padding-bottom: 3em;
+    background-color: var(--primary-background);
+
+    h2 {
+      padding: 2em 1em;
+      font-size: 1.125em;
+      text-transform: uppercase;
+    }
+  }
+
 	.content {
 	  line-height: 1.5;
 
@@ -61,7 +81,7 @@
     }
 
 	  :global(img) {
-      max-width: 30rem;
+      max-width: 15em;
       float: right;
       margin: 1em 0 1em 1em;
     }
@@ -87,26 +107,56 @@
       margin: 1em;
     }
   }
+
+  @media screen and (min-width: 768px) {
+    .container {
+      display: grid;
+      grid-template-columns: calc(100% - 20em) 20em;
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    .content {
+      :global(img) {
+        max-width: 30em;
+      }
+    }
+  }
 </style>
 
 <svelte:head>
 	<Meta title={article.title} url="articles/{article.slug}" description={article.description} image={article.image} />
 </svelte:head>
 
-<main class="page">
-  <nav class="breadcrumb" aria-label="breadcrumbs">
-    <ul>
-      <li><a href="/">Features</a></li>
-      <li><a href="/articles">Articles</a></li>
-      <li class="is-active"><a href="/articles/{article.slug}" aria-current="page">{article.title}</a></li>
-    </ul>
-  </nav>
+<div class="page">
+  <div class="container">
+    <main>
+    <nav class="breadcrumb" aria-label="breadcrumbs">
+        <ul>
+          <li><a href="/">Features</a></li>
+          <li><a href="/articles">Articles</a></li>
+          <li class="is-active"><a href="/articles/{article.slug}" aria-current="page">{article.title}</a></li>
+        </ul>
+      </nav>
+      <h1>{article.title}</h1>
 
-  <h1>{article.title}</h1>
+      <div class="content language-javascript">
+        {@html article.html}
+      </div>
 
-  <div class="content language-javascript">
-    {@html article.html}
+      <div class="author">{@html article.author}</div>
+    </main>
+
+    <aside>
+      <h2>See also</h2>
+
+      {#each allArticles.slice(0, 3) as article}
+        <Article article={article} />
+      {/each}
+
+      <p class="text-center">
+        <a href="/articles" class="button">See all</a>
+      </p>
+    </aside>
   </div>
-
-  <div class="author">{@html article.author}</div>
-</main>
+</div>
