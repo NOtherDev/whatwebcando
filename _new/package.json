@@ -16,6 +16,7 @@
     "chartist-plugin-tooltips": "0.0.17",
     "compare-versions": "^2.0.1",
     "compression": "^1.7.1",
+    "lodash": "^4.17.15",
     "marked": "^0.8.0",
     "parse-md": "^2.0.3",
     "polka": "next",

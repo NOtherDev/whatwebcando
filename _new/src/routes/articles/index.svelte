@@ -1,9 +1,15 @@
 <script context="module">
-	export function preload({ params, query }) {
-		return this.fetch(`articles.json`).then(r => r.json()).then(articles => {
-			return { articles };
-		});
-	}
+  import _ from 'lodash'
+
+  export async function preload({ params, query }) {
+    const response = await this.fetch(`/articles.json`)
+    const articles = await response.json()
+    return {
+      articles: _(articles)
+        .orderBy(['weight'], ['desc'])
+        .value()
+    };
+  }
 </script>
 
 <script>

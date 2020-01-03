@@ -1,21 +1,34 @@
 <script context="module">
   import 'prismjs/themes/prism.css'
 
-	export async function preload({ params, query }) {
-		// the `slug` parameter is available because
-		// this file is called [slug].svelte
-		const res = await this.fetch(`articles/${params.slug}.json`);
-		const data = await res.json();
+  import _ from 'lodash'
 
-		if (res.status === 200) {
-		  const allArticlesResponse = await this.fetch(`/articles.json`)
-      const allArticles = await allArticlesResponse.json() // TODO filter based on tags
+  const noOfMatchingTags = (current) => (candidate) => {
+    return _.intersection(current.tags, candidate.tags).length
+  }
 
-			return { article: data, allArticles };
-		} else {
-			this.error(res.status, data.message);
-		}
-	}
+  export async function preload({ params, query }) {
+    // the `slug` parameter is available because
+    // this file is called [slug].svelte
+    const currArticleResponse = await this.fetch(`articles/${params.slug}.json`);
+    const currArticle = await currArticleResponse.json();
+
+    if (currArticleResponse.status === 200) {
+      const allArticlesResponse = await this.fetch(`/articles.json`)
+      const allArticles = await allArticlesResponse.json()
+
+      return {
+        article: currArticle,
+        otherArticles: _(allArticles)
+          .filter((a) => a.slug !== currArticle.slug)
+          .orderBy([noOfMatchingTags(currArticle), 'weight'], ['desc', 'desc'])
+          .take(3)
+          .value()
+      };
+    } else {
+      this.error(currArticleResponse.status, currArticle.message);
+    }
+  }
 </script>
 
 <script>
@@ -25,14 +38,14 @@
   import Meta from '../../components/Meta.svelte';
   import Article from '../../components/Article.svelte';
 
-	export let article;
-	export let allArticles;
+  export let article;
+  export let otherArticles;
 
-	if (process.browser) {
-	  onMount(() => {
+  if (process.browser) {
+    onMount(() => {
       Prism.highlightAll();
     })
-	}
+  }
 </script>
 
 <style type="text/scss">
@@ -51,8 +64,8 @@
     }
   }
 
-	.content {
-	  line-height: 1.5;
+  .content {
+    line-height: 1.5;
 
     :global(h2) {
       font-size: 1.4em;
@@ -80,7 +93,7 @@
       margin: 0 0 0.5em 0;
     }
 
-	  :global(img) {
+    :global(img) {
       max-width: 15em;
       float: right;
       margin: 1em 0 1em 1em;
@@ -125,7 +138,7 @@
 </style>
 
 <svelte:head>
-	<Meta title={article.title} url="articles/{article.slug}" description={article.description} image={article.image} />
+  <Meta title={article.title} url="articles/{article.slug}" description={article.description} image={article.image} />
 </svelte:head>
 
 <div class="page">
@@ -150,7 +163,7 @@
     <aside>
       <h2>See also</h2>
 
-      {#each allArticles.slice(0, 3) as article}
+      {#each otherArticles as article}
         <Article article={article} />
       {/each}
 

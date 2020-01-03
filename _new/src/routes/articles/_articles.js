@@ -20,6 +20,7 @@ const articles = readdirSync(articlesPath)
       tags: metadata.tags || [],
       description: metadata.description || '',
       author: marked(metadata.author || '[Adam Bar](https://adambar.pl)'),
+      weight: metadata.weight || 1,
     }
   })
 

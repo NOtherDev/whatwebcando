@@ -3,6 +3,7 @@ title: How to use Chrome Dev Tools Service Worker switches
 image: /articleimgs/analogue-console-control.pexels.jpg
 tags: [PWA, Service Worker]
 description: Google Chrome, as expected from the Service Worker API and whole Progressive Web Apps ideas main proponent, offers probably the richest developer tooling to ease the debugging, testing and experimenting with the APIs. Chrome's Dev Tools has a whole Application tab dedicated to PWA-related matters.
+weight: 2
 ---
 
 Google Chrome, as expected from the Service Worker API and whole Progressive Web Apps ideas main proponent, offers probably the richest developer tooling to ease the debugging, testing and experimenting with the APIs. Chrome's Dev Tools has a whole Application tab dedicated to PWA-related matters. 

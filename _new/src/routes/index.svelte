@@ -1,11 +1,16 @@
 <script context="module">
-	export function preload({ params, query }) {
-		return this.fetch(`/articles.json`)
-		  .then(r => r.json())
-		  .then(articles => {
-        return { articles };
-	  	});
-	}
+  import _ from 'lodash'
+
+  export async function preload({ params, query }) {
+    const response = await this.fetch(`/articles.json`)
+    const articles = await response.json()
+    return {
+      articles: _(articles)
+        .orderBy(['weight'], ['desc'])
+        .take(3)
+        .value()
+    };
+  }
 </script>
 
 <script>
@@ -50,9 +55,9 @@
 </style>
 
 <svelte:head>
-	<title>What Web Can Do Today</title>
+  <title>What Web Can Do Today</title>
 
-	<meta property="og:title" content="What Web Can Do Today" />
+  <meta property="og:title" content="What Web Can Do Today" />
   <meta property="og:description" content="Can I rely on the Web Platform features to build my app? An overview of the device integration HTML5 APIs." />
   <meta property="og:url" content="https://whatwebcando.today/" />
   <meta property="og:image" content="https://whatwebcando.today/images/share-image.png" />
@@ -72,7 +77,7 @@
   <aside>
     <h2>Articles</h2>
 
-    {#each articles.slice(0, 3) as article}
+    {#each articles as article}
       <Article article={article} />
     {/each}
 
