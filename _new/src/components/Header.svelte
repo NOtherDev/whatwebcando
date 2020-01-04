@@ -69,6 +69,9 @@
 	}
 
 	@media screen and (min-width: 1024px) {
+  	header {
+      background: url(/headerbg-large.jpg);
+    }
 	  h1 {
 	    font-size: 4.375em;
 	  }
