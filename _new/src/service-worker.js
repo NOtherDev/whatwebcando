@@ -15,6 +15,7 @@ const toCache = shell.concat(files)
     'https://fonts.gstatic.com/s/sourcesanspro/v13/6xK3dSBYKcSV-LCoeQqfX1RYOo3qOK7lujVj9w.woff2',
     'https://fonts.gstatic.com/s/sourcesanspro/v13/6xKydSBYKcSV-LCoeQqfX1RYOo3ig4vwlxdu3cOWxw.woff2',
     'articles.json',
+    'service-worker-index',
   ])
 
 const precached = new Set(toCache)
@@ -67,7 +68,7 @@ self.addEventListener('fetch', event => {
 
   // for pages, serve a shell `service-worker-index.html` file
   if (url.origin === self.origin && !url.pathname.endsWith('.json') && routes.find(route => route.pattern.test(url.pathname))) {
-    event.respondWith(caches.match('service-worker-index.html'));
+    event.respondWith(caches.match('service-worker-index'));
     return;
   }
 
@@ -86,13 +87,13 @@ self.addEventListener('fetch', event => {
         if (networkResponse.ok) {
           cache.put(event.request, networkResponse.clone());
         } else if (isImage(url.pathname)) {
-          return caches.match('placeholder.png')
+          return caches.match('/placeholder.png')
         }
         return networkResponse;
       })
       .catch((err) => {
         if (isImage(url.pathname)) {
-          return caches.match('placeholder.png')
+          return caches.match('/placeholder.png')
         }
 
         throw err
