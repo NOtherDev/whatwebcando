@@ -17,6 +17,9 @@ main, aside {
   position: relative;
   box-sizing: border-box;
 }
+main {
+  padding: 1em;
+}
 
 .page {
   margin: 0 auto;
@@ -164,10 +167,4 @@ code {
   color: #000;
   cursor: default;
   pointer-events: none;
-}
-
-@media screen and (min-width: 768px) {
-  main {
-    padding: 2em;
-  }
 }

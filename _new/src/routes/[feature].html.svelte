@@ -77,6 +77,10 @@
 
 <style type="text/scss">
 
+  .page {
+    padding: 1em;
+  }
+
   .feature-test {
     padding: 15px;
     overflow: hidden;

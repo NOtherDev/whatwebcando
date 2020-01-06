@@ -27,6 +27,7 @@
   }
 
   main {
+    padding-top: 2em;
     background-color: var(--primary-background);
   }
   aside {
@@ -41,6 +42,10 @@
   }
 
   @media screen and (min-width: 768px) {
+    main {
+      padding: 2em;
+    }
+
     .container {
       display: grid;
       grid-template-columns: auto 50%;
