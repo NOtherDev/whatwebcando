@@ -4,39 +4,52 @@ const groups = [
     "features": [
       {
         "id": "camera-microphone",
+        "icon": "mdi-image-camera-alt",
         "name": "Audio & Video Capture"
       },
       {
         "id": "photos",
+        "icon": "mdi-image-camera-roll",
         "name": "Advanced Camera Controls"
       },
       {
         "id": "recording",
+        "icon": "mdi-av-mic",
         "name": "Recording Media"
       },
       {
         "id": "realtime",
+        "icon": "mdi-av-videocam",
         "name": "Real-time Communication"
       }
     ]
   },
+  // {
+  //   "heading": "Advertisement",
+  //   "features": [],
+  //   "html": "<script async type=\"text/javascript\" src=\"//cdn.carbonads.com/carbon.js?serve=CK7DT23L&placement=whatwebcandotoday\" id=\"_carbonads_js\"></script>"
+  // },
   {
     "heading": "Surroundings",
     "features": [
       {
         "id": "bluetooth",
+        "icon": "mdi-device-bluetooth",
         "name": "Bluetooth"
       },
       {
         "id": "usb",
+        "icon": "mdi-device-usb",
         "name": "USB"
       },
       {
         "id": "nfc",
+        "icon": "mdi-device-nfc",
         "name": "NFC"
       },
       {
         "id": "ambient-light",
+        "icon": "mdi-device-brightness-low",
         "name": "Ambient Light"
       }
     ]
@@ -46,22 +59,27 @@ const groups = [
     "features": [
       {
         "id": "network-type-speed",
+        "icon": "mdi-device-wifi-tethering",
         "name": "Network Type & Speed"
       },
       {
         "id": "online-state",
+        "icon": "mdi-device-signal-cellular-connected-no-internet-3-bar",
         "name": "Online State"
       },
       {
         "id": "vibration",
+        "icon": "mdi-notification-vibration",
         "name": "Vibration"
       },
       {
         "id": "battery-status",
+        "icon": "mdi-device-battery-80",
         "name": "Battery Status"
       },
       {
         "id": "memory",
+        "icon": "mdi-hardware-memory",
         "name": "Device Memory"
       }
     ]
@@ -71,22 +89,27 @@ const groups = [
     "features": [
       {
         "id": "local-notifications",
+        "icon": "mdi-notification-system-update",
         "name": "Local Notifications"
       },
       {
         "id": "push-notifications",
+        "icon": "mdi-notification-tap-and-play",
         "name": "Push Messages"
       },
       {
         "id": "installation",
+        "icon": "mdi-action-get-app",
         "name": "Home Screen Installation"
       },
       {
         "id": "foreground-detection",
+        "icon": "mdi-action-flip-to-front",
         "name": "Foreground Detection"
       },
       {
         "id": "permissions",
+        "icon": "mdi-action-lock-open",
         "name": "Permissions"
       }
     ]
@@ -96,26 +119,32 @@ const groups = [
     "features": [
       {
         "id": "storage",
+        "icon": "mdi-notification-folder-special",
         "name": "Offline Storage"
       },
       {
         "id": "files",
+        "icon": "mdi-device-sd-storage",
         "name": "File Access"
       },
       {
         "id": "contacts",
+        "icon": "mdi-action-account-box",
         "name": "Contacts"
       },
       {
         "id": "sms",
+        "icon": "mdi-communication-message",
         "name": "SMS"
       },
       {
         "id": "storage-quota",
+        "icon": "mdi-notification-sim-card-alert",
         "name": "Storage Quotas"
       },
       {
         "id": "scheduler",
+        "icon": "mdi-action-alarm",
         "name": "Task Scheduling"
       }
     ]
@@ -125,18 +154,22 @@ const groups = [
     "features": [
       {
         "id": "touch",
+        "icon": "mdi-content-gesture",
         "name": "Touch Gestures"
       },
       {
         "id": "speech-recognition",
+        "icon": "mdi-av-mic",
         "name": "Speech Recognition"
       },
       {
         "id": "clipboard",
+        "icon": "mdi-content-content-paste",
         "name": "Clipboard (Copy & Paste)"
       },
       {
         "id": "pointer-adaptation",
+        "icon": "mdi-hardware-mouse",
         "name": "Pointing Device Adaptation"
       }
     ]
@@ -146,22 +179,27 @@ const groups = [
     "features": [
       {
         "id": "offline",
+        "icon": "mdi-action-settings-applications",
         "name": "Offline Mode"
       },
       {
         "id": "background-sync",
+        "icon": "mdi-action-backup",
         "name": "Background Sync"
       },
       {
         "id": "app-communication",
+        "icon": "mdi-action-explore",
         "name": "Inter-App Communication"
       },
       {
         "id": "payments",
+        "icon": "mdi-action-payment",
         "name": "Payments"
       },
       {
         "id": "credentials",
+        "icon": "mdi-action-lock-open",
         "name": "Credentials"
       }
     ]
@@ -171,22 +209,27 @@ const groups = [
     "features": [
       {
         "id": "geolocation",
+        "icon": "mdi-device-gps-fixed",
         "name": "Geolocation"
       },
       {
         "id": "geofencing",
+        "icon": "mdi-action-group-work",
         "name": "Geofencing"
       },
       {
         "id": "device-position",
+        "icon": "mdi-device-screen-rotation",
         "name": "Device Position"
       },
       {
         "id": "device-motion",
+        "icon": "mdi-action-3d-rotation",
         "name": "Device Motion"
       },
       {
         "id": "proximity",
+        "icon": "mdi-image-leak-add",
         "name": "Proximity Sensors"
       }
     ]
@@ -196,22 +239,27 @@ const groups = [
     "features": [
       {
         "id": "vr",
+        "icon": "mdi-maps-local-play",
         "name": "Virtual & Augmented Reality"
       },
       {
         "id": "fullscreen",
+        "icon": "mdi-action-settings-overscan",
         "name": "Fullscreen"
       },
       {
         "id": "screen-orientation",
+        "icon": "mdi-device-screen-lock-rotation",
         "name": "Screen Orientation & Lock"
       },
       {
         "id": "wake-lock",
+        "icon": "mdi-action-lock",
         "name": "Wake Lock"
       },
       {
         "id": "presentation",
+        "icon": "mdi-hardware-tv",
         "name": "Presentation Features"
       }
     ]

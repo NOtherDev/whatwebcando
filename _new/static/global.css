@@ -187,3 +187,140 @@ code {
 .mdi-cross:before {
   content: "\e8aa";
 }
+
+
+.mdi-action-3d-rotation:before {
+  content: "\e600";
+}
+.mdi-action-alarm:before {
+  content: "\e60b";
+}
+.mdi-action-account-box:before {
+  content: "\e604";
+}
+.mdi-action-backup:before {
+  content: "\e617";
+}
+.mdi-action-explore:before {
+  content: "\e628";
+}
+.mdi-action-flip-to-front:before {
+  content: "\e630";
+}
+.mdi-action-get-app:before {
+  content: "\e631";
+}
+.mdi-action-group-work:before {
+  content: "\e633";
+}
+.mdi-action-list:before {
+  content: "\e641";
+}
+.mdi-action-lock-open:before {
+  content: "\e642";
+}
+.mdi-action-lock:before {
+  content: "\e644";
+}
+.mdi-action-lock-open:before {
+  content: "\e642";
+}
+.mdi-action-payment:before {
+  content: "\e64c";
+}
+.mdi-action-settings-applications:before {
+  content: "\e662";
+}
+.mdi-action-settings-overscan:before {
+  content: "\e66d";
+}
+.mdi-action-settings-phone:before {
+  content: "\e66e";
+}
+.mdi-av-mic:before {
+  content: "\e6b1";
+}
+.mdi-av-videocam:before {
+  content: "\e6d1";
+}
+.mdi-communication-message:before {
+  content: "\e6ee";
+}
+.mdi-content-content-paste:before {
+  content: "\e708";
+}
+.mdi-content-gesture:before {
+  content: "\e70e";
+}
+.mdi-device-battery-80:before {
+  content: "\e72a";
+}
+.mdi-device-bluetooth:before {
+  content: "\e73a";
+}
+.mdi-device-brightness-low:before {
+  content: "\e73d";
+}
+.mdi-device-gps-fixed:before {
+  content: "\e743";
+}
+.mdi-device-nfc:before {
+  content: "\e74b";
+}
+.mdi-device-screen-lock-rotation:before {
+  content: "\e750";
+}
+.mdi-device-screen-rotation:before {
+  content: "\e751";
+}
+.mdi-device-sd-storage:before {
+  content: "\e752";
+}
+.mdi-device-signal-cellular-connected-no-internet-3-bar:before {
+  content: "\e75c";
+}
+.mdi-device-usb:before {
+  content: "\e773";
+}
+.mdi-device-wifi-tethering:before {
+  content: "\e775";
+}
+.mdi-hardware-memory:before {
+  content: "\e7d1";
+}
+.mdi-hardware-mouse:before {
+  content: "\e7d2";
+}
+.mdi-hardware-tv:before {
+  content: "\e7de";
+}
+.mdi-image-camera-alt:before {
+  content: "\e7f0";
+}
+.mdi-image-camera-roll:before {
+  content: "\e7f3";
+}
+.mdi-image-leak-add:before {
+  content: "\e836";
+}
+.mdi-navigation-arrow-back:before {
+  content: "\e8a1";
+}
+.mdi-notification-folder-special:before {
+  content: "\e8be";
+}
+.mdi-notification-sim-card-alert:before {
+  content: "\e8cb";
+}
+.mdi-notification-system-update:before {
+  content: "\e8d1";
+}
+.mdi-notification-tap-and-play:before {
+  content: "\e8d2";
+}
+.mdi-notification-vibration:before {
+  content: "\e8d4";
+}
+.mdi-maps-local-play:before {
+  content: "\e88d";
+}

@@ -3,7 +3,11 @@
   import groups from '../data/groups'
 
   groups.forEach(group => {
-    group.resolvedFeatures = group.features.map(feature => features.find(f => f.id === feature.id))
+    group.resolvedFeatures = group.features.map(feature => {
+      const fullFeature = features.find(f => f.id === feature.id)
+      fullFeature.icon = feature.icon
+      return fullFeature
+    })
   })
 
 </script>
@@ -39,6 +43,10 @@
     display: flex;
     justify-content: space-between;
     padding: .5em 0;
+
+    .mdi {
+      margin-right: .5em;
+    }
   }
 
   .legend {
@@ -57,6 +65,7 @@
   .support {
     text-transform: uppercase;
     font-weight: bold;
+    white-space: nowrap;
   }
 
   .support-no {
@@ -99,7 +108,7 @@
     <ul>
       {#each group.resolvedFeatures as feature}
       <li>
-        <span><a rel="prefetch" href="/{feature.id}.html">{feature.name}</a></span>
+        <span><i class="mdi {feature.icon}"></i> <a rel="prefetch" href="/{feature.id}.html">{feature.name}</a></span>
         {#await feature.determineIsSupported() then isSupported}
           {#if isSupported}
             <span class="support support-yes">Yes <i class="mdi mdi-check"></i></span>
