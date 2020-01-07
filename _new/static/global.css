@@ -168,3 +168,22 @@ code {
   cursor: default;
   pointer-events: none;
 }
+
+.mdi:before {
+  display: inline-block;
+  position: relative;
+  top: 1px;
+  font: normal normal normal 24px/1 "Material Design Icons";
+  font-size: inherit;
+  text-rendering: auto;
+  line-height: inherit;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.mdi-check:before {
+  content: "\e8a7";
+}
+.mdi-cross:before {
+  content: "\e8aa";
+}

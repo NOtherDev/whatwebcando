@@ -8,7 +8,7 @@
 
 </script>
 
-<style>
+<style type="text/scss">
   .features-list-container {
     display: flex;
     flex-wrap: wrap;
@@ -40,15 +40,30 @@
     justify-content: space-between;
     padding: .5em 0;
   }
+
+  .legend {
+    div {
+      display: flex;
+    }
+
+    dt {
+      min-width: 65px;
+    }
+    dd {
+      margin-left: 0;
+    }
+  }
   
   .support {
-    width: 2em;
     text-transform: uppercase;
     font-weight: bold;
   }
 
   .support-no {
     color: #A81039;
+  }
+  .support-yes .mdi {
+    color: #4caf50;
   }
 
   @media screen and (min-width: 1024px) {
@@ -65,6 +80,17 @@
   }
 </style>
 
+<dl class="legend">
+<div>
+  <dt class="support support-yes">Yes <i class="mdi mdi-check"></i></dt>
+    <dd>Feature available in your current browser</dd>
+    </div>
+    <div>
+  <dt class="support support-no">No <i class="mdi mdi-cross"></i></dt>
+    <dd>Feature not available in your current browser</dd>
+    </div>
+</dl>
+
 <div class="features-list-container">
   {#each groups as group}
   <section>
@@ -76,9 +102,9 @@
         <span><a rel="prefetch" href="/{feature.id}.html">{feature.name}</a></span>
         {#await feature.determineIsSupported() then isSupported}
           {#if isSupported}
-            <span class="support support-yes">Yes</span>
+            <span class="support support-yes">Yes <i class="mdi mdi-check"></i></span>
           {:else}
-            <span class="support support-no">No</span>
+            <span class="support support-no">No <i class="mdi mdi-cross"></i></span>
           {/if}
         {/await}
       </li>
