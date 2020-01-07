@@ -58,13 +58,18 @@
   }
 
   aside {
+    padding-top: 2em;
     padding-bottom: 3em;
     background-color: var(--primary-background);
 
     h2 {
-      padding: 2em 1em;
+      margin: 1em;
       font-size: 1.125em;
       text-transform: uppercase;
+
+      &:first-child {
+        margin-top: 0;
+      }
     }
   }
 
@@ -128,7 +133,11 @@
   @media screen and (min-width: 768px) {
     .container {
       display: grid;
-      grid-template-columns: calc(100% - 20em) 20em;
+      grid-template-columns: calc(100% - 23em) 23em;
+    }
+
+    main {
+      padding: 1em 3em;
     }
   }
 
@@ -145,7 +154,7 @@
   <Meta title={article.title} url="articles/{article.slug}" description={article.description} image={article.image} />
 </svelte:head>
 
-<div class="page">
+<div class="">
   <div class="container">
     <main>
     <nav class="breadcrumb" aria-label="breadcrumbs">
@@ -165,6 +174,11 @@
     </main>
 
     <aside>
+      <h2>Advertisement</h2>
+      <div class="ad">
+        <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CK7DT23L&placement=whatwebcandotoday" id="_carbonads_js"></script>
+      </div>
+
       <h2>See also</h2>
 
       {#each otherArticles as article}
