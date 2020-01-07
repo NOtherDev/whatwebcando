@@ -40,7 +40,7 @@
     content: "";
     width: 6px;
     height: 6px;
-    background-color: #fff;
+    background-color: #A81039;
     border-radius: 50%;
     box-shadow: 0 0 3px #000;
   }
@@ -83,14 +83,14 @@
 </style>
 
 <header class="text-center">
-  <!--<nav>
+  <nav>
     <ul>
-      <li><a class:selected="{segment === undefined}" href=".">Home</a></li>
-      <li><a class:selected="{segment === 'consulting'}" href="consulting">Consulting</a></li>
-      <li><a class:selected="{segment === 'workshops'}" href="workshops">Workshops</a></li>
-      <li><a class:selected="{segment === 'audits'}" href="audits">Audits</a></li>
+      <li><a class:selected="{segment === undefined}" href=".">Features</a></li>
+      <li><a class:selected="{segment === 'articles'}" href="/articles">Articles</a></li>
+      <li><a class:selected="{segment === 'services'}" href="https://adambar.pl/#services" target="_blank" rel="noreferrer noopener">Services</a></li>
+      <li><a class:selected="{segment === 'trainings'}" href="https://adambar.pl/#workshops" target="_blank" rel="noreferrer noopener">Trainings</a></li>
     </ul>
-  </nav>-->
+  </nav>
 
   <div class="title-container">
     <h1>What Web Can Do Today?</h1>
