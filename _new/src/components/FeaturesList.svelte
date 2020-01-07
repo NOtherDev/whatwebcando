@@ -89,15 +89,15 @@
   }
 </style>
 
-<dl class="legend">
-<div>
-  <dt class="support support-yes">Yes <i class="mdi mdi-check"></i></dt>
-    <dd>Feature available in your current browser</dd>
-    </div>
-    <div>
-  <dt class="support support-no">No <i class="mdi mdi-cross"></i></dt>
-    <dd>Feature not available in your current browser</dd>
-    </div>
+<dl class="legend" aria-hidden="true">
+  <div>
+    <dt class="support support-yes">Yes <i class="mdi mdi-check"></i></dt>
+      <dd>Feature available in your current browser</dd>
+  </div>
+  <div>
+    <dt class="support support-no">No <i class="mdi mdi-cross"></i></dt>
+      <dd>Feature not available in your current browser</dd>
+  </div>
 </dl>
 
 <div class="features-list-container">
