@@ -86,7 +86,7 @@
   <nav>
     <ul>
       <li><a class:selected="{segment === undefined}" href=".">Features</a></li>
-      <li><a class:selected="{segment === 'articles'}" href="/articles">Articles</a></li>
+      <li><a class:selected="{segment === 'articles'}" href="/articles/">Articles</a></li>
       <li><a class:selected="{segment === 'services'}" href="https://adambar.pl/#services" target="_blank" rel="noreferrer noopener">Services</a></li>
       <li><a class:selected="{segment === 'trainings'}" href="https://adambar.pl/#workshops" target="_blank" rel="noreferrer noopener">Trainings</a></li>
     </ul>

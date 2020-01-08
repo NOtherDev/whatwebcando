@@ -45,7 +45,7 @@
   <nav class="breadcrumb" aria-label="breadcrumbs">
     <ul>
       <li><a href="/">Features</a></li>
-      <li class="is-active"><a href="/articles" aria-current="page">Articles</a></li>
+      <li class="is-active"><a href="/articles/" aria-current="page">Articles</a></li>
     </ul>
   </nav>
 

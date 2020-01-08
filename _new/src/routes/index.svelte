@@ -89,7 +89,7 @@
     {/each}
 
     <p class="text-center">
-      <a href="/articles" class="button">See all</a>
+      <a href="/articles/" class="button">See all</a>
     </p>
   </aside>
 </div>

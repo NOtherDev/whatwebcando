@@ -160,7 +160,7 @@
     <nav class="breadcrumb" aria-label="breadcrumbs">
         <ul>
           <li><a href="/">Features</a></li>
-          <li><a href="/articles">Articles</a></li>
+          <li><a href="/articles/">Articles</a></li>
           <li class="is-active"><a href="/articles/{article.slug}" aria-current="page">{article.title}</a></li>
         </ul>
       </nav>
@@ -186,7 +186,7 @@
       {/each}
 
       <p class="text-center">
-        <a href="/articles" class="button">See all</a>
+        <a href="/articles/" class="button">See all</a>
       </p>
     </aside>
   </div>
