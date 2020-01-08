@@ -12,6 +12,7 @@ const appShellFile = process.env.NODE_ENV === 'development' ? 'service-worker-in
 const toCache = shell.concat(files)
   .filter((f) => !f.endsWith('.DS_Store'))
   .filter((f) => !f.startsWith('articleimgs/'))
+  .filter((f) => f !== 'images/share-image.png')
   .concat([
     'https://fonts.gstatic.com/s/sourcesanspro/v13/6xK3dSBYKcSV-LCoeQqfX1RYOo3qOK7lujVj9w.woff2',
     'https://fonts.gstatic.com/s/sourcesanspro/v13/6xKydSBYKcSV-LCoeQqfX1RYOo3ig4vwlxdu3cOWxw.woff2',

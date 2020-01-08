@@ -4,13 +4,13 @@
 
 <style>
   header {
-    background: url(/headerbg.jpg);
+    background: #505050 url(/headerbg.jpg);
     background-size: cover;
     text-shadow: 0 0 3px #000;
   }
 
   header, a {
-    color: #fff;
+    color: #fff !important;
   }
 
   ul {

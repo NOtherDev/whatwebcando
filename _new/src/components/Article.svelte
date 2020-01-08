@@ -45,7 +45,7 @@
 <div class="article">
   <a rel='prefetch' href="/articles/{article.slug}">
     <figure>
-      <img alt="{article.title}" src="{article.image}"/>
+      <img alt="{article.title}" loading="lazy" src="{article.image}"/>
       <figcaption>{article.tags.join(', ')}</figcaption>
     </figure>
 

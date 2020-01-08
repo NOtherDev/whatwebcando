@@ -69,17 +69,17 @@
     <h2>Get in touch</h2>
     <ul>
       <li><a href="mailto:hi@adambar.pl" class="icon mail-icon">Mail</a></li>
-      <li><a href="https://twitter.com/WhatWebCanDo" target="_blank" class="icon twitter-icon">Twitter</a></li>
-      <li><a href="https://linkedin.com/in/adamrbar" target="_blank" class="icon linkedin-icon">LinkedIn</a></li>
-      <li><a href="https://github.com/NOtherDev/whatwebcando" target="_blank" class="icon github-icon">GitHub</a></li>
+      <li><a href="https://twitter.com/WhatWebCanDo" target="_blank" rel="noreferrer noopener" class="icon twitter-icon">Twitter</a></li>
+      <li><a href="https://linkedin.com/in/adamrbar" target="_blank" rel="noreferrer noopener" class="icon linkedin-icon">LinkedIn</a></li>
+      <li><a href="https://github.com/NOtherDev/whatwebcando" target="_blank" rel="noreferrer noopener" class="icon github-icon">GitHub</a></li>
     </ul>
   </div>
 
   <footer role="contentinfo">
     <p class="text-left"><a href="/privacy.html">Privacy Policy</a></p>
     <p class="text-right">
-      Created by <a href="https://adambar.pl">Adam Bar</a><br/>
-      Licenced under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a>
+      Created by <a href="https://adambar.pl" target="_blank" rel="noreferrer noopener">Adam Bar</a><br/>
+      Licenced under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noreferrer noopener">CC-BY-SA 4.0</a>
     </p>
   </footer>
 </div>
