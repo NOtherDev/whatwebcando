@@ -38,7 +38,7 @@
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-svelte": "^5.0.1",
     "rollup-plugin-terser": "^4.0.4",
-    "sapper": "git://github.com/NOtherDev/sapper.git",
+    "sapper": "git://github.com/NOtherDev/sapper.git#614da0b468ad6941177bfb19c84b49ce079d546e",
     "svelte": "^3.0.0",
     "svelte-preprocess-sass": "^0.2.0"
   }
