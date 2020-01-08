@@ -4,7 +4,7 @@ export default new Feature({
   id: 'fullscreen',
   name: 'Fullscreen',
   description: `The <b>Fullscreen API</b> allows Web applications to present itself or the part of itself in the fullscreen mode,
-        without browser UI elements visible. It also serves as the prerequisite state for the <a href="/orientation-lock.html">orientation lock</a>.`,
+        without browser UI elements visible. It also serves as the prerequisite state for the <a href="/screen-orientation.html">orientation lock</a>.`,
   api: `<dl>
         <dt><code>document.fullscreenEnabled</code></dt>
         <dd>Returns a boolean indicating whether the fullscreen mode is available and allowed.</dd>

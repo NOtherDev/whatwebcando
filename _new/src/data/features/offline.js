@@ -87,7 +87,7 @@ self.addEventListener('fetch', function (event) {
           <dd>Returns a <code>Promise</code> resolved when the <code>fetch</code> event represents a request to the resource already cached within
             the Service Worker's cache.</dd>
       </dl>
-      <p>See also <b><a href="sw.js" target="_blank">this website's own Service Worker implementation</a></b>.</p>`,
+      <p>See also <b><a href="/service-worker.js" target="_blank">this website's own Service Worker implementation</a></b>.</p>`,
   caniuse: 'serviceworkers',
   tests: [Feature.navigatorContains('serviceWorker')],
   links: [
