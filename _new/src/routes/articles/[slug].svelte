@@ -8,16 +8,13 @@
   export async function preload({ params, query }) {
     // the `slug` parameter is available because
     // this file is called [slug].svelte
-    const response = await this.fetch(`/articles.json`)
-    const allArticles = await response.json()
+    const currArticleResponse = await this.fetch(`/articles/${params.slug}.json`)
 
-    if (response.status === 200) {
-      const currArticle = allArticles.find((a) => a.slug === params.slug)
+    if (currArticleResponse.status === 200) {
+      const currArticle = await currArticleResponse.json()
 
-      if (!currArticle) {
-        this.error(404, 'Not found')
-        return;
-      }
+      const allArticlesResponse = await this.fetch(`/articles.json`)
+      const allArticles = await allArticlesResponse.json()
 
       const otherArticles = allArticles
         .filter((a) => a.slug !== currArticle.slug)
@@ -46,7 +43,7 @@
         otherArticles: otherArticles.slice(0, 3)
       };
     } else {
-      this.error(response.status, response.message);
+      this.error(currArticleResponse.status, currArticleResponse.message);
     }
   }
 </script>
