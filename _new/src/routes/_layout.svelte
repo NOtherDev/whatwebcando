@@ -155,6 +155,7 @@
       font-size: 90%;
       color: #c7254e;
       border-radius: 4px;
+      overflow-wrap: break-word !important;
     }
 
     .bg-success {
