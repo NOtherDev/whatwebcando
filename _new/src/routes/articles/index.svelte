@@ -1,13 +1,20 @@
 <script context="module">
-  import _ from 'lodash'
-
   export async function preload({ params, query }) {
     const response = await this.fetch(`/articles.json`)
     const articles = await response.json()
+
+    const sorted = articles.sort((left, right) => {
+      if (left.weight > right.weight) {
+        return -1
+      }
+      if (left.weight < right.weight) {
+        return 1
+      }
+      return 0
+    })
+
     return {
-      articles: _(articles)
-        .orderBy(['weight'], ['desc'])
-        .value()
+      articles: sorted
     };
   }
 </script>

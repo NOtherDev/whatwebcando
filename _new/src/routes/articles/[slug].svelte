@@ -1,10 +1,8 @@
 <script context="module">
   import 'prismjs/themes/prism.css'
 
-  import _ from 'lodash'
-
   const noOfMatchingTags = (current) => (candidate) => {
-    return _.intersection(current.tags, candidate.tags).length
+    return current.tags.filter((v) => candidate.tags.includes(v)).length
   }
 
   export async function preload({ params, query }) {
@@ -21,13 +19,31 @@
         return;
       }
 
+      const otherArticles = allArticles
+        .filter((a) => a.slug !== currArticle.slug)
+        .sort((left, right) => {
+          const leftMatchingTags = noOfMatchingTags(currArticle, left)
+          const rightMatchingTags = noOfMatchingTags(currArticle, right)
+
+          if (leftMatchingTags > rightMatchingTags) {
+            return -1
+          }
+          if (leftMatchingTags < rightMatchingTags) {
+            return 1
+          }
+          if (left.weight > right.weight) {
+            return -1
+          }
+          if (left.weight < right.weight) {
+            return 1
+          }
+          return 0
+        })
+
+
       return {
         article: currArticle,
-        otherArticles: _(allArticles)
-          .filter((a) => a.slug !== currArticle.slug)
-          .orderBy([noOfMatchingTags(currArticle), 'weight'], ['desc', 'desc'])
-          .take(3)
-          .value()
+        otherArticles: otherArticles.slice(0, 3)
       };
     } else {
       this.error(response.status, response.message);
