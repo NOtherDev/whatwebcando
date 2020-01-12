@@ -102,6 +102,10 @@ class FeatureAsyncTest {
 
 export class Feature {
   constructor(feature) {
+    if (!feature) {
+      throw 'Feature is missing'
+    }
+
     this.id = feature.id;
     this.aliases = feature.aliases || [];
     this.name = feature.name;

@@ -4,7 +4,6 @@
 
 	export async function preload({ params }) {
 	  const feature = features.find(x => x.id === params.feature)
-
 		if (feature) {
 			return {feature};
 		} else {
@@ -24,32 +23,32 @@
 	import {CaniuseReportFetch} from "../utils/caniuse";
   import {cleanAndRunScript, runOneOffScript} from "../utils/demoUtils";
 
-   const runTests = async () => {
-      return Promise.all((feature.tests || []).map(async test => {
-        const result = await test.result
-        let bgClass = 'default';
+  const runTests = async () => {
+    return Promise.all((feature.tests || []).map(async test => {
+      const result = await test.result
+      let bgClass = 'default';
 
-        if (result.passed) {
-          bgClass = result.prefix || !result.standard ? 'warning' : 'success';
-        } else if (result.standard) {
-          bgClass = 'danger';
-        }
+      if (result.passed) {
+        bgClass = result.prefix || !result.standard ? 'warning' : 'success';
+      } else if (result.standard) {
+        bgClass = 'danger';
+      }
 
-        return {
-          test,
-          result,
-          bgClass,
-        }
-      }));
-    };
+      return {
+        test,
+        result,
+        bgClass,
+      }
+    }));
+  };
 
   if (process.browser) {
     const initVisuals = () => {
-      if (feature.api) {
+      if (feature && feature.api) {
        Prism.highlightAll();
       }
 
-      if (feature.demo) {
+      if (feature && feature.demo) {
        cleanAndRunScript(feature.demo.js)
       }
     }
@@ -59,7 +58,7 @@
     afterUpdate(async () => {
       initVisuals()
 
-      if (feature.caniuseKey && (!feature.caniuseReport || feature.caniuseReport.feature !== feature.caniuseKey)) {
+      if (feature && feature.caniuseKey && (!feature.caniuseReport || feature.caniuseReport.feature !== feature.caniuseKey)) {
         const report = await new CaniuseReportFetch(feature).fetch()
         feature.caniuseReport = report
         report.initVisuals()
@@ -67,9 +66,11 @@
     })
   }
 
-  if (process.browser && feature.demo && feature.demo.jsOnExit) {
+  if (process.browser) {
     onDestroy(() => {
+      if (feature && feature.demo && feature.demo.jsOnExit) {
         runOneOffScript(feature.demo.jsOnExit);
+      }
     });
   }
 
