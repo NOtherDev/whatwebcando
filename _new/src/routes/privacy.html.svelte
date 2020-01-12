@@ -7,7 +7,12 @@
 </svelte:head>
 
 <main class="page">
-  <p><a href="/">Return to the site</a></p>
+  <nav class="breadcrumb" aria-label="breadcrumbs">
+      <ul>
+        <li><a href="/">Features</a></li>
+        <li class="is-active"><a href="/privacy.html" aria-current="page">Privacy policy</a></li>
+      </ul>
+    </nav>
 
   <h1>Privacy policy</h1>
 
