@@ -31,7 +31,7 @@
   }
 
   a {
-    color: var(--inverse-color);
+    color: var(--inverse-color) !important;
   }
 
   .icon {
