@@ -97,7 +97,7 @@ self.addEventListener('fetch', event => {
           return caches.match('/placeholder.png')
         }
 
-        throw err
+        return new Response(err, {status: 499})
       })
   );
 });

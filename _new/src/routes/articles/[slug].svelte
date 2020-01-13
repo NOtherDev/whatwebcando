@@ -8,9 +8,13 @@
   export async function preload({ params, query }) {
     // the `slug` parameter is available because
     // this file is called [slug].svelte
-    const currArticleResponse = await this.fetch(`/articles/${params.slug}.json`)
+    try {
+      const currArticleResponse = await this.fetch(`/articles/${params.slug}.json`)
 
-    if (currArticleResponse.status === 200) {
+      if (!currArticleResponse.ok) {
+        throw currArticleResponse
+      }
+
       const currArticle = await currArticleResponse.json()
 
       const allArticlesResponse = await this.fetch(`/articles.json`)
@@ -42,8 +46,12 @@
         article: currArticle,
         otherArticles: otherArticles.slice(0, 3)
       };
-    } else {
-      this.error(currArticleResponse.status, currArticleResponse.message);
+    } catch (err) {
+      if (err.status === 499) {
+        this.error(`You're offline`, 'This content was not cached for offline use. Please return while connected to the network.')
+      } else {
+        this.error(err.status || '500', err.message || 'Unexpected error');
+      }
     }
   }
 </script>
