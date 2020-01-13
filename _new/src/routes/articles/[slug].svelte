@@ -180,40 +180,38 @@
   <Meta title={article.title} url="articles/{article.slug}" description={article.description} image={article.image} />
 </svelte:head>
 
-<div class="">
-  <div class="container">
-    <main>
-    <nav class="breadcrumb" aria-label="breadcrumbs">
-        <ul>
-          <li><a href="/">Features</a></li>
-          <li><a href="/articles/">Articles</a></li>
-          <li class="is-active"><a href="/articles/{article.slug}" aria-current="page">{article.title}</a></li>
-        </ul>
-      </nav>
-      <h1>{article.title}</h1>
+<div class="container">
+  <main>
+  <nav class="breadcrumb" aria-label="breadcrumbs">
+      <ul>
+        <li><a href="/">Features</a></li>
+        <li><a href="/articles/">Articles</a></li>
+        <li class="is-active"><a href="/articles/{article.slug}" aria-current="page">{article.title}</a></li>
+      </ul>
+    </nav>
+    <h1>{article.title}</h1>
 
-      <div class="content language-javascript">
-        {@html article.html}
-      </div>
+    <div class="content language-javascript">
+      {@html article.html}
+    </div>
 
-      <div class="author">{@html article.author}</div>
-    </main>
+    <div class="author">{@html article.author}</div>
+  </main>
 
-    <aside>
-      <h2>Advertisement</h2>
-      <div class="ad">
-        <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CK7DT23L&placement=whatwebcandotoday" id="_carbonads_js"></script>
-      </div>
+  <aside>
+    <h2>Advertisement</h2>
+    <div class="ad">
+      <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CK7DT23L&placement=whatwebcandotoday" id="_carbonads_js"></script>
+    </div>
 
-      <h2>See also</h2>
+    <h2>See also</h2>
 
-      {#each otherArticles as article}
-        <Article article={article} />
-      {/each}
+    {#each otherArticles as article}
+      <Article article={article} />
+    {/each}
 
-      <p class="text-center see-all">
-        <a href="/articles/" class="button">See all</a>
-      </p>
-    </aside>
-  </div>
+    <p class="text-center see-all">
+      <a href="/articles/" class="button">See all</a>
+    </p>
+  </aside>
 </div>

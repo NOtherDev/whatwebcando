@@ -1,6 +1,8 @@
 <script>
   import { stores } from '@sapper/app';
+
   import Header from '../components/Header.svelte';
+  import Loader from '../components/Loader.svelte';
   import Footer from '../components/Footer.svelte';
 
   export let segment;
@@ -392,5 +394,7 @@
 <Header {segment}/>
 
 <slot></slot>
+
+<Loader/>
 
 <Footer/>
