@@ -1,6 +1,7 @@
 <style type="text/scss">
   .loader {
-    margin: 3rem auto;
+    margin: 3rem;
+    text-align: center;
 
     .lds-ellipsis {
       display: inline-block;
