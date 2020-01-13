@@ -1,6 +1,7 @@
 node_modules
-dist
-.tmp
-bower_components
 .idea
 .DS_Store
+yarn-error.log
+
+/cypress/screenshots/
+/__sapper__/
