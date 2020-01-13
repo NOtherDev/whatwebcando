@@ -39,20 +39,41 @@
     figcaption {
       background: var(--primary-background);
     }
+
+    .source {
+      text-align: right;
+    }
   }
 </style>
 
 <div class="article">
-  <a rel='prefetch' href="/articles/{article.slug}">
-    <figure>
-      <img alt="{article.title}" loading="lazy" src="{article.image}"/>
-      <figcaption>{article.tags.join(', ')}</figcaption>
-    </figure>
+  {#if article.source === 'wwcd'}
+    <a rel='prefetch' href="/articles/{article.slug}">
+      <figure>
+        <img alt="{article.title}" loading="lazy" src="{article.image}"/>
+        <figcaption>{article.tags.join(', ')}</figcaption>
+      </figure>
 
-    <div class="description">
-      <h3>{article.title}</h3>
+      <div class="description">
+        <h3>{article.title}</h3>
 
-      <p>{article.description}</p>
-    </div>
-  </a>
+        <p>{article.description}</p>
+      </div>
+    </a>
+  {:else}
+    <a href="{article.url}" target="_blank" rel="noreferrer noopener">
+      <figure>
+        <img alt="{article.title}" loading="lazy" src="{article.image}"/>
+        <figcaption>{article.tags.join(', ')}</figcaption>
+      </figure>
+
+      <div class="description">
+        <h3>{article.title}</h3>
+
+        <p>{article.description}</p>
+
+        <p class="source">Article by {article.source}</p>
+      </div>
+    </a>
+  {/if}
 </div>

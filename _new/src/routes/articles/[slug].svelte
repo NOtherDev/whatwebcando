@@ -19,12 +19,13 @@
 
       const allArticlesResponse = await this.fetch(`/articles.json`)
       const allArticles = await allArticlesResponse.json()
+      const noOfMatchingTagsWithCurrent = noOfMatchingTags(currArticle)
 
       const otherArticles = allArticles
         .filter((a) => a.slug !== currArticle.slug)
         .sort((left, right) => {
-          const leftMatchingTags = noOfMatchingTags(currArticle, left)
-          const rightMatchingTags = noOfMatchingTags(currArticle, right)
+          const leftMatchingTags = noOfMatchingTagsWithCurrent(left)
+          const rightMatchingTags = noOfMatchingTagsWithCurrent(right)
 
           if (leftMatchingTags > rightMatchingTags) {
             return -1
@@ -151,6 +152,10 @@
     }
   }
 
+  .see-all {
+    margin-top: 2em;
+  }
+
   @media screen and (min-width: 768px) {
     .container {
       display: grid;
@@ -206,7 +211,7 @@
         <Article article={article} />
       {/each}
 
-      <p class="text-center">
+      <p class="text-center see-all">
         <a href="/articles/" class="button">See all</a>
       </p>
     </aside>
