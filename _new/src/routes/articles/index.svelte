@@ -45,7 +45,7 @@
 </style>
 
 <svelte:head>
-	<Meta title="Articles" url="articles" />
+	<Meta title="Articles" url="/articles/" />
 </svelte:head>
 
 <main class="page">

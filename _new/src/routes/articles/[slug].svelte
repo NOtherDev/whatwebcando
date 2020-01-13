@@ -177,7 +177,7 @@
 </style>
 
 <svelte:head>
-  <Meta title={article.title} url="articles/{article.slug}" description={article.description} image={article.image} />
+  <Meta title={article.title} url="/articles/{article.slug}/" description={article.description} image={article.image} />
 </svelte:head>
 
 <div class="container">

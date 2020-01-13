@@ -48,7 +48,7 @@
 
 <div class="article">
   {#if article.source === 'wwcd'}
-    <a rel='prefetch' href="/articles/{article.slug}">
+    <a rel='prefetch' href="/articles/{article.slug}/">
       <figure>
         <img alt="{article.title}" loading="lazy" src="{article.image}"/>
         <figcaption>{article.tags.join(', ')}</figcaption>

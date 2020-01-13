@@ -3,7 +3,7 @@
 </script>
 
 <svelte:head>
-	<Meta title="Privacy Policy" url="privacy.html" />
+	<Meta title="Privacy Policy" url="/privacy.html" />
 </svelte:head>
 
 <main class="page">

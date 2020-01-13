@@ -1,8 +1,8 @@
 <script>
-  export let title
-  export let url
-  export let description
-  export let image
+  export let title = null
+  export let url = null
+  export let description = null
+  export let image = null
 </script>
 
 <title>What Web Can Do Today: {title}</title>
