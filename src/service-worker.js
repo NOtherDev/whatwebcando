@@ -59,12 +59,6 @@ self.addEventListener('fetch', event => {
   // ignore dev server requests
   if (url.hostname === self.location.hostname && url.port !== self.location.port) return;
 
-  // always serve static files and bundler-generated assets from cache
-  if (precached.has(url.pathname.substring(1)) || precached.has(event.request.url)) {
-    event.respondWith(caches.match(event.request));
-    return;
-  }
-
   // for pages, serve a shell `service-worker-index.html` file
   if (url.origin === self.origin && !url.pathname.endsWith('.json') && routes.find(route => route.pattern.test(url.pathname))) {
     event.respondWith(caches.match('service-worker-index.html'));
@@ -78,7 +72,7 @@ self.addEventListener('fetch', event => {
     caches
       .open(`offline${timestamp}`)
       .then(async cache => {
-        const cachedResponse = await cache.match(event.request);
+        const cachedResponse = await caches.match(event.request);
         if (cachedResponse) return cachedResponse;
 
         const networkResponse = await fetch(event.request);
