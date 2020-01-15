@@ -11,7 +11,7 @@ export default new Feature({
   api: `<dl>
         <dt><code>const reader = new NDEFReader()</code></dt>
         <dd>Creates an object used for NDEF readings.</dd>
-        <dt><code>reader.start(options)</code></dt>
+        <dt><code>reader.scan(options)</code></dt>
         <dd>Returns a <code>Promise</code> resolved if starting NFC scan was successful.</dd>
         <dt><code>reader.addEventListener('reading', listener)</code></dt>
         <dd>An event fired when a new reading is available.</dd>
