@@ -26,9 +26,6 @@ self.addEventListener('install', event => {
     caches
       .open(ASSETS)
       .then(cache => cache.addAll([...precached]))
-      .then(() => {
-        self.skipWaiting();
-      })
   );
 });
 
@@ -104,7 +101,8 @@ self.addEventListener('fetch', event => {
 
 self.addEventListener('message', async (event) => {
   if (event.data === 'refresh') {
-    const tabs = await clients.matchAll({type: 'window', includeUncontrolled: true})
+    await self.skipWaiting();
+    const tabs = await self.clients.matchAll({type: 'window', includeUncontrolled: true})
     tabs.forEach((tab) => {
       tab.navigate(tab.url)
     })

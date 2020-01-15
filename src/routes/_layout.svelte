@@ -9,30 +9,17 @@
 
   const { page } = stores();
 
-  if (process.browser && navigator.serviceWorker) {
-    navigator.serviceWorker.getRegistration()
-      .then((registration) => {
-        if (registration && !!navigator.serviceWorker.controller) {
-          registration.addEventListener('updatefound', () => {
-            registration.installing.addEventListener('statechange', () => {
-              if (registration.waiting) {
-                // mark there was new service worker installed and the pages need refresh
-                localStorage.setItem('shouldRefresh', 'true')
-              }
-            })
-          })
-        }
-      })
-  }
-
   page.subscribe(async ({ path }) => {
     if (process.browser && window.gaPageView) {
       window.gaPageView(path)
     }
+
     // detect the pending refresh and fire it on navigation
-    if (process.browser && !!localStorage.getItem('shouldRefresh') && !!navigator.serviceWorker.controller) {
-      localStorage.removeItem('shouldRefresh')
-      navigator.serviceWorker.controller.postMessage('refresh')
+    if (process.browser && 'serviceWorker' in navigator) {
+      const registration = await navigator.serviceWorker.getRegistration()
+      if (registration && registration.waiting) {
+        registration.waiting.postMessage('refresh')
+      }
     }
   })
 </script>
