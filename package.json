@@ -36,7 +36,7 @@
     "rollup-plugin-commonjs": "^10.0.0",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-svelte": "^5.0.1",
-    "rollup-plugin-terser": "^4.0.4",
+    "rollup-plugin-terser": "^5.2.0",
     "sapper": "git://github.com/NOtherDev/sapper.git#b05aceea8b2d5aaf91e7fcc7df646dbafd76907b",
     "svelte": "^3.0.0",
     "svelte-preprocess-sass": "^0.2.0"
