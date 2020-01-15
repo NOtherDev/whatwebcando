@@ -5,11 +5,12 @@
   "scripts": {
     "dev": "sapper dev",
     "build": "sapper build --legacy",
-    "export": "mv dist/.git __sapper__/_tmp_dist_git && (sapper export dist --legacy || true) && mv __sapper__/_tmp_dist_git dist/.git",
+    "export": "mv dist/.git __sapper__/_tmp_dist_git && (sapper export dist --legacy || true) && mv __sapper__/_tmp_dist_git dist/.git && (cd dist && git add .)",
     "start": "node __sapper__/build",
     "cy:run": "cypress run",
     "cy:open": "cypress open",
-    "test": "run-p --race dev cy:run"
+    "test": "run-p --race dev cy:run",
+    "deploy-staging": "surge ./dist https://wwcd-beta.surge.sh"
   },
   "dependencies": {
     "chartist": "^0.11.4",
@@ -38,6 +39,7 @@
     "rollup-plugin-svelte": "^5.0.1",
     "rollup-plugin-terser": "^5.2.0",
     "sapper": "git://github.com/NOtherDev/sapper.git#b05aceea8b2d5aaf91e7fcc7df646dbafd76907b",
+    "surge": "^0.21.3",
     "svelte": "^3.0.0",
     "svelte-preprocess-sass": "^0.2.0"
   }
