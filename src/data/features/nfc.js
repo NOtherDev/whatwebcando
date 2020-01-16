@@ -5,7 +5,7 @@ export default new Feature({
   name: 'NFC',
   description: [
     `The <b>Web NFC API</b> is a low-level API that provides sites the ability to read and write to nearby NFC (Near-Field Communication) devices.`,
-    `It allows starting up a scan that informs when an NFC tag matching some <code>options</code> has been tapped. It also provides a method to push a message via NFC.`,
+    `It allows starting up a scan that informs when an NFC tag matching some <code>options</code> has been tapped. It also provides a method to write a message via NFC.`,
     `Current support is limited to an experimental implementation in Chrome, available behind the "enable-webnfc" flag on Android. There was also Firefox OS experimental implementation that is <code>moz</code>-prefixed and doesn't follow the current state of the specification draft.`
   ],
   api: `<dl>
@@ -19,8 +19,8 @@ export default new Feature({
         <dd>An event fired when an error happened during reading.</dd>
         <dt><code>const writer = new NDEFWriter()</code></dt>
         <dd>Creates an object used for NDEF writings.</dd>
-        <dt><code>writer.push(message, options)</code></dt>
-        <dd>Returns a <code>Promise</code> resolved if pushing the <code>message</code> (String, ArrayBuffer or NDEF record) with <code>options</code> was successful.</dd>
+        <dt><code>writer.write(message, options)</code></dt>
+        <dd>Returns a <code>Promise</code> resolved if writing the <code>message</code> (String, ArrayBuffer or NDEF record) with <code>options</code> was successful.</dd>
       </dl>`,
   tests: [
     Feature.windowContains('NDEFReader'),
@@ -58,8 +58,8 @@ async function writeTag() {
   if ("NDEFWriter" in window) {
     const writer = new NDEFWriter();
     try {
-      await writer.push("What Web Can Do Today");
-      consoleLog("NDEF message pushed!");
+      await writer.write("What Web Can Do Today");
+      consoleLog("NDEF message written!");
     } catch(error) {
       consoleLog(error);
     }
