@@ -26,9 +26,9 @@
 
   <p>The Service does not directly collect any kind of personally identifiable data. However, The Service uses third party services such as Google Analytics for tracking and traffic statistics and Carbon Ads to display advertisements.</p>
 
-  <p>Google Analytics uses cookies and other tracking means to collect statistics and generate anonymized reports about the traffic, its sources, users behaviors, equipment, language or browser settings. The IP address tracking is explicitly disabled for the Service. The Privacy Policy of Google services is available <a href="https://policies.google.com/privacy/update" target="_blank">here</a>.</p>
+  <p>Google Analytics uses cookies and other tracking means to collect statistics and generate anonymized reports about the traffic, its sources, users behaviors, equipment, language or browser settings. The IP address tracking is explicitly disabled for the Service. The Privacy Policy of Google services is available <a href="https://policies.google.com/privacy/update" target="_blank" rel="noopener">here</a>.</p>
 
-  <p>Carbon Ads uses cookies and other tracking means to serve advertisements and generate anonymized usage reports. The information shared with the service might include browser fingerprint or other software-generated identifiers that might identify the user. However, no personal information such as name or email addresses are available to the service. The Privacy Policy of Carbon Ads services is available <a href="https://www.buysellads.com/about/privacy" target="_blank">here</a>.</p>
+  <p>Carbon Ads uses cookies and other tracking means to serve advertisements and generate anonymized usage reports. The information shared with the service might include browser fingerprint or other software-generated identifiers that might identify the user. However, no personal information such as name or email addresses are available to the service. The Privacy Policy of Carbon Ads services is available <a href="https://www.buysellads.com/about/privacy" target="_blank" rel="noopener">here</a>.</p>
 
   <h2>Your rights in relation to personal data</h2>
 

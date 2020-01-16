@@ -61,7 +61,7 @@
       </div>
     </a>
   {:else}
-    <a href="{article.url}" target="_blank" rel="noreferrer noopener">
+    <a href="{article.url}" target="_blank" rel="noopener">
       <figure>
         <img alt="{article.title}" loading="lazy" src="{article.image}"/>
         <figcaption>{article.tags.join(', ')}</figcaption>

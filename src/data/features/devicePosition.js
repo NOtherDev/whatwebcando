@@ -7,7 +7,7 @@ export default new Feature({
   description: [`The first-generation device position support is a part of <b>Device Orientation API</b>. It allows Web applications to access the gyroscope and compass data in order to determine the static orientation
         of the user's device in all the three dimensions, expressed in degrees of divergence from the "natural" northbound lie flat position.`,
     `The newer specification based on the <strong>Generic Sensor API</strong> also exists - the Orientation Sensor APIs (in absolute and relative variants). 
-          Contrary to the previous specification it provides readings expressed as <a href="https://en.wikipedia.org/wiki/Quaternions_and_spatial_rotation" target="_blank">quaternions</a> what makes it directly compatible with drawing environments like WebGL.`,
+          Contrary to the previous specification it provides readings expressed as <a href="https://en.wikipedia.org/wiki/Quaternions_and_spatial_rotation" target="_blank" rel="noopener">quaternions</a> what makes it directly compatible with drawing environments like WebGL.`,
     `For the detection of the device's movements, see <a href="/device-motion.html">Device Motion</a>.`],
   api: `<p><b>As a part of Device Orientation API</b></p>
       <dl>
@@ -64,7 +64,7 @@ export default new Feature({
   <img src="https://www.w3.org/html/logo/downloads/HTML5_Badge_512.png" id="imgLogo">
 </div>
 
-<p><small>Demo from <a href="https://www.html5rocks.com/en/tutorials/device/orientation/" target="_blank">HTML5 Rocks</a> article.</small></p>`,
+<p><small>Demo from <a href="https://www.html5rocks.com/en/tutorials/device/orientation/" target="_blank" rel="noopener">HTML5 Rocks</a> article.</small></p>`,
     css: `.container {
   perspective: 300;
   -webkit-perspective: 300;

@@ -9,8 +9,8 @@ export default new Feature({
     `Both APIs share the same fundamental concepts. Their scope is to allow authorized Web applications to discover available VR/AR devices, 
         establish a session with the device, read the device-specific geometry data required to prepare the proper rendering and bind a <code>&lt;canvas&gt;</code>
         element as a visual layer onto the device.`,
-    `This way the rendering details are handled by the existing canvas interfaces like <a href="https://developer.mozilla.org/pl/docs/Web/API/WebGL_API/Tutorial/Getting_started_with_WebGL" target="_blank">WebGL context</a>
-        and the implementators very often delegate the rendering itself to the specialized libraries like <a href="https://aframe.io/" target="_blank">A-Frame</a>.`],
+    `This way the rendering details are handled by the existing canvas interfaces like <a href="https://developer.mozilla.org/pl/docs/Web/API/WebGL_API/Tutorial/Getting_started_with_WebGL" target="_blank" rel="noopener">WebGL context</a>
+        and the implementators very often delegate the rendering itself to the specialized libraries like <a href="https://aframe.io/" target="_blank" rel="noopener">A-Frame</a>.`],
   api: `<p><b>Older WebVR API</b></p>
       <dl>
         <dt><code>navigator.getVRDisplays()</code></dt>
@@ -54,8 +54,8 @@ export default new Feature({
     html: `<p><button type="button" id="startVRButton">Check for VR device</button></p>
 <ul id="result"></ul>
 <p>
-  <a href="https://webvr.info/samples/" target="_blank">Browse demos by Google</a><br/>
-  <a href="https://mozvr.com/mobile/" target="_blank">Browse demos by Mozilla</a>
+  <a href="https://webvr.info/samples/" target="_blank" rel="noopener">Browse demos by Google</a><br/>
+  <a href="https://mozvr.com/mobile/" target="_blank" rel="noopener">Browse demos by Mozilla</a>
 </p>`,
     js: `document.getElementById('startVRButton').addEventListener('click', function () {
   if (navigator.getVRDisplays) {

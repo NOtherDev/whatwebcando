@@ -60,7 +60,7 @@ export default new Feature({
 
 <p id="logTarget"></p>
 
-<p><small>Demo based on <a href="https://googlechrome.github.io/samples/cut-and-copy/index.html" target="_blank">Google Chrome examples</a>.</small></p>`,
+<p><small>Demo based on <a href="https://googlechrome.github.io/samples/cut-and-copy/index.html" target="_blank" rel="noopener">Google Chrome examples</a>.</small></p>`,
     js: `var logTarget = document.getElementById('logTarget');
 
 function useAsyncApi() {

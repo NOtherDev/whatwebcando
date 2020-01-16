@@ -6,7 +6,7 @@ export default new Feature({
   description: [`Allowing Web applications to access SMS and MMS messages on the device was a goal of <b>Messaging API</b>. 
         It was designed to cover the functionality of the native mobile messaging applications, including browsing, creating and managing the messages.
         Its early version was implemented only on now-defunct Firefox OS. As of late 2017 it was the only actual implementation of SMS messaging in the Web - no browser vendor expresses an interest anymore.`,
-    `There exists another SMS-related <a href="https://discourse.wicg.io/t/proposal-sign-up-api-for-web/1844" target="_blank">API proposal</a> to focus on SMS 
+    `There exists another SMS-related <a href="https://discourse.wicg.io/t/proposal-sign-up-api-for-web/1844" target="_blank" rel="noopener">API proposal</a> to focus on SMS 
         as a carrier of one-time password to be used in multiple factor authentication schemes. As of end of 2017 this proposal is still in early design phase.`],
   api: `<p><b>Firefox OS API</b></p>
       <dl>

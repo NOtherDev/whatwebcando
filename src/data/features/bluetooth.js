@@ -29,7 +29,7 @@ export default new Feature({
 
 <p id="target"></p>
 
-<p><small>Based on code snippets from <a href="https://developers.google.com/web/updates/2015/07/interact-with-ble-devices-on-the-web" target="_blank">Google Developers</a>.</small></p>`,
+<p><small>Based on code snippets from <a href="https://developers.google.com/web/updates/2015/07/interact-with-ble-devices-on-the-web" target="_blank" rel="noopener">Google Developers</a>.</small></p>`,
     js: `function readBatteryLevel() {
   var $target = document.getElementById('target');
   

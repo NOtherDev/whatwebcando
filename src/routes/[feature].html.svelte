@@ -354,12 +354,12 @@
             <div class="legend">
               <ul>
                 <li><i class="cl-support cl-support-no"></i> No support</li>
-                <li><i class="cl-support cl-support-partial"></i> Partial support, <a href="http://caniuse.com/#feat={feature.caniuseKey}" target="_blank" rel="noreferrer noopener">see details</a></li>
+                <li><i class="cl-support cl-support-partial"></i> Partial support, <a href="http://caniuse.com/#feat={feature.caniuseKey}" target="_blank" rel="noopener">see details</a></li>
                 <li><i class="cl-support cl-support-full"></i> Full support</li>
               </ul>
             </div>
             <div class="text-right">
-              <a href="http://caniuse.com/#feat={feature.caniuseKey}" target="_blank" rel="noreferrer noopener">Data from caniuse.com</a>, <small>CC-BY 4.0 license</small>
+              <a href="http://caniuse.com/#feat={feature.caniuseKey}" target="_blank" rel="noopener">Data from caniuse.com</a>, <small>CC-BY 4.0 license</small>
             </div>
           </div>
         </div>
@@ -371,7 +371,7 @@
         <h3>Resources</h3>
         <ul class="resources">
           {#each feature.links as link}
-            <li><a href={link.url} target="_blank">{link.title}</a></li>
+            <li><a href={link.url} target="_blank" rel="noopener">{link.title}</a></li>
           {/each}
         </ul>
       </section>

@@ -16,7 +16,7 @@ export default new Feature({
     `With <code>options</code> parameter the Web application might specify what kind of customer data it requires to be able to fulfill the request.
       It may require a shipping address (<code>requestShipping</code>), email (<code>requestPayerEmail</code>), phone (<code>requestPayerPhone</code>) 
       or name (<code>requestPayerName</code>).`,
-    `The only payment method available on iOS devices is <a href="https://www.apple.com/apple-pay/" target="_blank">Apple Pay</a> and it is only functional on devices with fingerprint authentication (Touch ID). It is accessible both via the standard Payment Request API described here as well as the older proprietary non-standard <code>ApplePaySession</code> API. The <code>basic-card</code> payments are not supported.`],
+    `The only payment method available on iOS devices is <a href="https://www.apple.com/apple-pay/" target="_blank" rel="noopener">Apple Pay</a> and it is only functional on devices with fingerprint authentication (Touch ID). It is accessible both via the standard Payment Request API described here as well as the older proprietary non-standard <code>ApplePaySession</code> API. The <code>basic-card</code> payments are not supported.`],
   api: `<dl>
         <dt><code>paymentRequest = new PaymentRequest(paymentMethods, details, options)</code></dt>
         <dd>Creates a payment request object with the requested amounts, currencies and methods configured.</dd>

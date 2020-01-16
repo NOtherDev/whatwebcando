@@ -36,7 +36,7 @@ export default  new Feature({
 <p>Remote video</p>
 <video autoplay id="remoteVideo" style="height:180px; width: 240px;"></video>
 
-<p><small>Demo by <a href="http://www.mcasas.tk/" target="_blank">Miguel Casas-Sanchez</a>.</small></p>`,
+<p><small>Demo by <a href="http://www.mcasas.tk/" target="_blank" rel="noopener">Miguel Casas-Sanchez</a>.</small></p>`,
     cssHidden: `video {
   background-color: #fff;
 }`,

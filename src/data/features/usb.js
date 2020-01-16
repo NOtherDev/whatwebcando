@@ -6,7 +6,7 @@ export default new Feature({
   description: [`The <b>WebUSB API</b> allows Web applications to interact with the Universal Serial Bus-compatible devices available in the system.
       In order to authorize the application to get the access to the device, user needs to confirm the intent in the browser's UI that in turn may only be 
       initiated with a gesture (for example, a button click, but not automatically by arbitrary JavaScript).`,
-    `The API is based on the <a href="http://www.usb.org/developers/docs/" target="_blank">USB 3.1 specification</a> and exposes all the USB primitives to JavaScript
+    `The API is based on the <a href="http://www.usb.org/developers/docs/" target="_blank" rel="noopener">USB 3.1 specification</a> and exposes all the USB primitives to JavaScript
        - including configurations, interfaces, endpoints and all the transfer types: CONTROL (suitable for commands), INTERRUPT (suitable for small time-sensitive data), 
        BULK (suitable for large time-sensitive data) and ISOCHRONOUS (suitable for streams, for example media)`,
     `The specification, apart from the JavaScript API, defines a Platform Descriptor object that might be implemented at the device side to advertize its
@@ -14,7 +14,7 @@ export default new Feature({
   api: `<p><b>Connecting to the device</b></p>
       <dl>
         <dt><code>navigator.usb.requestDevice(filters)</code></dt>
-        <dd>Returns the <code>Promise</code> resolved with the device object that matches the specified filter by <a href="http://www.linux-usb.org/usb.ids">predefined</a>
+        <dd>Returns the <code>Promise</code> resolved with the device object that matches the specified filter by <a href="http://www.linux-usb.org/usb.ids" target="_blank" rel="noopener">predefined</a>
          vendor ID, product ID, class or subclass code, protocol code or serial number.</dd>
         <dt><code>navigator.usb.getDevices()</code></dt>
         <dd>Returns the <code>Promise</code> resolved with the device objects for the devices previously authorized for this application.</dd>
@@ -58,7 +58,7 @@ export default new Feature({
 
 <div id="target"></div>
 
-<p><small>Demo from <a href="https://developers.google.com/web/updates/2016/03/access-usb-devices-on-the-web" target="_blank">Google Developers</a> article.</small></p>`,
+<p><small>Demo from <a href="https://developers.google.com/web/updates/2016/03/access-usb-devices-on-the-web" target="_blank" rel="noopener">Google Developers</a> article.</small></p>`,
     js: `document.getElementById('arduinoButton').addEventListener('click', function () {
   if (navigator.usb) {
     talkToArduino();

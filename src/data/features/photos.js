@@ -19,7 +19,7 @@ export default new Feature({
 <p><button onclick="takePhoto()">Take Photo!</button></p>
 <p><img id="imageTag" width="240" height="180"></p>
 
-<p><small>Demo by <a href="http://www.mcasas.tk/" target="_blank">Miguel Casas-Sanchez</a>.</small></p>`,
+<p><small>Demo by <a href="http://www.mcasas.tk/" target="_blank" rel="noopener">Miguel Casas-Sanchez</a>.</small></p>`,
     js: `function getUserMedia(options, successCallback, failureCallback) {
   var api = navigator.getUserMedia || navigator.webkitGetUserMedia ||
     navigator.mozGetUserMedia || navigator.msGetUserMedia;

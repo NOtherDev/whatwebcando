@@ -4,15 +4,15 @@ export default new Feature({
   id: 'offline',
   name: 'Offline Mode',
   description: [`Web applications can provide the offline experience using two techniques. The older implementation,
-        <b>Application Cache</b>, is <a href="http://caniuse.com/#feat=offline-apps" target="_blank">widely implemented</a> in the browsers,
-        but is now in the process of deprecation due to <a href="http://alistapart.com/article/application-cache-is-a-douchebag" target="_blank">various
+        <b>Application Cache</b>, is <a href="http://caniuse.com/#feat=offline-apps" target="_blank" rel="noopener">widely implemented</a> in the browsers,
+        but is now in the process of deprecation due to <a href="http://alistapart.com/article/application-cache-is-a-douchebag" target="_blank" rel="noopener">various
         conceptual and design flaws</a>. It is not covered here.`,
     `The modern alternative is called <b>Service Worker</b>. Web applications running on HTTPS can request the browser to install the separate
         code unit called Service Worker. This unit is then run in separation from the owning Web application, communicating with it via events.
         Besides being the enabler for multiple complex APIs like <a href="/push-notifications.html">Push Notifications</a>, <a href="/background-sync.html">Background Sync</a>
         or <a href="/geofencing.html">Geofencing</a>, it can work as a fully featured network proxy. It can intercept all the HTTP requests, alter its content or behaviors,
         or - most notably - manage offline caching.`,
-    `<small>Code examples adapted from <a href="http://www.html5rocks.com/en/tutorials/service-worker/introduction/" target="_blank">HTML5 Rocks article</a>.</small>`],
+    `<small>Code examples adapted from <a href="http://www.html5rocks.com/en/tutorials/service-worker/introduction/" target="_blank" rel="noopener">HTML5 Rocks article</a>.</small>`],
   api: `<p><b>Within the owning Web application - Installation</b></p>
         <dl>
           <dt><code>navigator.serviceWorker.register(path)</code></dt>

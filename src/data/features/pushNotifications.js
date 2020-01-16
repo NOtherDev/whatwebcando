@@ -10,7 +10,7 @@ export default new Feature({
          payload and can request displaying custom action buttons.`,
     `The Web Platform standard for Push Messages, <b>Push API</b>, utilizes the powerful concept of <b><a href="/offline.html">Service
          Workers</a></b>, code units installable by the Web app that execute separately from the app itself. Push API also requires HTTPS installation.`,
-    `There is also a non-standard <a href="https://developer.apple.com/library/mac/documentation/NetworkingInternet/Conceptual/NotificationProgrammingGuideForWebsites/PushNotifications/PushNotifications.html#//apple_ref/doc/uid/TP40013225-CH3-SW1" target="_blank">proprietary
+    `There is also a non-standard <a href="https://developer.apple.com/library/mac/documentation/NetworkingInternet/Conceptual/NotificationProgrammingGuideForWebsites/PushNotifications/PushNotifications.html#//apple_ref/doc/uid/TP40013225-CH3-SW1" target="_blank" rel="noopener">proprietary
          solution available for OS X in Safari</a>, based on Apple's own notification service, with the workflow similar to standard Push API, available via
           <code>window.safari.pushNotification</code> interface.`
   ],

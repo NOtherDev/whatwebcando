@@ -9,9 +9,9 @@ export default new Feature({
        to put all the metadata associated with the Web application.`,
     `Having the Web Manifest is one of the key factors (apart from being served via HTTPS and providing
        a <a href="/offline.html">Service Worker-based offline behavior</a>) for the Web applications to be treated
-       as a <a href="https://developers.google.com/web/progressive-web-apps" target="_blank">Progressive Web App</a>. Such applications
+       as a <a href="https://developers.google.com/web/progressive-web-apps" target="_blank" rel="noopener">Progressive Web App</a>. Such applications
        get non-obtrusive "add to home screen" banners in most Android browsers.`,
-    `Browser-assisted adding to the home screen is also possible on iOS using <a href="https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html" target="_blank">non-standard Apple meta tags</a>
+    `Browser-assisted adding to the home screen is also possible on iOS using <a href="https://developer.apple.com/library/ios/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html" target="_blank" rel="noopener">non-standard Apple meta tags</a>
        describing icons and allowing to run without the Safari UI (standalone mode).`],
   api: `<p><b>Manifest Elements</b></p>
 <pre><code>{

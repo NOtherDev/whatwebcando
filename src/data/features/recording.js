@@ -19,7 +19,7 @@ export default new Feature({
 <p><button onclick="getStream()">Grab video & start recording</button></p>
 <p><button onclick="download()">Download!</button></p>
   
-<p><small>Demo by <a href="http://www.mcasas.tk/" target="_blank">Miguel Casas-Sanchez</a>.</small></p>`,
+<p><small>Demo by <a href="http://www.mcasas.tk/" target="_blank" rel="noopener">Miguel Casas-Sanchez</a>.</small></p>`,
     cssHidden: `video {
   background-color: #fff;
 }`,
