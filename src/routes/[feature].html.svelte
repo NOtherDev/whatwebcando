@@ -171,6 +171,10 @@
         background-color: #fff;
       }
     }
+
+    :global(pre) {
+      white-space: normal;
+    }
   }
 
   .tabs {

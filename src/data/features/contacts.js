@@ -4,16 +4,17 @@ export default new Feature({
   id: 'contacts',
   name: 'Contacts',
   description: [`The <b>Contacts API</b> gives privileged Web applications a programmatic access to the user's address book maintained in the system.`,
+    `The only implementation as of early 2020 is available in Google Chrome 80+. It targets 
+         specifically the read-only scenario of picking the contacts to be used within the client application only – no modification is to be supported by the API. 
+         It invokes platform-level contact picker and exposes to the querying application only the data selected by the user. It is only available on Android`,
     `The initial version of the API was created for Firefox OS back in 2013 and implemented in Firefox. It allowed reading & modifying the contacts through the vCard-like format.
          It was soon <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=927869" target="_blank" rel="noopener">disabled</a> due to implementation flaws, though.`,
-    `The second proposal to provide Web applications with the ability to interact with the address book was initiated by Google Chrome in late 2018. The new proposal targets 
-         specifically the read-only scenario of picking the contacts to be used within the client application only – no modification is to be supported by the API. The proposal is not yet implemented, though.`,
     `Regardless from the programmatic access to the contacts API availability, the Web applications might ask for pre-filling the form data from the device address book with the help of 
          <a href="https://www.w3.org/TR/html51/sec-forms.html#element-attrdef-autocompleteelements-autocomplete" target="_blank" rel="noopener">form elements' <code>autocomplete</code> attribute values</a>.`],
   api: `<p><b>Google Chrome proposal (2018)</b></p>
       <dl>
-        <dt><code>navigator.contacts.select(filterOptions)</code></dt>
-        <dd>Returns a <code>Promise</code> resolved with the array of contacts from the address book according to the criteria specified.</dd>
+        <dt><code>navigator.contacts.select(properties, options)</code></dt>
+        <dd>Returns a <code>Promise</code> resolved with the array of contact properties from the address book selected by the user.</dd>
       </dl>
       <p><b>Firefox OS API (2013)</b></p>
       <dl>
@@ -41,10 +42,7 @@ export default new Feature({
   var api = (navigator.contacts || navigator.mozContacts);
     
   if (api && !!api.select) { // new Chrome API
-    api.select({
-      properties: ['name', 'email'],
-      multiple: true
-    })
+    api.select(['name', 'email'], {multiple: true})
       .then(function (contacts) {
         consoleLog('Found ' + contacts.length + ' contacts.');
         if (contacts.length) {
@@ -83,7 +81,8 @@ function consoleLog(data) {
 }`
   },
   links: [
-    {url: 'https://github.com/beverloo/contact-api', title: 'Specification Proposal by Google Chrome (2018)'},
+    {url: 'https://web.dev/contact-picker/', title: 'A contact picker for the web'},
+    {url: 'https://wicg.github.io/contact-api/spec/', title: 'Unofficial Specification Proposal Draft'},
     {
       url: 'https://cloudfour.com/thinks/autofill-what-web-devs-should-know-but-dont/',
       title: 'Article about auto-fill attribute values support'
