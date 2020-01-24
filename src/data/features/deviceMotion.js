@@ -4,13 +4,15 @@ export default new Feature({
   id: 'device-motion',
   aliases: ['accelerometer'],
   name: 'Device Motion',
-  description: [`The first-generation device motions support is a part of <b>Device Orientation API</b>. It allows Web applications to access the accelerometer data
+  description: [
+    `The first-generation device motions support is a part of <b>Device Orientation API</b>. It allows Web applications to access the accelerometer data
         expressed as acceleration (in m/s<sup>2</sup>) and gyroscope data expressed as rotation angle change (in &deg;/s) for each of the three dimensions, provided as events.`,
-    `There also exist the newer, separate specifications for each sensor type, based on the <b>Generic Sensor API</b> - the APIs providing direct access to the readings
+    `Since mid-2018 the newer, separate specifications for each sensor type, based on the <b>Generic Sensor API</b> are being introduced. The APIs providing direct access to the readings
         of physical devices (<b>Accelerometer API</b>, <b>Gyroscope API</b> and <b>Magnetometer API</b>) as well as high-level fusion sensors made up by combining
-         the readings of the physical sensors (<b>Linear Acceleration Sensor API</b> and <b>Gravity Sensor API</b>). The newer API is available experimentally in Google Chrome via <a href="https://github.com/GoogleChrome/OriginTrials/blob/gh-pages/developer-guide.md" target="_blank" rel="noopener">Origin Trial</a> up until April 2018.`,
-    `For the detection of the device's static position and orientation, see <a href="/device-position.html">Device Position</a>.`],
-  api: `<p><b>As a part of Device Orientation API</b></p>
+         the readings of the physical sensors (<b>Linear Acceleration Sensor API</b> and <b>Gravity Sensor API</b>).`,
+    `For the detection of the device's static position and orientation, see <a href="/device-position.html">Device Position</a>.`
+  ],
+  api: `<p><b>As a part of (older) Device Orientation API</b></p>
       <dl>
         <dt><code>window.addEventListener('devicemotion', listener)</code></dt>
         <dd>An event fired when the significant changes in the device's acceleration or rotation has occured.</dd>
