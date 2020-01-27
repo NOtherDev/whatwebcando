@@ -44,7 +44,10 @@ export default new Feature({
     html: `<p>
   <button onclick="waitForSms()">Wait for SMS</button>
 </p>
-<p>The demo is using <b>SMS Receiver API</b>. No message is delivered.</p>`,
+<p>The demo is using <b>SMS Receiver API</b>.<br/>
+  Try sending yourself a following message:</p>
+   <pre>Code: 123ABC<br/>
+   For: https://whatwebcando.today/sms.html</pre>`,
     js: `function waitForSms() {
   if ('sms' in navigator && 'receive' in navigator.sms) {
     navigator.sms.receive()
