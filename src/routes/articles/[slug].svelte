@@ -69,7 +69,7 @@
 
   if (process.browser) {
     onMount(() => {
-      Prism.highlightAll();
+      Prism.highlightAll({async: true});
     })
   }
 </script>

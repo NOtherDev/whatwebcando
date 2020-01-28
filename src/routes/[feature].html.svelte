@@ -23,8 +23,8 @@
 	import {CaniuseReportFetch} from "../utils/caniuse";
   import {cleanAndRunScript, runOneOffScript} from "../utils/demoUtils";
 
-  const runTests = async () => {
-    return Promise.all((feature.tests || []).map(async test => {
+  const runTests = async (tests) => {
+    return Promise.all((tests || []).map(async test => {
       const result = await test.result
       let bgClass = 'default';
 
@@ -45,11 +45,29 @@
   if (process.browser) {
     const initVisuals = () => {
       if (feature && feature.api) {
-       Prism.highlightAll();
+        Prism.highlightAll({async: true});
       }
 
       if (feature && feature.demo) {
-       cleanAndRunScript(feature.demo.js)
+        const jsDemo = document.querySelector('#demo-code-content-js .language-javascript')
+        if (jsDemo) {
+          jsDemo.innerHTML = feature.demo.js
+          Prism.highlightElement(jsDemo)
+        }
+
+        const htmlDemo = document.querySelector('#demo-code-content-html .language-html')
+        if (htmlDemo) {
+          htmlDemo.innerHTML = feature.demo.html.replace(/</g, '&lt;')
+          Prism.highlightElement(htmlDemo)
+        }
+
+        const cssDemo = document.querySelector('#demo-code-content-css .language-css')
+        if (cssDemo) {
+          cssDemo.innerHTML = feature.demo.css
+          Prism.highlightElement(cssDemo)
+        }
+
+        cleanAndRunScript(feature.demo.js)
       }
     }
 
@@ -58,10 +76,12 @@
     afterUpdate(async () => {
       initVisuals()
 
-      if (feature && feature.caniuseKey && (!feature.caniuseReport || feature.caniuseReport.feature !== feature.caniuseKey)) {
-        const report = await new CaniuseReportFetch(feature).fetch()
-        feature.caniuseReport = report
-        report.initVisuals()
+      if (feature && feature.caniuseKey) {
+        if (!feature.caniuseReport || feature.caniuseReport.feature !== feature.caniuseKey) {
+          const report = await new CaniuseReportFetch(feature).fetch()
+          feature.caniuseReport = report
+        }
+        feature.caniuseReport.initVisuals()
       }
     })
   }
@@ -296,7 +316,7 @@
     {/if}
 
     {#if process.browser}
-      {#await runTests() then tests}
+      {#await runTests(feature.tests) then tests}
         <section class="feature-tests" aria-hidden="true">
           <h3>Support in your browser</h3>
           <div>
