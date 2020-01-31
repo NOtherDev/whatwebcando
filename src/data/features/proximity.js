@@ -4,7 +4,7 @@ export default new Feature({
   id: 'proximity',
   name: 'Proximity Sensors',
   description: [`The <b>Proximity Events API</b> allows Web applications to get the access to the data from the device's proximity sensors, detecting whether there is a physical object near the device.`,
-    `The first approach to supporting proximity sensor on the Web - as a standalone API - was implemented in Firefox. Since then the specification was rewritten to make use of the new <b>Generic Sensors API</b>, but no vendor implemented that spec as of September 2017.`],
+    `The first approach to supporting proximity sensor on the Web - as a standalone API - was implemented in Firefox. Since then the specification was rewritten to make use of the new <b>Generic Sensors API</b>, but no vendor implemented that spec as of early 2020.`],
   api: `<p><b>The old, standalone API</b></p>
       <dl>
         <dt><code>window.addEventListener('deviceproximity', listener)</code></dt>

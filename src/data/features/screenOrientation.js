@@ -7,7 +7,7 @@ export default new Feature({
   description: [`The <b>Screen Orientation API</b> allows Web applications to get the information about the current orientation of the document
         (portrait or landscape) as well as to lock the screen orientation in a requested state.`,
     `The current version of the specification defines this feature fully within <code>window.screen.orientation</code> object. The previous version,
-        still available in Microsoft Edge as of June 2017, separated the orientation lock to <code>window.screen.lockOrientation</code>.`
+        implemented once in Microsoft Edge, separated the orientation lock to <code>window.screen.lockOrientation</code>.`
   ],
   api: `<dl>
         <dt><code>window.screen.orientation.type</code></dt>

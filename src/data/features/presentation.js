@@ -39,6 +39,7 @@ export default new Feature({
     Feature.navigatorContains('presentation'),
     Feature.windowContains('PresentationRequest')
   ],
+  // caniuse: 'mdn-api_presentation',
   links: [
     {url: 'https://w3c.github.io/presentation-api/', title: 'Specification Draft'},
     {url: 'https://www.w3.org/community/webscreens/presentation-api-demos/', title: 'Presentation API demos'},

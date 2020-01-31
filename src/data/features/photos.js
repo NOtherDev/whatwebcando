@@ -77,6 +77,7 @@ function takePhoto() {
     .catch(err => alert('Error: ' + err));
 }`
   },
+  // caniuse: 'mdn-api_imagecapture',
   links: [
     {url: 'https://w3c.github.io/mediacapture-image/', title: 'W3C Specification Draft'},
     {

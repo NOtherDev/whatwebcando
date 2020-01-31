@@ -20,6 +20,7 @@ export default new Feature({
     html: `Your device memory is ~<b id="result">unknown</b> GiB.`,
     js: `document.getElementById('result').innerHTML = navigator.deviceMemory || 'unknown'`
   },
+  // caniuse: 'mdn-api_navigator_devicememory',
   links: [
     {url: 'https://w3c.github.io/device-memory/', title: 'Specification Draft'}
   ]

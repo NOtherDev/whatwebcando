@@ -4,7 +4,7 @@ export default new Feature({
   id: 'ambient-light',
   name: 'Ambient Light',
   description: [`The <b>Ambient Light API</b> allows Web applications to access the light intensity level measured by the device's light sensor, normally built-in with the device's camera.`,
-    `The first approach to supporting light intensity sensor on the Web - as a standalone API - was implemented in Firefox back in 2013. Since then the specification was rewritten to make use of the new <b>Generic Sensors API</b>. This flavor, as of summer 2017, is implemented in Microsoft Edge and - behind the "Experimental Web Platform Features" flag - in Google Chrome.`],
+    `The first approach to supporting light intensity sensor on the Web - as a standalone API - was implemented in Firefox back in 2013. Since then the specification was rewritten to make use of the new <b>Generic Sensors API</b>. This flavor, as of early 2020, is only experimentally implemented in Google Chrome, behind the "Generic Sensor Extra Classes" flag.`],
   api: `<p><b>The old, standalone API</b></p>
       <dl>
         <dt><code>window.addEventListener('devicelight', listener)</code></dt>

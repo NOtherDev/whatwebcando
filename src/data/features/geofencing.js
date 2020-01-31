@@ -4,7 +4,7 @@ export default new Feature({
   id: 'geofencing',
   name: 'Geofencing',
   description: [`The <b>Geofencing API</b> allow authorized Web applications to define geographic areas and receive notifications when the device enters or leaves these areas without the need to periodically query the <a href="/geolocation.html">Geolocation API</a>. Thanks to the Service Worker being employed that allows code execution outside of the lifecycle of the owning Web application, the notification may be also received while the app is not opened in the browser.`,
-    `As of August 2016, no vendor implemented the API and the proposal seems to be abandoned.`],
+    `As of early 2020, no vendor implemented the API and the proposal seems to be abandoned.`],
   api: `<dl>
         <dt><code>region = new CircularGeofenceRegion({name, latitude, longitude, radius})</code></dt>
         <dd>Creates a circular region definition with the coordinates and radius specified.</code></dt>
