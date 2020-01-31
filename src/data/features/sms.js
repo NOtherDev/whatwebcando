@@ -51,7 +51,7 @@ export default new Feature({
     js: `function waitForSms() {
   if ('sms' in navigator && 'receive' in navigator.sms) {
     navigator.sms.receive()
-      .then((content) => alert('SMS received: ' + content))
+      .then((content) => alert('SMS received: ' + JSON.stringify(content)))
       .catch((error) => alert('SMS receiving error: ' + error));
   } else {
     alert('SMS Receiver API not supported');
