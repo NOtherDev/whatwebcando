@@ -7,7 +7,7 @@ export default new Feature({
     `Allowing Web applications to gain full access to SMS and MMS messaging system on the device was a goal of <b>Messaging API</b>. 
         It was designed to cover the functionality of the native mobile messaging applications, including browsing, creating and managing the messages.
         Its early version, different than the later Messaging API proposal, was implemented only on now-defunct Firefox OS and it was the only actual implementation of SMS messaging in the Web - no browser vendor expresses an interest anymore due to privacy and security reasons.`,
-    `As of early 2020, there exists another <a href="https://github.com/samuelgoto/sms-receiver/blob/master/README.md" target="_blank" rel="noopener">API proposal</a> - <b>SMS Receiver API</b> – focusing on the narrower task of delivering one-time password message when requested, to be used in multiple factor authentication schemes. The API is implemented only in Chrome 78+ and available for experimentation via <a href="https://developers.chrome.com/origintrials/#/view_trial/607985949695016961">Origin Trial</a> mechanism. It relies on the specific message format – the message is expected to contain the requesting app's URL.`
+    `As of early 2020, there exists another <a href="https://github.com/samuelgoto/sms-receiver/blob/master/README.md" target="_blank" rel="noopener">API proposal</a> - <b>SMS Receiver API</b> – focusing on the narrower task of delivering one-time password message when requested, to be used in multiple factor authentication schemes. The experimental version of the API is implemented only in Chrome 78+ for Android and available  via <a href="https://developers.chrome.com/origintrials/#/view_trial/607985949695016961">Origin Trial</a> mechanism. It relies on the specific message format – the message is expected to contain the requesting app's URL as well as the browser specific app hash (which is to be removed before public release of the API).`
   ],
   api: `<p><b>SMS Receiver API proposal (Chrome 78+ experimentation)</b></p>
       <dl>
@@ -44,10 +44,10 @@ export default new Feature({
     html: `<p>
   <button onclick="waitForSms()">Wait for SMS</button>
 </p>
-<p>The demo is using <b>SMS Receiver API</b>.<br/>
+<p>The demo is using <b>SMS Receiver API</b>. It is supposed to run on Chrome (stable) on Android only.<br/>
   Try sending yourself a following message:</p>
    <pre>Code: 123ABC<br/>
-   For: https://whatwebcando.today/sms.html</pre>`,
+   For: https://whatwebcando.today/sms.html?otp=123ABC&apphash=EvsSSj4C6vl</pre>`,
     js: `function waitForSms() {
   if ('sms' in navigator && 'receive' in navigator.sms) {
     navigator.sms.receive()
