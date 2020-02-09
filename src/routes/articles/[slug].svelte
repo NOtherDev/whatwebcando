@@ -63,7 +63,7 @@
 
   import Meta from '../../components/Meta.svelte';
   import Article from '../../components/Article.svelte';
-  import Advertisement from '../../components/Advertisement.svelte';
+  import PromoBox from '../../components/PromoBox.svelte';
 
   export let article;
   export let otherArticles;
@@ -200,7 +200,7 @@
   </main>
 
   <aside>
-    <Advertisement/>
+    <PromoBox/>
 
     <h2>See also</h2>
 
