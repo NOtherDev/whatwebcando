@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "sapper dev",
     "build": "sapper build --legacy",
-    "export": "mv dist/.git __sapper__/_tmp_dist_git && (sapper export dist --legacy || true) && mv __sapper__/_tmp_dist_git dist/.git && (cd dist && git add .)",
+    "export": "mv dist/.git __sapper__/_tmp_dist_git && (sapper export dist --legacy || true) && mv __sapper__/_tmp_dist_git dist/.git && (cd dist && git add --ignore-removal . && git commit -m \"Update to $(cd .. && git rev-parse HEAD)\" && git push && git reseth)",
     "start": "node __sapper__/build",
     "cy:run": "cypress run",
     "cy:open": "cypress open",
