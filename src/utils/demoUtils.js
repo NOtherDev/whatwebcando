@@ -19,6 +19,6 @@ export function cleanAndRunScript(script) {
 }
 
 export function runOneOffScript(script) {
-  runScript(script, 'oneOffScript');
   cleanScript('oneOffScript');
+  runScript(script, 'oneOffScript');
 }
