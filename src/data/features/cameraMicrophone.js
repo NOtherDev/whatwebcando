@@ -25,8 +25,8 @@ export default new Feature({
       <pre><code>navigator.webkitGetUserMedia(constraints, successCallback, errorCallback)</code></pre>`,
   caniuse: 'stream',
   tests: [
+    Feature.navigatorContains('mediaDevices'),
     Feature.navigatorContains('getUserMedia'),
-    Feature.navigatorContains('mediaDevices')
   ],
   demo: {
     html: `<div class="columns">
@@ -38,19 +38,29 @@ export default new Feature({
   <div class="column">
     <p><button type="button" onclick="getStream('audio')">Grab audio</button></p>
     
-    <audio controls autoplay></audio>
+    <audio controls></audio>
   </div>
 </div>`,
-    js: `function getUserMedia(options, successCallback, failureCallback) {
-  var api = navigator.getUserMedia || navigator.webkitGetUserMedia ||
+    js: `function getUserMedia(constraints) {
+  // if Promise-based API is available, use it
+  if (navigator.mediaDevices) {
+    return navigator.mediaDevices.getUserMedia(constraints);
+  }
+    
+  // otherwise try falling back to old, possibly prefixed API...
+  var legacyApi = navigator.getUserMedia || navigator.webkitGetUserMedia ||
     navigator.mozGetUserMedia || navigator.msGetUserMedia;
-  if (api) {
-    return api.bind(navigator)(options, successCallback, failureCallback);
+    
+  if (legacyApi) {
+    // ...and promisify it
+    return new Promise(function (resolve, reject) {
+      legacyApi.bind(navigator)(constraints, resolve, reject);
+    });
   }
 }
 
 function getStream (type) {
-  if (!navigator.getUserMedia && !navigator.webkitGetUserMedia &&
+  if (!navigator.mediaDevices && !navigator.getUserMedia && !navigator.webkitGetUserMedia &&
     !navigator.mozGetUserMedia && !navigator.msGetUserMedia) {
     alert('User Media API not supported.');
     return;
@@ -58,19 +68,24 @@ function getStream (type) {
 
   var constraints = {};
   constraints[type] = true;
-  getUserMedia(constraints, function (stream) {
-    var mediaControl = document.querySelector(type);
-    
-    if ('srcObject' in mediaControl) {
-      mediaControl.srcObject = stream;
-    } else if (navigator.mozGetUserMedia) {
-      mediaControl.mozSrcObject = stream;
-    } else {
-      mediaControl.src = (window.URL || window.webkitURL).createObjectURL(stream);
-    }
-  }, function (err) {
-    alert('Error: ' + err);
-  });
+  
+  getUserMedia(constraints)
+    .then(function (stream) {
+      var mediaControl = document.querySelector(type);
+      
+      if ('srcObject' in mediaControl) {
+        mediaControl.srcObject = stream;
+      } else if (navigator.mozGetUserMedia) {
+        mediaControl.mozSrcObject = stream;
+      } else {
+        mediaControl.src = (window.URL || window.webkitURL).createObjectURL(stream);
+      }
+      
+      mediaControl.play();
+    })
+    .catch(function (err) {
+      alert('Error: ' + err);
+    });
 }`
   },
   links: [
