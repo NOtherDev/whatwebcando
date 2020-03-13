@@ -7,7 +7,7 @@ description: Most of the browsers nowadays, including mobile browsers, allow the
 
 [Most of the browsers nowadays](https://caniuse.com/#feat=stream), including mobile browsers, allow the applications to retrieve and use the data stream coming directly from the user's device camera. But it's very common for the devices nowadays to have more than one camera available and we might have a preference which of these cameras is better suited for our app's needs. Fortunately, the [Media Stream API](https://developer.mozilla.org/en-US/docs/Web/API/Media_Streams_API) has us covered.
 
-# Media Stream API
+## Media Stream API
 
 Let's first remind ourselves how do we access the video stream from the user's camera at all. The API sits in `navigator.mediaDevices` and is generic in terms of what kind of media stream it serves. We must specify. that we're particularly interested in video stream. This selects the proper device as well as displays the informative permission prompt for the user. If we requested video only, the browser will ask for a camera access. If we also wants audio, the prompt will include both camera and microphone.
 
@@ -35,7 +35,7 @@ video.play();
 
 Now, our `<video>` element will transmit the stream from the camera. So if the front camera is in use it will act as a mirror. But how do we ensure the proper one is used?
 
-# Selecting facing mode of the video stream
+## Selecting facing mode of the video stream
 
 When we were acquiring the stream, we passed an object as a `getUserMedia` parameter. This object is a stream constraint definition. We only constrained the stream to include video (and audio) so far. But we can apply tighter constraint:
 
@@ -63,7 +63,7 @@ const stream = await navigator.mediaDevices.getUserMedia({
 
 Now, if the device only has an environment-facing camera, we'd not get any stream and the Promise will be rejected with `OverconstrainedError`.
 
-# More constraints
+## More constraints
 
 Facing mode is not the only constraint specified by the Media Stream API. We may see the full list of constraint options using `navigator.mediaDevices.getSupportedConstraints()` call. And this list might be quite impressive. This is what Chrome 80 on macOS lists as available:
 
@@ -135,7 +135,7 @@ const stream = await navigator.mediaDevices.getUserMedia({
 
 The browser now will not provide a stream if it's not possible to find one with at least 1280x720 size.
 
-# Selecting both size and facing mode
+## Selecting both size and facing mode
 
 As the constraint is an object, nothing stops us from specifying more requirements, possibly with different modifiers. The browser will try to match as many as possible when providing the stream and in case we used `exact` or `min` modifiers that can't be satisfied, it will again reject the promise with `OverconstrainedError`.
 
