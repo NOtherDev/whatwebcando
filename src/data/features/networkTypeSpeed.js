@@ -36,10 +36,12 @@ function updateNetworkInfo(info) {
 
 var info = getConnection();
 if (info) {
-  info.addEventListener('change', updateNetworkInfo);
+  info.onchange = function (event) {
+    updateNetworkInfo(event.target);
+  }
   updateNetworkInfo(info);
 }`,
-    jsOnExit: `if (info) info.removeEventListener('change', updateNetworkInfo);`
+    jsOnExit: `if (info) info.onchange = null;`
   },
   links: [
     {url: 'https://wicg.github.io/netinfo/', title: 'Specification Draft'},
