@@ -1,4 +1,4 @@
-import {Feature} from "../../utils/feature";
+import {Feature} from "../../utils/feature.js";
 
 export default new Feature({
   id: 'foreground-detection',

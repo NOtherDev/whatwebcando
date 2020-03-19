@@ -2,10 +2,12 @@
   "name": "whatwebcando",
   "description": "Can I rely on the Web Platform features to build my app? An overview of the device integration HTML5 APIs",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "sapper dev",
     "build": "sapper build --legacy",
     "export": "mv dist/.git __sapper__/_tmp_dist_git && (sapper export dist --legacy || true) && mv __sapper__/_tmp_dist_git dist/.git",
+    "export-aliases": "node deploy/aliases.mjs",
     "start": "node __sapper__/build",
     "cy:run": "cypress run",
     "cy:open": "cypress open",

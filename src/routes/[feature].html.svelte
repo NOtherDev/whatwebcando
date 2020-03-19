@@ -6,6 +6,11 @@
 	  const feature = features.find(x => x.id === params.feature)
 		if (feature) {
 			return {feature};
+		}
+
+		const aliased = features.find(x => x.aliases.includes(params.feature))
+		if (aliased) {
+		  this.redirect(301, `/${aliased.id}.html`);
 		} else {
 			this.error(404, 'Feature not found');
 		}
