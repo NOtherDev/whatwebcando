@@ -188,9 +188,9 @@ const groups = [
         "name": "Background Sync"
       },
       {
-        "id": "app-communication",
+        "id": "sharing",
         "icon": "mdi-action-explore",
-        "name": "Inter-App Communication"
+        "name": "Inter-App Sharing"
       },
       {
         "id": "payments",

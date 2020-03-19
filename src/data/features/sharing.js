@@ -1,8 +1,9 @@
 import {Feature} from "../../utils/feature.js";
 
 export default new Feature({
-  id: 'app-communication',
-  name: 'Inter-App Communication',
+  id: 'sharing',
+  aliases: ['app-communication'],
+  name: 'Inter-App Sharing',
   description: [
     `There were several attempts to establish the universal, multi-platform, asynchronous way of data exchange from the Web applications to native apps or another Web apps. The implementation that is being introduced since 2017, available on Android and iOS, <b>Web Share API</b>, consists of a method to invoke the platform-specific share mechanism, passing named URL to it. Additionally, Google Chrome on Android supports sharing file objects.`,
     `There is a complementary <b>Web Share Target API</b> available in Android since Chrome 71 (late 2018) to allow registering <a href="/installation.html">installed Web Application</a> to be available in the platform-specific share mechanism. It is based on the <code>share_target</code> definition in the app's Manifest file. This way the user is able to send data to the specified endpoint in the application from any other application (Web or native) installed in the system.`,

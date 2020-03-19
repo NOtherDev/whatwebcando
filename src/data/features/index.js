@@ -30,7 +30,7 @@ import wakeLock from "./wakeLock.js";
 import photos from "./photos.js";
 import presentation from "./presentation.js";
 import backgroundSync from "./backgroundSync.js";
-import appCommunication from "./appCommunication.js";
+import sharing from "./sharing.js";
 import recording from "./recording.js";
 import realtime from "./realtime.js";
 import geofencing from "./geofencing.js";
@@ -75,7 +75,7 @@ const features = [
   photos,
   presentation,
   backgroundSync,
-  appCommunication,
+  sharing,
   recording,
   realtime,
   geofencing,
