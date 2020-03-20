@@ -3,8 +3,12 @@ import {Feature} from "../../utils/feature.js";
 export default new Feature({
   id: 'geofencing',
   name: 'Geofencing',
-  description: [`The <b>Geofencing API</b> allow authorized Web applications to define geographic areas and receive notifications when the device enters or leaves these areas without the need to periodically query the <a href="/geolocation.html">Geolocation API</a>. Thanks to the Service Worker being employed that allows code execution outside of the lifecycle of the owning Web application, the notification may be also received while the app is not opened in the browser.`,
-    `As of early 2020, no vendor implemented the API and the proposal seems to be abandoned.`],
+  description: [
+    `The <b>Geofencing API</b> allow authorized Web applications to define geographic areas and receive notifications when the device enters or leaves these areas without the need to periodically query the <a href="/geolocation.html">Geolocation API</a>. Thanks to the Service Worker being employed that allows code execution outside of the lifecycle of the owning Web application, the notification may be also received while the app is not opened in the browser.`,
+    `As of early 2020, no vendor implemented the API and the proposal seems to be abandoned.`,
+    `There is however a new concept under experimentation in Google Chrome that might cover some of the aspects of Geofencing in the future - location-based Notification Triggers. 
+    See <a href="/scheduler.html">Task Scheduling</a> for more information.`
+  ],
   api: `<dl>
         <dt><code>region = new CircularGeofenceRegion({name, latitude, longitude, radius})</code></dt>
         <dd>Creates a circular region definition with the coordinates and radius specified.</code></dt>
