@@ -8,11 +8,11 @@ export default new Feature({
         the code execution model that is separated from the owning Web application. This allows the Background Sync to operate also after 
         the application window was closed.`,
     `The API itself is only a way of signaling the application about the restored connectivity. It might be used together with any
-        <a href="storage.html">Offline Storage</a> solution to implement a data synchronization scheme or a replay mechanism for 
+        <a href="/storage.html">Offline Storage</a> solution to implement a data synchronization scheme or a replay mechanism for 
         the network requests issued when the application was offline`,
-    `The specification previously planned the second mode of operation - as a periodic sync, useful for automatic data synchronization 
-        from the internet - but this mode was dropped before it was implemented by any browser vendor.`,
-    `As of December 2017, the API is only implemented in Google Chrome.`],
+    `As of early 2020, the API is only implemented in Chromium-based browsers.`,
+    `The specification is complemented with <a href="/scheduler.html">Periodic Background Sync</a> that allows requesting periodic events waking up the Service Worker, useful for automatic data synchronization scenarios.`,
+    ],
   api: `<dl>
         <dt><code>serviceWorkerRegistration.sync.register('syncTag')</code></dt>
         <dd>Requests an one-off sync registration. Returns a <code>Promise</code> when the request has been registered.</dd>
