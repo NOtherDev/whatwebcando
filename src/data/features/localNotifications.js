@@ -21,7 +21,7 @@ export default new Feature({
         <dt><code>new Notification(title, [options])</code></dt>
         <dd>Displays local <b>non-persistent</b> notification outside of the browser tab area.</dd>
         <dt><code>navigator.serviceWorker.getRegistration()</code><br>
-        <code>&nbsp;&nbsp;.then(reg => reg.showNotification(title, [options])</code></dt>
+        <code>&nbsp;&nbsp;.then((reg) => reg.showNotification(title, [options]))</code></dt>
         <dd>Displays local <b>persistent</b> notification outside of the browser tab area.</dd>
       </dl>`,
   caniuse: 'notifications',
@@ -85,8 +85,8 @@ function persistentNotification() {
   
   try {
     navigator.serviceWorker.getRegistration()
-      .then(reg => reg.showNotification("Hi there - persistent!"))
-      .catch(err => alert('Service Worker registration error: ' + err));
+      .then((reg) => reg.showNotification("Hi there - persistent!"))
+      .catch((err) => alert('Service Worker registration error: ' + err));
   } catch (err) {
     alert('Notification API error: ' + err);
   }

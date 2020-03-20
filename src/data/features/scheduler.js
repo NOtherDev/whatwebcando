@@ -20,7 +20,7 @@ export default new Feature({
   api: `<p><b>Periodic Background Sync API (experimental)</b></p>
       <dl>
         <dt><code>navigator.serviceWorker.getRegistration()</code><br>
-          <code>&nbsp;&nbsp;.then(reg => reg.periodicSync.register(tag, {minInterval})</code></dt>
+          <code>&nbsp;&nbsp;.then((reg) => reg.periodicSync.register(tag, {minInterval}))</code></dt>
         <dd>Requests an event to be triggered within the Service Worker instance at the specified minimum interval <code>minInterval</code> with the specified <code>tag</code>.</dd>
         <dt><code>reg.periodicSync.getTags()</code></dt>
         <dd>Returns a <code>Promise</code> resolved with the sync requests already registered by the current application.</dd>
@@ -33,7 +33,7 @@ export default new Feature({
         <dt><code>const trigger = new TimestampTrigger(timestamp)</code></dt>
         <dd>Creates a time-based trigger that will activate on a given <code>timestamp</code>.</dd>
         <dt><code>navigator.serviceWorker.getRegistration()</code><br>
-          <code>&nbsp;&nbsp;.then(reg => reg.showNotification(title, {...options, showTrigger: trigger})</code></dt>
+          <code>&nbsp;&nbsp;.then((reg) => reg.showNotification(title, {...options, showTrigger: trigger}))</code></dt>
         <dd>Schedules a local notification to be shown from within the Service Worker based on the <code>trigger</code>.
           For other Notification options, see <a href="/local-notifications.html">Local Notifications</a>.</dd>
       </dl>
@@ -41,7 +41,7 @@ export default new Feature({
       <p><b>Web Alarms API (never implemented)</b></p>
       <dl>
         <dt><code>navigator.serviceWorker.getRegistration()</code><br>
-          <code>&nbsp;&nbsp;.then(reg => reg.taskScheduler.add(time, [data])</code></dt>
+          <code>&nbsp;&nbsp;.then((reg) => reg.taskScheduler.add(time, [data]))</code></dt>
         <dd>Schedules an event to be triggered within the Service Worker instance at the specified <code>time</code> with the specified <code>data</code> payload.</dd>
         <dt><code>reg.taskScheduler.getPendingTasks()</code></dt>
         <dd>Returns a <code>Promise</code> resolved with the events already scheduled by the current application.</dd>
