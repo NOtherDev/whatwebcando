@@ -78,8 +78,6 @@
 
 <div class="container">
   <main>
-    <h2>Features</h2>
-
     <FeaturesList/>
   </main>
 
