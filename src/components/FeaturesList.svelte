@@ -64,10 +64,20 @@
   section {
     width: 100%;
     margin-bottom: 1em;
-    padding: 2em;
+    padding: 1.25em;
     border: 1px solid var(--primary-border);
     background-color: #fff;
     border-radius: 10px;
+  }
+
+  @media screen and (min-width: 768px) {
+    section {
+      padding: 2em;
+    }
+
+    ul {
+      margin-bottom: 1em;
+    }
   }
 
   h3 {
@@ -76,6 +86,7 @@
 
   ul {
     list-style: none;
+    margin-bottom: 0;
     padding: 0;
   }
 
@@ -84,7 +95,7 @@
     justify-content: space-between;
     padding: .5em 0;
 
-    .mdi {
+    .mdi:not(:last-child) {
       margin-right: .5em;
     }
   }

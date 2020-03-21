@@ -49,7 +49,7 @@ export default new Feature({
         <dd>An event fired within the Service Worker at the scheduled time (or as soon as it is possible after) with the <code>task</code> data.</dd>
       </dl>`,
   demo: {
-    html: `<p><button onclick="scheduleNotification()">Schedule notification in 10s (using Notification Trigger API)</button></p>`,
+    html: `<p><button onclick="scheduleNotification()">Schedule notification in 10s<br>(using Notification Trigger API)</button></p>`,
     js: `function scheduleNotification() {
   if (!('Notification' in window)) {
     alert('Notification API not supported');

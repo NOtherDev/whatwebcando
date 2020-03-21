@@ -44,7 +44,16 @@
     main, aside {
       position: relative;
       box-sizing: border-box;
+    }
+
+    main {
       padding: 1em;
+    }
+
+    @media screen and (min-width: 768px) {
+      aside {
+        padding: 1em;
+      }
     }
 
     .page {

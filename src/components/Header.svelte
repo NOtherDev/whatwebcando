@@ -46,7 +46,7 @@
   }
 
 	.title-container {
-	  padding: 2.5em 1em 5em;
+	  padding: 2.5em 1em;
 	}
 
 	h1 {
@@ -60,6 +60,10 @@
 	}
 
 	@media screen and (min-width: 768px) {
+		.title-container {
+  	  padding-bottom: 5em;
+  	}
+
 	  h1 {
 	    font-size: 3.5em;
 	  }

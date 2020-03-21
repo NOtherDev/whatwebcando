@@ -112,6 +112,10 @@
     overflow: hidden;
     border-top: 1px solid #ccc;
 
+    * {
+      max-width: 100%;
+    }
+
     &:last-child {
       border-bottom: 1px solid #ccc;
     }
@@ -119,10 +123,11 @@
 
   .demo-placeholder {
     position: relative;
-    background: #f5f2f0;
-    background: repeating-linear-gradient(45deg, #f5f2f0, #f5f2f0 20px, var(--primary-background) 20px, var(--primary-background) 40px);
     padding: 10px;
     border: 1px solid #ccc;
+    overflow-x: auto;
+    background: #f5f2f0;
+    background: repeating-linear-gradient(45deg, #f5f2f0, #f5f2f0 20px, var(--primary-background) 20px, var(--primary-background) 40px);
 
     :global(button),
     :global(input[type=text]),
@@ -327,7 +332,7 @@
           <div>
             {#each tests as t}
               <div class="feature-test bg-{t.bgClass}">
-                <div class="pull-left"><code>{t.test.containerName}.{t.result.prefix}{t.result.property}</code></div>
+                <div class="pull-left"><code>{t.test.containerName}&#8203;.{t.result.prefix}{t.result.property}</code></div>
                 <div class="pull-right">️{t.result.message}</div>
               </div>
             {/each}
