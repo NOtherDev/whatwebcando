@@ -3,10 +3,11 @@ import {Feature} from "../../utils/feature.js";
 export default new Feature({
   id: 'clipboard',
   name: 'Clipboard (Copy & Paste)',
-  description: [`The <b>Clipboard API</b> gives Web applications a way to react on cut, copy and paste operations performed by the user as well as
-        read from or write to the system clipboard directly on behalf of user.`,
-    `There are two flavors of Clipboard API available - the older, synchronous, and the newer, asynchronous. The newer API is only available
-        on HTTPS and require explicit <a href="/permissions.html">user permission</a>.`],
+  description: [
+    `The <b>Clipboard API</b> gives Web applications a way to react on cut, copy and paste operations performed by the user as well as read from or write to the system clipboard directly on behalf of user.`,
+    `There are two flavors of Clipboard API available - the older, synchronous, and the newer, asynchronous. The newer API is limited to HTTPS and require explicit <a href="/permissions.html">user permission</a> for pasting operation – it is not available in Safari as of early 2020, though.
+      The older API did not address privacy concerns properly and thus pasting is no longer functional in most browsers.`
+  ],
   api: `<p><b>Older, synchronous API</b></p>
       <dl>
         <dt><code>document.addEventListener('cut/copy/paste', listener)</code></dt>
@@ -21,17 +22,23 @@ export default new Feature({
       <p><b>Newer, asynchronous API</b></p>
       <dl>
         <dt><code>navigator.clipboard.writeText(text)</code></dt>
-        <dd>Writes the data to the clipboard. Returns a <code>Promise</code> resolved when the operation has succeeded.</dd>
+        <dd>Writes the text to the clipboard. Returns a <code>Promise</code> resolved when the operation has succeeded.</dd>
         <dt><code>navigator.clipboard.readText()</code></dt>
-        <dd>Returns a <code>Promise</code> resolved with the data read from the clipboard.</dd>
+        <dd>Returns a <code>Promise</code> resolved with the text read from the clipboard.</dd>
+        <dt><code>navigator.clipboard.write(new ClipboardItem(data))</code></dt>
+        <dd>Writes the generic <code>ClipboardItem</code> data to the clipboard, allowing it to handle objects of different types, i.e. images. Returns a <code>Promise</code> resolved when the operation has succeeded.</dd>
+        <dt><code>const clipboardItem = await navigator.clipboard.read()</code></dt>
+        <dd>Returns a <code>Promise</code> resolved with the array of <code>ClipboardItem</code>s read from the clipboard.</dd>
+        <dt><code>const blob = await clipboardItem.getType(type)</code></dt>
+        <dd>Returns a <code>Promise</code> resolved with the data of requested <code>type</code> read from the clipboard.</dd>
       </dl>`,
   caniuse: 'clipboard',
   tests: [
+    Feature.navigatorContains('clipboard'),
     Feature.windowContains('ClipboardEvent'),
     Feature.documentContains('oncut'),
     Feature.documentContains('oncopy'),
-    Feature.documentContains('onpaste'),
-    Feature.navigatorContains('clipboard')
+    Feature.documentContains('onpaste')
   ],
   demo: {
     html: `<p class="heading">Use the forms below for programmatic clipboard access or invoke standard copy/cut/paste operations with your keyboard.</p>
@@ -47,6 +54,7 @@ export default new Feature({
 
   <p>
     <button class="js-textareacutbtn">Cut text programatically</button>
+    <button class="js-textareapastebtn">Paste text programatically</button>
   </p>
 </section>
 
@@ -124,13 +132,37 @@ function performCutTextarea() {
   }
 }
 
+function performPaste() {
+  var pasteTextarea = document.querySelector('.js-cuttextarea');
+  
+  if (useAsyncApi()) {
+    navigator.clipboard.readText()
+      .then((text) => {
+        pasteTextarea.textContent = text;
+        log('Async readText successful, "' + text + '" written');
+      })
+      .catch((err) => log('Async readText failed with error: "' + err + '"'));
+  } else {
+    pasteTextarea.focus();
+    try {
+      var successful = document.execCommand('paste');
+      var msg = successful ? 'successful' : 'unsuccessful';
+      log('Pasting text command was ' + msg);
+    } catch (err) {
+      log('execCommand Error', err);
+    }
+  }
+}
+
 // Get the buttons
 var cutTextareaBtn = document.querySelector('.js-textareacutbtn');
 var copyEmailBtn = document.querySelector('.js-emailcopybtn');
+var pasteTextareaBtn = document.querySelector('.js-textareapastebtn');
 
 // Add click event listeners
 copyEmailBtn.addEventListener('click', performCopyEmail);
 cutTextareaBtn.addEventListener('click', performCutTextarea);
+pasteTextareaBtn.addEventListener('click', performPaste);
 
 function logUserOperation(event) {
   log('User performed <b>' + event.type + '</b> operation. Payload is: <b>' + event.clipboardData.getData('text/plain') + '</b>');
@@ -145,11 +177,12 @@ document.removeEventListener('paste', logUserOperation);`
   },
   links: [
     {url: 'https://w3c.github.io/clipboard-apis/', title: 'Specification Draft'},
-    {url: 'https://developer.mozilla.org/en-US/docs/Web/API/ClipboardEvent', title: 'MDN: ClipboardEvent'},
+    {url: 'https://developers.google.com/web/updates/2018/03/clipboardapi', title: 'Unblocking Clipboard Access'},
+    {url: 'https://web.dev/image-support-for-async-clipboard/', title: 'Image support for the async clipboard API'},
+    {url: 'https://developer.mozilla.org/en-US/docs/Web/API/ClipboardEvent', title: 'MDN: ClipboardEvent (old, synchronous API)'},
     {
       url: 'https://www.lucidchart.com/techblog/2014/12/02/definitive-guide-copying-pasting-javascript/',
-      title: 'The Definitive Guide to Copying and Pasting in JavaScript'
+      title: 'The Definitive Guide to Copying and Pasting in JavaScript (old, synchronous API)'
     },
-    {url: 'https://developers.google.com/web/updates/2018/03/clipboardapi', title: 'Unblocking Clipboard Access'}
   ]
 })
