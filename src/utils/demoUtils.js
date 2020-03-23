@@ -13,12 +13,12 @@ const runScript = (script, id) => {
   document.body.appendChild(scriptElement);
 };
 
-export function cleanAndRunScript(script) {
-  cleanScript('dynamicScript');
-  runScript(script, 'dynamicScript');
-}
+let lastRun = ''
 
 export function runOneOffScript(script) {
-  cleanScript('oneOffScript');
-  runScript(script, 'oneOffScript');
+  if (lastRun !== script) {
+    cleanScript('oneOffScript');
+    runScript(script, 'oneOffScript');
+    lastRun = script
+  }
 }

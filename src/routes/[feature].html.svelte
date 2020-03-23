@@ -25,8 +25,8 @@
   import Prism from 'prismjs';
   import {onMount, onDestroy, afterUpdate} from 'svelte';
 
-	import {CaniuseReportFetch} from "../utils/caniuse";
-  import {cleanAndRunScript, runOneOffScript} from "../utils/demoUtils";
+  import {CaniuseReportFetch} from "../utils/caniuse";
+  import {runOneOffScript} from "../utils/demoUtils";
 
   const runTests = async (tests) => {
     return Promise.all((tests || []).map(async test => {
@@ -72,7 +72,7 @@
           Prism.highlightElement(cssDemo)
         }
 
-        cleanAndRunScript(feature.demo.js)
+        runOneOffScript(feature.demo.js)
       }
     }
 
