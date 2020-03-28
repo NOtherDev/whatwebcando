@@ -38,14 +38,19 @@ const groups = [
         "name": "Bluetooth"
       },
       {
+        "id": "nfc",
+        "icon": "mdi-device-nfc",
+        "name": "NFC"
+      },
+      {
         "id": "usb",
         "icon": "mdi-device-usb",
         "name": "USB"
       },
       {
-        "id": "nfc",
-        "icon": "mdi-device-nfc",
-        "name": "NFC"
+        "id": "serial",
+        "icon": "mdi-device-serial",
+        "name": "Serial"
       },
       {
         "id": "ambient-light",

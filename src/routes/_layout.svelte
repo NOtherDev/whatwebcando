@@ -289,6 +289,9 @@
     .mdi-action-settings-applications:before {
       content: "\e662";
     }
+    .mdi-device-serial:before {
+      content: "\e669";
+    }
     .mdi-action-settings-overscan:before {
       content: "\e66d";
     }

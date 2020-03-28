@@ -41,6 +41,7 @@ import usb from "./usb.js";
 import sms from "./sms.js";
 import scheduler from "./scheduler.js";
 import vr from "./vr.js";
+import serial from "./serial";
 
 const features = [
   localNotifications,
@@ -86,6 +87,7 @@ const features = [
   sms,
   scheduler,
   vr,
+  serial,
 ];
 
 export default features
