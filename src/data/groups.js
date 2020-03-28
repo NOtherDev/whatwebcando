@@ -1,92 +1,32 @@
 const groups = [
   {
-    "heading": "Camera & Microphone",
+    "heading": "Seamless Experience",
     "features": [
       {
-        "id": "camera-microphone",
-        "icon": "mdi-image-camera-alt",
-        "name": "Audio & Video Capture"
+        "id": "offline",
+        "icon": "mdi-action-settings-applications",
+        "name": "Offline Mode"
       },
       {
-        "id": "photos",
-        "icon": "mdi-image-camera-roll",
-        "name": "Advanced Camera Controls"
+        "id": "background-sync",
+        "icon": "mdi-action-backup",
+        "name": "Background Sync"
       },
       {
-        "id": "recording",
-        "icon": "mdi-av-mic",
-        "name": "Recording Media"
+        "id": "sharing",
+        "icon": "mdi-action-explore",
+        "name": "Inter-App Sharing"
       },
       {
-        "id": "realtime",
-        "icon": "mdi-av-videocam",
-        "name": "Real-time Communication"
-      }
-    ]
-  },
-  // {
-  //   "heading": "Advertisement",
-  //   "features": [],
-  //   "html": "<script async type=\"text/javascript\" src=\"//cdn.carbonads.com/carbon.js?serve=CK7DT23L&placement=whatwebcandotoday\" id=\"_carbonads_js\"></script>"
-  // },
-  {
-    "heading": "Surroundings",
-    "features": [
-      {
-        "id": "bluetooth",
-        "icon": "mdi-device-bluetooth",
-        "name": "Bluetooth"
+        "id": "payments",
+        "icon": "mdi-action-payment",
+        "name": "Payments"
       },
       {
-        "id": "nfc",
-        "icon": "mdi-device-nfc",
-        "name": "NFC"
+        "id": "credentials",
+        "icon": "mdi-action-lock-open",
+        "name": "Credentials"
       },
-      {
-        "id": "usb",
-        "icon": "mdi-device-usb",
-        "name": "USB"
-      },
-      {
-        "id": "serial",
-        "icon": "mdi-device-serial",
-        "name": "Serial"
-      },
-      {
-        "id": "ambient-light",
-        "icon": "mdi-device-brightness-low",
-        "name": "Ambient Light"
-      }
-    ]
-  },
-  {
-    "heading": "Device Features",
-    "features": [
-      {
-        "id": "network-type-speed",
-        "icon": "mdi-device-wifi-tethering",
-        "name": "Network Type & Speed"
-      },
-      {
-        "id": "online-state",
-        "icon": "mdi-device-signal-cellular-connected-no-internet-3-bar",
-        "name": "Online State"
-      },
-      {
-        "id": "vibration",
-        "icon": "mdi-notification-vibration",
-        "name": "Vibration"
-      },
-      {
-        "id": "battery-status",
-        "icon": "mdi-device-battery-80",
-        "name": "Battery Status"
-      },
-      {
-        "id": "memory",
-        "icon": "mdi-hardware-memory",
-        "name": "Device Memory"
-      }
     ]
   },
   {
@@ -116,7 +56,92 @@ const groups = [
         "id": "permissions",
         "icon": "mdi-action-lock-open",
         "name": "Permissions"
-      }
+      },
+    ]
+  },
+  {
+    "heading": "Surroundings",
+    "features": [
+      {
+        "id": "bluetooth",
+        "icon": "mdi-device-bluetooth",
+        "name": "Bluetooth"
+      },
+      {
+        "id": "nfc",
+        "icon": "mdi-device-nfc",
+        "name": "NFC"
+      },
+      {
+        "id": "usb",
+        "icon": "mdi-device-usb",
+        "name": "USB"
+      },
+      {
+        "id": "serial",
+        "icon": "mdi-device-serial",
+        "name": "Serial"
+      },
+      {
+        "id": "ambient-light",
+        "icon": "mdi-device-brightness-low",
+        "name": "Ambient Light"
+      },
+    ]
+  },
+  {
+    "heading": "Camera & Microphone",
+    "features": [
+      {
+        "id": "camera-microphone",
+        "icon": "mdi-image-camera-alt",
+        "name": "Audio & Video Capture"
+      },
+      {
+        "id": "photos",
+        "icon": "mdi-image-camera-roll",
+        "name": "Advanced Camera Controls"
+      },
+      {
+        "id": "recording",
+        "icon": "mdi-av-mic",
+        "name": "Recording Media"
+      },
+      {
+        "id": "realtime",
+        "icon": "mdi-av-videocam",
+        "name": "Real-time Communication"
+      },
+    ]
+  },
+  {
+    "heading": "Device Features",
+    "features": [
+      {
+        "id": "network-type-speed",
+        "icon": "mdi-device-wifi-tethering",
+        "name": "Network Type & Speed"
+      },
+      {
+        "id": "online-state",
+        "icon": "mdi-device-signal-cellular-connected-no-internet-3-bar",
+        "name": "Online State"
+      },
+      {
+        "id": "vibration",
+        "icon": "mdi-notification-vibration",
+        "name": "Vibration"
+      },
+      {
+        "id": "battery-status",
+        "icon": "mdi-device-battery-80",
+        "name": "Battery Status"
+      },
+      {
+        "id": "memory",
+        "icon": "mdi-hardware-memory",
+        "name": "Device Memory"
+      },
     ]
   },
   {
@@ -151,7 +176,7 @@ const groups = [
         "id": "scheduler",
         "icon": "mdi-action-alarm",
         "name": "Task Scheduling"
-      }
+      },
     ]
   },
   {
@@ -176,37 +201,7 @@ const groups = [
         "id": "pointer-adaptation",
         "icon": "mdi-hardware-mouse",
         "name": "Pointing Device Adaptation"
-      }
-    ]
-  },
-  {
-    "heading": "Seamless Experience",
-    "features": [
-      {
-        "id": "offline",
-        "icon": "mdi-action-settings-applications",
-        "name": "Offline Mode"
       },
-      {
-        "id": "background-sync",
-        "icon": "mdi-action-backup",
-        "name": "Background Sync"
-      },
-      {
-        "id": "sharing",
-        "icon": "mdi-action-explore",
-        "name": "Inter-App Sharing"
-      },
-      {
-        "id": "payments",
-        "icon": "mdi-action-payment",
-        "name": "Payments"
-      },
-      {
-        "id": "credentials",
-        "icon": "mdi-action-lock-open",
-        "name": "Credentials"
-      }
     ]
   },
   {
@@ -236,7 +231,7 @@ const groups = [
         "id": "proximity",
         "icon": "mdi-image-leak-add",
         "name": "Proximity Sensors"
-      }
+      },
     ]
   },
   {
@@ -266,9 +261,9 @@ const groups = [
         "id": "presentation",
         "icon": "mdi-hardware-tv",
         "name": "Presentation Features"
-      }
+      },
     ]
-  }
+  },
 ]
 
 export default groups
