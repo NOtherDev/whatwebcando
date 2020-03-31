@@ -7,8 +7,9 @@ export default new Feature({
         <b>Application Cache</b>, is <a href="http://caniuse.com/#feat=offline-apps" target="_blank" rel="noopener">widely implemented</a> in the browsers,
         but is now in the process of deprecation due to <a href="http://alistapart.com/article/application-cache-is-a-douchebag" target="_blank" rel="noopener">various
         conceptual and design flaws</a>. It is not covered here.`,
-    `The modern alternative is called <b>Service Worker</b>. Web applications running on HTTPS can request the browser to install the separate
-        code unit called Service Worker. This unit is then run in separation from the owning Web application, communicating with it via events.
+    `The modern alternative is called <b>Cache API</b> and is available within Service Worker – the separate code unit the Web applications running on HTTPS can request the browser to install. 
+        This unit is then run in separation from the owning Web application, communicating with it via events. Service Worker is the basic building block of the 
+        <b><a href="https://developers.google.com/web/progressive-web-apps" target="_blank" rel="noopener">Progressive Web Apps</a></b> (PWA) idea.
         Besides being the enabler for multiple complex APIs like <a href="/push-notifications.html">Push Notifications</a>, <a href="/background-sync.html">Background Sync</a>
         or <a href="/geofencing.html">Geofencing</a>, it can work as a fully featured network proxy. It can intercept all the HTTP requests, alter its content or behaviors,
         or - most notably - manage offline caching.`,
@@ -89,7 +90,10 @@ self.addEventListener('fetch', function (event) {
       </dl>
       <p>See also <b><a href="/service-worker.js" target="_blank">this website's own Service Worker implementation</a></b>.</p>`,
   caniuse: 'serviceworkers',
-  tests: [Feature.navigatorContains('serviceWorker')],
+  tests: [
+    Feature.navigatorContains('serviceWorker'),
+    Feature.windowContains('caches'),
+  ],
   links: [
     {url: 'http://www.w3.org/TR/service-workers/', title: 'Service Workers Specification Draft'},
     {

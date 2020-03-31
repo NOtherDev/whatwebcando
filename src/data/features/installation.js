@@ -9,8 +9,8 @@ export default new Feature({
        with the relevant icon, full screen behaviors, themes, standalone appearance without browser bar etc. It can also serve as a centralized place
        to put all the metadata associated with the Web application.`,
     `Having the Web Manifest is one of the key factors (apart from being served via HTTPS and providing
-       a <a href="/offline.html">Service Worker-based offline behavior</a>) for the Web applications to be treated
-       as a <a href="https://developers.google.com/web/progressive-web-apps" target="_blank" rel="noopener">Progressive Web App</a>. Such applications
+       a Service Worker-based offline behavior – see <a href="/offline.html">Offline Mode</a>) for the Web applications to be treated
+       as a <b><a href="https://developers.google.com/web/progressive-web-apps" target="_blank" rel="noopener">Progressive Web App</a></b> (PWA). Such applications
        get "add to home screen" UX in most desktop and Android browsers, i.e. the icon in the address bar.`,
     `Google Chrome additionally presents an additional on-screen banner prompting user to install the app based on usage heuristic. The banner might be cancelled
       or replaced with custom installation UX using <code>beforeinstallprompt</code> event.`,
