@@ -6,7 +6,7 @@ export default new Feature({
   description: [
     `The <b>File API</b> gives Web applications an access to the filesystem-level read-only information about the files that the user decides to share
         with the application, i.e. size, MIME type, modification date, content, without sending the file to the server.`,
-    `The <b>Native File System API</b>, available in Google Chrome via <a href="https://developers.chrome.com/origintrials/#/view_trial/3868592079911256065" target="_blank" rel="noopener">origin draft</a> in Spring 2020,
+    `The <b>Native File System API</b>, available in Google Chrome via <a href="https://developers.chrome.com/origintrials/#/view_trial/3868592079911256065" target="_blank" rel="noopener">origin trial</a> in Spring 2020,
       aims to make it also possible to write into the file system to the handle chosen in the system-level file opening dialog by the user. The API is in its design phase, breaking changes are still expected.`
   ],
   api: `<p><b>File API</b></p>
