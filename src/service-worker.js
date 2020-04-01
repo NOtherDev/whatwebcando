@@ -11,8 +11,10 @@ const ASSETS = `cache${timestamp}`;
 const toCache = shell.concat(files)
   .filter((f) => !f.endsWith('.DS_Store'))
   .filter((f) => !f.startsWith('articleimgs/'))
+  .filter((f) => !f.startsWith('.well-known/'))
   .filter((f) => f !== 'images/share-image.png')
   .filter((f) => f !== 'CNAME')
+  .filter((f) => f !== '_config.yml')
   .concat([
     'https://fonts.gstatic.com/s/sourcesanspro/v13/6xK3dSBYKcSV-LCoeQqfX1RYOo3qOK7lujVj9w.woff2',
     'https://fonts.gstatic.com/s/sourcesanspro/v13/6xKydSBYKcSV-LCoeQqfX1RYOo3ig4vwlxdu3cOWxw.woff2',
