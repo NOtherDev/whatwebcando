@@ -1,0 +1,10 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "today.whatwebcando.twa",
+    "sha256_cert_fingerprints": [
+      "9C:B5:DB:AE:11:2A:52:E5:65:C2:49:D6:B3:7E:46:AF:00:BE:82:56:78:C9:40:0D:C7:5F:B5:E8:AA:1A:51:D6"
+    ]
+  }
+}]
