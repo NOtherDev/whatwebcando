@@ -2,11 +2,11 @@
 title: Progressive Web Apps – standard or buzzword?
 image: /articleimgs/adult-books-business-coffee.pexels.jpg
 tags: [PWA, Service Worker]
-description: Progressive Web Apps (PWA) is modern way to build applications, including mobile ones, using purely web technologies and relying purely on the capabilities and strengths the Web platform. Historically, it was the lack of these capabilities on the Web that caused the boom of the mobile apps, using so-called "native" (platform-specific) development approaches.
+description: Progressive Web Apps (PWA) is a modern way to build applications, including mobile ones, using purely web technologies and relying purely on the capabilities and strengths of the Web platform. Historically, it was the lack of these capabilities on the Web that caused the boom of the mobile apps, using so-called "native" (platform-specific) development approaches.
 weight: 2
 ---
 
-Progressive Web Apps (PWA) is modern way to build applications, including mobile ones, using purely web technologies and relying purely on the capabilities and strengths the Web platform. Historically, it was the lack of these capabilities on the Web that caused the boom of the mobile apps, using so-called "native" (platform-specific) development approaches. 
+Progressive Web Apps (PWA) is a modern way to build applications, including mobile ones, using purely web technologies and relying purely on the capabilities and strengths of the Web platform. Historically, it was the lack of these capabilities on the Web that caused the boom of the mobile apps, using so-called "native" (platform-specific) development approaches. 
 
 The time has passed and the Web is now fighting back with the new, strong capabilities, in many cases not worse than what the native platforms can offer. And now, there's a growing trend of considering Progressive Web Apps as a viable strategy for the mobile presence for many brands.
 
