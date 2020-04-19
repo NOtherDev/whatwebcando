@@ -256,6 +256,9 @@
     .mdi-action-account-box:before {
       content: "\e604";
     }
+    .mdi-distribution:before {
+      content: "\e607";
+    }
     .mdi-action-backup:before {
       content: "\e617";
     }
@@ -300,6 +303,9 @@
     }
     .mdi-av-mic:before {
       content: "\e6b1";
+    }
+    .mdi-startup:before {
+      content: "\e6b6";
     }
     .mdi-av-videocam:before {
       content: "\e6d1";
@@ -355,6 +361,9 @@
     .mdi-hardware-tv:before {
       content: "\e7de";
     }
+    .mdi-moon:before {
+      content: "\e7ea";
+    }
     .mdi-image-camera-alt:before {
       content: "\e7f0";
     }
@@ -372,6 +381,9 @@
     }
     .mdi-notification-sim-card-alert:before {
       content: "\e8cb";
+    }
+    .mdi-lifecycle:before {
+      content: "\e8d0";
     }
     .mdi-notification-system-update:before {
       content: "\e8d1";

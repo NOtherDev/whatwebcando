@@ -327,17 +327,19 @@
 
     {#if process.browser}
       {#await runTests(feature.tests) then tests}
-        <section class="feature-tests" aria-hidden="true">
-          <h3>Support in your browser</h3>
-          <div>
-            {#each tests as t}
-              <div class="feature-test bg-{t.bgClass}">
-                <div class="pull-left"><code>{t.test.containerName}&#8203;.{t.result.prefix}{t.result.property}</code></div>
-                <div class="pull-right">️{t.result.message}</div>
-              </div>
-            {/each}
-          </div>
-        </section>
+        {#if tests.length}
+          <section class="feature-tests" aria-hidden="true">
+            <h3>Support in your browser</h3>
+            <div>
+              {#each tests as t}
+                <div class="feature-test bg-{t.bgClass}">
+                  <div class="pull-left"><code>{t.test.containerName}&#8203;.{t.result.prefix}{t.result.property}</code></div>
+                  <div class="pull-right">️{t.result.message}</div>
+                </div>
+              {/each}
+            </div>
+          </section>
+        {/if}
       {/await}
     {/if}
 

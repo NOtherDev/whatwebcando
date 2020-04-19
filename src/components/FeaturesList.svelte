@@ -93,6 +93,7 @@
   li {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: .5em 0;
 
     .mdi:not(:last-child) {
@@ -154,6 +155,10 @@
   .support-yes .mdi {
     color: #4caf50;
   }
+  .support-unk {
+    color: var(--inverse-color);
+    font-size: .75em;
+  }
 
   @media screen and (min-width: 1024px) {
     section {
@@ -207,6 +212,8 @@
           {:else}
             <span class="support support-no">No <i class="mdi mdi-cross"></i></span>
           {/if}
+        {:catch}
+          <span class="support-unk">not testable</span>
         {/await}
       </li>
       {/each}

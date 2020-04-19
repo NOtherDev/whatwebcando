@@ -1,266 +1,291 @@
 const groups = [
   {
-    "heading": "Seamless Experience",
-    "features": [
+    heading: "Seamless Experience",
+    features: [
       {
-        "id": "offline",
-        "icon": "mdi-action-settings-applications",
-        "name": "Offline Mode"
+        id: "offline",
+        icon: "mdi-action-settings-applications",
+        name: "Offline Mode"
       },
       {
-        "id": "background-sync",
-        "icon": "mdi-action-backup",
-        "name": "Background Sync"
+        id: "background-sync",
+        icon: "mdi-action-backup",
+        name: "Background Sync"
       },
       {
-        "id": "sharing",
-        "icon": "mdi-action-explore",
-        "name": "Inter-App Sharing"
+        id: "sharing",
+        icon: "mdi-action-explore",
+        name: "Inter-App Sharing"
       },
       {
-        "id": "payments",
-        "icon": "mdi-action-payment",
-        "name": "Payments"
+        id: "payments",
+        icon: "mdi-action-payment",
+        name: "Payments"
       },
       {
-        "id": "credentials",
-        "icon": "mdi-action-lock-open",
-        "name": "Credentials"
-      },
-    ]
-  },
-  {
-    "heading": "Native Behaviors",
-    "features": [
-      {
-        "id": "local-notifications",
-        "icon": "mdi-notification-system-update",
-        "name": "Local Notifications"
-      },
-      {
-        "id": "push-notifications",
-        "icon": "mdi-notification-tap-and-play",
-        "name": "Push Messages"
-      },
-      {
-        "id": "installation",
-        "icon": "mdi-action-get-app",
-        "name": "Home Screen Installation"
-      },
-      {
-        "id": "foreground-detection",
-        "icon": "mdi-action-flip-to-front",
-        "name": "Foreground Detection"
-      },
-      {
-        "id": "permissions",
-        "icon": "mdi-action-lock-open",
-        "name": "Permissions"
+        id: "credentials",
+        icon: "mdi-action-lock-open",
+        name: "Credentials"
       },
     ]
   },
   {
-    "heading": "Surroundings",
-    "features": [
+    heading: "Native Behaviors",
+    features: [
       {
-        "id": "bluetooth",
-        "icon": "mdi-device-bluetooth",
-        "name": "Bluetooth"
+        id: "local-notifications",
+        icon: "mdi-notification-system-update",
+        name: "Local Notifications"
       },
       {
-        "id": "nfc",
-        "icon": "mdi-device-nfc",
-        "name": "NFC"
+        id: "push-notifications",
+        icon: "mdi-notification-tap-and-play",
+        name: "Push Messages"
       },
       {
-        "id": "usb",
-        "icon": "mdi-device-usb",
-        "name": "USB"
+        id: "idle",
+        icon: "mdi-moon",
+        name: "User Idle Detection"
       },
       {
-        "id": "serial",
-        "icon": "mdi-device-serial",
-        "name": "Serial"
+        id: "permissions",
+        icon: "mdi-action-lock-open",
+        name: "Permissions"
       },
       {
-        "id": "ambient-light",
-        "icon": "mdi-device-brightness-low",
-        "name": "Ambient Light"
-      },
-    ]
-  },
-  {
-    "heading": "Camera & Microphone",
-    "features": [
-      {
-        "id": "camera-microphone",
-        "icon": "mdi-image-camera-alt",
-        "name": "Audio & Video Capture"
-      },
-      {
-        "id": "photos",
-        "icon": "mdi-image-camera-roll",
-        "name": "Advanced Camera Controls"
-      },
-      {
-        "id": "recording",
-        "icon": "mdi-av-mic",
-        "name": "Recording Media"
-      },
-      {
-        "id": "realtime",
-        "icon": "mdi-av-videocam",
-        "name": "Real-time Communication"
+        id: "scheduler",
+        icon: "mdi-action-alarm",
+        name: "Task Scheduling"
       },
     ]
   },
   {
-    "heading": "Device Features",
-    "features": [
+    heading: "App Lifecycle",
+    features: [
       {
-        "id": "network-type-speed",
-        "icon": "mdi-device-wifi-tethering",
-        "name": "Network Type & Speed"
+        id: "distribution",
+        icon: "mdi-distribution",
+        name: "Store Distribution"
       },
       {
-        "id": "online-state",
-        "icon": "mdi-device-signal-cellular-connected-no-internet-3-bar",
-        "name": "Online State"
+        id: "installation",
+        icon: "mdi-action-get-app",
+        name: "Home Screen Installation"
       },
       {
-        "id": "vibration",
-        "icon": "mdi-notification-vibration",
-        "name": "Vibration"
+        id: "startup",
+        icon: "mdi-startup",
+        name: "Run On Startup"
       },
       {
-        "id": "battery-status",
-        "icon": "mdi-device-battery-80",
-        "name": "Battery Status"
+        id: "foreground-detection",
+        icon: "mdi-action-flip-to-front",
+        name: "Foreground Detection"
       },
       {
-        "id": "memory",
-        "icon": "mdi-hardware-memory",
-        "name": "Device Memory"
-      },
-    ]
-  },
-  {
-    "heading": "Operating System",
-    "features": [
-      {
-        "id": "storage",
-        "icon": "mdi-notification-folder-special",
-        "name": "Offline Storage"
-      },
-      {
-        "id": "files",
-        "icon": "mdi-device-sd-storage",
-        "name": "File Access"
-      },
-      {
-        "id": "contacts",
-        "icon": "mdi-action-account-box",
-        "name": "Contacts"
-      },
-      {
-        "id": "sms",
-        "icon": "mdi-communication-message",
-        "name": "SMS"
-      },
-      {
-        "id": "storage-quota",
-        "icon": "mdi-notification-sim-card-alert",
-        "name": "Storage Quotas"
-      },
-      {
-        "id": "scheduler",
-        "icon": "mdi-action-alarm",
-        "name": "Task Scheduling"
+        id: "freeze-resume",
+        icon: "mdi-lifecycle",
+        name: "Freeze/Resume Detection"
       },
     ]
   },
   {
-    "heading": "Input",
-    "features": [
+    heading: "Surroundings",
+    features: [
       {
-        "id": "touch",
-        "icon": "mdi-content-gesture",
-        "name": "Touch Gestures"
+        id: "bluetooth",
+        icon: "mdi-device-bluetooth",
+        name: "Bluetooth"
       },
       {
-        "id": "speech-recognition",
-        "icon": "mdi-av-mic",
-        "name": "Speech Recognition"
+        id: "nfc",
+        icon: "mdi-device-nfc",
+        name: "NFC"
       },
       {
-        "id": "clipboard",
-        "icon": "mdi-content-content-paste",
-        "name": "Clipboard (Copy & Paste)"
+        id: "usb",
+        icon: "mdi-device-usb",
+        name: "USB"
       },
       {
-        "id": "pointer-adaptation",
-        "icon": "mdi-hardware-mouse",
-        "name": "Pointing Device Adaptation"
-      },
-    ]
-  },
-  {
-    "heading": "Location & Position",
-    "features": [
-      {
-        "id": "geolocation",
-        "icon": "mdi-device-gps-fixed",
-        "name": "Geolocation"
+        id: "serial",
+        icon: "mdi-device-serial",
+        name: "Serial"
       },
       {
-        "id": "geofencing",
-        "icon": "mdi-action-group-work",
-        "name": "Geofencing"
-      },
-      {
-        "id": "device-position",
-        "icon": "mdi-device-screen-rotation",
-        "name": "Device Position"
-      },
-      {
-        "id": "device-motion",
-        "icon": "mdi-action-3d-rotation",
-        "name": "Device Motion"
-      },
-      {
-        "id": "proximity",
-        "icon": "mdi-image-leak-add",
-        "name": "Proximity Sensors"
+        id: "ambient-light",
+        icon: "mdi-device-brightness-low",
+        name: "Ambient Light"
       },
     ]
   },
   {
-    "heading": "Screen & Output",
-    "features": [
+    heading: "Camera & Microphone",
+    features: [
       {
-        "id": "vr",
-        "icon": "mdi-maps-local-play",
-        "name": "Virtual & Augmented Reality"
+        id: "camera-microphone",
+        icon: "mdi-image-camera-alt",
+        name: "Audio & Video Capture"
       },
       {
-        "id": "fullscreen",
-        "icon": "mdi-action-settings-overscan",
-        "name": "Fullscreen"
+        id: "photos",
+        icon: "mdi-image-camera-roll",
+        name: "Advanced Camera Controls"
       },
       {
-        "id": "screen-orientation",
-        "icon": "mdi-device-screen-lock-rotation",
-        "name": "Screen Orientation & Lock"
+        id: "recording",
+        icon: "mdi-av-mic",
+        name: "Recording Media"
       },
       {
-        "id": "wake-lock",
-        "icon": "mdi-action-lock",
-        "name": "Wake Lock"
+        id: "realtime",
+        icon: "mdi-av-videocam",
+        name: "Real-time Communication"
+      },
+    ]
+  },
+  {
+    heading: "Device Features",
+    features: [
+      {
+        id: "network-type-speed",
+        icon: "mdi-device-wifi-tethering",
+        name: "Network Type & Speed"
       },
       {
-        "id": "presentation",
-        "icon": "mdi-hardware-tv",
-        "name": "Presentation Features"
+        id: "online-state",
+        icon: "mdi-device-signal-cellular-connected-no-internet-3-bar",
+        name: "Online State"
+      },
+      {
+        id: "vibration",
+        icon: "mdi-notification-vibration",
+        name: "Vibration"
+      },
+      {
+        id: "battery-status",
+        icon: "mdi-device-battery-80",
+        name: "Battery Status"
+      },
+      {
+        id: "memory",
+        icon: "mdi-hardware-memory",
+        name: "Device Memory"
+      },
+    ]
+  },
+  {
+    heading: "Operating System",
+    features: [
+      {
+        id: "storage",
+        icon: "mdi-notification-folder-special",
+        name: "Offline Storage"
+      },
+      {
+        id: "files",
+        icon: "mdi-device-sd-storage",
+        name: "File Access"
+      },
+      {
+        id: "contacts",
+        icon: "mdi-action-account-box",
+        name: "Contacts"
+      },
+      {
+        id: "sms",
+        icon: "mdi-communication-message",
+        name: "SMS"
+      },
+      {
+        id: "storage-quota",
+        icon: "mdi-notification-sim-card-alert",
+        name: "Storage Quotas"
+      },
+    ]
+  },
+  {
+    heading: "Input",
+    features: [
+      {
+        id: "touch",
+        icon: "mdi-content-gesture",
+        name: "Touch Gestures"
+      },
+      {
+        id: "speech-recognition",
+        icon: "mdi-av-mic",
+        name: "Speech Recognition"
+      },
+      {
+        id: "clipboard",
+        icon: "mdi-content-content-paste",
+        name: "Clipboard (Copy & Paste)"
+      },
+      {
+        id: "pointer-adaptation",
+        icon: "mdi-hardware-mouse",
+        name: "Pointing Device Adaptation"
+      },
+    ]
+  },
+  {
+    heading: "Location & Position",
+    features: [
+      {
+        id: "geolocation",
+        icon: "mdi-device-gps-fixed",
+        name: "Geolocation"
+      },
+      {
+        id: "geofencing",
+        icon: "mdi-action-group-work",
+        name: "Geofencing"
+      },
+      {
+        id: "device-position",
+        icon: "mdi-device-screen-rotation",
+        name: "Device Position"
+      },
+      {
+        id: "device-motion",
+        icon: "mdi-action-3d-rotation",
+        name: "Device Motion"
+      },
+      {
+        id: "proximity",
+        icon: "mdi-image-leak-add",
+        name: "Proximity Sensors"
+      },
+    ]
+  },
+  {
+    heading: "Screen & Output",
+    features: [
+      {
+        id: "vr",
+        icon: "mdi-maps-local-play",
+        name: "Virtual & Augmented Reality"
+      },
+      {
+        id: "fullscreen",
+        icon: "mdi-action-settings-overscan",
+        name: "Fullscreen"
+      },
+      {
+        id: "screen-orientation",
+        icon: "mdi-device-screen-lock-rotation",
+        name: "Screen Orientation & Lock"
+      },
+      {
+        id: "wake-lock",
+        icon: "mdi-action-lock",
+        name: "Wake Lock"
+      },
+      {
+        id: "presentation",
+        icon: "mdi-hardware-tv",
+        name: "Presentation Features"
       },
     ]
   },

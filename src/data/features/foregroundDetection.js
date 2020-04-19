@@ -3,9 +3,13 @@ import {Feature} from "../../utils/feature.js";
 export default new Feature({
   id: 'foreground-detection',
   name: 'Foreground Detection',
-  description: `The <b>Page Visibility API</b> is useful for the Web application to know whether it is currently displayed on the front or not,
-        especially to stop resource-intensive UI animations or data refreshing when it is not needed. On the mobile devices,
-        the primary reason for that is to reduce the battery usage.`,
+  description: [
+    `The <b>Page Visibility API</b> is useful for the Web application to know whether it is currently displayed on the front or not,
+      especially to stop resource-intensive UI animations or data refreshing when it is not needed. On the mobile devices,
+      the primary reason for that is to reduce the battery usage.`,
+    `This API does not detect the scenario when the page is still displayed on screen, but the user is idle (for example away). To detect this, the separate <a href="/idle.html">API proposal</a> exists.`,
+    `This API might be complemented with <a href="/freeze-resume.html">Freeze/Resume states detection</a> to detect system-level generated lifecycle events for the application.`,
+  ],
   api: `<dl>
         <dt><code>document.hidden</code></dt>
         <dd>Returns <code>true</code> if the page is currently hidden.</dd>
@@ -19,7 +23,7 @@ export default new Feature({
     html: `<p>Switch the browser tab to see the changes.</p>
 <p>Initial page visibility was <b id="status">unknown</b>.</p>
 <div id="target"></div>
-<p><small>Based on demo from <a href="https://developer.mozilla.org/en-US/docs/Web/API/Page_Visibility_API">MDN</a>.</small></p>`,
+<p><small>Based on the demo from <a href="https://developer.mozilla.org/en-US/docs/Web/API/Page_Visibility_API" target="_blank" rel="noopener">MDN</a>.</small></p>`,
     js: `var target = document.getElementById('target');
 
 var hidden, visibilityChange;
