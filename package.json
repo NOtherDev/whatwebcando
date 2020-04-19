@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "preinstall": "npx npm-force-resolutions",
     "dev": "sapper dev",
     "build": "sapper build --legacy",
     "export": "mv dist/.git __sapper__/_tmp_dist_git && (sapper export dist --legacy || true) && mv __sapper__/_tmp_dist_git dist/.git",
@@ -33,7 +34,7 @@
     "@babel/preset-env": "^7.0.0",
     "@babel/runtime": "^7.0.0",
     "@rollup/plugin-replace": "^2.2.0",
-    "node-sass": "^4.13.0",
+    "node-sass": "^4.13.1",
     "npm-run-all": "^4.1.5",
     "rollup": "^1.12.0",
     "rollup-plugin-babel": "^4.0.2",
@@ -45,5 +46,8 @@
     "surge": "^0.21.3",
     "svelte": "^3.0.0",
     "svelte-preprocess-sass": "^0.2.0"
+  },
+  "resolutions": {
+    "minimist": "1.2.5"
   }
 }
