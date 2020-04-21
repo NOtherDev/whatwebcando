@@ -142,6 +142,11 @@ const groups = [
         icon: "mdi-av-videocam",
         name: "Real-time Communication"
       },
+      {
+        id: "shape-detection",
+        icon: "mdi-face",
+        name: "Shape Detection"
+      },
     ]
   },
   {

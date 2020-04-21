@@ -46,6 +46,7 @@ import distribution from "./distribution.js";
 import startup from "./startup.js";
 import freezeResume from "./freezeResume.js";
 import idle from "./idle.js";
+import shapeDetection from "./shapeDetection.js";
 
 const features = [
   localNotifications,
@@ -96,6 +97,7 @@ const features = [
   startup,
   freezeResume,
   idle,
+  shapeDetection,
 ];
 
 export default features

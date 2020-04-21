@@ -373,6 +373,12 @@
     .mdi-image-leak-add:before {
       content: "\e836";
     }
+    .mdi-face:before {
+      content: "\e850";
+    }
+    .mdi-maps-local-play:before {
+      content: "\e88d";
+    }
     .mdi-navigation-arrow-back:before {
       content: "\e8a1";
     }
@@ -393,9 +399,6 @@
     }
     .mdi-notification-vibration:before {
       content: "\e8d4";
-    }
-    .mdi-maps-local-play:before {
-      content: "\e88d";
     }
   }
 
