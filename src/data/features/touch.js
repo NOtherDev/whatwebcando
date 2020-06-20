@@ -7,7 +7,7 @@ export default new Feature({
         Mobile Web started with a bit touchy solution of translating touch events to mouse events like <code>mousedown</code>.`,
     `Newer HTML5 approach is to embrace touch as the first-class input mean, allowing Web applications to intercept and identify complex multitouch
          gestures, free-hand drawing etc. Unfortunately, the support is twofold - either via touch events like <code>touchstart</code> that were first
-         introduced by Apple and standardized later as a de-facto solution, when other vendors went the same route, or via the newer,
+         introduced by Apple and standardized later as a de facto solution, when other vendors went the same route, or via the newer,
          more general <b>Pointer Events</b> specification, initiated by Microsoft.`],
   api: `<p><b>Touch Events API</b></p>
         <dl>

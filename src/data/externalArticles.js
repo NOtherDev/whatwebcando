@@ -4,7 +4,7 @@ export const externalArticles = [
     url: 'https://pwafire.org/developer/docs/a-good-push-notification/',
     image: '/articleimgs/letter-envelopes.pexels.jpg',
     tags: ['Push Notifications'],
-    description: 'What makes a good Push Notifcation? Get tips to help you push value to your users and not users away.',
+    description: 'What makes a good Push Notification? Get tips to help you push value to your users and not users away.',
     source: 'pwafire.org',
   },
   {

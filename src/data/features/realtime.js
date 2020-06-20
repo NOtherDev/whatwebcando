@@ -16,7 +16,7 @@ export default  new Feature({
         <dt><code>connection.createOffer(options)</code></dt>
         <dd>Returns a <code>Promise</code> resolved when the remote peer connects to the connections and streams offered.</dd>
         <dt><code>connection.createAnswer(options)</code></dt>
-        <dd>Accepts the connection offerred by the remote peer. Returns a <code>Promise</code> resolved when the connection is established.</dd>
+        <dd>Accepts the connection offered by the remote peer. Returns a <code>Promise</code> resolved when the connection is established.</dd>
         <dt><code>dataChannel = connection.createDataChannel(label, configuration)</code></dt>
         <dd>Opens a data channel for the connection, allowing it to transmit arbitrary types of data.</dd>
         <dt><code>dataChannel.send(data)</code>
