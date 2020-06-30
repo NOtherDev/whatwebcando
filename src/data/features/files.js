@@ -126,7 +126,7 @@ async function writeFile() {
   target.innerHTML = 'Opening file handle...';
   
   const handle = await window.chooseFileSystemEntries({
-    type: 'saveFile',
+    type: 'save-file',
   });
   
   const file = await handle.getFile()
