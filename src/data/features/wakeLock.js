@@ -77,6 +77,7 @@ if ("keepAwake" in screen) {
     Feature.containedIn('screen', typeof(window) !== 'undefined' && window.screen, 'keepAwake'),
     Feature.navigatorContains('wakeLock')
   ],
+  caniuse: 'wake-lock',
   links: [
     {url: 'https://w3c.github.io/wake-lock/', title: 'W3C Specification Draft'},
     {url: 'https://web.dev/wakelock/', title: 'Stay awake with the Wake Lock API'},

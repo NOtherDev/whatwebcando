@@ -73,6 +73,7 @@ function consoleLog(data) {
   logElement.innerHTML += data + '\\n';
 };`
   },
+  caniuse: 'webnfc',
   links: [
     {url: 'https://w3c.github.io/web-nfc/', title: 'Specification Draft'},
     {url: 'https://developer.mozilla.org/en-US/docs/Web/API/NFC_API/Using_the_NFC_API', title: 'MDN: Using the NFC API (covers outdated spec revision)'}
