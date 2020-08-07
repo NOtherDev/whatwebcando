@@ -24,7 +24,7 @@
     "marked": "^0.8.0",
     "parse-md": "^2.0.3",
     "polka": "next",
-    "prismjs": "^1.17.1",
+    "prismjs": "^1.21.0",
     "sirv": "^0.4.0"
   },
   "devDependencies": {
