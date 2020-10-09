@@ -5,7 +5,7 @@ export default new Feature({
   name: 'Home Screen Installation',
   description: [
     `Web applications can provide the <code>manifest.json</code> file, standardized as the <b>Web Manifest</b>, specifying the features
-       and behaviors needed on order to treat the application as a first-class citizen on the target platform, i.e. adding ("installing") to the home screen
+       and behaviors needed in order to treat the application as a first-class citizen on the target platform, i.e. adding ("installing") to the home screen
        with the relevant icon, full screen behaviors, themes, standalone appearance without browser bar etc. It can also serve as a centralized place
        to put all the metadata associated with the Web application.`,
     `Having the Web Manifest is one of the key factors (apart from being served via HTTPS and providing
