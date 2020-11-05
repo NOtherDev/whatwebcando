@@ -125,7 +125,7 @@ To receive the message in the Service Worker, we need to register a `message` ev
 self.addEventListener('message', (event) => {
     if (event.data === 'SKIP_WAITING') {
         self.skipWaiting();
-    });
+    }
 });
 ```
 
@@ -204,7 +204,7 @@ And at the Service Worker side (ensure not to have `self.skipWaiting()` call in 
 self.addEventListener('message', (event) => {
     if (event.data === 'SKIP_WAITING') {
         self.skipWaiting();
-    });
+    }
 });
 ```
 
