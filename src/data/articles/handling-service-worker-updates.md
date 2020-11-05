@@ -149,7 +149,7 @@ function invokeServiceWorkerUpdateFlow(registration) {
     notification.addEventListener('click', () => {
         if (registration.waiting) {
             // let waiting Service Worker know it should became active
-            registration.waiting.postMessage('skip waiting')
+            registration.waiting.postMessage('SKIP_WAITING')
         }
     })
 }
