@@ -4,7 +4,7 @@ image: /articleimgs/loading-splash.pexels.jpg
 tags: [PWA, Home Screen Installability]
 description: To create a native-like experience, Web applications have to meet the criteria of the intended PWA platforms and stores, including all splash screens, icon sizes and assets. According to a number of different sources, in order to cover all sizes and platforms, approximately 100 images might be needed.
 weight: 2
-author: '[Dmitry Vaskovskyi](https://softwareplanetgroup.co.uk)'
+author: '[Maksym Shekhovets](https://softwareplanetgroup.co.uk)'
 ---
 
 Today, Web applications can reach anyone anywhere, on any device and with a single codebase. Progressive Web Applications (PWAs) in particular are built and enhanced with modern APIs to deliver improved capabilities, reliability, and – crucially – [installability](/installation.html).
