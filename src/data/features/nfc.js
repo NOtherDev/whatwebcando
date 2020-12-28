@@ -5,26 +5,23 @@ export default new Feature({
   name: 'NFC',
   description: [
     `The <b>Web NFC API</b> is a low-level API that provides sites the ability to read and write to nearby NFC (Near-Field Communication) devices.`,
-    `It allows starting up a scan that informs when an NFC tag matching some <code>options</code> has been tapped. It also provides a method to write a message via NFC.`,
-    `Current support is limited to an experimental implementation in Chrome, available behind the "enable-webnfc" flag on Android. There was also Firefox OS experimental implementation that is <code>moz</code>-prefixed and doesn't follow the current state of the specification draft.`
+    `It allows starting up a scan that informs when an NFC tag has been tapped. It also provides a method to write a message via NFC.`,
+    `Current support is limited to an experimental implementation in Chrome, available behind the "experimental-web-platform-features" flag on Android. There was also Firefox OS experimental implementation that is <code>moz</code>-prefixed and doesn't follow the current state of the specification draft.`
   ],
   api: `<dl>
-        <dt><code>const reader = new NDEFReader()</code></dt>
-        <dd>Creates an object used for NDEF readings.</dd>
-        <dt><code>reader.scan(options)</code></dt>
+        <dt><code>const ndef = new NDEFReader()</code></dt>
+        <dd>Creates an object used for interacting with NDEF formatted NFC tags.</dd>
+        <dt><code>ndef.scan(options)</code></dt>
         <dd>Returns a <code>Promise</code> resolved if starting NFC scan was successful.</dd>
-        <dt><code>reader.addEventListener('reading', listener)</code></dt>
+        <dt><code>ndef.addEventListener('reading', listener)</code></dt>
         <dd>An event fired when a new reading is available.</dd>
-        <dt><code>reader.addEventListener('error', listener)</code></dt>
+        <dt><code>ndef.addEventListener('readingerror', listener)</code></dt>
         <dd>An event fired when an error happened during reading.</dd>
-        <dt><code>const writer = new NDEFWriter()</code></dt>
-        <dd>Creates an object used for NDEF writings.</dd>
-        <dt><code>writer.write(message, options)</code></dt>
+        <dt><code>ndef.write(message, options)</code></dt>
         <dd>Returns a <code>Promise</code> resolved if writing the <code>message</code> (String, ArrayBuffer or NDEF record) with <code>options</code> was successful.</dd>
       </dl>`,
   tests: [
-    Feature.windowContains('NDEFReader'),
-    Feature.windowContains('NDEFWriter')
+    Feature.windowContains('NDEFReader')
   ],
   demo: {
     html: `<p>
@@ -35,10 +32,10 @@ export default new Feature({
 <p><small>Based on the code snippets from <a href="https://w3c.github.io/web-nfc/#examples">specification draft</a>.</small></p>`,
     js: `async function readTag() {
   if ("NDEFReader" in window) {
-    const reader = new NDEFReader();
+    const ndef = new NDEFReader();
     try {
-      await reader.scan();
-      reader.onreading = event => {
+      await ndef.scan();
+      ndef.onreading = event => {
         const decoder = new TextDecoder();
         for (const record of event.message.records) {
           consoleLog("Record type:  " + record.recordType);
@@ -55,10 +52,10 @@ export default new Feature({
 }
 
 async function writeTag() {
-  if ("NDEFWriter" in window) {
-    const writer = new NDEFWriter();
+  if ("NDEFReader" in window) {
+    const ndef = new NDEFReader();
     try {
-      await writer.write("What Web Can Do Today");
+      await ndef.write("What Web Can Do Today");
       consoleLog("NDEF message written!");
     } catch(error) {
       consoleLog(error);
