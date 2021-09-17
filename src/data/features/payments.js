@@ -6,17 +6,17 @@ export default new Feature({
   description: [`The <b>Payment Request API</b> allows Web applications to delegate the payment checkout process to the operating system, allowing
       it to use whatever methods and payment providers are natively available for the platform and configured for the user. This approach takes away the burden of handling
       complex checkout flows at the application side, reduces the scope of the payment provider integration and ensures better familiarity for the user.`,
-    `With <code>supportedMethods</code> parameter the API allows the Web application to select the supported payment methods - for example only to allow credit card payments or
+    `With <code>supportedMethods</code> parameter the API allows the Web application to select the supported payment methods - for example only to allow 
       payments processed by a specific 3rd-party provider - as well as configure its parameters. Methods are specified by the predefined identifier or by
-      the 3rd-party URL. Note that the behaviors of the payment methods might vary. For example, the <code>basic-card</code> predefined provider does not
-      process any actual payments - its role is reduced to collecting the credit card details and returning it to the requesting Web application. 
-      Although 3rd-party providers might as well proceed with the actual money transfer as a part of the flow.`,
+      the 3rd-party URL. Note that the behaviors of the payment methods might vary as it can be defined by a 3rd-party. For example, it can only collect the required details 
+      and return it to the requesting Web application, or it might as well proceed with the actual money transfer as a part of the flow.`,
+    `At the time, no predefined payments providers exists, although there is a partial browser support for a deprecated <code>basic-card</code> provider that used to exist in the standard and was responsible for collecting the credit card data, without processing the payment itself. It was <a href="https://groups.google.com/a/chromium.org/g/blink-dev/c/fLpgY6iLibo/m/8FpouUKiBAAJ?pli=1" target="_blank" rel="noopener">deprecated in Aug 2021</a>.`,
     `With <code>details</code> parameter the Web application should specify the total amount and currency of the payment. It also allows setting up
       the order summary information including the subtotals, order items and shipping options.`,
     `With <code>options</code> parameter the Web application might specify what kind of customer data it requires to be able to fulfill the request.
       It may require a shipping address (<code>requestShipping</code>), email (<code>requestPayerEmail</code>), phone (<code>requestPayerPhone</code>) 
       or name (<code>requestPayerName</code>).`,
-    `The only payment method available on iOS devices is <a href="https://www.apple.com/apple-pay/" target="_blank" rel="noopener">Apple Pay</a> and it is only functional on devices with fingerprint authentication (Touch ID). It is accessible both via the standard Payment Request API described here as well as the older proprietary non-standard <code>ApplePaySession</code> API. The <code>basic-card</code> payments are not supported.`],
+    `The only payment method available on iOS devices is <a href="https://www.apple.com/apple-pay/" target="_blank" rel="noopener">Apple Pay</a> and it is only functional on devices with fingerprint authentication (Touch ID). It is accessible both via the standard Payment Request API described here as well as the older proprietary non-standard <code>ApplePaySession</code> API.`],
   api: `<dl>
         <dt><code>paymentRequest = new PaymentRequest(paymentMethods, details, options)</code></dt>
         <dd>Creates a payment request object with the requested amounts, currencies and methods configured.</dd>
@@ -55,10 +55,9 @@ function initPaymentRequest() {
   let networks = ['amex', 'jcb', 'visa', 'maestro', 'mastercard'];
   
   let supportedInstruments = [{
-    supportedMethods: 'basic-card',
+    supportedMethods: 'basic-card', // note that this method is deprecated and its support will be removed
     data: {
       supportedNetworks: networks, 
-      supportedTypes: ['debit', 'credit', 'prepaid']
     }
   }, {
     supportedMethods: 'https://apple.com/apple-pay',
@@ -145,6 +144,6 @@ function donate() {
     {
       url: 'https://developers.google.com/web/fundamentals/payments/deep-dive-into-payment-request',
       title: 'Google Developers: Deep Dive into the Payment Request API'
-    }
+    },
   ]
 })
