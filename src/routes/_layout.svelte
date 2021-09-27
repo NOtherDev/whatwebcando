@@ -202,32 +202,6 @@
       }
     }
 
-    #carbonads {
-      margin: 1em;
-      padding: 1em;
-      position: relative;
-      border: 1px solid var(--primary-border);
-      border-radius: 10px;
-
-      .carbon-wrap {
-        display: flex;
-        align-items: start;
-      }
-
-      .carbon-text {
-        margin-left: 1em;
-        color: black;
-      }
-
-      .carbon-poweredby {
-        position: absolute;
-        bottom: 1em;
-        right: 1em;
-        font-size: .6em;
-        display: inline-block;
-      }
-    }
-
     .mdi:before {
       display: inline-block;
       position: relative;

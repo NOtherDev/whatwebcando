@@ -22,7 +22,6 @@
 <script>
   import FeaturesList from '../components/FeaturesList.svelte';
   import Article from '../components/Article.svelte';
-  import PromoBox from '../components/PromoBox.svelte';
 
   export let articles;
 </script>
@@ -82,8 +81,6 @@
   </main>
 
   <aside>
-    <PromoBox/>
-
     <h2>Articles</h2>
 
     {#each articles as article}
