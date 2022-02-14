@@ -232,6 +232,11 @@ const groups = [
         icon: "mdi-hardware-mouse",
         name: "Pointing Device Adaptation"
       },
+      {
+        id: "eye-dropper",
+        icon: "mdi-eyedropper",
+        name: "EyeDropper"
+      },
     ]
   },
   {
