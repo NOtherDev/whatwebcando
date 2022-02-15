@@ -2,7 +2,7 @@ import {Feature} from "../../utils/feature.js";
 
 export default new Feature({
   id: 'eye-dropper',
-  name: 'EyeDropper',
+  name: 'Eye Dropper',
   description: [
     `The <b>EyeDropper API</b> allows users to catch sample colors from their screen with an eyedropper tool.`,
     `Unlike <code>&lt;input type="color"&gt;</code>  on Chromium-based Desktop browsers, this API offers a simple interface to pick the color of the entire device screen with a standard API.`,
