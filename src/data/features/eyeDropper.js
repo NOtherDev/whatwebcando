@@ -5,7 +5,7 @@ export default new Feature({
   name: 'EyeDropper',
   description: [
     `The <b>EyeDropper API</b> allows users to catch sample colors from their screen with an eyedropper tool.`,
-    `Unlike <code>&lt;input type="color"&gt;</code>  on Chromium-based Desktop browsers, this API offers a simple interface to pick the colour of the entire device screen with a standard API.`,
+    `Unlike <code>&lt;input type="color"&gt;</code>  on Chromium-based Desktop browsers, this API offers a simple interface to pick the color of the entire device screen with a standard API.`,
   ],
   api: `<dl>
       <dt><code>const eyeDropper = new EyeDropper()</code></dt>
