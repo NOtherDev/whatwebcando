@@ -47,6 +47,8 @@ import startup from "./startup.js";
 import freezeResume from "./freezeResume.js";
 import idle from "./idle.js";
 import shapeDetection from "./shapeDetection.js";
+import eyeDropper from "./eyeDropper.js";
+
 
 const features = [
   localNotifications,
@@ -98,6 +100,7 @@ const features = [
   freezeResume,
   idle,
   shapeDetection,
+  eyeDropper
 ];
 
 export default features

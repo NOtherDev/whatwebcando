@@ -326,6 +326,9 @@
     .mdi-device-wifi-tethering:before {
       content: "\e775";
     }
+    .mdi-eyedropper::before {
+      content: "\E7F9";
+    }
     .mdi-hardware-memory:before {
       content: "\e7d1";
     }
