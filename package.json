@@ -14,7 +14,10 @@
     "cy:open": "cypress open",
     "test": "run-p --race dev cy:run",
     "deploy": "(cd dist && git add --ignore-removal . && git commit -m \"Update to $(cd .. && git rev-parse HEAD)\" && git push && git reseth)",
-    "deploy-staging": "surge ./dist https://wwcd-beta.surge.sh"
+    "deploy-staging": "surge ./dist https://wwcd-beta.surge.sh",
+    "clean": "rm -rf ./__sapper__",
+    "export-legacy": "sapper export --legacy",
+    "deploy-gh-pages": "npm run clean && npm run export-legacy && node ./scripts/deploy.js"
   },
   "dependencies": {
     "chartist": "^0.11.4",
@@ -34,6 +37,7 @@
     "@babel/preset-env": "^7.0.0",
     "@babel/runtime": "^7.0.0",
     "@rollup/plugin-replace": "^2.2.0",
+    "gh-pages": "^3.2.3",
     "node-sass": "^6.0.1",
     "npm-run-all": "^4.1.5",
     "rollup": "^1.12.0",
