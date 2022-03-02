@@ -142,7 +142,7 @@
       margin-left: 0;
     }
   }
-  
+
   .support {
     text-transform: uppercase;
     font-weight: bold;
@@ -207,13 +207,13 @@
       <li>
         <span><i class="mdi {feature.icon}"></i> <a rel="prefetch" href="/{feature.id}.html">{feature.name}</a></span>
         {#await feature.determineIsSupported() then isSupported}
-          {#if isSupported}
+          {#if isSupported === true}
             <span class="support support-yes">Yes <i class="mdi mdi-check"></i></span>
-          {:else}
+          {:else if isSupported === false}
             <span class="support support-no">No <i class="mdi mdi-cross"></i></span>
+          {:else}
+            <span class="support-unk">not testable</span>
           {/if}
-        {:catch}
-          <span class="support-unk">not testable</span>
         {/await}
       </li>
       {/each}

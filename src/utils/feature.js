@@ -120,7 +120,7 @@ export class Feature {
 
   async determineIsSupported() {
     if (!this.tests.length) {
-      throw 'no tests'
+      return null
     }
 
     const results = await Promise.all(this.tests.map(t => t.result))
