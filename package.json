@@ -2,22 +2,19 @@
   "name": "whatwebcando",
   "description": "Can I rely on the Web Platform features to build my app? An overview of the device integration HTML5 APIs",
   "private": true,
-  "type": "module",
   "scripts": {
     "preinstall": "npx npm-force-resolutions",
     "dev": "sapper dev",
     "build": "sapper build --legacy",
-    "export": "mv dist/.git __sapper__/_tmp_dist_git && (sapper export dist --legacy || true) && mv __sapper__/_tmp_dist_git dist/.git",
+    "export": "sapper export --legacy",
     "export-aliases": "node deploy/aliases.mjs",
     "start": "node __sapper__/build",
     "cy:run": "cypress run",
     "cy:open": "cypress open",
     "test": "run-p --race dev cy:run",
-    "deploy": "(cd dist && git add --ignore-removal . && git commit -m \"Update to $(cd .. && git rev-parse HEAD)\" && git push && git reseth)",
+    "deploy": "npm run clean && npm run export && node ./scripts/deploy.js",
     "deploy-staging": "surge ./dist https://wwcd-beta.surge.sh",
-    "clean": "rm -rf ./__sapper__",
-    "export-legacy": "sapper export --legacy",
-    "deploy-gh-pages": "npm run clean && npm run export-legacy && node ./scripts/deploy.js"
+    "clean": "rm -rf ./__sapper__"
   },
   "dependencies": {
     "chartist": "^0.11.4",
