@@ -20,8 +20,8 @@ This tab offers the ability to inspect and clear the data in all the available s
 The first one is Offline switch. It's the most self-describing one. By checking it we simulate the lack of internet connectivity from our tab, causing all the network requests to fail and letting us test our offline behaviors. It is equivalent to setting the network emulation to Offline in the Network tab - both do exactly the same and both are issuing a yellow warning badge to save us from unnecessary debugging when we forgot we turned this feature on.
 
 <figure>
-  <img src="/articleimgs/chrome-switch-disable-cache.png" alt="Chrome's Network tab 'Disable cache' switch" />
-  <figcaption>Chrome's Network tab "Disable cache' switch, equivalent to Application tab "Offline" switch</figcaption>
+  <img src="/articleimgs/chrome-switch-disable-cache.png" alt="Chrome's Network throttling dropdown" />
+  <figcaption>Setting the network throttling to "Offline" is equivalent to Service Worker's "Offline" switch</figcaption>
 </figure>
 
 All the requests will fail to reach the network, so their Promises will get rejected without creating the `Response` object. 
