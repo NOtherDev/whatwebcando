@@ -49,7 +49,7 @@ Being a developer, I have always wanted to automate splash screens as a part of 
 
 [PWA Asset Generator](https://www.npmjs.com/package/pwa-asset-generator) is an open-source CLI tool that automatically generates icon and splash screen images. It does so by following Web App Manifest specifications in addition to Apple Human Interface guidelines. Even better, however, it can even update manifest.json and index.html files with the generated images. There's a [step-by-step guide](https://itnext.io/pwa-splash-screen-and-icon-generator-a74ebb8a130) on exactly how to do this. Be aware, though, that this article was published in 2019, so there may actually be a more recent technique.
 
-Lastly, if you would like some help with app icons, then have a look at [MakeAppIcon](https://makeappicon.com/), and if you require any additional tools, you may also find [PWA Builder](https://www.pwabuilder.com/imageGenerator) useful.
+Lastly, if you would like some help with app icons, then have a look at [Website Planet](https://www.websiteplanet.com/webtools/favicon-generator/), and if you require any additional tools, you may also find [PWA Builder](https://www.pwabuilder.com/imageGenerator) useful.
 
 ## Summary
 
