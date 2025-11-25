@@ -45,7 +45,7 @@
     "rollup-plugin-terser": "^5.3.1",
     "sapper": "git://github.com/NOtherDev/sapper.git#b05aceea8b2d5aaf91e7fcc7df646dbafd76907b",
     "surge": "^0.21.6",
-    "svelte": "^3.0.0",
+    "svelte": "^3.49.0",
     "svelte-preprocess-sass": "^0.2.0"
   },
   "resolutions": {
